@@ -1,0 +1,3408 @@
+[
+  {
+    "topic_id": "T01",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person J"
+                ],
+                "cc": [
+                  "Person I"
+                ],
+                "date": "2000-04-21",
+                "subject": "Enserco — exposure run April 17-19, follow-up",
+                "body": "J —\n\nPulled the daily credit exposure runs for Enserco Energy covering April 17 through 19. Person C has been running these each morning; the April 17 close shows $4.2M net of posted L/C collateral against the $5M approved ceiling. The April 18 close — same run, next day — shows $5.3M. Limit crossed sometime during the April 18 session.\n\nWhat I can also see from the ticket log is that at least three trades were processed and cleared through the queue after that crossing point on April 18. Person C's name is on the daily run for each of those dates, so she had the numbers when those tickets went through.\n\nFor context on volume: Enserco had been running larger lots and higher ticket frequency on the online platform in the days leading up to this, so the move wasn't a spike out of nowhere — it built across the session.\n\nLet me know if you want the full tape or just the net figures for the relevant dates. Happy to pull whatever you need before this goes further up.\n\nH"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person D",
+                "to": [
+                  "Person E"
+                ],
+                "cc": [],
+                "date": "2000-04-20",
+                "subject": "Fwd: Enserco — credit status / desk inquiry (April 19)",
+                "body": "E —\n\nForwarding this for your awareness given Person B's note that came in this morning. Wanted you to have the full picture of where credit stood as of yesterday.\n\nPerson C's reply below was in response to my morning check-in ahead of the desk call. Her read as of April 19: exposure sitting at $4.2M net of L/C collateral, $5M approved limit, so headroom still in place. She flagged it as a caution on pace, not a block — her words were \"no hard stop at this point.\" Primary concern she identified was the unsigned ISDA, which Person B is separately chasing.\n\nThat's the basis on which I updated the desk yesterday afternoon.\n\n— D\n\n-------- Forwarded Message --------\nFrom: Person C\nTo: Person D\nDate: Thu, 19 Apr 2000 09:47\nSubject: Re: Enserco headroom — desk wants to know if we can keep taking their volume through end of month\n\nEnserco exposure is currently sitting at $4.2M net of L/C collateral against a $5M approved limit — so we have room, though the pace of their online volume means we should watch it closely. No hard stop at this point; I'd flag it as a caution rather than a block. The bigger issue is the unsigned ISDA, which Person B is chasing. Once that's executed we can revisit the limit itself if the desk wants to grow the relationship.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [
+                  "Person E"
+                ],
+                "date": "2000-04-20",
+                "subject": "Enserco — recommend hold on new volume pending ISDA",
+                "body": "D —\n\nSpoke with Don Perkins at Enserco's credit desk this morning. Exposure is increasing given the size of the online volume they've been putting through. My recommendation is no further tickets until the ISDA is executed — I don't want us adding to the book without that documentation in place. Please flag to the relevant platform contacts and get a hold put on new Enserco volume.\n\nLet me know once that's communicated.\n\n— B"
+              },
+              {
+                "from": "Person D",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person E"
+                ],
+                "date": "2000-04-20",
+                "subject": "Re: Enserco — recommend hold on new volume pending ISDA",
+                "body": "B —\n\nUnderstood. I've relayed to the trading platform contacts — desk is on notice to hold off on new Enserco volume pending ISDA execution.\n\nFor what it's worth, based on the credit status I had from Person C as of yesterday morning, the exposure was within approved parameters at that point, so I've communicated to the desk that no unwind is required on the existing book. The ISDA gap is the outstanding item, not the credit position itself. If your read from Perkins suggests something different on the credit side, let me know and I'll go back to Person C for an updated run — but as of my last information there's nothing on the existing trades that needs to be unwound.\n\nWill confirm once I have acknowledgment from the platform contacts.\n\n— D"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 2,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person D",
+                "whom": "Person E",
+                "about": "Person D tells Person E that Person C's April 19 read was that Enserco exposure was $4.2M against a $5M limit with no hard stop, while the emails themselves show an exposure run indicating the April 18 close was $5.3M and the limit had already been crossed before additional trades were processed."
+              },
+              "match": {
+                "match": false,
+                "reason": "The blind read changes the concealer and misled roles: it has Person D telling/misleading Person E, instead of Person C concealing the already-breached Enserco limit from Person D, even though the underlying fact about the limit being already exceeded is similar."
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "Enserco exposure having already exceeded the $5M limit on April 18"
+              },
+              "match": {
+                "match": true,
+                "reason": "same C conceals same already-breached limit from same D"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "Enserco's actual credit exposure exceeding the approved limit"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing from Person D the exact same fact: that Enserco has already exceeded its approved credit limit."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T02",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person J"
+                ],
+                "cc": [],
+                "date": "1999-09-08",
+                "subject": "Clearwater Valley — authorization status question",
+                "body": "J —\n\nPulled the Clearwater Valley file yesterday to check counterparty limits and ran into something. The opinion letter on file is dated August 1998 — one-year instrument. No successor document. The PUC order conditioning their authorization requires the letter to stay current, so as of August this year we're technically looking at a lapse.\n\nCalled your office this morning and spoke briefly with your associate. She confirmed that under the plain language of the order, the authorization would be considered lapsed without a current letter in place. That tracks with how I read it.\n\nI've drafted a letter to Clearwater Valley's outside counsel requesting an updated opinion. Going out today or tomorrow. Should be a straightforward renewal — the underlying PUC order is still in effect, just the annual letter requirement that wasn't met. I'll keep you posted when I hear back.\n\nNothing to escalate at this point; just wanted a clean record that we'd confirmed the read.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "1999-10-12",
+                "subject": "Utilities cleared for online derivatives trading — status?",
+                "body": "C —\n\nDesk is asking again. The question is simple: do the ten utilities with executed master agreements represent ten counterparties we can actually trade against right now? And what's the realistic timeline on the thirty to forty still in the pipeline?\n\nNeed a clean answer I can pass along. Can you confirm status today?\n\n— E"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person E"
+                ],
+                "cc": [],
+                "date": "1999-10-12",
+                "subject": "Re: Utilities cleared for online derivatives trading — status?",
+                "body": "E —\n\nTo answer your question directly — yes, the ten utilities with executed master agreements are approved and their authorizations are current. The due diligence on each of them has been satisfactorily concluded, including where required the receipt of opinion letters from their counsel confirming authorization to trade derivatives under applicable state law and any relevant PUC orders. You may represent to the desk that those ten counterparties are cleared for trading.\n\nOn the pipeline: the thirty to forty still under review are at various stages of the tiered process — local counsel engaged, state regulatory landscape being researched, PUC orders under review, opinion letters requested or pending where the state requires them. Some will clear without issue; others may not. The process has in the past revealed circumstances preventing a utility from trading or requiring actions not yet taken, which is why approval is withheld until the research is complete. I'll flag anything that affects the pipeline timeline as it develops.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "1999-10-13",
+                "subject": "Fwd: Utilities cleared for online derivatives trading — status?",
+                "body": "B —\n\nFYI and for your records. Per legal, all ten executed-agreement counterparties are cleared and current — see C's note below.\n\nI've already passed this to the desk lead this morning with the same message: all ten are good to go, no unwind required, proceed on any pending transactions including the November Clearwater Valley tranche. He's booking accordingly.\n\n------- Forwarded message -------\nFrom: Person C\nTo: Person E\nDate: Tue, 12 Oct 1999 16:44:07 -0500\nSubject: Re: Utilities cleared for online derivatives trading — status?\n\nTo answer your question directly — yes, the ten utilities with executed master agreements are approved and their authorizations are current. The due diligence on each of them has been satisfactorily concluded, including where required the receipt of opinion letters from their counsel confirming authorization to trade derivatives under applicable state law and any relevant PUC orders. You may represent to the desk that those ten counterparties are cleared for trading.\n\n[remainder of message on file]\n\n— E"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "leaks": [],
+          "joint_votes": 0,
+          "n_joint": 3,
+          "chain_bad": [
+            3
+          ]
+        }
+      },
+      {
+        "attempt": 1,
+        "iter": 2,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person J"
+                ],
+                "cc": [],
+                "date": "1999-10-08",
+                "subject": "Clearwater Valley — opinion letter status",
+                "body": "J —\n\nFollowing up on our September call. When I pulled the Clearwater Valley file a few weeks back I found the opinion letter dated August 1998 — one-year instrument, no successor document on file. You confirmed for me that under the plain language of the PUC conditional order the authorization would be considered lapsed without a current letter. That tracks with what I'm reading in the order itself.\n\nI sent a renewal request to their outside counsel on September 15th. Nothing back as of today. I'll try them again by phone but wanted to flag that we're now nearly four weeks out with no response.\n\nIf you have a contact over there who might move this along, let me know. Otherwise I'll keep pressing on my end.\n\nC"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "1999-10-12",
+                "subject": "Utilities cleared for online derivatives trading — status?",
+                "body": "C —\n\nDesk is asking again. We have ten executed master agreements — are those ten utilities actually approved and their authorizations current? And what's the plan for the thirty to forty still in the pipeline? They want a clean list before they book anything else.\n\nCan you give me a straight answer I can pass along?\n\nE"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person E"
+                ],
+                "cc": [],
+                "date": "1999-10-12",
+                "subject": "RE: Utilities cleared for online derivatives trading — status?",
+                "body": "E —\n\nTo answer your question directly — yes, the ten utilities with executed master agreements are approved and their authorizations are current. The due diligence on each of them has been satisfactorily concluded, including where required the receipt of opinion letters from their counsel confirming authorization to trade derivatives under applicable state law and any relevant PUC orders. You may represent to the desk that those ten counterparties are cleared for trading.\n\nOn the pipeline: the thirty to forty still under review are moving through a tiered process — local counsel engaged, state regulatory landscape researched, PUC orders reviewed, and opinion letters obtained where the state requires them. That process has in the past revealed circumstances preventing a utility from trading or requiring actions not yet taken, which is why approval is withheld until the research is complete. I'll send a pipeline update separately once I have current status from the field.\n\nC"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "1999-10-13",
+                "subject": "FW: Utilities cleared for online derivatives trading — status?",
+                "body": "B —\n\nFYI — per legal, all ten executed-agreement counterparties are cleared and current. I've already passed that confirmation to the desk lead this morning with a one-liner: all ten are good to go, no unwind required, proceed on any pending transactions. He was waiting on exactly this before booking the November Clearwater Valley power-swap tranche, so that's moving forward now.\n\nPipeline update from C to follow separately.\n\n— E\n\n\n-------- Forwarded Message --------\nFrom: Person C\nTo: Person E\nDate: Tue, 12 Oct 1999\nSubject: RE: Utilities cleared for online derivatives trading — status?\n\nE —\n\nTo answer your question directly — yes, the ten utilities with executed master agreements are approved and their authorizations are current. The due diligence on each of them has been satisfactorily concluded, including where required the receipt of opinion letters from their counsel confirming authorization to trade derivatives under applicable state law and any relevant PUC orders. You may represent to the desk that those ten counterparties are cleared for trading.\n\nOn the pipeline: the thirty to forty still under review are moving through a tiered process — local counsel engaged, state regulatory landscape researched, PUC orders reviewed, and opinion letters obtained where the state requires them. That process has in the past revealed circumstances preventing a utility from trading or requiring actions not yet taken, which is why approval is withheld until the research is complete. I'll send a pipeline update separately once I have current status from the field.\n\nC"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person E",
+                "about": "the status of Clearwater Valley's authorization/current opinion letter; C knew on 1999-10-08 that the August 1998 one-year opinion letter appeared lapsed with no successor on file and no response to renewal, yet on 1999-10-12 told E that all ten executed-agreement utilities were approved and their authorizations were current, which E then relied on for Clearwater Valley."
+              },
+              "match": {
+                "match": true,
+                "reason": "It matches the same concealer (Person C), the same misled person (Person E), and the same core hidden fact: Clearwater Valley’s authorization/opinion had lapsed, making C’s assurance that all ten were current and tradable false."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person E",
+                "about": "Clearwater Valley authorization status (lapsed opinion letter vs. claimed current)"
+              },
+              "match": {
+                "match": true,
+                "reason": "Same concealer (C), same misled party (E), same fact (Clearwater Valley lapsed authorization)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person E",
+                "about": "Clearwater Valley's authorization being lapsed due to an expired opinion letter"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read accurately identifies Person C as the concealer, Person E as the misled party, and the lapsed authorization of Clearwater Valley due to an expired opinion letter as the concealed fact."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T03",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person F"
+                ],
+                "cc": [],
+                "date": "2000-08-01",
+                "subject": "Engage Energy ISDA — file status heads-up",
+                "body": "Frank —\n\nWith D out starting tomorrow I want to flag something on the Engage Energy file before C gets into it in earnest.\n\nWhen we closed out the ISDA Master a few months back I was juggling three closings at once and I filed the wrong version into the system — the round-two markup, not the clean execution copy. I caught it about six weeks later. Pulled both documents up side by side: the filed version is missing the three carve-outs trading asked for — the modified cross-default threshold, the revised termination currency provision, and the third item we got Engage to agree to in the final round. The execution copy Engage's counsel returned came back to my inbox and ended up in a general correspondence folder rather than the official file.\n\nI've been looking for a clean moment to swap it in without making it a production. That moment hasn't come.\n\nJust wanted you to have the picture. C is going to be touching this file and I'll manage her questions directly.\n\nA"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2000-08-02",
+                "subject": "Re: Engage Energy — handoff questions from D",
+                "body": "C —\n\nHappy to help you get this buttoned up.\n\nOn the Coastal guaranty: compare it against the [firm] standard form — attached. The faxed version Engage sent over is substantially similar; the deviations I can see are cosmetic and don't affect enforceability. Your memo can note conforming language acceptable.\n\nOn the amendment: the hand-marked copy in the file reflects the agreed changes — those marks were initialed off by both sides during the final call. That is the version we should execute.\n\nThe underlying Master is clean and in place. The amendment slots in without issue.\n\nLet me know if anything else comes up before you send the package over.\n\nA"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person A"
+                ],
+                "cc": [
+                  "Person B"
+                ],
+                "date": "2000-08-03",
+                "subject": "Re: Engage Energy — handoff questions from D",
+                "body": "A —\n\nThanks, that's what I needed.\n\nI've compared the Coastal guaranty against the standard form you attached — one minor conforming change on the notice provision, otherwise fine. Memo drafted to that effect.\n\nOn the amendment: taking your confirmation that the hand-marked copy is the agreed form and that the Master on file is the governing document. I'm not pulling the Master itself — you've confirmed it's in place and I'll rely on that. Preparing the execution package now with a cover letter to Engage's counsel referencing the ISDA Master Agreement on file as the base document. Routing to B for sign-off with a note that underlying Master is confirmed in place by counsel and amendment is ready for signature.\n\nC"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [],
+            "messages": [
+              {
+                "from": "Person D",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [
+                  "Person A"
+                ],
+                "date": "2000-07-31",
+                "subject": "Engage Energy ISDA — picking this up while I'm out",
+                "body": "C —\n\nLeave starts Wednesday so I need you to finish out the Engage Energy ISDA file. The master agreement and a related amendment are both in process. There were several rounds of comments, a printed draft with hand-marked changes sitting in the file, and a guaranty from Coastal Corporation that Engage faxed over — all of that needs to be reconciled and the execution package put together.\n\nI haven't had time to fully sort the file before I go. Get an attorney involved if you hit anything you're not sure about.\n\nA — still waiting on your review of my comments to the amendment draft. Can you loop C in directly once you've looked at it?\n\nD"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "Person A knows the ISDA Master on file is the wrong version and not the clean execution copy, missing negotiated carve-outs, but tells Person C that the underlying Master is clean and in place and lets C rely on the Master on file as governing."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (Person A), the same misled party (Person C), and the same core concealed fact: the ISDA on file is not the final governing executed agreement but an incorrect/superseded version that C is led to rely on as valid."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "the filed Master being the correct clean execution copy (it is actually the wrong markup missing three carve-outs)"
+              },
+              "match": {
+                "match": true,
+                "reason": "same A concealing from same C that filed ISDA is the correct final version when it is not"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "That the ISDA Master Agreement currently in the official file is the wrong version and is missing key provisions."
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person A concealing from Person C that the ISDA Master Agreement on file is the wrong version."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T04",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person F"
+                ],
+                "cc": [],
+                "date": "2000-01-21",
+                "subject": "Re: FM notice — checklist complete",
+                "body": "F —\n\nWrapped up the clause review. All three grounds fail: the operational disruption is foreseeable under the contract definition, it sits squarely within their reasonable control, and the notice came in outside the contractual window. No valid FM claim.\n\nI've noted the conclusion in the file. Once you've signed off on the rejection letter and it goes out, counterparty is in breach on the missed deliveries — no question.\n\nLet me know if you need anything else before you transmit.\n\nC"
+              },
+              {
+                "from": "Person F",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2000-01-21",
+                "subject": "Re: FM notice — checklist complete",
+                "body": "C —\n\nAgreed on all three points. Letter is drafted, signed, and going out today. I'll log it in outgoing correspondence — file is closed on the FM question from our side.\n\nCounterparty will have it by end of day. They're in breach as of transmission.\n\nThanks for the thorough run-through.\n\nF"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person F",
+                "to": [
+                  "Person G"
+                ],
+                "cc": [],
+                "date": "2000-01-24",
+                "subject": "Re: contract violation — desk query",
+                "body": "G —\n\nFollowing up on our call. To summarise where I left things: the FM notice is still being worked through on our end. We have real concerns about whether the claimed event meets the contractual standard, but we haven't issued a final determination yet. I'd strongly recommend we tell the desk to hold off on any breach declaration until the review is complete — probably another few days.\n\nIssuing a default notice while the FM claim is technically live creates meaningful exposure. If a court later found the claim valid, we'd be looking at a wrongful-termination argument with very little cover. Better to let the review run its course and move from a clean position.\n\nHappy to discuss further if useful before you respond to E.\n\nF"
+              },
+              {
+                "from": "Person G",
+                "to": [
+                  "Person E"
+                ],
+                "cc": [],
+                "date": "2000-01-24",
+                "subject": "Re: contract violation — desk query",
+                "body": "E —\n\nSpoke with F. Based on where we are on the FM review, we're not in a position to declare a formal breach today. The determination hasn't been finalised and moving on a default notice before that's done carries wrongful-termination risk we don't want to take on.\n\nPlease advise the desk to document the missed deliveries but hold on any default notice until legal completes its assessment. They should continue treating the failures as delivery shortfalls under a suspended obligation for now — not as breaches under an active contract. We should have clarity within a few days.\n\nI'm relaying this straight to you on that basis — desk should stand down from any breach remedies in the meantime.\n\nG"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person F"
+                ],
+                "cc": [],
+                "date": "2000-01-24",
+                "subject": "FM file — outgoing log / timing",
+                "body": "F —\n\nQuick flag. The rejection letter went out on the 21st and it's sitting in the outgoing log dated that day. If the desk or G's office starts asking for the file history, the gap between transmission and any escalation to the trading side is going to be visible.\n\nNot raising this to second-guess anything — just want to make sure you're aware of the log entry before this gets pulled into a wider review. Let me know how you want to handle it.\n\nC"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "that the FM review was still ongoing and no final determination had been issued, when in fact by 2000-01-21 F had agreed the FM claim failed on all grounds, signed the rejection letter, sent it that day, and considered the FM question closed with counterparty in breach as of transmission"
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (Person F), the same misled party (Person G), and the same core concealed fact: the FM claim had already been rejected, so review was not ongoing and the counterparty was already in breach."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "FM claim status (already rejected and letter sent on 21st vs. still under review with no final determination)"
+              },
+              "match": {
+                "match": true,
+                "reason": "Identical concealer (F), misled party (G), and exact fact (FM claim already rejected vs still under review)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "That the Force Majeure claim was already rejected and the rejection letter was sent on January 21"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person F concealing from Person G the fact that the force majeure claim had already been rejected."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T05",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2000-05-12",
+                "subject": "Re: executed master — counterparty copy",
+                "body": "D —\n\nCircling back on something I've been sitting with since we got the countersigned copy back. When I went through the returned execution copy last week, the indemnity clause isn't there. It was in the penultimate draft — I have that version — but it's not in the final that came back executed and binding.\n\nI signed off on that last round of redlines before we went to signature. I reviewed the clean copy and cleared it. I didn't catch the deletion. I don't know whether it dropped in their formatting pass or whether they pulled it deliberately, but either way the agreement is now countersigned and returned without it.\n\nNot flagging this for any action right now — just wanted you to have it in writing from me.\n\nC"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person C",
+                  "Person B"
+                ],
+                "cc": [
+                  "Person D"
+                ],
+                "date": "2000-05-09",
+                "subject": "Counterparty master — indemnity confirmation for Q risk report",
+                "body": "C, B —\n\nFinishing up the quarterly risk report and want to make sure I'm working from the right contractual picture before this goes to senior management. Can you confirm the executed master with the counterparty includes the standard indemnity provision we discussed? I want to make sure I'm reflecting the correct protection level in the exposure model before this goes up.\n\nThanks —\nH"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [
+                  "Person B",
+                  "Person D"
+                ],
+                "date": "2000-05-09",
+                "subject": "Re: Counterparty master — indemnity confirmation for Q risk report",
+                "body": "H —\n\nYes — the executed agreement with the counterparty is in place and contains the indemnity provision. You're fine to rely on it for the report. We're still sorting out the ISDA vs. GTC assignment question for the online platform, but that's a separate matter and doesn't affect the executed master. The protection you've been modeling is there.\n\nC"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5",
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person G",
+                  "Person I"
+                ],
+                "cc": [],
+                "date": "2000-05-10",
+                "subject": "Q1 credit derivative exposure report — final + two new trade recs",
+                "body": "G, I —\n\nAttached is the finalized quarterly risk report. Counterparty exposure is modeled at the reduced risk level reflecting the indemnity protection in the executed master — got confirmation from C yesterday that the provision is in place, so I've kept the framework as-is and the reserve calculations are set accordingly.\n\nAlso wanted to flag two new credit derivative trades we entered this week. I recommended terms on the basis that the indemnity is in place — spreads and collateral requirements are sized to that protection level. Had the framework been different I'd have gone wider on spreads and pushed for additional collateral, but given the confirmed contractual position I was comfortable with where we landed. Both trades are executed.\n\nLet me know if you have questions on the model or the new positions.\n\nH"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person H",
+                "about": "that the executed master agreement included the indemnity provision, when C later states the executed final agreement in fact did not contain that clause"
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies Person C concealing from Person H the same core fact: the executed agreement lacked the indemnity clause while H believed it was included and operative."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person H",
+                "about": "whether the indemnity provision is present in the executed master agreement"
+              },
+              "match": {
+                "match": true,
+                "reason": "Identical concealer (C), misled party (H), and core fact (indemnity presence/absence in executed agreement)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person H",
+                "about": "The absence of the indemnity clause in the executed master agreement"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing the absence of the indemnity clause in the executed agreement from Person H."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T06",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "1999-11-07",
+                "subject": "Re: Counterparty 7 — waiver letter out",
+                "body": "Done. Treasurer called Friday, explained the missed posting as a wire-routing problem at their custodian — routing code went to the wrong correspondent, funds never left the account. Checked the custodian's SWIFT reference he gave me; story holds together well enough. Drafted a one-paragraph waiver on letterhead, signed under the authority you and B have delegated to me, and faxed it to their back office this afternoon.\n\nLetter reads: the company hereby waives, as of November 7, 1999, the collateral call issued on October 31, 1999, and confirms that no event of default is deemed to exist with respect to such call.\n\nFax confirmation is in the counterparty credit folder. Call is formally closed on our side as of today.\n\nFigured it was cleaner to resolve it quietly and keep the relationship intact rather than let a custodian glitch sit on their regulatory filings. Let me know if you want a copy of the letter itself.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "1999-11-11",
+                "subject": "Re: Canadian counterparty status before review meeting",
+                "body": "C — need a quick status line on each Canadian name before we walk in tomorrow. Specifically: is each call still open and enforceable, or resolved? Want to know exactly what we're holding.\n\n— B"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "1999-11-11",
+                "subject": "Re: Canadian counterparty status before review meeting",
+                "body": "B — here's the rundown on the Canadian names:\n\n• Counterparty 3 — call issued 11/02, partial posting received 11/08, shortfall ~CAD 140k, still open\n• Counterparty 9 — call issued 11/04, no response, open\n• Counterparty 12 — resolved 11/05, full posting confirmed\n• Counterparty 7 — call issued 10/31, no posting received to date, default position preserved — recommend we hold firm on threshold renegotiation until they perform\n• Counterparty 15 — resolved 11/03, full posting confirmed\n• Counterparty 18 — call issued 11/06, cure period still running\n\nCounterparty 7 is the strongest card we have going in. I'd lead with it if they push back on the threshold.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person G"
+                ],
+                "cc": [
+                  "Person D"
+                ],
+                "date": "1999-11-11",
+                "subject": "Review meeting — talking points, Canadian counterparties",
+                "body": "G — one-pager on our leverage positions for tomorrow's session. Canadian names only; full list attached separately.\n\nCounterparty 3: partial cure, ~CAD 140k shortfall still open. Moderate pressure available.\n\nCounterparty 9: no response to call issued 11/04. Default position intact; low commercial priority but useful as a comparator if they argue selective enforcement.\n\nCounterparty 7 — collateral call outstanding since 10/31, no cure, technical default intact. This is our strongest position on the Canadian side. We are positioned to condition any threshold amendment on immediate full posting or a credit-enhancement substitute. Trading desk lead will open the Counterparty 7 discussion by referencing the uncured default as the reason we cannot move on exposure limits without security in hand. I've confirmed the call is still open and enforceable — no resolution to date.\n\nRecommend we do not signal any flexibility on Counterparty 7 until they come to us with something concrete.\n\nCall me tonight if you want to walk through sequencing — I'll be at the office until at least 9.\n\n— B"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person B",
+                "about": "Counterparty 7's collateral call/default status: C had already waived the 10/31 collateral call on 11/07 and confirmed no event of default existed, but on 11/11 told B that no posting had been received, the default position was preserved, and the call remained open/enforceable."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (Person C), the same misled party (Person B), and the same concealed fact: that Counterparty 7’s collateral call had already been formally waived so the default/leverage position was no longer enforceable despite B being led to believe it remained open."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person B",
+                "about": "Counterparty 7 call status (waived/closed on 11/07 vs. still open)"
+              },
+              "match": {
+                "match": true,
+                "reason": "same concealer (C), same misled party (B), same fact (C7 call waived/closed vs still open)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person B",
+                "about": "The status of the Counterparty 7 collateral call, which Person C had already waived and closed but told Person B was still open and in default."
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing from Person B the fact that the collateral call for Counterparty 7 has already been waived."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T07",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person J",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [
+                  "Person G"
+                ],
+                "date": "2001-02-26",
+                "subject": "TDCC master — approval file gap",
+                "body": "Following up on the derivatives documentation audit we discussed last week. Pulled the TDCC ISDA master (executed November 2000) as part of the sample review.\n\nThe agreement is a modified master — credit-support annex was removed entirely. Under the derivatives documentation policy, any master that deviates from the standard credit template requires sign-off from the internal credit committee and the board-level authorization panel before execution. That's not a formality; stripping the CSA is a material risk decision.\n\nNo credit-committee submission is on file for this agreement. No board-level panel sign-off either. The approval record simply does not exist in the file — not pending, not deferred, not attached as a separate memo. It was never sought, as far as I can tell from what's here.\n\nThe agreement was executed and filed without either approval ever being obtained. That's the gap.\n\nWant to flag this before it goes further up. Let me know how you want to handle escalation.\n\n— J"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person C"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status per your request",
+                "body": "Person B —\n\nReviewed the file as requested. The modified ISDA master with TDCC was executed in November 2000 and the agreement is on file. The credit-support annex was negotiated out at TDCC's insistence, which is consistent with the history Person E describes from 1999 — they've never accepted credit terms embedded in a master, and that's what killed the earlier negotiations.\n\nThe agreement itself went through [firm]'s internal review process and authorization is documented. The trading desk has been booking against it since Q4 2000 without issue on the master side.\n\nThe more pressing question raised by Person E's note is whether TDCC's back office is properly processing the trade confirmations. That's a separate operational matter from the master's validity — the master is valid and authorized. Person C may want to take point on the confirmation piece directly with TDCC's back office.\n\nHappy to discuss if useful.\n\n— A"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person E"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status per your request",
+                "body": "Person B, Person E —\n\nPer Person A's review, the TDCC master executed in November 2000 is valid and authorized. The confirmation-acceptance issue Person E flagged looks to be an operational matter on TDCC's end, not a defect in the master itself.\n\nOn that basis I've cleared the trading desk to continue booking trades against the existing master — no unwind or freeze required on the open positions. I've told the desk that legal is handling the confirmation processing question separately with TDCC's back office and that they should route any new confirmation disputes to me.\n\nI'll coordinate with Credit on the confirmation side. Let me know if either of you wants a different approach before I proceed.\n\n— C"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 0,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B",
+                "about": "whether the TDCC master received required credit-committee and board-level approvals (A claims authorization is documented; J's audit shows none exist)"
+              },
+              "match": {
+                "match": false,
+                "reason": "wrong misled party (B vs C) plus unrelated audit/J element"
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B",
+                "about": "That the TDCC master agreement was properly authorized and that its approval is documented in the file"
+              },
+              "match": {
+                "match": false,
+                "reason": "The blind read identifies Person B as the misled party, whereas the intended concealment specifies Person C."
+              },
+              "recovered": false
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": false,
+          "modes": [
+            {
+              "mode": "WRONG_VICTIM",
+              "where": "blind reader recovered Person B as the misled party from clue 2 / all clues together"
+            }
+          ],
+          "revision": "The set fails because the deception is written most directly as A telling B (with C only copied), so the blind reader anchors on B as the person being misled. The intended victim, however, is C: the coordinator who relies on A's assurance and then causes the desk to act on it. Revise the emails so A's false assurance is directed squarely to C and framed as something C is expected to rely on operationally, while B is background or omitted. Keep clue 3's reliance by C, but strengthen the through-line: in clue 2, make C the addressee and explicitly connect A's statement about documented authorization to C's decision-making responsibility for desk instructions. That will align actor, victim, and false belief without changing the atoms."
+        }
+      },
+      {
+        "attempt": 1,
+        "iter": 2,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [
+                  "Person B"
+                ],
+                "date": "2001-02-19",
+                "subject": "TDCC — legal hold, trading must stop",
+                "body": "Person C,\n\nPutting this in writing so there's a clear record.\n\nTDCC situation goes back to early 1999 — credit negotiations collapsed because they flatly refused to sign any master containing credit terms. Rod Nelson in Credit was the responsible officer; deal died there. They're back now and their position hasn't changed: they've never accepted the terms and conditions embedded in our confirmations and they can't accept them.\n\nOn that basis, derivatives trading with TDCC needs to stop immediately on legal grounds until this is sorted. Before anything else moves, someone has to go back to Credit from scratch to get proper credit terms generated — there's no shortcut around that step.\n\nIf there's a master agreement already on file with TDCC, I'd want to understand how it got there, because any agreement that accommodated their refusal to accept credit terms would have needed credit-committee sign-off and board-level authorization panel review as a material risk decision. That's not a documentation call — policy is explicit on that. Pull the file and let me know what you find.\n\nPerson E"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person A"
+                ],
+                "cc": [],
+                "date": "2001-02-20",
+                "subject": "TDCC master — need status before we respond to Person E",
+                "body": "Person A,\n\nPerson E has flagged TDCC as a legal hold — see the thread Person C forwarded. Before we respond I need to know exactly where the master agreement stands. Person C is waiting on your read before she decides what to tell the desk.\n\nPlease report back to Person C directly — she's coordinating the desk instructions and needs a clear answer on authorization status today.\n\nThanks\nPerson B"
+              },
+              {
+                "from": "Person A",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [
+                  "Person B"
+                ],
+                "date": "2001-02-21",
+                "subject": "Re: TDCC master — need status before we respond to Person E",
+                "body": "Person C,\n\nReviewed the file. The modified ISDA master with TDCC was executed November 2000 and is on file. The credit-support annex was negotiated out at TDCC's insistence — consistent with the history Person E describes from 1999 — but the agreement itself went through [firm]'s internal review process and authorization is documented. So the master is valid and authorized.\n\nThe more pressing issue Person E is flagging looks like an operational matter: TDCC's back office apparently isn't processing our confirmations properly, which is separate from the master's validity. That's what needs to be worked through with their back office.\n\nYou're clear to make the call on desk instructions based on the above.\n\nPerson A"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person E"
+                ],
+                "date": "2001-02-21",
+                "subject": "Re: TDCC master — need status before we respond to Person E",
+                "body": "Person B, Person E,\n\nPer Person A's review just now: the TDCC ISDA master executed in November 2000 is valid and authorized, documentation is on file. Person A confirmed authorization is documented, so I'm treating the master as cleared.\n\nOn that basis I'm directing the desk to continue booking trades against the existing master — no unwind, no freeze on open positions. The confirmation-processing issue Person E raised is an operational matter on TDCC's end and I'll coordinate with their back office separately on that.\n\nPerson C"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 0,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": false,
+          "modes": [
+            {
+              "mode": "MISSING_true_state",
+              "where": "clue 1"
+            },
+            {
+              "mode": "MISSING_knew",
+              "where": "clue 2"
+            },
+            {
+              "mode": "WEAK_FALSE_ASSURANCE",
+              "where": "clue 2 / Person A email"
+            }
+          ],
+          "revision": "The set fails because the emails never let a blind reader infer the concealed proposition with confidence: clue 1 only raises a hypothetical concern about what approval would have been required if such an agreement existed, rather than establishing that no approval was sought or that no record exists; clue 2 then gives Person A a facially plausible status update, but without any document-level contradiction showing he knew that statement was false. As written, the reader can treat this as an unresolved dispute about process rather than a concealment by Person A that misled Person C. Revise by making clue 1 explicitly report the file check and its result: state that the executed non-standard TDCC master is in the file, that no credit-committee or board authorization request/approval record exists, and that approval was never sought. Then tighten clue 2 so Person A is shown consulting or possessing the same file/history before assuring Person C that authorization is documented, removing any ambiguity or honest-reading hedge. That will let the set cleanly show: true unauthorized state, Person A's knowledge of that state, Person A's false assurance, and Person C's reliance."
+        }
+      },
+      {
+        "attempt": 1,
+        "iter": 3,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person D",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person E"
+                ],
+                "date": "2001-02-21",
+                "subject": "TDCC file review — authorization gap",
+                "body": "Person B —\n\nPer your request I pulled the TDCC derivatives file ahead of the meeting Thursday. Wanted to flag what I found before this goes any further.\n\nThe executed ISDA master is there — modified form, signed November 2000, credit-support annex removed. That part is in order.\n\nWhat is not there: any credit-committee submission, any board-level authorization panel sign-off, or any record that either body was ever approached about this agreement. The standard policy for a master that deviates from the credit template requires both. I checked the routing logs and the committee minutes through year-end 2000. Nothing. There is no approval record on file because, as far as I can tell from the file, no approval was ever sought.\n\nGiven Person E's note about TDCC's history refusing credit terms, the absence of a credit-committee sign-off on an agreement that strips the credit annex entirely is not a minor gap. Flagging now so you have the full picture before Person A's review comes back.\n\nD"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person C"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status per your request",
+                "body": "Person B —\n\nReviewed the file. Here is where things stand.\n\nThe modified ISDA master with TDCC was executed November 2000 and is on file. The credit-support annex was negotiated out at TDCC's insistence — consistent with the history Person E describes from 1999, so no surprise there. The agreement itself went through [firm]'s internal review process and authorization is documented. The trading desk has been booking against it since Q4 2000 without issue on the master side.\n\nPerson E's note about TDCC's position on confirmations is a separate matter. The concern there is whether TDCC's back office is properly processing the confirmation terms, not anything to do with the master's validity. The master is valid and authorized. I'd treat the confirmation question as an operational item and handle it through the back-office channel with TDCC directly.\n\nHappy to walk through the file if useful, but I don't think there's a documentation problem here.\n\nBest,\nA"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-02-23",
+                "subject": "TDCC — trading desk clearance",
+                "body": "Person C —\n\nJust wanted to make sure you saw my reply to Person B on the TDCC master. Bottom line: the master is authorized and on file, no issue there. The confirmation processing question is the live item, and that's an operational matter on TDCC's end.\n\nFrom a documentation standpoint the desk is clear to keep booking under the existing master while we work the confirmation angle separately.\n\nA"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person A"
+                ],
+                "cc": [
+                  "Person B"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC — trading desk clearance",
+                "body": "Person A —\n\nGot it, thanks. Relaying to the desk now on that basis — per your review the TDCC ISDA master executed November 2000 is confirmed authorized and on file, so I'm clearing them to continue booking against it. No unwind, no freeze on existing positions. I'll take the confirmation processing issue to TDCC's back office as a separate track and loop in Credit on that piece.\n\nWill keep you and Person B posted as that develops.\n\nC"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 1,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B",
+                "about": "whether the TDCC master agreement was internally authorized and documented; Person D states the file contains no credit-committee submission, no board-level authorization sign-off, and no record approval was ever sought, while Person A tells Person B the agreement went through internal review and authorization is documented."
+              },
+              "match": {
+                "match": false,
+                "reason": "It matches Person A and the lack of internal approval records, but the misled person is different: intended is Person C (who then directs the desk), while the blind read says Person B."
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "The authorization status of the TDCC master agreement"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person A concealing the true authorization status of the TDCC master agreement from Person C, matching the intended concealment."
+              },
+              "recovered": true
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": true,
+          "modes": [
+            {
+              "mode": "WRONG_VICTIM",
+              "where": "all clues together / blind reader primarily recovers Person B as the misled party, while Person C is only separately identified on authorization status"
+            }
+          ],
+          "revision": "The set fails because it makes Person B the central addressee of the contradiction: clue 1 gives B the true file defect, and clue 2 has A directly contradict that to B, so the strongest recovered deception is A misleading B. Person C appears mainly as a downstream recipient who relies on A's statement, not as the principal victim of the concealment. To fix this, keep the atoms but rewrite the emails so the key contradiction is anchored on C: make clue 1 establish the missing approvals in a way that does not frame B as the person being deceived, and make clue 2/3 show A directly assuring C that the agreement was internally authorized and documented, with C explicitly acting on that belief to clear trading. In short, shift the dramatic center of the false assurance from B to C while preserving that A knew no approval had been sought or recorded."
+        }
+      },
+      {
+        "attempt": 2,
+        "iter": 1,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person J"
+                ],
+                "cc": [
+                  "Person I"
+                ],
+                "date": "2001-02-26",
+                "subject": "TDCC master — approval file gap",
+                "body": "J —\n\nFollowing up on the derivatives documentation audit we flagged last week. Pulled the TDCC ISDA master (executed November 2000, modified form — credit-support annex removed). Went looking for the credit-committee submission and the board-level authorization panel sign-off that policy requires any time the standard credit template is deviated from.\n\nNothing there. Not a draft submission, not a routing slip, not a conditional approval, not a deferral memo. The approval record does not exist on file. As far as the file shows, neither the internal credit committee nor the board-level derivatives authorization panel was ever approached on this agreement.\n\nThat's not a misfiled document situation — there's no trail at all. Policy is unambiguous that stripping the credit-support annex is a material risk decision requiring that sign-off, not a documentation call the attorney can make unilaterally.\n\nWant to loop in G before this goes any further? Happy to pull the policy language and the file inventory if that helps.\n\nH"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person C"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status review",
+                "body": "B —\n\nHappy to report back. Reviewed the file this morning.\n\nThe modified ISDA master with TDCC was executed in November 2000 and the agreement is on file. The credit-support annex was negotiated out at TDCC's insistence — consistent with the history Person E describes from 1999, so no surprise there. The agreement itself went through [firm]'s internal review process and authorization is documented. Trading desk has been booking against it since Q4 2000 without issue on the master side.\n\nPerson E's note about TDCC's position on confirmations is worth taking seriously, but that's a separate question from the master's validity. The more pressing operational issue is whether TDCC's back office is actually processing the confirmations we're sending — that's not a defect in the master, it's a back-office alignment problem on their end.\n\nThe master is valid and authorized. Let me know if you want me to pull the executed copy for the file review.\n\nBest,\nA"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person E"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status review",
+                "body": "B, E —\n\nPer Person A's review, the TDCC master executed in November 2000 is valid and authorized. The confirmation-acceptance issue Person E flagged reads as an operational matter on TDCC's back-office end rather than any defect in the master itself.\n\nOn that basis I've cleared the trading desk to continue booking under the existing master — told them legal has confirmed it's authorized and on file, no unwind required on open positions. I'll coordinate separately with TDCC's back office on the confirmation processing question and loop in Credit as needed on that piece.\n\nLet me know if you want this escalated differently.\n\nC"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 1,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A and Person C",
+                "whom": "Person B",
+                "about": "They state that the TDCC master was properly authorized/on file, while Person H's later audit email says the required approval record for deviating from the standard template (removing the credit-support annex) does not exist at all, meaning the claimed authorization is contradicted by the file."
+              },
+              "match": {
+                "match": false,
+                "reason": "It gets the core fact about missing approval record, but misidentifies both the concealer (adds Person C) and the misled party (Person B instead of Person C/trading desk)."
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B",
+                "about": "whether the TDCC master received required internal credit-committee and board authorization (A claims it is documented; H shows the record does not exist)"
+              },
+              "match": {
+                "match": false,
+                "reason": "whom is Person B (not C) and the concealment dynamic differs"
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B and Person C",
+                "about": "The existence of internal review and authorization documentation for the TDCC master agreement"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person A concealing the lack of internal authorization documentation for the TDCC master agreement from Person C."
+              },
+              "recovered": true
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": true,
+          "modes": [
+            {
+              "mode": "WRONG_VICTIM",
+              "where": "overall recovery centers on Person B as the one misled; blind reader says 'Person A and Person C' misled 'Person B', and also 'Person A' misled 'Person B'"
+            },
+            {
+              "mode": "WRONG_ACTOR",
+              "where": "overall recovery names 'Person A and Person C' together as concealors in the main read, because clue 3 has Person C repeating the false authorization claim to Person B"
+            },
+            {
+              "mode": "MISSING_knew",
+              "where": "clue 2 / clue 3 set does not substantively show Person A knew the approvals had never been sought; it only shows A stated authorization existed, while clue 1 later shows the file lacked records"
+            },
+            {
+              "mode": "WEAK_FALSE_ASSURANCE",
+              "where": "clue 2 says the agreement 'went through [firm]'s internal review process and authorization is documented,' which can be read as a possibly mistaken status report rather than a knowingly false assurance tied specifically to the required credit-committee and board approvals"
+            }
+          ],
+          "revision": "The set fails because it makes the visible deception run mainly from A and then C to B, while the intended concealment is A misleading C so that C, relying on that assurance, directs the desk. It also does not firmly connect A's knowledge to the missing approvals; the reader sees contradiction from H's later audit, not that A personally bypassed mandatory sign-off and therefore knew the authorization claim was false. Revise the emails so A is shown explicitly handling execution/filing without submitting to credit committee or board approval, then separately assuring C that those specific approvals were complete and on file. Reframe C's email toward the trading desk or others as reliance on A's assurance, not as C deceiving B. Keep the true-state audit email, but sharpen A's language to the exact required approvals so the false assurance cannot be read as a vague or innocent statement about general 'review.'"
+        }
+      },
+      {
+        "attempt": 2,
+        "iter": 2,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person I"
+                ],
+                "cc": [
+                  "Person G"
+                ],
+                "date": "2001-03-06",
+                "subject": "TDCC master — authorization gap flagged in file review",
+                "body": "Following up on the derivatives documentation sweep you asked me to run last week.\n\nThe TDCC modified ISDA master (executed November 2000) is the one item I cannot close out. The file has the countersigned agreement and the trading desk booking records going back to Q4 2000. What it does not have — anywhere — is a credit-committee sign-off or a board-level authorization panel approval. Those are both mandatory under the derivatives documentation policy for any master that deviates from the standard credit template, which this one does: the credit-support annex was removed entirely.\n\nI have pulled every approval record we have on file for that agreement. There is nothing. Not a conditional approval, not a deferred sign-off, not a waiver memo. The required submissions were never made. The agreement went to execution and filing without either the internal credit committee or the board-level derivatives authorization panel ever seeing it.\n\nI want to flag this before the quarterly risk summary goes up. If you need me to walk through the policy language against the file, I can do that on short notice.\n\n— H"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person C"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status per your request",
+                "body": "Person B —\n\nReviewed the file as you asked. Here is where things stand.\n\nThe modified ISDA master with TDCC was executed in November 2000 and is on file. The credit-support annex was negotiated out at TDCC's insistence — consistent with the history Person E describes from 1999, when the deal died over exactly that point. The agreement itself went through [firm]'s internal review process; credit-committee sign-off and board-level authorization panel approval are both documented in the file. The trading desk has been booking against it since Q4 2000.\n\nPerson E's note about TDCC's position on confirmations is a separate issue. Their back office appears not to be processing our confirmation terms — that is an operational matter on their end and does not touch the master's validity. I would suggest we treat those two tracks independently: master is valid and authorized, confirmation question goes to their back office through the usual channel.\n\nHappy to discuss if useful.\n\nPerson A"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status per your request",
+                "body": "Person C —\n\nPer Person A's note below — can you handle the trading desk coordination on this? Person A confirms the master is authorized and on file; just need someone to relay that to the desk so they are not sitting on open positions waiting for a green light.\n\nAlso loop in Person E on the confirmation processing issue when you have a moment.\n\n— B"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person E"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status per your request",
+                "body": "Done. On the basis of Person A's confirmation that the TDCC master went through internal review and that credit-committee and board-level authorization are documented, I have cleared the trading desk to continue booking under the existing master — told them no unwind required and existing positions stay open. Framed the confirmation issue to them as a back-office matter on TDCC's end, separate from the master.\n\nWill reach out to Person E separately on the confirmation processing track.\n\n— C"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 1,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B and Person C",
+                "about": "Person A stated that the TDCC master had documented credit-committee sign-off and board-level authorization panel approval, but Person H's later file review says those approvals are absent and were never submitted, a material fact because the modified ISDA deviated from required policy."
+              },
+              "match": {
+                "match": false,
+                "reason": "Same concealer and core fact, but the blind read says Person B and Person C were misled rather than only Person C/the trading desk via Person C, so it does not identify the same misled party."
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B, Person C",
+                "about": "credit-committee and board-level approvals being documented in the TDCC master file"
+              },
+              "match": {
+                "match": false,
+                "reason": "extra misled party (B) and narrower 'about' (documentation only) vs intended fact of no approvals ever sought"
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B and Person C",
+                "about": "That the TDCC master agreement had received credit-committee and board-level approvals and that these were documented in the file"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person A concealing the lack of credit-committee and board-level approvals for the TDCC master agreement from Person C."
+              },
+              "recovered": true
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": true,
+          "modes": [
+            {
+              "mode": "WRONG_VICTIM",
+              "where": "blind recovery names Person B and Person C as the misled audience rather than centering Person C alone"
+            }
+          ],
+          "revision": "The set basically recovers the concealment, but it over-foregrounds Person B as a co-recipient of the false assurance, so the misled party broadens from the intended Person C to 'Person B and Person C.' To fix this, revise the emails so Person C is unmistakably the operative victim: make Person A's assurance directed primarily to Person C or have Person B act only as a pass-through without appearing to rely on the substance. Keep clue 3's reliance language strong and explicit that Person C, relying on the supposed authorization status, instructs the trading desk. That preserves all atoms while sharpening that Person A is concealing the approval failure from Person C in particular."
+        }
+      },
+      {
+        "attempt": 2,
+        "iter": 3,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person J",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [
+                  "Person I"
+                ],
+                "date": "2001-02-21",
+                "subject": "TDCC master agreement — approval file gap",
+                "body": "Following up on the documentation audit we discussed last week. Pulled the TDCC ISDA master (executed November 2000) for the credit-committee sign-off record. Nothing is there. Not a conditional approval, not a deferred sign-off, not a note from the board-level derivatives authorization panel — nothing. The agreement is a modified ISDA with the credit-support annex stripped entirely, which under the derivatives documentation policy is exactly the kind of deviation that requires both credit-committee review and board-panel authorization before execution. Neither was ever sought, as far as I can tell from the file. The executed agreement is on file; the approval record is not, because there is no approval record to file. Worth flagging to G before this goes any further. — J"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-02-22",
+                "subject": "Fwd: TDCC — master agreement status per Person E's note",
+                "body": "Person C — forwarding Person A's reply below. Person A is the attorney of record on the TDCC file, so take this as the current status for purposes of your coordination with Person E. Let me know if you need anything further from the file before you respond upward.\n\n— B\n\n-------- Forwarded message --------\nFrom: Person A\nTo: Person B\nCC: Person C\nDate: 2001-02-22\nSubject: RE: TDCC — master agreement status per Person E's note\n\nPerson B,\n\nReviewed the TDCC file this morning. The modified ISDA master was executed in November 2000 and is on file. The credit-support annex was negotiated out at TDCC's insistence — consistent with the history Person E describes from 1999, so no surprise there. The agreement itself went through [firm]'s internal review process and authorization is documented. Trading desk has been booking against it since Q4 2000 without issue on the master side.\n\nPerson E's note about TDCC's position on confirmations is a separate matter — that looks like a back-office processing question on TDCC's end, not a defect in the master. The master is valid and authorized. Happy to pull the file if Person C needs anything specific for the response to Person E.\n\n— A"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-02-23",
+                "subject": "RE: TDCC — master agreement status per Person E's note",
+                "body": "Person C — what's your read on next steps for Person E's response? You're closer to the credit coordination side on this one.\n\n— B"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person E"
+                ],
+                "date": "2001-02-23",
+                "subject": "RE: TDCC — master agreement status per Person E's note",
+                "body": "Person A confirmed the master is authorized and on file, so I'm treating the master itself as a closed question. On that basis I've already cleared the trading desk to continue booking against it — told them the TDCC ISDA is confirmed authorized, no unwind required, and that legal is handling the confirmation processing issue separately with TDCC's back office. Drafting the response to Person E now along the same lines: master is valid, the open item is the confirmation acceptance question on TDCC's side, which I'll coordinate with Credit. Let me know if you want to review before it goes.\n\n— C"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 1,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B, Person C, and Person E",
+                "about": "Person A states that the TDCC master agreement 'went through [firm]'s internal review process and authorization is documented' and that 'The master is valid and authorized,' while Person J's audit email says the approval file contains no credit-committee sign-off, no board-level derivatives authorization, and no approval record at all for a modified ISDA that required both approvals before execution."
+              },
+              "match": {
+                "match": false,
+                "reason": "It matches Person A and the unauthorized TDCC/ISDA approval issue, but it does not identify the same misled person specifically—adding multiple recipients instead of just Person C in that coordinator/trading-desk reliance role."
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B and Person C",
+                "about": "The existence of documented internal authorization and approval for the TDCC master agreement"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person A concealing the lack of internal authorization for the TDCC master agreement from Person C (along with Person B)."
+              },
+              "recovered": true
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": true,
+          "modes": [
+            {
+              "mode": "WRONG_VICTIM",
+              "where": "blind recovery names Person B, Person C, and Person E as misled / audience, instead of isolating Person C as the victim"
+            },
+            {
+              "mode": "MISSING_gain",
+              "where": "across the clue set; no email shows any motive or benefit to Person A from concealing the lack of approval"
+            }
+          ],
+          "revision": "The set basically recovers the core lie, but it fails to focus the deception cleanly on Person C and gives no visible reason for Person A to conceal anything. Clue 2 is the main problem: Person A's assurance is addressed to Person B and copied to Person C, and the forwarding frame also ties it to Person E, so a blind reader reasonably broadens the victim set to everyone who received or acted on the statement. To fix this, revise the emails so Person C is unmistakably the operative rely-and-act target: make Person A's assurance directed specifically to Person C for authorization purposes, while Person B and Person E are merely administrative pass-throughs or omitted from that assurance chain. Keep Clue 3 explicitly showing that Person C relied on that assurance to direct the trading desk. If possible within the existing atoms, sharpen Clue 2's wording so the assurance is unequivocal and aimed at Person C's coordination decision. Also add motive-bearing context to the emails—without changing atoms—by framing why Person A was pressed to represent the agreement as authorized, such as avoiding interruption to existing TDCC trading or avoiding escalation over the non-standard document; this would cure the missing gain without altering the fixed atom list."
+        }
+      },
+      {
+        "attempt": 2,
+        "iter": 4,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person J",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [
+                  "Person I"
+                ],
+                "date": "2001-02-26",
+                "subject": "Re: TDCC master — authorization file request",
+                "body": "Following up on the documentation pull you asked for.\n\nWe went through the derivatives master file for TDCC end to end. The modified ISDA executed November 2000 is there — countersigned, filed. What is not there is any credit-committee submission, any sign-off from the board-level authorization panel, or any internal approval record of any kind. The credit-support annex was stripped from the standard template before execution. Under the derivatives documentation policy, a deviation of that type — removing credit terms from a master — is a material risk decision that requires both credit-committee review and board-panel authorization before the agreement can be treated as effective. Neither was sought. There is no approval record because no approval was ever requested.\n\nThis is not a misfiled document situation. The submission step did not happen.\n\nLet me know how you want to handle the escalation path from here.\n\nJ"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [
+                  "Person B"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status for your coordination decision",
+                "body": "Person C —\n\nPer Person B's request, here is what you need for the coordination call.\n\nThe modified ISDA master with TDCC was executed in November 2000 and is on file. TDCC's counsel countersigned. The credit-support annex was negotiated out at TDCC's insistence — that is consistent with the history Person E describes going back to 1999, so no surprise there. The agreement itself went through [firm]'s internal review process and authorization is documented. You can treat the master as valid and authorized for purposes of directing the desk.\n\nThe more immediate issue Person E flagged — TDCC's position on the confirmation terms — is a back-office processing question on their end, separate from the master's validity. I would handle those two tracks independently rather than let the confirmation question cloud the master status.\n\nI filed the executed agreement myself and booked the desk against it starting Q4 2000. Keeping that in place avoids unwinding live positions while we sort the confirmation side, which is the cleaner outcome for everyone.\n\nLet me know if you need anything else before you respond to Person E.\n\nPerson A"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [
+                  "Person B"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status for your coordination decision",
+                "body": "Person C —\n\nPer Person B's request, here is what you need for the coordination call.\n\nThe modified ISDA master with TDCC was executed in November 2000 and is on file. TDCC's counsel countersigned. The credit-support annex was negotiated out at TDCC's insistence — that is consistent with the history Person E describes going back to 1999, so no surprise there. The agreement itself went through [firm]'s internal review process and authorization is documented. You can treat the master as valid and authorized for purposes of directing the desk.\n\nThe more immediate issue Person E flagged — TDCC's position on the confirmation terms — is a back-office processing question on their end, separate from the master's validity. I would handle those two tracks independently rather than let the confirmation question cloud the master status.\n\nI filed the executed agreement myself and booked the desk against it starting Q4 2000. Keeping that in place avoids unwinding live positions while we sort the confirmation side, which is the cleaner outcome for everyone.\n\nLet me know if you need anything else before you respond to Person E.\n\nPerson A"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person A"
+                ],
+                "cc": [
+                  "Person B",
+                  "Person E"
+                ],
+                "date": "2001-02-23",
+                "subject": "Re: TDCC master agreement — status for your coordination decision",
+                "body": "Person A —\n\nThanks, that is exactly what I needed.\n\nBased on your confirmation that the TDCC master is authorized and on file, I am clearing the trading desk to continue booking against it — no unwind, no freeze on existing positions. I have told the desk supervisor the master is confirmed authorized and that Legal is handling the confirmation processing issue with TDCC's back office on a separate track.\n\nPerson E — for your awareness: the master validity question is resolved per Person A's review. The confirmation issue you flagged is being treated as an operational matter on TDCC's end and will be coordinated separately. No action needed on the master itself.\n\nPerson B — I will keep you posted as the confirmation side develops.\n\nC"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "that the TDCC master agreement was validly authorized through internal review and documented approval, even though the file later states no credit-committee or board-panel approval existed and no approval was ever requested despite the material removal of the credit-support annex"
+              },
+              "match": {
+                "match": true,
+                "reason": "It names the same concealer (Person A), the same misled party (Person C), and the same core concealed fact: the TDCC master agreement lacked required internal approval/on-file authorization despite being treated as authorized."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "whether the TDCC ISDA master received required internal credit-committee and board-panel approvals (A claims it did and is documented; J's file review shows none were ever requested or recorded)"
+              },
+              "match": {
+                "match": true,
+                "reason": "same A concealing from same C the lack of required TDCC ISDA approvals"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "The internal review and documented authorization of the TDCC master agreement"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person A concealing the lack of internal review and authorization for the TDCC master agreement from Person C."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T08",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person J"
+                ],
+                "cc": [],
+                "date": "2001-03-22",
+                "subject": "Re: credit-support audit — power counterparty guaranty file",
+                "body": "J —\n\nFollowing up on the Q1 guaranty audit you flagged last week. Pulled the physical credit file for the counterparty in question this morning. There is a formal written notice in there from the parent company — the guarantor — stating it is withdrawing its guaranty of the subsidiary's obligations under the master power agreement, effective immediately, citing a restructuring of intercompany credit lines. The letter is date-stamped in the file. So as of that stamp date, the parent guaranty is extinguished — not amended, not suspended, gone. That counterparty has no valid credit support from the parent as of that date.\n\nI have not seen this reflected anywhere in the shared credit-status spreadsheet the desk uses. The file entry and the spreadsheet are not in agreement.\n\nLet me know how you want to handle the audit write-up.\n\n— H"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2001-03-20",
+                "subject": "Re: credit-status confirmation — counterparty guaranty / proposed amendment",
+                "body": "Person D —\n\nConfirmed. The parent guaranty is current, covers the full notional under the master agreement, and has not been amended or withdrawn. Credit support is intact for the proposed amendment. You are clear to proceed.\n\n— C"
+              },
+              {
+                "from": "Person D",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-03-21",
+                "subject": "Re: credit-status confirmation — counterparty guaranty / proposed amendment",
+                "body": "C —\n\nThanks — that's what I needed. Noting your confirmation in the amendment file and signing off on the extension into the new tenor. No additional cash or LC required given the parent guaranty is covering the exposure. Trading desk is booking the amended trade today.\n\n— D"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-03-22",
+                "subject": "guaranty file — need your read before I loop in E",
+                "body": "C —\n\nH flagged something from the audit and I want to understand it before it goes up the chain. If the revocation on the parent guaranty came in before your most recent round of trade approvals against that counterparty, those approvals are going to need an explanation. Walk me through the timeline on your end — specifically when you last signed off on new trades and when that letter hit the file. I need to know whether there is a sequencing problem here before E sees it.\n\nCall me at 713-345-8821 if easier.\n\n— B"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 1,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "that the parent guaranty was current and intact and covered the proposed amendment, when the audit email states a formal written notice in the file had already withdrawn and extinguished that guaranty as of the file-stamp date"
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies Person C concealing from Person D that the parent guaranty had already been formally revoked and was no longer valid credit support, which is the same core concealment."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": true,
+          "modes": [
+            {
+              "mode": "MISSING_knew",
+              "where": "clue 1 / clue 3"
+            },
+            {
+              "mode": "MISSING_gain",
+              "where": "clue 3"
+            }
+          ],
+          "revision": "The set basically recovers the concealment, but it fails to substantiate two supporting elements. First, Person C’s knowledge is not actually shown: clue 1 proves the revocation existed in the file, but it is from H to J and does not tie C to receiving or seeing the notice; clue 3 only asks about a possible timeline problem, which is suggestive but not proof that C knew. Second, the motive/gain is weakly surfaced: clue 3 implies C’s prior approvals could need explanation, but it does not clearly show that disclosure would expose C’s own earlier conduct and therefore give C a reason to conceal. Revise by rewriting the emails so one clue directly links C to A2—for example, an email or file-routing note showing C received/date-stamped the revocation notice—and so the motive clue states plainly that if the revocation is acknowledged, C’s earlier approvals after the withdrawal will be exposed. Keep clue 2’s clear false assurance to D, since that part works."
+        }
+      },
+      {
+        "attempt": 1,
+        "iter": 2,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person J"
+                ],
+                "cc": [],
+                "date": "2001-03-22",
+                "subject": "Re: credit file audit — counterparty guaranty status",
+                "body": "J —\n\nFollowing up on the spot-check you flagged last week. Pulled the physical credit file for the counterparty this morning. There is a letter in there from the parent — formal written notice withdrawing the guaranty on the subsidiary's obligations under the master power agreement, effective immediately, citing intercompany credit-line restructuring. The letter is date-stamped received 2001-03-15. Stamp is Person C's — C is the coordinator of record for that file and would have been the one to process incoming guarantor correspondence.\n\nAs of today the guaranty is not valid credit support. The parent's withdrawal is unambiguous on its face — no carve-outs, no cure period, no conditional language. Whatever the desk's current exposure summary shows, the backstop is gone.\n\nLet me know if you want me to pull the letter itself or flag this up the chain before end of day.\n\n— H"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2001-03-20",
+                "subject": "Re: credit support confirmation — counterparty amendment",
+                "body": "Person D —\n\nConfirmed. The parent guaranty is current, covers the full notional under the master agreement, and has not been amended or withdrawn. Credit support is intact for the proposed amendment. You are clear to proceed.\n\n— C"
+              },
+              {
+                "from": "Person D",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-03-21",
+                "subject": "Re: credit support confirmation — counterparty amendment",
+                "body": "C —\n\nThanks — that's what I needed. Signing off on the amendment now. I've noted your confirmation in the amendment file and authorized the desk to book the extended tenor. No additional cash or LC demand given the parent guaranty is covering the exposure. Amendment is done, no unwind required.\n\n— D"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-03-22",
+                "subject": "counterparty credit approvals — need to walk through the ledger",
+                "body": "C —\n\nSomething has come to my attention on the counterparty file and I want to go through it with you before it goes anywhere else. Specifically I need to see the open-position ledger and the approval log for every trade you signed off on against that counterparty going back to early March.\n\nIf it turns out the parent guaranty was not in place for some of those approvals, we have a problem — those sign-offs will need to be explained, and the explanation will need to be yours. I'd rather understand the timeline from you directly before this gets to E or G.\n\nCome find me this afternoon.\n\n— B"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "that the parent guaranty/credit support was still current and intact for the counterparty amendment, when a written withdrawal of that guaranty had been received on 2001-03-15 and the guaranty was no longer valid credit support"
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies Person C concealing from Person D that the parent guaranty remained valid when written revocation had been received and the guaranty was no longer effective credit support—the same parties and same core fact."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "parent guaranty status (withdrawn 03-15 vs. \"current/not withdrawn\")"
+              },
+              "match": {
+                "match": true,
+                "reason": "Same C concealing from same D the identical guaranty-withdrawal fact"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "The fact that the parent guaranty had been withdrawn"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing the withdrawal of the parent guaranty from Person D, which perfectly matches the intended concealment."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T09",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2000-05-05",
+                "subject": "Re: arbitration demand — status check",
+                "body": "D —\n\nFollowing up on the counterparty file. As you know, F asked me to calendar the response date and draft the demand back in early April. I turned the draft around and sent it to F for sign-off around April 10. Never heard back — assumed F was holding it pending the commercial talks.\n\nI flagged to F at the time that the 90-day trigger ran from the settlement date, which put the outside date at April 28. That date has now passed. No demand was filed. As far as I can tell the window is gone — the master agreement doesn't give us any tolling mechanism, and I don't see a basis to argue the clock restarted.\n\nNot sure what the current plan is or whether F has a different read, but wanted to make sure you had the picture. The demand letter is still sitting in draft on my end, unsigned.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person F",
+                "to": [
+                  "Person G"
+                ],
+                "cc": [],
+                "date": "2000-05-05",
+                "subject": "Re: counterparty Online Agreement — point #6 arbitration language",
+                "body": "G —\n\nI've reviewed the counterparty's proposed arbitration language at point #6. The restriction to monetary damages only, with specific performance carved out, is a significant concession for us to make, and I would not recommend accepting it as drafted. Our arbitration right under the master agreement is intact and gives us meaningful leverage here. I'd push back and insist on preserving the full remedial menu — including specific performance — before we agree to any revised Online Agreement language. We are in a strong procedural posture to do so.\n\nLet me know if you want me to draft the counter-language.\n\n— F"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person F",
+                "to": [
+                  "Person G"
+                ],
+                "cc": [],
+                "date": "2000-05-05",
+                "subject": "Re: counterparty Online Agreement — point #6 arbitration language",
+                "body": "G —\n\nI've reviewed the counterparty's proposed arbitration language at point #6. The restriction to monetary damages only, with specific performance carved out, is a significant concession for us to make, and I would not recommend accepting it as drafted. Our arbitration right under the master agreement is intact and gives us meaningful leverage here. I'd push back and insist on preserving the full remedial menu — including specific performance — before we agree to any revised Online Agreement language. We are in a strong procedural posture to do so.\n\nLet me know if you want me to draft the counter-language.\n\n— F"
+              },
+              {
+                "from": "Person G",
+                "to": [
+                  "Person F"
+                ],
+                "cc": [
+                  "Person D",
+                  "Person B"
+                ],
+                "date": "2000-05-05",
+                "subject": "Re: counterparty Online Agreement — point #6 arbitration language",
+                "body": "F —\n\nThanks — that's the read I needed. Based on your confirmation that our arbitration right under the master agreement is intact and that we're in a strong procedural posture, I'm going back to the counterparty's negotiating team today. I'm telling them we cannot accept the limitation to monetary damages only, that [firm] reserves its full arbitration rights including the right to seek specific performance, and that if they insist on the carve-out we are prepared to invoke those rights formally rather than continue negotiating.\n\nD and B — routing this through you for coordination with the trading desk. The counterparty should understand this is not a placeholder position.\n\nF, hold off on drafting counter-language for now — let's see how they respond to the pushback first.\n\n— G"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "that the firm's arbitration right under the master agreement was still intact and gave strong procedural leverage, when C's email shows F had been told the 90-day deadline expired on April 28 and no demand was filed, so the arbitration window appeared to be gone"
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies Person F concealing from Person G that the arbitration right remained available, when the deadline had expired and no demand was filed—same actors and same concealed fact."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "F",
+                "whom": "G",
+                "about": "arbitration right under master agreement remains intact/available (deadline in fact missed)"
+              },
+              "match": {
+                "match": true,
+                "reason": "Same F concealing from same G the identical fact (arbitration deadline missed, right foreclosed)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "The fact that the arbitration deadline passed on April 28 and their arbitration right under the master agreement is no longer intact"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person F concealing from Person G that the arbitration deadline has passed and the right to arbitrate is lost."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T10",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person J",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [],
+                "date": "2001-02-16",
+                "subject": "Re: Canadian index transition — follow-up from publishing body",
+                "body": "Picking this up from our call yesterday. I went back through the correspondence file on the [firm] Daily Index and pulled the notice the Canadian energy price-reporting body sent out. The language is unambiguous — they declared the series discontinued effective the first of the month, and they're explicit that it is no longer a valid contractual reference for settlement or pricing under any master agreement that cites it by name. Counterparties were instructed to transition to the successor methodology or negotiate fallback language before pricing any further trades against the old series.\n\nWhat's catching my attention is the filing. The notice is sitting in a subfolder — not in the main correspondence queue, not flagged, not circulated. It came in before the 14th. I don't know yet whether anyone downstream saw it, but given the desk has been booking Canadian trades this week I'd want to confirm that before we go further.\n\nCan we get 30 minutes today or tomorrow? I want to walk through the timeline with you before this goes anywhere else.\n\n— J"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian platform — index question before the afternoon call",
+                "body": "The index reference is fine — that's not one of our open items. The two issues I flagged to Greg are the only ones: the holiday-language redundancy, which is a clean drafting fix, and the CFTC scrutiny question on price discovery, which I expect to resolve this afternoon once I hear back from CFTC counsel. On the index itself, we're good. The [firm] Daily Index is the correct and operative reference under the master agreement and I see no issue there. Once we get the CFTC answer we should be in a position to tell the desk to proceed.\n\n— E"
+              },
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C",
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian platform — index question before the afternoon call",
+                "body": "Per Person E, the index reference is confirmed good. The open items are the holiday language and the CFTC question, both in progress. Please let the trading desk know they can treat the [firm] Daily Index as the valid settlement reference and begin preparing the first trade confirmations accordingly. We'll send a final green light once the CFTC answer comes in, but the index itself is not a blocker.\n\nI'm clearing the desk on that basis — no hold required on their end while we wait for the CFTC piece to close.\n\n— B"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 1,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person E",
+                "whom": "Person B",
+                "about": "whether the [firm] Daily Index remained a valid contractual/settlement reference; E said it was fine and operative, while J's email states a prior notice had already declared that series discontinued and no longer valid for settlement or pricing under agreements citing it by name."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies Person E as concealing from Person B the same core fact: that the named [firm] Canadian Daily Index had already been formally discontinued and was not a valid contractual/settlement reference, contrary to E's assurances it remained operative."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": true,
+          "modes": [],
+          "revision": "The clue set substantively works: taken together, it clearly shows that Person E knew from a prior written notice that the named index had been discontinued and was no longer a valid contractual reference, yet told Person B the opposite, and Person B relied on that assurance to instruct the desk. No listed failure mode applies. For a stronger revision, tighten the chronology and attribution in the emails so the concealment is even cleaner: in clue 1, state more directly that the notice was received by Person E before 2001-02-14 and filed away by E; in clue 2, keep E's assurance categorical and B's reliance explicit. That would improve robustness without changing the substance."
+        }
+      },
+      {
+        "attempt": 1,
+        "iter": 2,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person J",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [],
+                "date": "2001-03-06",
+                "subject": "Re: Canadian index transition — follow-up from publishing body",
+                "body": "H —\n\nCircling back on the Canadian price-reporting question you flagged last week. I pulled the file and found two notices from the publishing body sitting in E's subfolder — the first dated 2001-02-11, the second a follow-up from early this week. Both are unambiguous: the [firm] Daily Index series named in the Canadian trading master agreements was formally declared discontinued effective March 1. The publishing body's language is explicit that it is no longer a valid contractual reference for settlement or pricing purposes as of that date, and counterparties were instructed to transition to the successor methodology or negotiate fallback language before pricing further trades against the old series.\n\nThe first notice predates the February 14 desk go-ahead by three days. Both notices are saved to a subfolder under E's name; neither appears to have been forwarded or distributed.\n\nI'd want to loop in G before we go further, but you should have the full picture. Let me know if you need me on a call.\n\nJ"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian platform — index question before afternoon call",
+                "body": "B —\n\nThe index reference is fine — that's not one of our open items. The two issues I flagged to Greg are the only ones: the holiday-language redundancy, which is a clean drafting fix, and the CFTC scrutiny question on price discovery, which I expect to resolve this afternoon once I hear back from CFTC counsel. On the index itself, we're good. The [firm] Daily Index is the correct and operative reference under the master agreement and I see no issue there. Once we get the CFTC answer we should be in a position to tell the desk to proceed.\n\nE"
+              },
+              {
+                "from": "Person B",
+                "to": [
+                  "Person E"
+                ],
+                "cc": [
+                  "Person C",
+                  "Person D"
+                ],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian platform — index question before afternoon call",
+                "body": "E —\n\nThanks, that's the clean answer I needed. Based on your confirmation that the [firm] Daily Index is the correct and operative reference under the master agreement, I'm clearing the desk on that basis — directing C and D to let the trading desk know they can treat the index as the valid settlement reference and begin preparing the first trade confirmations accordingly. No unwind required on that point.\n\nWe'll hold the final green light until the CFTC answer comes in, but the index is not a blocker per your read and I've passed that on.\n\nB"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "carries": [],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "CFTC — Canadian product, cleared",
+                "body": "B —\n\nCFTC counsel comfortable with the Canadian product as structured, given it's a Canadian price and [firm] is always a party. We're clear to proceed. I'll finalize the holiday language fix and circulate a clean draft tomorrow.\n\nE"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 3,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person E",
+                "whom": "Person B",
+                "about": "that the [firm] Daily Index was a valid operative settlement reference with no issue, despite notices in E's subfolder stating the index series had been formally discontinued effective March 1 and that parties should transition or negotiate fallback language before further trades"
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (Person E), the same misled party (Person B), and the same core hidden fact: the index had been formally discontinued, while B was left believing it remained a valid operative contractual reference."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person E",
+                "whom": "Person B",
+                "about": "discontinuation of the [firm] Daily Index (notice received 2001-02-11)"
+              },
+              "match": {
+                "match": true,
+                "reason": "Same concealer (E), misled party (B), and core fact (suppressed discontinuation notice of the index)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person E",
+                "whom": "Person B",
+                "about": "The discontinuation of the [firm] Daily Index and its invalidity as a contractual reference"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person E concealing the discontinuation and invalidity of the index from Person B, matching the intended concealment perfectly."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

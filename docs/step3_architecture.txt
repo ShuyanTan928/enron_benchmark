@@ -1,0 +1,236 @@
+================================================================================
+Step 3 Architecture - Clue Surfacing (email weaving)
+================================================================================
+
+Step 3 takes each Step-2 BenchmarkSecret (its necessary_facts) and turns every
+fact into ONE email woven into the real Enron corpus: it decides WHO observes
+the fact and tells WHOM, picks a real thread to continue, and has the LLM write
+a new message that carries the fact verbatim in that sender's voice.
+
+Input : secrets/step2_success.json   (the 21 Step-2 "success" secrets)
+Output: benchmark_pool/clue_drafts_r5.jsonl  (+ .txt readable via dump_readable.py)
+Entry : scripts/run_step3_chain.py
+Active code: src/clue_pipeline_chain/driver.py
+            src/clue_pipeline/generator.py        (surface_email, _carrier_reply)
+            src/clue_pipeline/email_loader.py      (carrier selection + diversity)
+            src/prompts/clue_pipeline_prompts.py   (5 prompts + 2 framings)
+
+
+--------------------------------------------------------------------------------
+PIPELINE
+--------------------------------------------------------------------------------
+
+  scripts/run_step3_chain.py
+      |
+      |  reset_carrier_usage()          # run-global carrier dedup, deterministic
+      v
+  for each secret -> driver.process_secret(secret, profiles, llm_call, ...)
+      |
+      |   _extract_roles(secret)
+      |       actor      = primary_holder
+      |       deceived   = { IK.email : reason contains "deceiv" }
+      |       confidants = { IK.email : reason contains "conspir" }
+      |       (observable_by from Step 2 is IGNORED - Step 3 derives observation)
+      |
+      |   for each necessary_fact:
+      |       _assign_observation(fact, actor, deceived, confidants, ...)
+      |              -> (narrator, audience, observer_type)
+      |       ClueText(text = fact.statement VERBATIM)
+      |
+      |   (optional) jury  - diagnostic only, no gating; --skip_jury for
+      |                      style/quality runs (cuts ~85% of LLM calls)
+      |
+      v   for each clue -> generator.surface_email(..., observer_type)
+              |
+              |  select_carrier_chain(fact, sender, receiver)   # email_loader
+              |     Tier1: best real shared thread, scored by TF-IDF topical
+              |            adjacency MINUS reuse penalty (diversity)
+              |     Tier2: single real message between the pair (same penalty)
+              |     else : None -> synthetic carrier
+              |
+              v  _carrier_reply(...)   # ONE LLM call
+                   CHAIN_REPLY_PROMPT      (continue the real thread), or
+                   CARRIER_SYNTHETIC_PROMPT (no thread available)
+                   filled with: style exemplars + style block + persona +
+                                relationship + disclosure_framing + fact_text
+
+
+--------------------------------------------------------------------------------
+OBSERVATION MODEL  (driver._assign_observation)   << the core of Step 3 >>
+--------------------------------------------------------------------------------
+
+The question "who can carry this clue, and to whom?" is an information-access
+problem. An actor's hidden act reaches a third party ONLY through a concrete
+channel; the party being deceived must never be fed the thing hidden from them.
+
+NARRATOR (who tells it), in order:
+
+  1. THIRD-PARTY via the fact's own cast
+       (a) is_actor_behavior == False AND the fact's SUBJECT is a non-actor
+           -> that subject narrates their OWN act/discovery.
+           They may even be the deceived party: FANToM separates information
+           ACCESS (they witnessed this one ambiguous fact) from BELIEF about
+           the aggregate secret (still hidden). Such clues are tagged
+           narrator_is_deceived = true for transparency.
+       (b) the fact's OBJECT/recipient is a non-actor, non-deceived cast member
+           -> recipient channel (e.g. "Tana sent a file to Kay" -> Kay).
+
+  2. THIRD-PARTY via an information-access (ToM) JUDGE
+       When no cast recipient is named, OBSERVER_ASSIGN_PROMPT asks an LLM to
+       verbalize the channel (recipient / positional / downstream / discovery)
+       and name ONE colleague who could know it WITHOUT the actor telling them,
+       excluding the actor and every deceived party. (ToMATO-style
+       "verbalize-then-decide".)
+
+  3. SELF-LEAK
+       If the judge returns SELF (private channel - e.g. a personal email, a
+       recruiter offer in the actor's own inbox), the actor narrates it
+       themselves and it slips out incidentally to a NON-deceived party.
+
+AUDIENCE (who hears it):
+  forbidden = deceived UNION {actor, narrator}
+  prefer a confidant (natural recipient of a self-leak); else the narrator's
+  highest-volume real correspondent not named in the fact.
+
+HARD INVARIANTS (enforced in code, not left to the LLM):
+  * audience is NEVER the actor          (else the actor reads the evidence)
+  * audience is NEVER a deceived party   (else the deception collapses)
+  * narrator is never deceived EXCEPT case 1(a) above (own act, flagged)
+
+DISCLOSURE FRAMING (generator chooses by observer_type):
+  THIRD_PARTY_FRAMING - "something you observed/were told about, mention it"
+  SELF_LEAK_FRAMING   - "something YOU did and keep quiet; let it slip as one
+                         incidental, under-explained detail, not a confession"
+
+
+--------------------------------------------------------------------------------
+WRITING-STYLE FIDELITY  (generator._carrier_reply + email_loader)
+--------------------------------------------------------------------------------
+
+Each carrier email is written in the SENDER's voice:
+  * select_style_exemplars(sender): 3 of the sender's OWN real emails as
+    few-shot demonstrations. Chosen for LENGTH DIVERSITY, NOT topic similarity
+    (topic-matching backfires on Enron - "Catch Me If You Can?", EMNLP 2025),
+    with quoted/forwarded tails stripped. Deterministic + cached.
+  * sender_style_block: tone / formality / greeting / sign-off / characteristic
+    phrases from the profile (exemplars primary, attributes secondary = the
+    HyPerAlign hybrid).
+  * persona_card as the inferred style hypothesis.
+
+FACT PRESERVATION (hard): the fact statement's content words appear verbatim -
+names, files, dates, numbers, quoted strings, narrowing adjectives. The LLM
+may only reshape connector words, pronouns, and sentence order.
+  * Pronoun rule: actor/recipient names -> I/you as appropriate.
+  * Verb agreement: after a pronoun swap, the verb agrees in person + tense
+    ("Tana sends a file" -> "I sent", never "I sends").
+  * Weaving: the fact should be the grammatical SUBJECT or OBJECT of the
+    sentence (fused), NOT a deletable "since/because/especially since" tail.
+
+CARRIER DIVERSITY (email_loader): a run-global counter penalizes reusing the
+same real thread across clues, so the clue set spreads over distinct carriers
+(avoids a "thread X always carries a clue" dataset shortcut).
+
+
+--------------------------------------------------------------------------------
+PROMPTS (src/prompts/clue_pipeline_prompts.py)
+--------------------------------------------------------------------------------
+
+  OBSERVER_ASSIGN_PROMPT    information-access judge (channel + witness or SELF)
+  CHAIN_REPLY_PROMPT        write the next email in a real thread
+  CARRIER_SYNTHETIC_PROMPT  write a routine email when no thread exists
+  THIRD_PARTY_FRAMING       disclosure framing for an external observer
+  SELF_LEAK_FRAMING         disclosure framing for the actor's incidental slip
+
+
+--------------------------------------------------------------------------------
+ITERATION LOG  (5 paper-grounded rounds; 21 secrets / 62 clues each)
+--------------------------------------------------------------------------------
+
+R1  routing rewrite
+    problem : 40/62 clues (65%) routed the AUDIENCE to the actor; the deceived
+              party could narrate/receive the hidden thing.
+    fix     : hard invariants (audience never actor/deceived); dropped the
+              primary_holder audience fallback.
+    result  : audience==actor 40 -> 0.
+
+R2  ToM observer/channel judge          [ToMATO AAAI'25; FANToM EMNLP'23]
+    problem : blind relationship-fallback assigned IMPLAUSIBLE observers
+              (a colleague "knowing" the actor's private recruiter subject line).
+    fix     : replace fallback with an information-access judge -> witness or
+              SELF (private -> self-leak).
+    result  : 15 facts correctly self-leak; S20 plausibility fixed.
+
+R3  deceived-as-subject narrator         [FANToM: access != aggregate belief]
+    problem : excluding the deceived party as narrator forced the ACTOR to
+              announce his own exposure (S22).
+    fix     : let the is_actor_behavior=False subject narrate their own
+              discovery even if deceived; flag narrator_is_deceived.
+    result  : S22 reads naturally; self-leak 15 -> 8.
+
+R4  carrier diversity penalty            [Gururangan 2018; shortcut learning]
+    problem : one real thread reused 8x across secrets (dataset shortcut).
+    fix     : run-global reuse penalty in carrier scoring.
+    result  : max reuse 8 -> 1 (58 distinct carriers / 62 clues).
+
+R5  fused weaving                        [few-shot structural priming]
+    problem : 59% of clues appended the fact via a deletable "since/especially
+              since" tail (liftable, pattern-matchable).
+    fix     : calibration names the conjunction-tail as the anti-pattern and
+              shows fused subject/object examples.
+    result  : conjunction-bridge 59% -> 11%.
+
+
+--------------------------------------------------------------------------------
+FINAL STATE  (round 5 = benchmark_pool/clue_drafts_r5.{jsonl,txt})
+--------------------------------------------------------------------------------
+
+  ROUTING HEALTH (62 clues)
+    audience == actor ............. 0     (was 40)
+    audience is deceived .......... 0
+    narrator is deceived .......... 22    (ALL narrating their own act/
+                                           discovery - the allowed FANToM case,
+                                           flagged narrator_is_deceived)
+    observer_type ................. 54 third_party / 8 self_leak
+
+  WEAVING / GRAMMAR
+    clause-initial since-bridge ... 0/62  (0%)
+    conjunction connector anywhere  ~11%  (was 59%)
+    verb-agreement red flags ...... 0
+    editorializing red flags ...... 0
+
+  CARRIER REUSE
+    max reuse per thread .......... 1     (58 distinct / 62 clues)
+
+  CONTENT INTEGRITY
+    discriminative content (file
+    names, subject lines, dates,
+    numbers, quoted strings) ...... preserved verbatim in all checked clues
+    generic-word restructuring
+    drift ......................... 8/62 (minor; acceptable)
+
+  STYLE FIDELITY
+    sign-offs match each profile's role (carol/jeff/kay/susan sign off;
+    mark/richard/tana abrupt); verbosity tracks profile.
+
+  WATCH-ITEMS (not yet addressed)
+    * generic-word drift ticked 6 -> 8/62 from fused-weaving restructuring.
+    * mark.taylor signs off 67% vs profile "occasionally Thanks, Mark".
+    * S20/S22 carry Step-2 observable_by contradictions (deceived party listed
+      as observer / no clean third party). Step 3 absorbs them via the judge +
+      self-leak + the access-vs-belief narrator rule, but the clean fix is a
+      Step-2 observable_by pass (deferred: Step 2 is frozen at 21/22 this round).
+
+
+--------------------------------------------------------------------------------
+DESIGN REFERENCES
+--------------------------------------------------------------------------------
+
+  ToMATO (AAAI 2025) / FANToM (EMNLP 2023)
+      information access vs. belief; verbalize-then-decide -> observer judge,
+      and the access != aggregate-belief rule for deceived-as-narrator.
+  Gururangan et al. 2018 (Annotation Artifacts) / shortcut learning
+      reused carriers are a surface artifact -> diversity penalty.
+  "Catch Me If You Can?" (EMNLP 2025 Findings, tested on Enron) / HyPerAlign
+  (2025) / Panza (2024)
+      style fidelity: own-email exemplars dominate attribute descriptions;
+      topic-matched exemplar selection backfires -> length-diverse selection.

@@ -1,0 +1,139 @@
+================================================================================
+Step 3 Architecture - Direct Surfacing (god-view investigator)
+================================================================================
+
+This is the CURRENT Step 3. It replaces the older "reported surfacing" model
+(docs/step3_architecture.txt, driver.process_secret, clue_drafts_r5), which had
+a third party MENTION each fact in a carrier email. Here the email IS the event.
+
+Setting: a god-view investigator who can read every mailbox at the company plus
+all external mail. A fact that IS an email event is surfaced as that email
+directly; a fact that is a private/system observation becomes a private log
+entry or a short passive colleague note. No narrator transcribes events.
+
+Input : secrets/step2_success.json        (the 21 Step-2 "success" secrets)
+Output: benchmark_pool/clue_drafts_direct.jsonl  (+ .txt via dump_direct_readable.py)
+Entry : scripts/run_step3_direct.py
+Code  : src/clue_pipeline_chain/direct_surface.py       (module + GenerationLedger)
+        src/prompts/clue_pipeline_prompts.py            (DIRECT_SURFACE_PROMPT)
+QC    : scripts/qc_direct.py
+
+
+--------------------------------------------------------------------------------
+WHY SECRET-LEVEL (one call per secret, not per fact)
+--------------------------------------------------------------------------------
+
+All of a secret's facts are surfaced in ONE coordinated LLM call. Only with the
+whole episode in view can the model: sequence events on distinct ordered
+timestamps; thread a reply; reuse one external party across facts; and realize
+the deception by INFERENCE across messages. Per-fact calls (the earlier model)
+produced identical timestamps, no actor reply, and unanchored narrators.
+
+
+--------------------------------------------------------------------------------
+PIPELINE
+--------------------------------------------------------------------------------
+
+  scripts/run_step3_direct.py
+      |
+      |  build name_tokens from profiles (cast first/last names)
+      |  ledger = GenerationLedger(name_tokens)     # threaded, deterministic order
+      v
+  for each secret -> process_secret_direct(secret, profiles, llm_call, ledger)
+      |
+      |   _extract_roles(secret)        # actor=holder, deceived={"deceiv"}, ...
+      |   ext_domain  = _secret_external_domain(secret_id)   # hash-stable
+      |   personas    = ledger.assign_personas(ext_domain)   # least-used (primary counted)
+      |   avoid_block = ledger.avoid_phrases_block()         # over-used phrasings so far
+      |
+      |   surface_secret_direct(... DIRECT_SURFACE_PROMPT ...)   # ONE call, 2048 tok
+      |       -> messages[] (each: order, carries_facts, kind, from/to,
+      |          date, delivery, attachments, subject, body)
+      |       -> off-schema kind coerced to "event"
+      |       -> fact_coverage / missing_facts computed from carries_facts
+      |
+      |   ledger.observe(messages)      # update phrase frequencies for next secret
+      v
+  one JSON record per secret -> clue_drafts_direct.jsonl
+
+
+--------------------------------------------------------------------------------
+THE PROMPT (DIRECT_SURFACE_PROMPT) - 9 reconstruction rules
+--------------------------------------------------------------------------------
+
+  1 COVERAGE        every fact id carried by >=1 message (carries_facts tag)
+  2 TIMELINE        distinct ordered timestamps in 2000-2001, never same minute
+  3 COMMUNICATION   send/file/forward events surface DIRECTLY (no bystander)
+  4 THE DECEPTION   by INFERENCE, not fabrication: actor deflects / is vague /
+                    omits; realization VARIED (no single stock formula); the
+                    conflict is inferred across messages, never spelled out
+  5 OBSERVABLES     passive colleague note to ANOTHER colleague, OR a
+                    "private_note" with empty to-list; NEVER email-to-self
+  6 METADATA & IDS  hard specifics in headers/attachments/delivery; an
+                    identifier that literally NAMES the secret is renamed to a
+                    neutral one (leak must require inference, not one label); a
+                    forged doc is named to IMPLY forgery, not "approval/final"
+  7 INDEPENDENCE    each message reads as ordinary business on its own
+  8 NO PLACEHOLDERS no [Name]/[Date] brackets; invent one concrete name
+  9 FRESH WORDING   no bare/opening "FYI" or stock filler; vary openings/
+                    sign-offs; PLUS the ledger's dynamic avoid-list
+
+
+--------------------------------------------------------------------------------
+GenerationLedger - cross-secret artifact control (deterministic by run order)
+--------------------------------------------------------------------------------
+
+A god-view inbox AGGREGATES all 22 secrets, exposing two artifacts a per-secret
+call cannot see. Both are mitigated by state threaded across secrets.
+
+  (a) External-persona spread
+      The model, left alone, reuses one favourite invented name across many
+      independent calls -> the same person appears at 5 different companies (an
+      obvious placeholder tell; Gururangan 2018 annotation artifacts /
+      Clever-Hans single-cue leakage). Fix: _EXT_PERSONS registry of 18 mixed-
+      background names; assign_personas() hands each secret the least-recently-
+      used identities at that secret's domain. Only the PRIMARY is counted, so
+      primaries spread to <=2 reuses across ~20 secrets.
+
+  (b) Phrase self-repetition
+      Independent calls each reach for the same stock filler ("first stab",
+      "let me get back to you") -> a designer fingerprint across the pool
+      (self-repetition is a known generation defect; adaptive diverse-style
+      prompting raises lexical diversity). Fix: observe() counts contentful
+      multi-word n-grams per secret; avoid_phrases_block() feeds the
+      over-represented ones (>=3 secrets) back into later prompts as an
+      avoid-list. Cast names and all-stopword spans are excluded so the list
+      targets genuine filler, not legitimate names/greetings.
+
+Determinism: secrets are processed in fixed file order; persona assignment and
+the avoid-list are pure functions of that order, so re-runs reproduce.
+
+
+--------------------------------------------------------------------------------
+RESEARCH GROUNDING
+--------------------------------------------------------------------------------
+
+  Rule 4 (subtle deception) : deception taxonomies show benchmarks over-cover
+      FABRICATION while OMISSION / pragmatic distortion / strategic deception
+      are under-covered -> deflection+inference is the harder, less-covered cell.
+  Rule 6 (identifier obfusc.): single-sentence label leakage / Clever-Hans cues
+      -> an item must not be solvable from one surface token; leakage must
+      require cross-message inference.
+  Ledger (both parts)        : annotation-artifact / shortcut-learning and
+      self-repetition / diverse-writing-style synthetic-data lines of work.
+
+
+--------------------------------------------------------------------------------
+QC METRICS (scripts/qc_direct.py) - latest run
+--------------------------------------------------------------------------------
+
+  facts 62 / messages 81 / uncovered 0
+  kinds: event 41, reply 28, private_note 10, observation 2
+  timestamps: all in 2000-2001, no duplicates, all chronological
+  self-to-self emails: 0          bracket placeholders: 0
+  external-name max reuse: 2 (across distinct domains)
+  no strong stock-phrase fingerprint remains (residual = generic connectors)
+
+  Known ceiling (Step 2, not fixable here): a few facts whose Step-2 statement
+  is directionally weak/reversed surface faithfully but cannot be made to point
+  the right way in Step 3.

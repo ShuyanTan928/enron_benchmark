@@ -1,0 +1,1791 @@
+[
+  {
+    "topic_id": "T01",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person I"
+                ],
+                "cc": [
+                  "Person G"
+                ],
+                "date": "2000-04-20",
+                "subject": "Enserco — exposure run review, Apr 17–19",
+                "body": "Following up on the limit-breach question you raised this morning.\n\nPulled the daily exposure workbooks Person C runs for Enserco. The Apr 17 close shows $4.2M net of L/C collateral — clean, inside the $5M ceiling. The Apr 18 close is $5.3M net. That's the crossing point; the limit was gone by end of day Apr 18.\n\nWhat the workbook entry says for Apr 18 is 'approaching limit / collateral review pending.' That language doesn't reflect what the number actually shows.\n\nMore to the point: the ticket log for Apr 18 afternoon and Apr 19 shows at least three trades booked after the $5.3M figure was on the screen. Person C processed that batch — her initials are on the clearance queue for each one. So the trades that pushed through after the line crossed weren't a system gap; they went through the normal workflow.\n\nI'd want to know when the over-limit alert was supposed to go out and why it didn't, but that's a separate thread. For now the exposure picture is: counterparty is over its approved ceiling, has been since Apr 18 close, and additional volume was booked on top of that.\n\nLet me know how you want to handle escalation."
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A4",
+              "A5",
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2000-04-19",
+                "subject": "Re: Enserco headroom — desk check",
+                "body": "Enserco exposure is currently sitting at $4.2M net of L/C collateral against a $5M approved limit — so we have room, though the pace of their online volume means we should watch it closely. No hard stop at this point; I'd flag it as a caution rather than a block.\n\nThe bigger issue is the unsigned ISDA, which Person B is chasing. Once that's executed we can revisit the limit itself if the desk wants to grow the relationship."
+              },
+              {
+                "from": "Person D",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [
+                  "Person B"
+                ],
+                "date": "2000-04-20",
+                "subject": "Re: Enserco headroom — desk check",
+                "body": "Thanks — that's consistent with what Person B flagged this morning re the ISDA. I'm reading his note as a forward-looking relationship caution rather than a credit emergency, which tracks with your $4.2M figure.\n\nI've relayed to the desk: hold off on new Enserco volume until the ISDA is signed, but no unwind required on the existing book — exposure is within approved parameters at this stage. They're clear.\n\nPerson B, looping you in so you know the desk has been told to pause. Let me know if you need anything else from my end on the ISDA chase."
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "Enserco was already over its approved $5M exposure limit by Apr 18 close ($5.3M net), but Person C told Person D on Apr 19 that exposure was $4.2M and still within limit, omitting the breach and the subsequent trades booked after the limit was crossed."
+              },
+              "match": {
+                "match": true,
+                "reason": "Same concealer (Person C), same misled party (Person D), and same core concealed fact: Enserco had already exceeded its approved credit limit and C hid that by presenting it as still within limit rather than an already-breached stop condition."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "Enserco exposure exceeding the $5M limit since Apr 18 close"
+              },
+              "match": {
+                "match": true,
+                "reason": "same concealer (C), same misled party (D), same core fact (Enserco limit already breached)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "The Enserco exposure exceeding the $5M approved limit"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing from Person D the fact that Enserco's exposure has already exceeded its approved credit limit."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T02",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person J",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "1999-10-11",
+                "subject": "Re: Clearwater Valley — opinion letter status",
+                "body": "Person C —\n\nFollowing up on your call from last month. To confirm what I told you then: under the plain language of the PUC order, the conditional authorization to trade financial derivatives requires a current opinion letter from outside counsel. The August 1998 letter was a one-year instrument. Without a successor letter in place, the authorization is lapsed as of August 1999 — it's not a gray area.\n\nI understand you sent a renewal request to Clearwater Valley's counsel on September 15th. If no response has come back by now, there's nothing for me to work with on my end. The authorization doesn't carry over on the strength of the request alone.\n\nLet me know if you need anything in writing beyond this, but I'd want to flag that any trades running against this counterparty in the interim are running without a valid regulatory authorization in place.\n\n— J\n\nPerson J | Local Regulatory Counsel\nDirect: 208-555-0174"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person E"
+                ],
+                "cc": [],
+                "date": "1999-10-12",
+                "subject": "Re: executed MAs — counterparty approval status",
+                "body": "Person E —\n\nTo answer your question directly — yes, the ten utilities with executed master agreements are approved and their authorizations are current. The due diligence on each of them has been satisfactorily concluded, including where required the receipt of opinion letters from their counsel confirming authorization to trade derivatives under applicable state law and any relevant PUC orders. You may represent to the desk that those ten counterparties are cleared for trading.\n\nOn the pipeline: the thirty to forty utilities still under review are at various stages of the tiered process — local counsel engaged, PUC order research underway, or opinion letter outstanding. As you've seen before, that process occasionally surfaces circumstances that prevent a utility from trading or require actions not yet taken, which is why we hold approval until the research is complete. I'll keep you posted as counterparties clear.\n\n— C"
+              },
+              {
+                "from": "Person E",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "1999-10-12",
+                "subject": "Re: executed MAs — counterparty approval status",
+                "body": "Person C —\n\nThanks — exactly what I needed. I'm clearing the desk on that basis now; forwarding your confirmation to the desk lead as the green light on all ten. No unwind required, no holds. They've been waiting on the Clearwater Valley November tranche in particular so I want to get this to them today.\n\nPipeline understood — keep me in the loop as things move.\n\n— E"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person E",
+                "about": "Clearwater Valley was not currently approved to trade because its required outside-counsel opinion letter had lapsed in August 1999, so authorization was not current; yet Person C told Person E that all ten utilities with executed master agreements were approved and current, enabling trading on Clearwater Valley."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (Person C), the same misled person (Person E), and the same concealed fact: Clearwater Valley’s authorization had lapsed due to an expired counsel opinion letter while C assured E all ten agreements were current and tradable."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person E",
+                "about": "Clearwater Valley's lapsed authorization / inclusion among the ten approved counterparties"
+              },
+              "match": {
+                "match": true,
+                "reason": "Same concealer (C), same misled party (E), same fact (Clearwater Valley lapsed authorization among the ten)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person E",
+                "about": "Clearwater Valley's regulatory authorization and opinion letter status being current and approved for trading"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing from Person E the true lapsed status of Clearwater Valley's regulatory authorization and opinion letter."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T03",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person F"
+                ],
+                "cc": [],
+                "date": "2000-08-03",
+                "subject": "Engage Energy ISDA — file status note",
+                "body": "F —\n\nWith D out I want to flag something on the Engage Energy file before it gets any further along.\n\nWhen we closed out the master agreement execution earlier this year I was handling several closings in parallel and I have since confirmed — pulling both documents up side by side — that what I filed into the contract system is not the execution copy. It is the version that was circulating two rounds before final. The clean copy with both signatures came back from Engage's counsel and ended up in a general correspondence folder rather than the official file. The three carve-outs the desk requested — the modified cross-default threshold, the revised termination currency provision, and the third item we got in the last round — are in the signed copy but not in the version currently sitting in the system.\n\nI am telling you this now because C has been handed the file and is working the amendment and guaranty. I have not yet told her.\n\nLet me know how you want to handle it.\n\nA"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2000-08-04",
+                "subject": "Re: Engage Energy — amendment / guaranty questions",
+                "body": "C —\n\nHappy to help while D is out.\n\nOn the guaranty: compare the faxed Coastal Corporation guaranty against our standard form — I've attached it. The faxed version looks substantially similar; the deviations I can see are cosmetic and nothing that should hold us up.\n\nOn the amendment: the hand-marked copy in the file reflects the agreed changes. Those marks were initialed off by both sides during the final call. That is the version we should execute.\n\nThe underlying Master is clean and in place. The amendment slots in without issue.\n\nA"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person A"
+                ],
+                "cc": [
+                  "Person B"
+                ],
+                "date": "2000-08-04",
+                "subject": "Re: Engage Energy — amendment / guaranty questions",
+                "body": "A —\n\nThanks, that's what I needed.\n\nI've drafted a short memo on the guaranty — one minor conforming change flagged, otherwise acceptable against your form. Routing the execution package to B now. My cover note to him confirms the underlying Master is in place per counsel's review and that the hand-marked amendment is the agreed form ready for signature. I'm referencing the on-file Master Agreement as the governing document in the cover letter to Engage's counsel.\n\nDidn't pull the Master itself given your confirmation — no reason to reopen it.\n\nC"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "Person A knew the on-file Master Agreement was not the signed execution copy and omitted three negotiated carve-outs, yet told Person C that the underlying Master was clean and in place and that the hand-marked amendment should be executed without issue."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (Person A), same misled party (Person C), and the same core hidden fact: the file’s Master Agreement was not the final executed governing version, causing Person C to treat it as valid and clean."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "A",
+                "whom": "C (and B)",
+                "about": "the on-file Master Agreement being the correct executed version"
+              },
+              "match": {
+                "match": true,
+                "reason": "A conceals from C the fact that the on-file ISDA is not the final executed version"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person C",
+                "about": "The Master Agreement currently filed in the contract system is an incorrect earlier draft missing key provisions, not the final executed copy."
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person A concealing from Person C that the filed Master Agreement is an incorrect earlier draft rather than the final executed version."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T04",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "2000-01-24",
+                "subject": "Re: counterparty delivery failures — file status",
+                "body": "B —\n\nFor your awareness, since this is now coming up with the desk: the FM checklist on the counterparty notice came back clean a few days ago. Event was foreseeable, within their operational control, and the notice landed outside the contractual window — all three grounds for rejection were met. F drafted the rejection letter, it went out to the counterparty, and the file was closed on the FM question. That letter is in the outgoing correspondence log under F's contract file.\n\nCounterparty has been in active breach of its delivery obligations since the rejection issued. The missed deliveries since then are not suspensions under a live FM claim — the claim is gone.\n\nNot sure what's holding up the breach declaration on the desk side, but from a contract-status standpoint there's nothing open on FM. Flagging in case it's useful for whatever is being worked through upstairs.\n\nC"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4",
+              "A5",
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person F",
+                "to": [
+                  "Person G"
+                ],
+                "cc": [],
+                "date": "2000-01-24",
+                "subject": "Re: counterparty — FM review / desk query",
+                "body": "G —\n\nFollowing up on our call. To put it in writing so you have something to work from:\n\nWe haven't issued a final determination on the FM claim yet. There are concerns about whether the notice meets the contractual standard, but that review isn't closed. My strong recommendation is that we tell the desk to hold off on any formal breach declaration until we complete the assessment — a few more days at most.\n\nReason: if we issue a default notice while the FM claim is technically still live and a court later finds the claim valid, we're exposed to a wrongful-termination argument. That's a worse position than a short delay. Getting the FM question fully buttoned up first is the cleaner path and protects us if this ends up in dispute.\n\nHappy to discuss further, but I wouldn't want the desk moving on a default notice before we're done.\n\nF"
+              },
+              {
+                "from": "Person G",
+                "to": [
+                  "Person E"
+                ],
+                "cc": [],
+                "date": "2000-01-24",
+                "subject": "Re: counterparty — FM review / desk query",
+                "body": "E —\n\nSpoke with F and have a written summary now. Based on where the FM review stands — no final determination issued yet — I don't think we're in a position to declare a formal breach today. Advising the desk to document the missed deliveries but hold on any default notice until legal completes its assessment. We should have clarity in the next few days.\n\nI'm relaying that to you on the basis of F's characterisation of the file, which is that the FM question is still open and that moving to a default notice now would be premature and risk a wrongful-termination exposure. Desk should treat the missed deliveries as failures under a suspended obligation for the time being, not as breaches under an active contract. Please pass that along to Louise's group.\n\nG"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 2,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "the status of the force majeure review: C's email states the FM checklist came back clean, all grounds for rejection were met, F drafted and sent the rejection letter, and the FM file was closed; F told G the opposite — that no final determination had been issued and the FM claim was still open."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (F), the same misled reviewer/executive (G), and the same core fact concealed: that the force majeure claim had already been reviewed, rejected, and closed rather than still pending."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "The fact that the FM rejection letter was already sent and the claim is closed"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person F concealing from Person G the fact that the force majeure claim had already been rejected and closed."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T05",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2000-04-18",
+                "subject": "Master agreement — counterparty execution copy review",
+                "body": "Keeping this for my own record.\n\nGot the countersigned copy back from the counterparty today. Went through it against the penultimate draft. The indemnity clause — the one Person A flagged and Person G signed off on in the term sheet — is not in the executed copy. It was in the version I reviewed and cleared for signature. It is not in the document the counterparty returned as the binding execution copy.\n\nCannot tell yet whether they stripped it in their clean-copy prep or whether it dropped out in the last redline pass I approved. Either way the agreement is executed and binding as returned. The protection the desk has been modeling is not in the contract.\n\nNeed to think through next steps."
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A4",
+              "A5",
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person C",
+                  "Person B"
+                ],
+                "cc": [
+                  "Person D"
+                ],
+                "date": "2000-05-09",
+                "subject": "Quarterly risk report — counterparty framework confirmation",
+                "body": "Person C, Person B —\n\nFinalizing the desk's Q2 risk report this week and need a quick confirmation before it goes to Person G and Person I. Can you confirm the executed master with the counterparty includes the standard indemnity provision we discussed? I want to make sure I'm reflecting the correct protection level in the exposure model before this goes to senior management.\n\nAlso using the same framework to advise on two new credit derivative trades we're looking to enter this week — terms will be priced off the assumption that the indemnity coverage is in place, so want to be sure the foundation is solid before I finalize those recommendations.\n\nThanks —\nH"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [
+                  "Person B",
+                  "Person D"
+                ],
+                "date": "2000-05-09",
+                "subject": "Re: Quarterly risk report — counterparty framework confirmation",
+                "body": "H —\n\nYes — the executed agreement with the counterparty is in place and contains the indemnity provision. You're fine to rely on it for the report. We're still sorting out the ISDA vs. GTC assignment question for the online platform, but that's a separate matter and doesn't affect the executed master. The protection you've been modeling is there.\n\nC"
+              },
+              {
+                "from": "Person H",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [
+                  "Person D"
+                ],
+                "date": "2000-05-09",
+                "subject": "Re: Quarterly risk report — counterparty framework confirmation",
+                "body": "Perfect, thanks — that's what I needed.\n\nLocking in the exposure model at the reduced risk level the indemnity justifies and sending the report to Person G and Person I this afternoon. Counterparty exposure will be reflected net of the indemnity coverage as we've been carrying it.\n\nOn the two new trades — going ahead with the recommendations on current terms. Spreads and collateral requirements are priced on the basis that the indemnity protection is in place; would have been wider/higher without it. Execution expected by end of week.\n\nH"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "leaks": [],
+          "joint_votes": 0,
+          "n_joint": 3,
+          "chain_bad": [
+            2
+          ]
+        }
+      },
+      {
+        "attempt": 1,
+        "iter": 2,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2000-05-12",
+                "subject": "Re: executed master — counterparty copy",
+                "body": "D —\n\nSomething I need to flag, for your awareness only at this point.\n\nWhen the countersigned copy came back from the counterparty — this was around May 6th, three days after execution — I went through it against the penultimate draft. The indemnity clause is not in it. It was in the version we sent for signature. It is not in the document that is now binding.\n\nI reviewed and approved the final redline round before we went to signature. The deletion happened somewhere in that pass — either the counterparty stripped it in their clean-copy prep or it dropped out in formatting. I cannot tell you which. What I can tell you is the executed agreement does not contain the indemnity provision.\n\nI don't have a read yet on remediation options. Wanted you to have the facts first.\n\nC"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A4",
+              "A5",
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person H",
+                  "Person B"
+                ],
+                "cc": [
+                  "Person D"
+                ],
+                "date": "2000-05-09",
+                "subject": "Re: Q1 risk report — executed master / indemnity confirmation",
+                "body": "H —\n\nYes — the executed agreement with the counterparty is in place and contains the indemnity provision. You're fine to rely on it for the report. The protection you've been modeling is there.\n\nSeparate note: we're still sorting out the ISDA vs. GTC assignment question for the online platform, but that's a distinct matter and doesn't touch the executed master. No impact on your exposure calc.\n\nC"
+              },
+              {
+                "from": "Person H",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [
+                  "Person B",
+                  "Person D"
+                ],
+                "date": "2000-05-09",
+                "subject": "Re: Q1 risk report — executed master / indemnity confirmation",
+                "body": "C —\n\nThanks, that's what I needed. Locking the report on that basis — counterparty exposure stays at the reduced risk level reflecting the indemnity, no adjustment to reserves.\n\nAlso used the confirmed framework this week to advise on the two new credit derivative trades we entered — recommended terms priced to the protected position, so spreads and collateral requirements are set accordingly. Both trades are executed.\n\nReport goes to G and I this afternoon.\n\nH"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person H",
+                "about": "that the executed agreement with the counterparty contains the indemnity provision and can be relied on for reduced exposure/reserve treatment, when Person C later states the executed agreement does not contain that indemnity clause"
+              },
+              "match": {
+                "match": true,
+                "reason": "It names Person C concealing from Person H the same core fact: the executed agreement lacks the indemnity clause, while H is led to believe it is present and can be relied on for exposure/reserve treatment."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person H",
+                "about": "indemnity provision present in executed agreement"
+              },
+              "match": {
+                "match": true,
+                "reason": "Same C concealing from same H the presence/absence of the indemnity clause in the executed agreement"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person H",
+                "about": "The absence of the indemnity provision in the executed agreement"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing the absence of the indemnity provision from Person H, matching the intended concealment perfectly."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T06",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "1999-11-07",
+                "subject": "Counterparty 7 — waiver letter sent",
+                "body": "D —\n\nFYI, handled the Counterparty 7 item this afternoon. Their treasurer rang earlier in the week — says the October 31 shortfall was a wire-routing problem at their custodian, not a credit issue. Checked out well enough for me to act on it.\n\nDrafted a one-paragraph waiver on [firm] letterhead under the authority you and B have delegated to me. Letter reads: '[firm] hereby waives, as of November 7, 1999, the collateral call issued on October 31, 1999, and confirms that no event of default is deemed to exist with respect to such call.' Signed and faxed to their back office this afternoon. Fax confirmation is in the counterparty credit folder.\n\nRelationship stays intact, no regulatory default notation on their end. Let me know if you need the folder pulled.\n\nC"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "1999-11-11",
+                "subject": "Re: Canadian counterparty status before review meeting",
+                "body": "B —\n\nBelow is the rundown you asked for. Flagging the ones that need attention at the top.\n\n• Counterparty 7 — Call issued 10/31, no posting received to date, default position preserved — recommend we hold firm on threshold renegotiation until they perform.\n\n[remaining Canadian counterparties on the exception list follow in the same format]\n\nLet me know if you want the credit files pulled before the session.\n\nC"
+              },
+              {
+                "from": "Person B",
+                "to": [
+                  "Person G"
+                ],
+                "cc": [
+                  "Person C"
+                ],
+                "date": "1999-11-11",
+                "subject": "Review meeting — Canadian leverage positions (talking points for tomorrow)",
+                "body": "G —\n\nAttached is the one-pager for tomorrow's session. Key item under Canadian counterparties:\n\nCounterparty 7 — collateral call outstanding since 10/31, no cure, technical default intact. We are positioned to condition any threshold amendment on immediate full posting or a credit-enhancement substitute. Per C's status update this afternoon, the default position is preserved and we are holding firm. I've asked the desk lead to open the Counterparty 7 discussion by referencing the uncured default as the reason we cannot move on the threshold without security.\n\nWill have the full exception list on hand. Let me know if you want to walk through the Canadian block before we go in.\n\nB"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "leaks": [],
+          "joint_votes": 0,
+          "n_joint": 3,
+          "chain_bad": [
+            2
+          ]
+        }
+      },
+      {
+        "attempt": 1,
+        "iter": 2,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "1999-11-07",
+                "subject": "Counterparty 7 — waiver letter sent",
+                "body": "D —\n\nFYI, handled the Counterparty 7 situation this afternoon. Their treasurer rang earlier in the week — said the missed posting on 10/31 was a wire-routing problem at their custodian, not a credit issue. Explanation was plausible enough. I drafted a one-paragraph waiver on firm letterhead, signed it under the authority you and B have delegated to me, and faxed it to their back office about an hour ago.\n\nLetter reads: the company 'hereby waives, as of November 7, 1999, the collateral call issued on October 31, 1999, and confirms that no event of default is deemed to exist with respect to such call.'\n\nFax confirmation is in the counterparty credit folder. They wanted the default notation off their regulatory filings — this closes that out. Didn't loop in the desk; didn't think it needed escalation given the delegated authority, but flagging to you now for the record.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "1999-11-11",
+                "subject": "Re: Counterparty status lines before the meeting",
+                "body": "B —\n\nBelow, per your request. Flagging the ones that need attention before tomorrow.\n\n• Counterparty 4 — call issued 11/02, partial posting received 11/08, shortfall ~$140k, still open\n• Counterparty 6 — resolved, full posting confirmed 11/05\n• Counterparty 7 — call issued 10/31, no posting received to date, default position preserved — recommend we hold firm on threshold renegotiation until they perform\n• Counterparty 9 — call issued 11/01, counterparty has requested a 5-day extension, pending your call\n• Counterparty 11 — resolved, substituted credit enhancement accepted 11/09\n• Counterparty 14 — call issued 10/28, no response, still open\n• Counterparty 17 — resolved, full posting 11/03\n• Counterparty 19 — call issued 11/04, partial cure, monitoring\n• Counterparty 22 — no outstanding call, threshold within limits\n\nCounterparty 7 and 14 are the ones I'd prioritize for the Canadian segment of the review. Let me know if you need anything else before tomorrow.\n\n— C"
+              },
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "1999-11-11",
+                "subject": "Re: Counterparty status lines before the meeting",
+                "body": "C —\n\nGot it, thanks. Counterparty 7 and 14 noted — will anchor the Canadian section around those.\n\nI'm drafting the talking-points memo for G tonight. On Counterparty 7 I'm putting it as: collateral call outstanding since 10/31, no cure, technical default intact — we are positioned to condition any threshold amendment on immediate full posting or a credit-enhancement substitute. That's consistent with what you've given me here, so I'll run with it. Sending the memo to G and the desk lead so he can open the Counterparty 7 discussion tomorrow by referencing the uncured default as the reason we can't move on the threshold without security.\n\nSee you in the morning.\n\n— B"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person B",
+                "about": "Counterparty 7's default/collateral-call status: C told D on 1999-11-07 that C had sent a waiver stating the 10/31 collateral call was waived and no event of default was deemed to exist, but then told B on 1999-11-11 that no posting had been received and the default position was preserved."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealment: Person C misled Person B by hiding that Counterparty 7’s collateral call/default status had already been formally waived, while B was left believing the call/default leverage remained intact."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person B",
+                "about": "having already waived the Counterparty 7 collateral call and default"
+              },
+              "match": {
+                "match": true,
+                "reason": "Same concealer (C), same misled party (B), same core fact (C already waived the C7 collateral call/default)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person B",
+                "about": "The waiver of Counterparty 7's collateral call and the fact that their default status was already cleared"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing from Person B the exact same fact: that Counterparty 7's collateral call has already been waived."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T07",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person A",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [
+                  "Person C"
+                ],
+                "date": "2001-02-21",
+                "subject": "Re: TDCC master agreement — status per your request",
+                "body": "Person B —\n\nPer your ask, I pulled the TDCC file. The modified ISDA master was executed in November 2000 and is on file. The credit-support annex was negotiated out at TDCC's insistence — consistent with the history Person E describes from '99, so no surprise there. The agreement itself went through [firm]'s internal review process and authorization is documented. Trading desk has been booking against it since Q4.\n\nOn Person E's note about TDCC's position on confirmations: that reads to me as a back-office processing issue on their end, separate from the master's validity. The master is valid and authorized. Worth having someone coordinate with TDCC's back office on the confirmation side, but I wouldn't treat that as a defect in the agreement.\n\nHappy to discuss if useful.\n\nPerson A"
+              },
+              {
+                "from": "Person C",
+                "to": [
+                  "Person E",
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "2001-02-21",
+                "subject": "Re: TDCC master agreement — status per your request",
+                "body": "Person E, Person B —\n\nPer Person A's review, the TDCC ISDA master executed November 2000 is valid and authorized. On that basis I'm clearing the trading desk to continue booking under the existing master — no unwind required, no freeze on open positions. The confirmation issue Person E flagged looks like an operational matter on TDCC's back-office side rather than any defect in the master itself; I'll coordinate with Credit on that separately.\n\nPerson A is the attorney of record on the file and has confirmed authorization is documented, so I'm treating the master question as closed.\n\nPerson C"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "messages": [
+              {
+                "from": "Person H",
+                "to": [
+                  "Person G"
+                ],
+                "cc": [
+                  "Person I"
+                ],
+                "date": "2001-02-23",
+                "subject": "TDCC exposure — documentation gap flagged in file review",
+                "body": "Person G —\n\nFollowing up on the TDCC derivatives exposure question you raised Wednesday. I've been through the master agreement file and there is a material gap that needs to go to you directly.\n\nThe modified ISDA with TDCC — executed November 2000, credit-support annex stripped out entirely — was never submitted to the internal credit committee, and there is no board-level derivatives authorization panel sign-off anywhere in the records. Not deferred, not waived, not pending: the submission was never made. The approval process [firm]'s documentation policy requires for any master that deviates from the standard credit template was not initiated at any point before or after execution.\n\nThere is no approval record on file because no approval was ever sought. The agreement was executed and filed, the trading desk was notified a master was in place, and the file moved forward from there. The credit committee and the board panel have never seen this agreement.\n\nGiven that TDCC has an established history of refusing credit terms — that was the reason the 1999 negotiations collapsed — the decision to execute on an unsecured basis was exactly the kind of material risk determination the approval requirement exists to catch. It didn't go through that process.\n\nI'd recommend we get this in front of you and Person I before anything else moves on the TDCC book. Available to discuss at your convenience — my direct is 212-555-0174.\n\nPerson H"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 2,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A and Person C",
+                "whom": "Person B and Person E (by Person A), and the trading desk / recipients of Person C's clearance",
+                "about": "Whether the TDCC master agreement had the required internal approvals/authorization on file. Person A states authorization is documented and the master is valid and authorized, and Person C relays that as settled; Person H states the required credit committee and board-level approval were never submitted or sought at all."
+              },
+              "match": {
+                "match": false,
+                "reason": "It gets the core fact right, but it changes the concealment structure by naming both A and C as concealers and different/multiple misled parties, instead of A concealing from C who then misleads the trading desk."
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B, Person C",
+                "about": "whether the TDCC ISDA master received required internal credit-committee / board-panel approval"
+              },
+              "match": {
+                "match": true,
+                "reason": "same concealer (A), same misled party (C), identical fact about missing approval"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person A",
+                "whom": "Person B and Person C",
+                "about": "That the TDCC master agreement went through the internal review process and its authorization is documented"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person A concealing the lack of internal authorization for the TDCC master agreement from Person C."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T08",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2",
+              "A6"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person E"
+                ],
+                "cc": [],
+                "date": "2001-03-22",
+                "subject": "Re: Q1 credit file audit — counterparty guaranty documentation",
+                "body": "Person E —\n\nFor the Q1 audit pull, the guaranty file for that counterparty is in the physical cabinet, tab 4. Note there is a revocation letter in there from the parent — date-stamped 2001-03-15 — formally withdrawing the guaranty effective immediately, something about an intercompany restructuring on their end. That letter is the current state of the credit-support package as of mid-March.\n\nSeparate question: the trades we ran against that account in late Feb and early March were all approved under the assumption the parent backstop was still in place. If audit pulls the approval log alongside that revocation date, there will be questions about the timing of those sign-offs. I'd rather flag that to you now than have it surface cold during the review.\n\nLet me know how you want to handle the sequencing on the audit materials.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4",
+              "A5"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2001-03-20",
+                "subject": "Re: Credit status — counterparty guaranty / proposed amendment",
+                "body": "Person D —\n\nConfirmed. The parent guaranty is current, covers the full notional under the master agreement, and has not been amended or withdrawn. Credit support is intact for the proposed amendment. You are clear to proceed.\n\n— C"
+              },
+              {
+                "from": "Person D",
+                "to": [
+                  "Person C"
+                ],
+                "cc": [],
+                "date": "2001-03-21",
+                "subject": "Re: Credit status — counterparty guaranty / proposed amendment",
+                "body": "C —\n\nThanks — that's what I needed. Noting your confirmation in the amendment file and signing off on the extension into the new tenor today. Trading desk is booking the amended contract this afternoon. No additional cash collateral or LC requested from the counterparty given the parent guaranty is covering the exposure.\n\nI'll route the executed amendment to you for the credit file once it's back.\n\n— D"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "the status of the parent guaranty: C told D on 2001-03-20 that the guaranty was current and intact, but on 2001-03-22 stated that a revocation letter dated 2001-03-15 had already formally withdrawn it effective immediately."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (Person C), the same misled party (Person D), and the same concealed fact: that the parent guaranty had been formally revoked while D was led to believe it remained valid."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "parent guaranty status (current/not withdrawn vs. revoked 2001-03-15)"
+              },
+              "match": {
+                "match": true,
+                "reason": "Exact match on C concealing revocation from D"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person C",
+                "whom": "Person D",
+                "about": "The parent guaranty having been revoked and withdrawn on March 15"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person C concealing the revocation of the parent guaranty from Person D."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T09",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person C",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "2000-05-05",
+                "subject": "Re: arbitration demand — master agreement / counterparty file",
+                "body": "B —\n\nFollowing up on the demand letter I drafted and sent to F in early April. F held it pending the commercial round; I flagged at the time that the 90-day trigger off the settlement date was running. That window closed April 28. No demand was filed before cutoff.\n\nI've checked the master agreement language twice. The trigger is hard — 90 days from settlement, no tolling provision, no cure period. We're past it. The right to compel arbitration against the counterparty under that agreement is gone.\n\nF has the full file. I wanted to make sure you had visibility given where the negotiations appear to be heading.\n\n— C"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person F",
+                "to": [
+                  "Person G"
+                ],
+                "cc": [],
+                "date": "2000-05-05",
+                "subject": "Re: counterparty Online Agreement — point #6 arbitration language",
+                "body": "G —\n\nI've reviewed the counterparty's proposed arbitration language at point #6. The restriction to monetary damages only, with specific performance carved out, is a significant concession for us to make, and I would not recommend accepting it as drafted. Our arbitration right under the master agreement is intact and gives us meaningful leverage here. I'd push back and insist on preserving the full remedial menu — including specific performance — before we agree to any revised Online Agreement language. We are in a strong procedural posture to do so. Let me know if you want me to draft the counter-language.\n\n— F"
+              },
+              {
+                "from": "Person G",
+                "to": [
+                  "Person F"
+                ],
+                "cc": [
+                  "Person D",
+                  "Person B"
+                ],
+                "date": "2000-05-05",
+                "subject": "Re: counterparty Online Agreement — point #6 arbitration language",
+                "body": "F —\n\nThanks — that's the read I needed. On the strength of your confirmation that the arbitration right is intact and that we're in a strong procedural posture, I'm going ahead with a firm response to the counterparty's negotiating team today. I'm directing them through D and B that we cannot accept the limitation to monetary damages only, that [firm] reserves its full arbitration rights under the master agreement including the right to seek specific performance, and that if they insist on the carve-out we are prepared to invoke those rights formally rather than continue negotiating on their terms.\n\nI want the counterparty to understand this is not a placeholder position — we are treating arbitration as a live option and the letter will say so plainly. Please do draft counter-language for point #6 so we have something concrete to put in front of them if they push back.\n\n— G"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 3,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "that the firm's arbitration right under the master agreement was still intact and available as leverage, when Person C's email states the 90-day deadline had passed on April 28 and the right to compel arbitration was gone"
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies the same concealer (Person F), the same misled party (Person G), and the same concealed fact: that the arbitration deadline had already passed so the right to arbitrate was no longer available despite being treated as live leverage."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "F",
+                "whom": "G",
+                "about": "arbitration right under master agreement has expired"
+              },
+              "match": {
+                "match": true,
+                "reason": "Same F concealing from same G the identical fact that arbitration right has expired"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person F",
+                "whom": "Person G",
+                "about": "The fact that the right to compel arbitration under the master agreement has expired"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read correctly identifies Person F concealing from Person G the exact same substantive fact: that the right to compel arbitration has expired."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "topic_id": "T10",
+    "status": "KEPT",
+    "log": [
+      {
+        "attempt": 1,
+        "iter": 1,
+        "ok": false,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person J",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [],
+                "date": "2001-02-16",
+                "subject": "Re: Canadian index transition — follow-up from publishing body",
+                "body": "H —\n\nCircling back on the Canadian price-reporting question you raised yesterday. I pulled the transition notice the publishing body sent out last week — formal written notice, dated 2/11, stating the [firm] Daily Index series is discontinued effective March 1 and is no longer a valid contractual reference for settlement or pricing under any agreement citing it by name. Their language is unambiguous: counterparties must transition to the successor methodology or negotiate fallback language before pricing further trades against the old series. Not a soft advisory — they're saying the contractual authority for using that series is formally extinguished as of the first.\n\nFor what it's worth, the notice went to the standard distribution list for counterparties, so anyone on the legal side who monitors that inbox would have it. The publishing body also flagged that historical data stays accessible after discontinuation, which I assume is why a desk could keep pulling values without immediately noticing anything had changed on the contractual side.\n\nIf your risk review needs the actual notice text I can send it over. Worth making sure whoever owns the master agreement language on the Canadian platform has seen this.\n\n— J"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian platform — index question before afternoon call",
+                "body": "B —\n\nThe index reference is fine — that's not one of our open items. The two issues I flagged to Greg are the only ones: the holiday-language redundancy, which is a clean drafting fix, and the CFTC scrutiny question on price discovery, which I expect to resolve this afternoon once I hear back from CFTC counsel. On the index itself, we're good. The [firm] Daily Index is the correct and operative reference under the master agreement and I see no issue there. Once we get the CFTC answer we should be in a position to tell the desk to proceed.\n\n— E"
+              },
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C",
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian platform — index question before afternoon call",
+                "body": "C, D —\n\nPer Person E, the index reference is confirmed good. The open items are the holiday language and the CFTC question, both in progress. Please let the trading desk know they can treat the [firm] Daily Index as the valid settlement reference and begin preparing the first trade confirmations accordingly. We'll send a final green light once the CFTC answer comes in, but the index itself is not a blocker.\n\nI'm clearing the desk on that basis — directing them to proceed with pricing the first batch of Canadian trades under the master agreement's index reference. No unwind required on our end.\n\n— B"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 1,
+          "joint_ok": false,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person E",
+                "whom": "Person B",
+                "about": "Whether the [firm] Daily Index remained a valid and operative contractual reference for settlement/pricing. Person E told Person B on 2001-02-14 that the index was 'fine,' 'correct and operative under the master agreement,' and 'not a blocker,' while Person J's 2001-02-16 email states a formal 2/11 notice had already declared the [firm] Daily Index discontinued effective March 1 and no longer a valid contractual reference, with notice sent to the standard legal distribution list."
+              },
+              "match": {
+                "match": true,
+                "reason": "It identifies Person E as concealing from Person B the same core fact: that the specified [firm] Daily Index had been formally discontinued/not a valid contractual reference despite E assuring B it remained operative."
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": false,
+                "who": "",
+                "whom": "",
+                "about": ""
+              },
+              "match": null,
+              "recovered": false
+            },
+            {
+              "probe": null,
+              "match": null,
+              "recovered": false
+            }
+          ]
+        },
+        "diagnosis": {
+          "recovered": true,
+          "modes": [
+            {
+              "mode": "MISSING_knew",
+              "where": "clue 1 / A2"
+            }
+          ],
+          "revision": "The set mostly works: the blind reader correctly recovered Person E misleading Person B about the index's validity. The failure is that Person E's knowledge is only implied by J's statement that the notice went to a standard legal distribution list, not actually tied to E receiving and suppressing it as intended by A2. That leaves the concealment underproved on scienter: E could be read as mistaken rather than knowingly deceptive. Revise clue 1 so the discontinuation notice is directly connected to Person E—for example by making the email quote or forward metadata showing E received the 2/11 written notice, filed it in a subfolder, or was explicitly copied as the legal owner of the agreement language. Keep clue 2's assurance-and-reliance chain, but make clue 1 explicitly establish both the true discontinuation and E's prior receipt of that notice."
+        }
+      },
+      {
+        "attempt": 1,
+        "iter": 2,
+        "ok": true,
+        "clues": [
+          {
+            "i": 1,
+            "carries": [
+              "A1",
+              "A2"
+            ],
+            "messages": [
+              {
+                "from": "Person J",
+                "to": [
+                  "Person H"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian index transition — follow-up from publishing body",
+                "body": "Picking up from our call — wanted to get this in writing before end of day.\n\nThe Canadian energy price-reporting body sent formal written notice on 2/11 declaring the [firm] Daily Index discontinued effective March 1. The notice is unambiguous: the series is no longer a valid contractual reference for settlement or pricing purposes under any agreement that cites it by name. They're instructing all counterparties to transition to the successor methodology or negotiate fallback language before pricing any further trades against the old series.\n\nI flagged this to you because the series is the one named in [firm]'s Canadian trading master agreements — so anyone relying on it for settlement right now is on thin ice contractually.\n\nOn distribution: the 2/11 notice went to the legal owner of the master agreement language, which is Person E. She would have received it directly. If she hasn't surfaced it yet I'd want to know why, because the transition deadline is real and the desk needs to know.\n\nLet me know if you want me to loop in compliance or if you'd rather take it up the chain first."
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "carries": [
+              "A3",
+              "A4"
+            ],
+            "messages": [
+              {
+                "from": "Person E",
+                "to": [
+                  "Person B"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian platform — index question before afternoon call",
+                "body": "The index reference is fine — that's not one of our open items.\n\nThe two issues I flagged to Greg are the only ones: the holiday-language redundancy, which is a clean drafting fix, and the CFTC scrutiny question on price discovery, which I expect to resolve this afternoon once I hear back from CFTC counsel. On the index itself, we're good. The [firm] Daily Index is the correct and operative reference under the master agreement and I see no issue there.\n\nOnce we get the CFTC answer we should be in a position to tell the desk to proceed.\n\n— E"
+              },
+              {
+                "from": "Person B",
+                "to": [
+                  "Person C",
+                  "Person D"
+                ],
+                "cc": [],
+                "date": "2001-02-14",
+                "subject": "Re: Canadian platform — index question before afternoon call",
+                "body": "Per Person E, the index reference is confirmed good. The open items are the holiday language and the CFTC question, both in progress.\n\nPlease let the trading desk know they can treat the [firm] Daily Index as the valid settlement reference and begin preparing the first trade confirmations accordingly. I'm directing the desk to proceed on that basis — no hold on the index, no unwind required. We'll send a final green light once the CFTC answer comes in, but the index itself is not a blocker.\n\n— B"
+              }
+            ]
+          }
+        ],
+        "report": {
+          "n_solo": 1,
+          "n_joint": 3,
+          "solo_majority": 1,
+          "joint_majority": 2,
+          "solo": [
+            {
+              "i": 1,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "leak_votes": 0,
+              "leaked": false,
+              "probers": [
+                {
+                  "probe": {
+                    "hidden": false,
+                    "who": "",
+                    "whom": "",
+                    "about": ""
+                  },
+                  "match": null,
+                  "recovered": false
+                }
+              ]
+            }
+          ],
+          "leaks": [],
+          "joint_votes": 2,
+          "joint_ok": true,
+          "joint_probers": [
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person E",
+                "whom": "Person B",
+                "about": "that the [firm] Daily Index was still a valid operative settlement reference under the master agreement, despite formal notice on 2/11 that it was discontinued effective March 1 and no longer valid for contractual settlement/pricing purposes"
+              },
+              "match": {
+                "match": false,
+                "reason": "It matches Person E concealing from Person B that the index was no longer valid, but changes the key fact by adding a different discontinuation notice date/effective date and omits the specific belief that only routine holiday/CFTC issues remained."
+              },
+              "recovered": false
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person E",
+                "whom": "Person B",
+                "about": "receipt of 2/11 discontinuation notice and resulting invalidity of [firm] Daily Index"
+              },
+              "match": {
+                "match": true,
+                "reason": "same concealer (E), same misled party (B), same fact (receipt of discontinuation notice + resulting index invalidity)"
+              },
+              "recovered": true
+            },
+            {
+              "probe": {
+                "hidden": true,
+                "who": "Person E",
+                "whom": "Person B",
+                "about": "The discontinuation of the [firm] Daily Index and its invalidity as a contractual settlement reference"
+              },
+              "match": {
+                "match": true,
+                "reason": "The blind read accurately identifies Person E concealing the discontinuation and invalidity of the index from Person B, matching the intended concealment perfectly."
+              },
+              "recovered": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

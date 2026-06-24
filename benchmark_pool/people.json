@@ -1,0 +1,152 @@
+{
+  "_about": "Step 2 reasons over anonymous labels (Person A\u2026J) so no fabricated deception touches a real identity during generation. Step 3 (assembly) binds each label to its identity + email below (real Enron identity here; swap via pseudonyms.json at output if a fictional identity is wanted).",
+  "people": [
+    {
+      "label": "Person A",
+      "role": "blends legal precision with collegial warmth",
+      "real_name": "Kay Mann",
+      "real_email": "kay.mann@enron.com"
+    },
+    {
+      "label": "Person B",
+      "role": "task-oriented legal and regulatory coordinator",
+      "real_name": "Sara Shackleton",
+      "real_email": "sara.shackleton@enron.com"
+    },
+    {
+      "label": "Person C",
+      "role": "direct, efficient legal and credit coordinator",
+      "real_name": "Tana Jones",
+      "real_email": "tana.jones@enron.com"
+    },
+    {
+      "label": "Person D",
+      "role": "direct, efficient administrative and legal coordinator",
+      "real_name": "Carol Clair",
+      "real_email": "carol.clair@enron.com"
+    },
+    {
+      "label": "Person E",
+      "role": "information hub for legal and regulatory coordination",
+      "real_name": "Mark Taylor",
+      "real_email": "mark.taylor@enron.com"
+    },
+    {
+      "label": "Person F",
+      "role": "efficient legal professional",
+      "real_name": "Elizabeth Sager",
+      "real_email": "elizabeth.sager@enron.com"
+    },
+    {
+      "label": "Person G",
+      "role": "high-level legal reviewer and executive",
+      "real_name": "Richard Sanders",
+      "real_email": "richard.sanders@enron.com"
+    },
+    {
+      "label": "Person H",
+      "role": "regulatory and risk analysis",
+      "real_name": "Jeff Dasovich",
+      "real_email": "jeff.dasovich@enron.com"
+    },
+    {
+      "label": "Person I",
+      "role": "high-efficiency corporate coordinator",
+      "real_name": "Steven Kean",
+      "real_email": "steven.kean@enron.com"
+    },
+    {
+      "label": "Person J",
+      "role": "regulatory expert; rigorous compliance, collegial",
+      "real_name": "Susan Scott",
+      "real_email": "susan.scott@enron.com"
+    }
+  ],
+  "authority": [
+    {
+      "from": "Person D",
+      "rel": "delegates to",
+      "to": "Person C"
+    },
+    {
+      "from": "Person D",
+      "rel": "reports to",
+      "to": "Person E"
+    },
+    {
+      "from": "Person D",
+      "rel": "reports to",
+      "to": "Person B"
+    },
+    {
+      "from": "Person F",
+      "rel": "delegates to",
+      "to": "Person C"
+    },
+    {
+      "from": "Person F",
+      "rel": "reports to",
+      "to": "Person G"
+    },
+    {
+      "from": "Person H",
+      "rel": "reports to",
+      "to": "Person G"
+    },
+    {
+      "from": "Person H",
+      "rel": "reports to",
+      "to": "Person I"
+    },
+    {
+      "from": "Person A",
+      "rel": "reports to",
+      "to": "Person F"
+    },
+    {
+      "from": "Person E",
+      "rel": "delegates to",
+      "to": "Person F"
+    },
+    {
+      "from": "Person E",
+      "rel": "reports to",
+      "to": "Person G"
+    },
+    {
+      "from": "Person B",
+      "rel": "delegates to",
+      "to": "Person D"
+    },
+    {
+      "from": "Person B",
+      "rel": "delegates to",
+      "to": "Person C"
+    },
+    {
+      "from": "Person B",
+      "rel": "reports to",
+      "to": "Person E"
+    },
+    {
+      "from": "Person I",
+      "rel": "delegates to",
+      "to": "Person G"
+    },
+    {
+      "from": "Person C",
+      "rel": "reports to",
+      "to": "Person D"
+    },
+    {
+      "from": "Person C",
+      "rel": "reports to",
+      "to": "Person E"
+    },
+    {
+      "from": "Person C",
+      "rel": "reports to",
+      "to": "Person B"
+    }
+  ]
+}

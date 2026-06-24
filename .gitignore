@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+dist/
+
+# uv
+.python-version
+
+# Secrets & credentials
+.env
+
+# Large data (keep scripts and processed enron_10, ignore raw maildir)
+data/enron/maildir/
+data/enron/enron_mail_20150507.tar.gz
+
+# Outputs
+profiles/
+results/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Old experiment runs — keep only the latest per step
+secrets/step2*
+!secrets/step2_test10_v9_r16.json
+!secrets/step2_test10_v9_r16_readable.txt
+!secrets/step2_test10_v9_r17_resolved.json
+secrets/topic_pool_*.json
+benchmark_pool/clue_drafts_final.*
+.pytest_cache/
+data/enron/
+.claude/
+
+# Phase 3/4/5 — keep only the latest reference set (r17c + one demo)
+benchmark_pool/step3_r17.jsonl
+benchmark_pool/step3_r17.txt
+benchmark_pool/step3_r17b.jsonl
+benchmark_pool/*_n0.jsonl
+sandbox/
+data/benchmark/

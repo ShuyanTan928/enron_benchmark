@@ -1,0 +1,522 @@
+[
+  {
+    "email": "kay.mann@enron.com",
+    "display_name": "Kay Mann",
+    "selection_rank": 1,
+    "n_emails_sent_filtered": 45,
+    "n_threads_participated": 47,
+    "n_threads_as_sender": 37,
+    "avg_words_sent": 57.53,
+    "total_words_sent": 2589,
+    "top_correspondents": [
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 16
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 8
+      },
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 5
+      },
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 2
+      },
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 2
+      },
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 1
+      },
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 16735,
+      "avg_words_per_email_corpus": 109.48
+    }
+  },
+  {
+    "email": "sara.shackleton@enron.com",
+    "display_name": "Sara Shackleton",
+    "selection_rank": 2,
+    "n_emails_sent_filtered": 288,
+    "n_threads_participated": 375,
+    "n_threads_as_sender": 265,
+    "avg_words_sent": 121.19,
+    "total_words_sent": 34902,
+    "top_correspondents": [
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 170
+      },
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 133
+      },
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 111
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 8
+      },
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 7
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 5
+      },
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 8777,
+      "avg_words_per_email_corpus": 117.38
+    }
+  },
+  {
+    "email": "tana.jones@enron.com",
+    "display_name": "Tana Jones",
+    "selection_rank": 3,
+    "n_emails_sent_filtered": 232,
+    "n_threads_participated": 342,
+    "n_threads_as_sender": 209,
+    "avg_words_sent": 124.38,
+    "total_words_sent": 28857,
+    "top_correspondents": [
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 193
+      },
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 111
+      },
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 71
+      },
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 8
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 1
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 8490,
+      "avg_words_per_email_corpus": 91.25
+    }
+  },
+  {
+    "email": "carol.clair@enron.com",
+    "display_name": "Carol Clair",
+    "selection_rank": 4,
+    "n_emails_sent_filtered": 141,
+    "n_threads_participated": 291,
+    "n_threads_as_sender": 120,
+    "avg_words_sent": 122.99,
+    "total_words_sent": 17342,
+    "top_correspondents": [
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 133
+      },
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 119
+      },
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 71
+      },
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 27
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 2
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 2
+      },
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 3564,
+      "avg_words_per_email_corpus": 112.79
+    }
+  },
+  {
+    "email": "mark.taylor@enron.com",
+    "display_name": "Mark Taylor",
+    "selection_rank": 5,
+    "n_emails_sent_filtered": 313,
+    "n_threads_participated": 498,
+    "n_threads_as_sender": 268,
+    "avg_words_sent": 137.86,
+    "total_words_sent": 43150,
+    "top_correspondents": [
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 193
+      },
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 170
+      },
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 119
+      },
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 18
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 10
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 2
+      },
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 4111,
+      "avg_words_per_email_corpus": 209.24
+    }
+  },
+  {
+    "email": "elizabeth.sager@enron.com",
+    "display_name": "Elizabeth Sager",
+    "selection_rank": 6,
+    "n_emails_sent_filtered": 74,
+    "n_threads_participated": 81,
+    "n_threads_as_sender": 51,
+    "avg_words_sent": 140.62,
+    "total_words_sent": 10406,
+    "top_correspondents": [
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 27
+      },
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 18
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 16
+      },
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 8
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 8
+      },
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 7
+      },
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 2636,
+      "avg_words_per_email_corpus": 109.22
+    }
+  },
+  {
+    "email": "richard.sanders@enron.com",
+    "display_name": "Richard Sanders",
+    "selection_rank": 7,
+    "n_emails_sent_filtered": 81,
+    "n_threads_participated": 93,
+    "n_threads_as_sender": 64,
+    "avg_words_sent": 153.04,
+    "total_words_sent": 12396,
+    "top_correspondents": [
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 10
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 8
+      },
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 8
+      },
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 8
+      },
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 6
+      },
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 5
+      },
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 2
+      },
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 3262,
+      "avg_words_per_email_corpus": 123.17
+    }
+  },
+  {
+    "email": "jeff.dasovich@enron.com",
+    "display_name": "Jeff Dasovich",
+    "selection_rank": 8,
+    "n_emails_sent_filtered": 90,
+    "n_threads_participated": 127,
+    "n_threads_as_sender": 85,
+    "avg_words_sent": 178.43,
+    "total_words_sent": 16059,
+    "top_correspondents": [
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 57
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 29
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 6
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 11411,
+      "avg_words_per_email_corpus": 214.05
+    }
+  },
+  {
+    "email": "steven.kean@enron.com",
+    "display_name": "Steven Kean",
+    "selection_rank": 9,
+    "n_emails_sent_filtered": 207,
+    "n_threads_participated": 197,
+    "n_threads_as_sender": 182,
+    "avg_words_sent": 61.0,
+    "total_words_sent": 12628,
+    "top_correspondents": [
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 57
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 5
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "susan.scott@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 6759,
+      "avg_words_per_email_corpus": 204.44
+    }
+  },
+  {
+    "email": "susan.scott@enron.com",
+    "display_name": "Susan Scott",
+    "selection_rank": 10,
+    "n_emails_sent_filtered": 61,
+    "n_threads_participated": 72,
+    "n_threads_as_sender": 54,
+    "avg_words_sent": 172.0,
+    "total_words_sent": 10492,
+    "top_correspondents": [
+      {
+        "email": "jeff.dasovich@enron.com",
+        "n_shared_threads": 29
+      },
+      {
+        "email": "kay.mann@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "sara.shackleton@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "tana.jones@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "carol.clair@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "mark.taylor@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "elizabeth.sager@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "richard.sanders@enron.com",
+        "n_shared_threads": 0
+      },
+      {
+        "email": "steven.kean@enron.com",
+        "n_shared_threads": 0
+      }
+    ],
+    "corpus_stats": {
+      "num_emails_sent_corpus": 4000,
+      "avg_words_per_email_corpus": 176.71
+    }
+  }
+]

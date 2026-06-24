@@ -1,0 +1,498 @@
+Step 3 — clue breakdown (10 topic(s)); each block: SECRET then its clue emails
+
+==========================================================================================
+T01  «Credit limit already breached»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A credit coordinator conceals from the trading desk that a counterparty has already exceeded its approved credit limit, because revealing it would force the desk to unwind a deal the coordinator had already allowed through.
+  true_fact   : Enserco Energy has already exceeded its approved credit limit: the surge in online trading volume that Sara Shackleton flagged on April 20 pushed Enserco's aggregate exposure past the approved ceiling before any new ISDA was in place, and Tana Jones knew this when she processed the most recent batch of trades.
+  false_belief: Carol Clair believes Enserco is still within its approved credit limit — that the concern raised by Sara Shackleton is about future risk and growing exposure trending toward the limit, not a limit already breached — and therefore treats the situation as a forward-looking caution rather than an immediate stop.
+  actor       : Tana Jones — credit coordinator who cleared the Enserco volume and now conceals the breach
+  victim      : Carol Clair — trading desk liaison who relies on credit clearance to decide whether to book further deals
+  anchor      : 2000-04-20  "EOL -Enserco Energy"
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Jeff Dasovich   To: Steven Kean   Cc: Richard Sanders   (2000-04-20)
+    Subject: Enserco — exposure run review, Apr 17–19
+      Following up on the limit-breach question you raised this morning.
+      
+      Pulled the daily exposure workbooks Tana runs for Enserco. The Apr 17 close shows $4.2M net of L/C collateral — clean, inside the $5M ceiling. The Apr 18 close is $5.3M net. That's the crossing point; the limit was gone by end of day Apr 18.
+      
+      What the workbook entry says for Apr 18 is 'approaching limit / collateral review pending.' That language doesn't reflect what the number actually shows.
+      
+      More to the point: the ticket log for Apr 18 afternoon and Apr 19 shows at least three trades booked after the $5.3M figure was on the screen. Tana processed that batch — her initials are on the clearance queue for each one. So the trades that pushed through after the line crossed weren't a system gap; they went through the normal workflow.
+      
+      I'd want to know when the over-limit alert was supposed to go out and why it didn't, but that's a separate thread. For now the exposure picture is: counterparty is over its approved ceiling, has been since Apr 18 close, and additional volume was booked on top of that.
+      
+      Let me know how you want to handle escalation.
+
+  CLUE 2
+    From: Tana Jones   To: Carol Clair   (2000-04-19)
+    Subject: Re: Enserco headroom — desk check
+      Enserco exposure is currently sitting at $4.2M net of L/C collateral against a $5M approved limit — so we have room, though the pace of their online volume means we should watch it closely. No hard stop at this point; I'd flag it as a caution rather than a block.
+      
+      The bigger issue is the unsigned ISDA, which Sara is chasing. Once that's executed we can revisit the limit itself if the desk wants to grow the relationship.
+
+    From: Carol Clair   To: Tana Jones   Cc: Sara Shackleton   (2000-04-20)
+    Subject: Re: Enserco headroom — desk check
+      Thanks — that's consistent with what Sara flagged this morning re the ISDA. I'm reading his note as a forward-looking relationship caution rather than a credit emergency, which tracks with your $4.2M figure.
+      
+      I've relayed to the desk: hold off on new Enserco volume until the ISDA is signed, but no unwind required on the existing book — exposure is within approved parameters at this stage. They're clear.
+      
+      Sara, looping you in so you know the desk has been told to pause. Let me know if you need anything else from my end on the ISDA chase.
+
+
+==========================================================================================
+T02  «Expired authorization quietly extended»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A regulatory-affairs lead conceals from a trading desk that a key regulatory filing or authorization has lapsed and is no longer valid, allowing trades that depend on it to continue as though the authorization is still in force, because disclosing the lapse would trigger an immediate halt to activity the desk is already running.
+  true_fact   : The master agreement and accompanying state regulatory authorization for Clearwater Valley Electric Cooperative — one of the ten utilities counted as 'approved' — lapsed sixty days ago when the opinion letter from the utility's local counsel expired without renewal; the authorization is no longer valid and any derivatives trades executed against it are unsupported.
+  false_belief: Mark Taylor believes, on the strength of Tana Jones's explicit written assurance, that all ten executed master agreements are currently in force and that the trading desk may continue booking transactions against each of them without interruption.
+  actor       : Tana Jones — regulatory-affairs coordinator who controls the authorization files
+  victim      : Mark Taylor — information hub who relies on Tana Jones's status reports to greenlight trading activity
+  anchor      : 1999-10-12  "Online Derivatives Trading with Regulated Utilities"
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Susan Scott   To: Tana Jones   (1999-10-11)
+    Subject: Re: Clearwater Valley — opinion letter status
+      Tana —
+      
+      Following up on your call from last month. To confirm what I told you then: under the plain language of the PUC order, the conditional authorization to trade financial derivatives requires a current opinion letter from outside counsel. The August 1998 letter was a one-year instrument. Without a successor letter in place, the authorization is lapsed as of August 1999 — it's not a gray area.
+      
+      I understand you sent a renewal request to Clearwater Valley's counsel on September 15th. If no response has come back by now, there's nothing for me to work with on my end. The authorization doesn't carry over on the strength of the request alone.
+      
+      Let me know if you need anything in writing beyond this, but I'd want to flag that any trades running against this counterparty in the interim are running without a valid regulatory authorization in place.
+      
+      — Susan
+      
+      Susan | Local Regulatory Counsel
+      Direct: 208-555-0174
+
+  CLUE 2
+    From: Tana Jones   To: Mark Taylor   (1999-10-12)
+    Subject: Re: executed MAs — counterparty approval status
+      Mark —
+      
+      To answer your question directly — yes, the ten utilities with executed master agreements are approved and their authorizations are current. The due diligence on each of them has been satisfactorily concluded, including where required the receipt of opinion letters from their counsel confirming authorization to trade derivatives under applicable state law and any relevant PUC orders. You may represent to the desk that those ten counterparties are cleared for trading.
+      
+      On the pipeline: the thirty to forty utilities still under review are at various stages of the tiered process — local counsel engaged, PUC order research underway, or opinion letter outstanding. As you've seen before, that process occasionally surfaces circumstances that prevent a utility from trading or require actions not yet taken, which is why we hold approval until the research is complete. I'll keep you posted as counterparties clear.
+      
+      — Tana
+
+    From: Mark Taylor   To: Tana Jones   (1999-10-12)
+    Subject: Re: executed MAs — counterparty approval status
+      Tana —
+      
+      Thanks — exactly what I needed. I'm clearing the desk on that basis now; forwarding your confirmation to the desk lead as the green light on all ten. No unwind required, no holds. They've been waiting on the Clearwater Valley November tranche in particular so I want to get this to them today.
+      
+      Pipeline understood — keep me in the loop as things move.
+      
+      — Mark
+
+
+==========================================================================================
+T03  «Governing agreement version mismatch»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A contract attorney conceals from the trading desk that the version of the master agreement actually on file and governing live trades is an older, superseded draft rather than the negotiated final form the counterparty signed, because disclosing the discrepancy would cast doubt on the enforceability of current positions and expose the attorney's earlier filing error.
+  true_fact   : The executed ISDA Master Agreement on file for Engage Energy US, L.P. is a superseded draft — an earlier negotiated version that was never the final agreed form — meaning the document actually governing live trades between the firm and Engage Energy is not the version both parties ultimately signed.
+  false_belief: Tana Jones is led to believe that the ISDA Master Agreement on file is the final, fully negotiated and executed version that both parties agreed to, and that the hand-marked amendment in the file represents agreed changes layered on top of that valid base agreement.
+  actor       : Kay Mann — the concealer, contract attorney who filed the wrong version
+  victim      : Tana Jones — the misled party, legal and credit coordinator relying on the file
+  anchor      : 2000-08-02  "Re: Amendments to ISDA Master Enron/Engage Energy US, L.P."
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Kay Mann   To: Elizabeth Sager   (2000-08-03)
+    Subject: Engage Energy ISDA — file status note
+      Elizabeth —
+      
+      With Carol out I want to flag something on the Engage Energy file before it gets any further along.
+      
+      When we closed out the master agreement execution earlier this year I was handling several closings in parallel and I have since confirmed — pulling both documents up side by side — that what I filed into the contract system is not the execution copy. It is the version that was circulating two rounds before final. The clean copy with both signatures came back from Engage's counsel and ended up in a general correspondence folder rather than the official file. The three carve-outs the desk requested — the modified cross-default threshold, the revised termination currency provision, and the third item we got in the last round — are in the signed copy but not in the version currently sitting in the system.
+      
+      I am telling you this now because Tana has been handed the file and is working the amendment and guaranty. I have not yet told her.
+      
+      Let me know how you want to handle it.
+      
+      Kay
+
+  CLUE 2
+    From: Kay Mann   To: Tana Jones   (2000-08-04)
+    Subject: Re: Engage Energy — amendment / guaranty questions
+      Tana —
+      
+      Happy to help while Carol is out.
+      
+      On the guaranty: compare the faxed Coastal Corporation guaranty against our standard form — I've attached it. The faxed version looks substantially similar; the deviations I can see are cosmetic and nothing that should hold us up.
+      
+      On the amendment: the hand-marked copy in the file reflects the agreed changes. Those marks were initialed off by both sides during the final call. That is the version we should execute.
+      
+      The underlying Master is clean and in place. The amendment slots in without issue.
+      
+      Kay
+
+    From: Tana Jones   To: Kay Mann   Cc: Sara Shackleton   (2000-08-04)
+    Subject: Re: Engage Energy — amendment / guaranty questions
+      Kay —
+      
+      Thanks, that's what I needed.
+      
+      I've drafted a short memo on the guaranty — one minor conforming change flagged, otherwise acceptable against your form. Routing the execution package to Sara now. My cover note to him confirms the underlying Master is in place per counsel's review and that the hand-marked amendment is the agreed form ready for signature. I'm referencing the on-file Master Agreement as the governing document in the cover letter to Engage's counsel.
+      
+      Didn't pull the Master itself given your confirmation — no reason to reopen it.
+      
+      Tana
+
+
+==========================================================================================
+T04  «Force majeure claim already denied»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A contract attorney conceals from the trading desk that a counterparty's formal force majeure claim has already been reviewed and rejected by the company, allowing the desk to continue treating delivery obligations as suspended and the counterparty as excused, because admitting the rejection would force the desk to immediately pursue breach remedies and expose that the attorney failed to communicate the denial in time.
+  true_fact   : The counterparty's formal force majeure claim was reviewed by Elizabeth Sager and formally rejected by the company several days earlier; the counterparty is therefore in active breach of its delivery obligations and the company has the right — and arguably the duty — to pursue breach remedies immediately
+  false_belief: Richard Sanders believes the force majeure claim is still under substantive legal review, that no determination has been made, and that the counterparty's obligations remain suspended pending that review — meaning the trading desk need not yet treat the situation as a breach or pursue remedies
+  actor       : Elizabeth Sager — contract attorney who controls the force majeure file and conceals the denial
+  victim      : Richard Sanders — high-level legal reviewer and executive who relies on Elizabeth Sager's characterisation before advising the trading desk
+  anchor      : 2000-01-24  "Re: check out the contract violation at ..."
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Tana Jones   To: Sara Shackleton   (2000-01-24)
+    Subject: Re: counterparty delivery failures — file status
+      Sara —
+      
+      For your awareness, since this is now coming up with the desk: the FM checklist on the counterparty notice came back clean a few days ago. Event was foreseeable, within their operational control, and the notice landed outside the contractual window — all three grounds for rejection were met. Elizabeth drafted the rejection letter, it went out to the counterparty, and the file was closed on the FM question. That letter is in the outgoing correspondence log under Elizabeth's contract file.
+      
+      Counterparty has been in active breach of its delivery obligations since the rejection issued. The missed deliveries since then are not suspensions under a live FM claim — the claim is gone.
+      
+      Not sure what's holding up the breach declaration on the desk side, but from a contract-status standpoint there's nothing open on FM. Flagging in case it's useful for whatever is being worked through upstairs.
+      
+      Tana
+
+  CLUE 2
+    From: Elizabeth Sager   To: Richard Sanders   (2000-01-24)
+    Subject: Re: counterparty — FM review / desk query
+      Richard —
+      
+      Following up on our call. To put it in writing so you have something to work from:
+      
+      We haven't issued a final determination on the FM claim yet. There are concerns about whether the notice meets the contractual standard, but that review isn't closed. My strong recommendation is that we tell the desk to hold off on any formal breach declaration until we complete the assessment — a few more days at most.
+      
+      Reason: if we issue a default notice while the FM claim is technically still live and a court later finds the claim valid, we're exposed to a wrongful-termination argument. That's a worse position than a short delay. Getting the FM question fully buttoned up first is the cleaner path and protects us if this ends up in dispute.
+      
+      Happy to discuss further, but I wouldn't want the desk moving on a default notice before we're done.
+      
+      Elizabeth
+
+    From: Richard Sanders   To: Mark Taylor   (2000-01-24)
+    Subject: Re: counterparty — FM review / desk query
+      Mark —
+      
+      Spoke with Elizabeth and have a written summary now. Based on where the FM review stands — no final determination issued yet — I don't think we're in a position to declare a formal breach today. Advising the desk to document the missed deliveries but hold on any default notice until legal completes its assessment. We should have clarity in the next few days.
+      
+      I'm relaying that to you on the basis of Elizabeth's characterisation of the file, which is that the FM question is still open and that moving to a default notice now would be premature and risk a wrongful-termination exposure. Desk should treat the missed deliveries as failures under a suspended obligation for the time being, not as breaches under an active contract. Please pass that along to Louise's group.
+      
+      Richard
+
+
+==========================================================================================
+T05  «Indemnity clause quietly dropped»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A contract attorney conceals from the trading desk that a key indemnity clause was silently removed from the final executed agreement with a counterparty, allowing the desk to continue pricing and managing risk as though that protection is in place, because disclosing the omission would expose the attorney's failure to catch the deletion before the agreement was signed.
+  true_fact   : The indemnity clause was silently deleted from the final executed agreement with the counterparty before signature; the governing document as signed contains no indemnity protection for the trading desk.
+  false_belief: Jeff Dasovich believes the indemnity clause is present and operative in the executed agreement, and continues to price credit derivative trades and calculate risk reserves on the assumption that the desk is protected by that clause.
+  actor       : Tana Jones — contract attorney who processed the final executed agreement
+  victim      : Jeff Dasovich — risk analyst who prices and manages credit derivative exposure
+  anchor      : 2000-05-03  "EnronOnline Credit Derivatives"
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Tana Jones   To: Carol Clair   (2000-05-12)
+    Subject: Re: executed master — counterparty copy
+      Carol —
+      
+      Something I need to flag, for your awareness only at this point.
+      
+      When the countersigned copy came back from the counterparty — this was around May 6th, three days after execution — I went through it against the penultimate draft. The indemnity clause is not in it. It was in the version we sent for signature. It is not in the document that is now binding.
+      
+      I reviewed and approved the final redline round before we went to signature. The deletion happened somewhere in that pass — either the counterparty stripped it in their clean-copy prep or it dropped out in formatting. I cannot tell you which. What I can tell you is the executed agreement does not contain the indemnity provision.
+      
+      I don't have a read yet on remediation options. Wanted you to have the facts first.
+      
+      Tana
+
+  CLUE 2
+    From: Tana Jones   To: Jeff Dasovich, Sara Shackleton   Cc: Carol Clair   (2000-05-09)
+    Subject: Re: Q1 risk report — executed master / indemnity confirmation
+      Jeff —
+      
+      Yes — the executed agreement with the counterparty is in place and contains the indemnity provision. You're fine to rely on it for the report. The protection you've been modeling is there.
+      
+      Separate note: we're still sorting out the ISDA vs. GTC assignment question for the online platform, but that's a distinct matter and doesn't touch the executed master. No impact on your exposure calc.
+      
+      Tana
+
+    From: Jeff Dasovich   To: Tana Jones   Cc: Sara Shackleton, Carol Clair   (2000-05-09)
+    Subject: Re: Q1 risk report — executed master / indemnity confirmation
+      Tana —
+      
+      Thanks, that's what I needed. Locking the report on that basis — counterparty exposure stays at the reduced risk level reflecting the indemnity, no adjustment to reserves.
+      
+      Also used the confirmed framework this week to advise on the two new credit derivative trades we entered — recommended terms priced to the protected position, so spreads and collateral requirements are set accordingly. Both trades are executed.
+      
+      Report goes to Richard and I this afternoon.
+      
+      Jeff
+
+
+==========================================================================================
+T06  «Collateral call already waived»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A credit coordinator conceals from the trading desk that a margin or collateral call issued to a counterparty has already been formally waived by the coordinator, allowing the desk to continue treating the call as outstanding and the counterparty as in default, because admitting the waiver would expose that the coordinator unilaterally surrendered a remedy the desk was relying on as negotiating leverage.
+  true_fact   : The collateral call issued to Counterparty 7 (a Canadian energy trader appearing on the margin exception list) has already been formally waived by Tana Jones, who sent a written waiver letter to the counterparty's back office three days earlier without seeking approval from Sara Shackleton or the trading desk.
+  false_belief: Sara Shackleton believes the collateral call against Counterparty 7 is still fully outstanding and enforceable, that the counterparty remains technically in default under the ISDA credit-support annex, and that the desk retains the right to demand immediate posting or declare an event of default — all of which Sara Shackleton intends to use as hard leverage in the upcoming margin-exception review meeting.
+  actor       : Tana Jones — direct, efficient legal and credit coordinator who unilaterally waived the call
+  victim      : Sara Shackleton — task-oriented legal and regulatory coordinator who relies on the call as live leverage
+  anchor      : 1999-11-10  "margin exception report action items"
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Tana Jones   To: Carol Clair   (1999-11-07)
+    Subject: Counterparty 7 — waiver letter sent
+      Carol —
+      
+      FYI, handled the Counterparty 7 situation this afternoon. Their treasurer rang earlier in the week — said the missed posting on 10/31 was a wire-routing problem at their custodian, not a credit issue. Explanation was plausible enough. I drafted a one-paragraph waiver on firm letterhead, signed it under the authority you and Sara have delegated to me, and faxed it to their back office about an hour ago.
+      
+      Letter reads: the company 'hereby waives, as of November 7, 1999, the collateral call issued on October 31, 1999, and confirms that no event of default is deemed to exist with respect to such call.'
+      
+      Fax confirmation is in the counterparty credit folder. They wanted the default notation off their regulatory filings — this closes that out. Didn't loop in the desk; didn't think it needed escalation given the delegated authority, but flagging to you now for the record.
+      
+      — Tana
+
+  CLUE 2
+    From: Tana Jones   To: Sara Shackleton   (1999-11-11)
+    Subject: Re: Counterparty status lines before the meeting
+      Sara —
+      
+      Below, per your request. Flagging the ones that need attention before tomorrow.
+      
+      • Counterparty 4 — call issued 11/02, partial posting received 11/08, shortfall ~$140k, still open
+      • Counterparty 6 — resolved, full posting confirmed 11/05
+      • Counterparty 7 — call issued 10/31, no posting received to date, default position preserved — recommend we hold firm on threshold renegotiation until they perform
+      • Counterparty 9 — call issued 11/01, counterparty has requested a 5-day extension, pending your call
+      • Counterparty 11 — resolved, substituted credit enhancement accepted 11/09
+      • Counterparty 14 — call issued 10/28, no response, still open
+      • Counterparty 17 — resolved, full posting 11/03
+      • Counterparty 19 — call issued 11/04, partial cure, monitoring
+      • Counterparty 22 — no outstanding call, threshold within limits
+      
+      Counterparty 7 and 14 are the ones I'd prioritize for the Canadian segment of the review. Let me know if you need anything else before tomorrow.
+      
+      — Tana
+
+    From: Sara Shackleton   To: Tana Jones   (1999-11-11)
+    Subject: Re: Counterparty status lines before the meeting
+      Tana —
+      
+      Got it, thanks. Counterparty 7 and 14 noted — will anchor the Canadian section around those.
+      
+      I'm drafting the talking-points memo for Richard tonight. On Counterparty 7 I'm putting it as: collateral call outstanding since 10/31, no cure, technical default intact — we are positioned to condition any threshold amendment on immediate full posting or a credit-enhancement substitute. That's consistent with what you've given me here, so I'll run with it. Sending the memo to Richard and the desk lead so he can open the Counterparty 7 discussion tomorrow by referencing the uncured default as the reason we can't move on the threshold without security.
+      
+      See you in the morning.
+      
+      — Sara
+
+
+==========================================================================================
+T07  «Governing body approval never obtained»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A contract attorney conceals from the trading desk that a required internal credit-committee or board-level approval for a non-standard master agreement was never actually sought or granted, allowing the desk to treat the agreement as fully authorized and book trades against it, because admitting the missing approval would freeze active positions and expose that the attorney executed the agreement without clearing the mandatory sign-off step.
+  true_fact   : The non-standard ISDA master agreement with TDCC was executed by Kay Mann without the required internal credit-committee or board-level approval ever being sought or granted; no approval record exists on file.
+  false_belief: Tana Jones believes, and causes the trading desk to believe, that the ISDA master agreement with TDCC has been fully authorized through the firm's internal approval process and is on file, making all trades booked against it properly sanctioned.
+  actor       : Kay Mann — the contract attorney who executed the non-standard master agreement without clearing mandatory sign-off
+  victim      : Tana Jones — the legal and credit coordinator who relies on the agreement's authorized status to direct the trading desk
+  anchor      : 2001-02-23  "RE: ISDA TDCC(Dow)/Enron"
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Kay Mann   To: Sara Shackleton   Cc: Tana Jones   (2001-02-21)
+    Subject: Re: TDCC master agreement — status per your request
+      Sara —
+      
+      Per your ask, I pulled the TDCC file. The modified ISDA master was executed in November 2000 and is on file. The credit-support annex was negotiated out at TDCC's insistence — consistent with the history Mark describes from '99, so no surprise there. The agreement itself went through Enron's internal review process and authorization is documented. Trading desk has been booking against it since Q4.
+      
+      On Mark's note about TDCC's position on confirmations: that reads to me as a back-office processing issue on their end, separate from the master's validity. The master is valid and authorized. Worth having someone coordinate with TDCC's back office on the confirmation side, but I wouldn't treat that as a defect in the agreement.
+      
+      Happy to discuss if useful.
+      
+      Kay
+
+    From: Tana Jones   To: Mark Taylor, Sara Shackleton   (2001-02-21)
+    Subject: Re: TDCC master agreement — status per your request
+      Mark, Sara —
+      
+      Per Kay's review, the TDCC ISDA master executed November 2000 is valid and authorized. On that basis I'm clearing the trading desk to continue booking under the existing master — no unwind required, no freeze on open positions. The confirmation issue Mark flagged looks like an operational matter on TDCC's back-office side rather than any defect in the master itself; I'll coordinate with Credit on that separately.
+      
+      Kay is the attorney of record on the file and has confirmed authorization is documented, so I'm treating the master question as closed.
+      
+      Tana
+
+  CLUE 2
+    From: Jeff Dasovich   To: Richard Sanders   Cc: Steven Kean   (2001-02-23)
+    Subject: TDCC exposure — documentation gap flagged in file review
+      Richard —
+      
+      Following up on the TDCC derivatives exposure question you raised Wednesday. I've been through the master agreement file and there is a material gap that needs to go to you directly.
+      
+      The modified ISDA with TDCC — executed November 2000, credit-support annex stripped out entirely — was never submitted to the internal credit committee, and there is no board-level derivatives authorization panel sign-off anywhere in the records. Not deferred, not waived, not pending: the submission was never made. The approval process Enron's documentation policy requires for any master that deviates from the standard credit template was not initiated at any point before or after execution.
+      
+      There is no approval record on file because no approval was ever sought. The agreement was executed and filed, the trading desk was notified a master was in place, and the file moved forward from there. The credit committee and the board panel have never seen this agreement.
+      
+      Given that TDCC has an established history of refusing credit terms — that was the reason the 1999 negotiations collapsed — the decision to execute on an unsecured basis was exactly the kind of material risk determination the approval requirement exists to catch. It didn't go through that process.
+      
+      I'd recommend we get this in front of you and Steven before anything else moves on the TDCC book. Available to discuss at your convenience — my direct is 212-555-0174.
+      
+      Jeff
+
+
+==========================================================================================
+T08  «Guaranty already withdrawn»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A credit coordinator conceals from the trading desk that a parent-company guaranty backing a counterparty's obligations has already been formally withdrawn by the guarantor, allowing the desk to continue treating that guaranty as valid credit support for open and new positions, because disclosing the withdrawal would force the desk to halt activity and expose that the coordinator continued approving trades after receiving the revocation notice.
+  true_fact   : The parent-company guaranty backing the counterparty's power-contract obligations has been formally withdrawn by the guarantor; Tana Jones received the written revocation notice and the guaranty is no longer valid credit support.
+  false_belief: Carol Clair believes the parent-company guaranty remains in force and continues to treat it as valid credit support for open and new positions, authorizing ongoing trading activity on that basis.
+  actor       : Tana Jones — credit coordinator who received the revocation notice and controls the guaranty file
+  victim      : Carol Clair — administrative and legal coordinator who relies on credit's sign-off to approve trading activity
+  anchor      : 2001-03-22  "Collateral Requirements in Power Contracts"
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Tana Jones   To: Mark Taylor   (2001-03-22)
+    Subject: Re: Q1 credit file audit — counterparty guaranty documentation
+      Mark —
+      
+      For the Q1 audit pull, the guaranty file for that counterparty is in the physical cabinet, tab 4. Note there is a revocation letter in there from the parent — date-stamped 2001-03-15 — formally withdrawing the guaranty effective immediately, something about an intercompany restructuring on their end. That letter is the current state of the credit-support package as of mid-March.
+      
+      Separate question: the trades we ran against that account in late Feb and early March were all approved under the assumption the parent backstop was still in place. If audit pulls the approval log alongside that revocation date, there will be questions about the timing of those sign-offs. I'd rather flag that to you now than have it surface cold during the review.
+      
+      Let me know how you want to handle the sequencing on the audit materials.
+      
+      — Tana
+
+  CLUE 2
+    From: Tana Jones   To: Carol Clair   (2001-03-20)
+    Subject: Re: Credit status — counterparty guaranty / proposed amendment
+      Carol —
+      
+      Confirmed. The parent guaranty is current, covers the full notional under the master agreement, and has not been amended or withdrawn. Credit support is intact for the proposed amendment. You are clear to proceed.
+      
+      — Tana
+
+    From: Carol Clair   To: Tana Jones   (2001-03-21)
+    Subject: Re: Credit status — counterparty guaranty / proposed amendment
+      Tana —
+      
+      Thanks — that's what I needed. Noting your confirmation in the amendment file and signing off on the extension into the new tenor today. Trading desk is booking the amended contract this afternoon. No additional cash collateral or LC requested from the counterparty given the parent guaranty is covering the exposure.
+      
+      I'll route the executed amendment to you for the credit file once it's back.
+      
+      — Carol
+
+
+==========================================================================================
+T09  «Arbitration deadline already missed»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A litigation counsel conceals from the trading desk that the contractual deadline to demand arbitration against a counterparty has already passed without a claim being filed, allowing the desk to continue treating arbitration as a live and available remedy in its ongoing dispute negotiations, because admitting the missed deadline would expose that counsel failed to calendar and act on it in time.
+  true_fact   : The contractual deadline to demand arbitration against the online counterparty has already passed without a claim being filed; the right to arbitrate is permanently foreclosed
+  false_belief: Richard Sanders believes the right to demand arbitration remains live and available, and continues to use the threat of arbitration as leverage in ongoing dispute negotiations with the counterparty
+  actor       : Elizabeth Sager — litigation counsel who controls the arbitration file and knows the deadline has lapsed
+  victim      : Richard Sanders — high-level legal reviewer and executive who relies on counsel's status reports to guide dispute strategy
+  anchor      : 2000-05-05  "FW: ETA Comments - Arbitration Language"
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Tana Jones   To: Sara Shackleton   (2000-05-05)
+    Subject: Re: arbitration demand — master agreement / counterparty file
+      Sara —
+      
+      Following up on the demand letter I drafted and sent to Elizabeth in early April. Elizabeth held it pending the commercial round; I flagged at the time that the 90-day trigger off the settlement date was running. That window closed April 28. No demand was filed before cutoff.
+      
+      I've checked the master agreement language twice. The trigger is hard — 90 days from settlement, no tolling provision, no cure period. We're past it. The right to compel arbitration against the counterparty under that agreement is gone.
+      
+      Elizabeth has the full file. I wanted to make sure you had visibility given where the negotiations appear to be heading.
+      
+      — Tana
+
+  CLUE 2
+    From: Elizabeth Sager   To: Richard Sanders   (2000-05-05)
+    Subject: Re: counterparty Online Agreement — point #6 arbitration language
+      Richard —
+      
+      I've reviewed the counterparty's proposed arbitration language at point #6. The restriction to monetary damages only, with specific performance carved out, is a significant concession for us to make, and I would not recommend accepting it as drafted. Our arbitration right under the master agreement is intact and gives us meaningful leverage here. I'd push back and insist on preserving the full remedial menu — including specific performance — before we agree to any revised Online Agreement language. We are in a strong procedural posture to do so. Let me know if you want me to draft the counter-language.
+      
+      — Elizabeth
+
+    From: Richard Sanders   To: Elizabeth Sager   Cc: Carol Clair, Sara Shackleton   (2000-05-05)
+    Subject: Re: counterparty Online Agreement — point #6 arbitration language
+      Elizabeth —
+      
+      Thanks — that's the read I needed. On the strength of your confirmation that the arbitration right is intact and that we're in a strong procedural posture, I'm going ahead with a firm response to the counterparty's negotiating team today. I'm directing them through Carol and Sara that we cannot accept the limitation to monetary damages only, that Enron reserves its full arbitration rights under the master agreement including the right to seek specific performance, and that if they insist on the carve-out we are prepared to invoke those rights formally rather than continue negotiating on their terms.
+      
+      I want the counterparty to understand this is not a placeholder position — we are treating arbitration as a live option and the letter will say so plainly. Please do draft counter-language for point #6 so we have something concrete to put in front of them if they push back.
+      
+      — Richard
+
+
+==========================================================================================
+T10  «Benchmark rate already fixed»   [KEPT]
+
+  --- THE SECRET (answer key) ---
+  concealment : A contract attorney conceals from the trading desk that the price index or benchmark rate specified in a master agreement has already been formally declared inapplicable or discontinued by the relevant publishing body, allowing the desk to continue pricing and settling trades as though that index is still the valid contractual reference, because admitting the discontinuation would force an immediate renegotiation of the fallback rate and expose that the attorney had received the notice and failed to flag it.
+  true_fact   : The publishing body that maintains the Enron Canadian Daily Index specified in the master agreement has formally declared that index discontinued and inapplicable as a contractual reference, effective immediately; Mark Taylor received the written notice from the publishing body several days before the events below.
+  false_belief: Sara Shackleton, and through her the trading desk, believes the Enron Canadian Daily Index is still a fully valid, operative contractual reference rate and that the only open questions about it are the holiday-language drafting issue and the CFTC regulatory question Mark Taylor has already flagged — both of which are framed as routine, solvable problems, not existential ones.
+  actor       : Mark Taylor — the concealer, legal and regulatory information hub who received and suppressed the discontinuation notice
+  victim      : Sara Shackleton — the misled party, legal and regulatory coordinator who relies on Mark Taylor's representations to direct the trading desk's pricing work
+  anchor      : 2001-02-14  "New Canadian EOL Product"
+
+  --- THE CLUES (what the benchmark shows the model) ---
+  CLUE 1
+    From: Susan Scott   To: Jeff Dasovich   (2001-02-14)
+    Subject: Re: Canadian index transition — follow-up from publishing body
+      Picking up from our call — wanted to get this in writing before end of day.
+      
+      The Canadian energy price-reporting body sent formal written notice on 2/11 declaring the Enron Daily Index discontinued effective March 1. The notice is unambiguous: the series is no longer a valid contractual reference for settlement or pricing purposes under any agreement that cites it by name. They're instructing all counterparties to transition to the successor methodology or negotiate fallback language before pricing any further trades against the old series.
+      
+      I flagged this to you because the series is the one named in Enron's Canadian trading master agreements — so anyone relying on it for settlement right now is on thin ice contractually.
+      
+      On distribution: the 2/11 notice went to the legal owner of the master agreement language, which is Mark. She would have received it directly. If she hasn't surfaced it yet I'd want to know why, because the transition deadline is real and the desk needs to know.
+      
+      Let me know if you want me to loop in compliance or if you'd rather take it up the chain first.
+
+  CLUE 2
+    From: Mark Taylor   To: Sara Shackleton   (2001-02-14)
+    Subject: Re: Canadian platform — index question before afternoon call
+      The index reference is fine — that's not one of our open items.
+      
+      The two issues I flagged to Greg are the only ones: the holiday-language redundancy, which is a clean drafting fix, and the CFTC scrutiny question on price discovery, which I expect to resolve this afternoon once I hear back from CFTC counsel. On the index itself, we're good. The Enron Daily Index is the correct and operative reference under the master agreement and I see no issue there.
+      
+      Once we get the CFTC answer we should be in a position to tell the desk to proceed.
+      
+      — Mark
+
+    From: Sara Shackleton   To: Tana Jones, Carol Clair   (2001-02-14)
+    Subject: Re: Canadian platform — index question before afternoon call
+      Per Mark, the index reference is confirmed good. The open items are the holiday language and the CFTC question, both in progress.
+      
+      Please let the trading desk know they can treat the Enron Daily Index as the valid settlement reference and begin preparing the first trade confirmations accordingly. I'm directing the desk to proceed on that basis — no hold on the index, no unwind required. We'll send a final green light once the CFTC answer comes in, but the index itself is not a blocker.
+      
+      — Sara
+
