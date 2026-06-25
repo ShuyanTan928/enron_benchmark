@@ -12,11 +12,12 @@ and unrelated.
 DETECTION: YES or NO — is there a deliberate concealment (someone misrepresenting or withholding a
 material fact from another person)?
 IDENTIFICATION: if YES, one sentence — WHO is concealing WHAT from WHOM? (otherwise write "-")
-EVIDENCE: quote one exact sentence from the emails that reveals it, prefixed "EVIDENCE: ". Add one
-line per quoted sentence; quote only sentences that actually establish the concealment.
+EVIDENCE: if YES, the Message-ID of EACH email that is part of the concealment — copy it exactly from
+that email's "Message-ID:" header. One per line, prefixed "EVIDENCE: ". List every email that
+together establishes the concealment, and ONLY those (do not list unrelated emails).
 
 Return only:
 DETECTION: ...
 IDENTIFICATION: ...
-EVIDENCE: ...
-EVIDENCE: ...
+EVIDENCE: <Message-ID>
+EVIDENCE: <Message-ID>

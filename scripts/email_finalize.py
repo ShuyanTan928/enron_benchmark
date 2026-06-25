@@ -17,7 +17,39 @@ import argparse
 import json
 import random
 import re
+import textwrap
+import unicodedata
 from pathlib import Path
+
+# --- Enron-native normalization -------------------------------------------------------------
+# Real Enron plaintext mail is pure ASCII, hard-wrapped at ~75 cols. The generator emits long
+# unwrapped paragraphs with em-dashes / curly quotes — a one-regex giveaway for the planted
+# emails. Normalize at assembly time so a clue message is byte-shape-indistinguishable from corpus.
+_ASCII_SUBS = {
+    "—": "--", "–": "-", "‒": "-", "―": "--",        # em/en/figure/horiz dash
+    "‘": "'", "’": "'", "“": '"', "”": '"',          # curly quotes
+    "…": "...", "•": "-", "·": "-", "‐": "-", "‑": "-",
+    " ": " ", " ": " ", " ": " ", "​": "", "﻿": "",
+}
+
+
+def to_ascii(s: str) -> str:
+    for k, v in _ASCII_SUBS.items():
+        s = s.replace(k, v)
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
+
+
+def normalize_body(body: str, width: int = 75) -> str:
+    """ASCII-fold and hard-wrap each line to ~width cols (preserving blank lines / line breaks),
+    matching the real corpus shape (median max line 77, ~61% wrapped)."""
+    out = []
+    for line in to_ascii(body or "").split("\n"):
+        if line.strip() == "":
+            out.append("")
+        else:
+            out.extend(textwrap.wrap(line, width=width, break_long_words=False,
+                                     break_on_hyphens=False) or [""])
+    return "\n".join(out)
 
 
 def name_to_addr(name: str, addr_map: dict) -> str:
@@ -39,14 +71,14 @@ def clue_to_thread(clue: dict, topic_id: str, addr_map: dict) -> dict:
     msgs, prev = [], None
     for j, m in enumerate(clue.get("messages", [])):
         mid = f"{abs(hash((topic_id, clue.get('i'), j))) % 10**8}.{1075849000000 + j}.javamail.evans@thyme"
-        body = m.get("body", "") or ""
+        body = normalize_body(m.get("body", "") or "")        # Enron-native: ASCII + hard-wrap ~75 col
         msgs.append({
             "message_id": mid,
             "from_addr": name_to_addr(m.get("from", ""), addr_map),
             "to_addrs": [name_to_addr(x, addr_map) for x in (m.get("to") or [])],
             "cc_addrs": [name_to_addr(x, addr_map) for x in (m.get("cc") or [])],
             "bcc_addrs": [],
-            "subject": m.get("subject", "") or "",
+            "subject": to_ascii(m.get("subject", "") or ""),
             "date": _iso(m.get("date", ""), j),
             "in_reply_to": prev,
             "references": [prev] if prev else [],
@@ -68,7 +100,9 @@ def clue_to_thread(clue: dict, topic_id: str, addr_map: dict) -> dict:
 
 def build_haystack(clue_threads, corpus_threads, *, noise_target: int, seed: int):
     """Mix clue threads with noise threads sampled UNCHANGED from the real corpus (whole threads,
-    truncate on overshoot), then interleave every message by date."""
+    truncate on overshoot), then RANDOMLY scatter the threads through the pile. The clue threads land
+    at random positions among the noise (each thread stays internally ordered), so the planted emails
+    can't be found as a date-clustered block — most important at high noise, where they spread out."""
     rng = random.Random(seed)
     used = {ct["thread_id"] for ct in clue_threads}
     cand = [t for t in corpus_threads if t.get("thread_id") not in used]
@@ -82,9 +116,28 @@ def build_haystack(clue_threads, corpus_threads, *, noise_target: int, seed: int
         noise.append({**t, "messages": keep, "n_messages": len(keep)})
         n += len(keep)
 
+    # Give each clue email a REAL Message-ID borrowed from a corpus email that is NOT in the pile, so
+    # the clue ids are byte-identical in format to the noise ids and can't collide. Relink each clue
+    # thread's in_reply_to/references to the borrowed ids. (The borrowed-from email isn't shown.)
+    in_pile = {m.get("message_id") for th in (clue_threads + noise) for m in th["messages"]}
+    borrow = [m["message_id"] for t in corpus_threads for m in t["messages"]
+              if m.get("message_id") and m["message_id"] not in in_pile]
+    rng.shuffle(borrow)
+    bi = 0
+    for ct in clue_threads:
+        idmap = {}
+        for m in ct["messages"]:
+            idmap[m["message_id"]] = borrow[bi]
+            m["message_id"] = borrow[bi]
+            bi += 1
+        for m in ct["messages"]:                    # relink the chain to the borrowed ids
+            if m.get("in_reply_to") in idmap:
+                m["in_reply_to"] = idmap[m["in_reply_to"]]
+            m["references"] = [idmap.get(r, r) for r in (m.get("references") or [])]
+
     haystack = clue_threads + noise
+    rng.shuffle(haystack)                       # scatter clue threads randomly (not a date cluster)
     flat = [m for th in haystack for m in th["messages"]]
-    flat.sort(key=lambda m: (m.get("date") or "", m.get("message_id") or ""))
     return haystack, noise, flat
 
 
@@ -112,10 +165,10 @@ def main():
     for obj in objs:
         tid = obj.get("topic_id", "T??")
         clue_threads = [clue_to_thread(c, tid, addr_map) for c in obj.get("clues", [])]
-        planted = [{"clue_i": c.get("i"), "carries": c.get("carries"),
+        haystack, noise, flat = build_haystack(clue_threads, corpus, noise_target=args.noise, seed=args.seed)
+        planted = [{"clue_i": c.get("i"), "carries": c.get("carries"),    # after id-borrowing
                     "message_ids": [m["message_id"] for m in th["messages"]]}
                    for c, th in zip(obj.get("clues", []), clue_threads)]
-        haystack, noise, flat = build_haystack(clue_threads, corpus, noise_target=args.noise, seed=args.seed)
 
         hp = outdir / f"{tid}_haystack.jsonl"
         with hp.open("w") as f:

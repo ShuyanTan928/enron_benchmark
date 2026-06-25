@@ -34,6 +34,22 @@ from src.models.engine_factory import build_engine                            # 
 
 ATOMIZE = Path("prompts/email_atomize.md")
 DISTRIBUTE = Path("prompts/email_distribute.md")
+STYLE_BANK = Path("benchmark_pool/style_bank.json")
+_BANK = None
+
+
+def voices_block(plot: dict) -> str:
+    """VOICE cards (persona + 2 carefully-selected real emails embedded), scoped to the people in
+    play in THIS plot (actor + victim + anyone named) so the model's attention concentrates on the
+    voices that matter rather than all ten. Built by scripts/build_style_bank.py."""
+    global _BANK
+    if _BANK is None:
+        _BANK = json.loads(STYLE_BANK.read_text()) if STYLE_BANK.exists() else {}
+    text = " ".join(str(plot.get(k, "")) for k in ("actor", "victim", "casting_note", "plot"))
+    labels = set(re.findall(r"Person [A-J]", text))
+    use = [l for l in _BANK if l in labels] or list(_BANK)          # fallback: all
+    return "\n\n".join(f"{lab} — {(_BANK[lab].get('card') or '').strip()}" for lab in use) \
+        or "(no voice samples available)"
 
 
 # ----------------------------------------------------------------------- generation steps
@@ -46,12 +62,13 @@ def atomize(eng, tid, sblock, plot) -> list:
 
 
 def distribute(eng, plot, atoms, team, era, n, feedback) -> list:
-    ab = "\n".join(f"  {a['id']} [{a['role']}] {a['fact']}" for a in atoms)
+    ab = "\n".join(f"  {a['id']} [{a['role']} · via {a.get('carrier', 'body')}] {a['fact']}" for a in atoms)
     fb = (f"\n## REVISION NOTES — address these; keep every atom established and the emails natural:\n{feedback}\n"
           if feedback else "")
     p = (DISTRIBUTE.read_text()
          .replace("<<ACTOR>>", plot["actor"]).replace("<<VICTIM>>", plot["victim"])
          .replace("<<PLOT>>", plot["plot"]).replace("<<TEAM>>", team).replace("<<ATOMS>>", ab)
+         .replace("<<VOICES>>", voices_block(plot))
          .replace("<<N>>", str(n)).replace("<<ERA>>", era).replace("<<FEEDBACK>>", fb))
     clues = (extract_json(eng.generate(p, max_tokens=2600, temperature=0.5)[0]) or {}).get("clues") or []
     for c in clues:                                          # company never leaks through a body
@@ -215,7 +232,7 @@ def build_readable(tid, plot, mt, atoms, log, accepted) -> str:
          f"  victim      : {plot.get('victim', '')}",
          f"  era         : {mt.get('era', '')}", "",
          f"  --- ATOMS ({len(atoms)}) ---"]
-    L += [f"    {a['id']} [{a['role']}] {a['fact']}" for a in atoms]
+    L += [f"    {a['id']} [{a['role']} · via {a.get('carrier', 'body')}] {a['fact']}" for a in atoms]
     L += ["", "  --- ITERATIONS ---"]
     for e in log:
         rep = e.get("report", {})

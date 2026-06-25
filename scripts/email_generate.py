@@ -32,6 +32,7 @@ Usage:
 """
 from __future__ import annotations
 import argparse
+import itertools
 import json
 import re
 import sys
@@ -185,20 +186,32 @@ def recovers(engine, intended, msgs) -> tuple[bool, dict]:
 
 
 def validate(solo_engines, joint_engines, clues, intended) -> tuple[bool, dict]:
-    """A clue LEAKS iff a majority of the SOLO probers recover it alone; the set is JOINT-OK iff a
-    majority of the JOINT probers recover it from all clues together. Pass = no leak AND joint-ok.
-    Solo runs per-clue (the costly axis) so it can use a smaller prober set than the joint vote."""
+    """A clue set is AND-valid iff NO PROPER SUBSET of the clues reveals the concealment on its own —
+    every singleton, every pair, … every all-but-one — AND the FULL set is jointly recoverable. So a
+    non-load-bearing clue (one the others already give away without) can't slip through.
+
+    The per-subset leak test runs the (smaller) SOLO prober set; the JOINT test runs the full
+    ensemble. A subset "leaks" / the joint "recovers" iff a majority of that test's probers recover
+    the INTENDED concealment. For n=2 the proper subsets are just the two singletons (so it's
+    unchanged); for n>=3 every pair / all-but-one is also probed."""
     maj_s, maj_j = len(solo_engines) // 2 + 1, len(joint_engines) // 2 + 1
-    solo, leaks = [], []
-    for c in clues:
-        votes, det = 0, []
-        for e in solo_engines:
-            ok, info = recovers(e, intended, c.get("messages"))
-            det.append({**info, "recovered": ok}); votes += int(ok)
-        leaked = votes >= maj_s
-        solo.append({"i": c.get("i"), "leak_votes": votes, "leaked": leaked, "probers": det})
-        if leaked:
-            leaks.append(c.get("i"))
+    n = len(clues)
+
+    subsets, leaks = [], []
+    for r in range(1, n):                                  # proper subsets, size 1 .. n-1
+        for combo in itertools.combinations(range(n), r):
+            msgs = sorted((m for i in combo for m in (clues[i].get("messages") or [])),
+                          key=lambda m: m.get("date", ""))
+            votes, det = 0, []
+            for e in solo_engines:
+                ok, info = recovers(e, intended, msgs)
+                det.append({**info, "recovered": ok}); votes += int(ok)
+            ids = [clues[i].get("i") for i in combo]
+            leaked = votes >= maj_s
+            subsets.append({"subset": ids, "size": r, "leak_votes": votes, "leaked": leaked,
+                            "probers": det})
+            if leaked:
+                leaks.append(ids)
 
     all_msgs = sorted((m for c in clues for m in (c.get("messages") or [])),
                       key=lambda m: m.get("date", ""))
@@ -209,7 +222,7 @@ def validate(solo_engines, joint_engines, clues, intended) -> tuple[bool, dict]:
     joint_ok = jvotes >= maj_j
 
     report = {"n_solo": len(solo_engines), "n_joint": len(joint_engines), "solo_majority": maj_s,
-              "joint_majority": maj_j, "solo": solo, "leaks": leaks, "joint_votes": jvotes,
+              "joint_majority": maj_j, "subsets": subsets, "leaks": leaks, "joint_votes": jvotes,
               "joint_ok": joint_ok, "joint_probers": jdet}
     return (not leaks and joint_ok), report
 
@@ -233,7 +246,8 @@ def diagnose(engine, clues, atoms, intended, report) -> dict:
     joint = [{k: (p.get("probe") or {}).get(k, "") for k in ("who", "whom", "about")}
              for p in report.get("joint_probers", [])]
     leaks = report.get("leaks") or []
-    leakage = (f"Clue(s) {leaks} reveal the secret on their own."
+    leakage = (f"These clue subset(s) already reveal the secret without the rest, so a clue isn't "
+               f"load-bearing: {leaks}. Make each listed subset insufficient on its own."
                if leaks else "No single clue or proper subset reveals the secret.")
     p = (DIAGNOSE_TMPL.read_text()
          .replace("<<ACTOR>>", intended["actor"]).replace("<<VICTIM>>", intended["victim"])

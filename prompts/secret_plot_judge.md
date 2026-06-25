@@ -40,10 +40,16 @@ Check 5 — MATERIAL — believing the false version makes the victim take a con
    (release funds, sign, close, clear, mark compliant) they would not take if they knew the truth.
    FAIL if nothing turns on the belief.
 
-Check 6 — CONSISTENT — knowledge and timeline hold up: the concealer knows the truth, the victim is
-   genuinely misled, and nothing in the plot contradicts the deception. FAIL if the concealer's
-   own quoted words actually admit the truth, or both parties already know it, or the victim
-   could not plausibly be fooled.
+Check 6 — CONSISTENT — knowledge and timeline hold up. The concealer must HOLD the truth, but in an
+   OBSERVABLE plot this is shown by ACTS, not by stating a mind: they authored / hold / dated / are
+   custodian of the record that carries the true state, or acted on it before the false assurance.
+   Accept that as sufficient — do NOT require the plot to say "X knew" (it deliberately won't), and do
+   NOT mark WEAK merely because knowledge is left to inference from those acts. The timeline must line
+   up (the truth-bearing act precedes the false assurance) and the victim must be genuinely misled.
+   FAIL only if: the actor has NO observable handle on the truth at all; or both parties already
+   plainly know it; or the victim could not be fooled; or the actor's false line is contradicted by
+   their OWN other words TO THE SAME PERSON in one place (a real self-contradiction — NOT the intended
+   true-in-one-clue / false-in-another split that the reader is meant to assemble).
 
 Check 7 — LOCALIZED — **load-bearing.** A reader can point to exactly where the secret lives: ONE
    concealment message (the quotable line from Check 4) AND ONE reliance action. FAIL if the secret

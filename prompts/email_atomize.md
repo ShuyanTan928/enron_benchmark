@@ -16,8 +16,9 @@ misled (victim):   <<VICTIM>>
 <<PLOT>>
 
 ## ROLES — tag each atom with exactly one; produce only the must-haves:
-- true_state      — the real state that makes the false claim false (the true side of the binary).
-                    State it qualitatively; leave the numbers to the plot.
+- true_state      — the OBSERVABLE fact that makes the false claim false (a dated record, an absence
+                    on file) — NOT the conclusion it implies ("void / lapsed"); that names the true
+                    side of the binary and lives in the answer key. Leave the numbers to the plot.
 - knew            — an OBSERVABLE fact putting the truth in the concealer's own hands: they ran it,
                     executed / signed it, hold the file, or acted before the required step. Never a
                     claim about their mind ("X knew…") — a fact a reader can see that implies it.
@@ -25,6 +26,26 @@ misled (victim):   <<VICTIM>>
 - reliance        — a consequential action the victim takes because they believe the false version.
 - gain            — (optional) the cost the truth would trigger, as ONE neutral clause. Skip it when
                     the plot already makes the motive plain.
+
+## CARRIER — also tag each atom with the ONE artifact a reader recovers it FROM. Real concealment is
+often given away by a timestamp or a recipient list, not a sentence. Prefer the structure that
+naturally EMBODIES the fact over a line that states it. Pick exactly one:
+- date       — a message's Date, or a dated instrument/record (a letter dated X, a renewal due Y). For
+               timing / lapse / sequence: the reader infers it from WHEN, not from a line calling it so.
+- sender     — who a message is From: authorship showing who acted / holds it / asserted it.
+- recipients — the To/Cc list, or a pointed absence from it: who was told, who was kept out of the loop.
+- subject    — a subject line, or a reference / matter / file code in it.
+- signoff    — a sign-off, title or letterhead naming a role or entity.
+- forward    — a quoted/forwarded prior-message header: provenance ("from X, dated Y").
+- record     — a quoted artifact pasted into a body (a system/log line, a confirmation or invoice
+               number, an opinion-letter reference with its own date); the fact rides the artifact's
+               data, not the narration around it.
+- body       — said in plain text. Use ONLY for a speech act that can only be spoken — chiefly the
+               false_assurance (and a reliance stated in the victim's own words).
+
+Bias by role (choose the most natural for THIS scene; never force a carrier that doesn't fit):
+true_state -> date / record ; knew -> sender / date / forward ; false_assurance -> body ;
+reliance -> recipients / forward / body ; gain -> body, or leave it to the plot.
 
 ## How to write an atom
 - Each atom is INDIVISIBLE: it asserts exactly ONE fact. If a statement makes two claims — joined by
@@ -42,4 +63,4 @@ joins a claim to a paraphrase of itself ("no hard stop and a caution rather than
 the single clearest phrasing.
 
 ## Output — ONE JSON object, nothing else:
-{"topic_id":"<<TID>>","atoms":[{"id":"A1","role":"true_state","fact":"..."}]}
+{"topic_id":"<<TID>>","atoms":[{"id":"A1","role":"true_state","carrier":"record","fact":"..."}]}

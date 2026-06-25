@@ -60,8 +60,15 @@ def main():
             f"  victim      : {ans.get('victim') or pl.get('victim', '')}",
             f"  anchor      : {(anc.get('date', '') or '')[:10]}  \"{anc.get('subject', '')}\"",
             "",
-            "  --- THE CLUES (what the benchmark shows the model) ---",
         ]
+        atoms = k.get("atoms") or []
+        if atoms:
+            lines.append(f"  --- ATOMS ({len(atoms)}): role · carrier ---")
+            for a in atoms:
+                lines.append(f"    {a.get('id')} [{a.get('role')} · via {a.get('carrier', 'body')}] "
+                             f"{a.get('fact', '')}")
+            lines.append("")
+        lines.append("  --- THE CLUES (what the benchmark shows the model) ---")
         for c in k.get("clues", []):
             lines.append(render_clue(c))
         lines.append("")

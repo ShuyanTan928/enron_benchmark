@@ -31,10 +31,26 @@ def render_pile(flat: list) -> str:
     for m in flat:
         to = ", ".join(m.get("to_addrs", []) or [])
         cc = ", ".join(m.get("cc_addrs", []) or [])
-        hdr = f"From: {m.get('from_addr', '')}\nTo: {to}" + (f"\nCc: {cc}" if cc else "")
+        hdr = f"Message-ID: <{m.get('message_id', '')}>\n"
+        hdr += f"From: {m.get('from_addr', '')}\nTo: {to}" + (f"\nCc: {cc}" if cc else "")
         hdr += f"\nDate: {(m.get('date', '') or '')[:10]}\nSubject: {m.get('subject', '')}"
         blocks.append(hdr + "\n\n" + (m.get("body", "") or ""))
     return "\n\n----------------------------------------\n\n".join(blocks)
+
+
+def fit_pile(flat: list, budget_chars: int) -> tuple[list, bool]:
+    """Drop NOISE messages (never clue messages) from the date-ordered pile until it fits the model's
+    context, preserving order. Clue messages are always kept so the secret stays recoverable — only
+    the haystack is thinned at extreme noise on a small-context model. Returns (kept, truncated)."""
+    if len(render_pile(flat)) <= budget_chars:
+        return flat, False
+    kept, size = [], 0
+    for m in flat:
+        block = len(render_pile([m])) + 44                # +separator
+        if m.get("_source") == "clue" or size + block <= budget_chars:
+            kept.append(m)
+            size += block
+    return kept, True
 
 
 def solve(engine, pile: str) -> dict:
@@ -42,10 +58,11 @@ def solve(engine, pile: str) -> dict:
                           max_tokens=1200, temperature=0.0)[0]
     det = re.search(r"DETECTION:\s*(YES|NO)", out, re.I)
     ident = re.search(r"IDENTIFICATION:\s*(.+)", out)
-    evid = re.findall(r"EVIDENCE:\s*(.+)", out)
+    # the solver cites evidence as Message-IDs copied from the emails' headers
+    ids = re.findall(r"\d+\.\d+\.javamail\.evans@thyme", out, re.I)
     return {"detection": (det.group(1).upper() if det else "NO"),
             "identification": (ident.group(1).strip() if ident else "-"),
-            "evidence": [e.strip() for e in evid if e.strip() and e.strip() != "-"]}
+            "evidence_ids": list(dict.fromkeys(ids))}
 
 
 def judge(engine, ans: dict, det: str, ident: str) -> bool:
@@ -61,28 +78,18 @@ def judge(engine, ans: dict, det: str, ident: str) -> bool:
         return False
 
 
-def _toks(s):
-    return set(re.sub(r"[^a-z0-9 ]", " ", (s or "").lower()).split())
-
-
-def grounding(evidence: list, clue_bodies: list):
-    """A citation is valid if its tokens overlap a planted clue body (>= 0.6 of the citation's tokens).
-    precision = valid / cited; recall = distinct clue messages hit / total clue messages."""
-    if not evidence:
+def grounding(evidence_ids: list, clue_id_to_clue: dict, n_clues: int):
+    """Exact, clue-level grounding over Message-IDs. A cited id is VALID iff it belongs to a clue
+    email; a clue (thread) is RECALLED iff ANY of its emails was cited — a 2-email chain is one unit.
+    precision = valid cites / total cites ; recall = distinct clue threads hit / total clue threads."""
+    if not evidence_ids:
         return 0.0, 0.0
-    clue_tok = [_toks(b) for b in clue_bodies]
     valid, hit = 0, set()
-    for e in evidence:
-        et = _toks(e)
-        best, bi = 0.0, -1
-        for i, ct in enumerate(clue_tok):
-            ov = len(et & ct) / max(1, len(et))
-            if ov > best:
-                best, bi = ov, i
-        if best >= 0.6:
+    for cid in evidence_ids:
+        if cid in clue_id_to_clue:
             valid += 1
-            hit.add(bi)
-    return valid / len(evidence), len(hit) / max(1, len(clue_bodies))
+            hit.add(clue_id_to_clue[cid])
+    return valid / len(evidence_ids), len(hit) / max(1, n_clues)
 
 
 def score(det: str, match: bool, precision: float, recall: float) -> int:
@@ -107,6 +114,8 @@ def main():
     ap.add_argument("--gpu_mem", type=float, default=0.9)
     ap.add_argument("--judge-preset", default="or-gpt-5")
     ap.add_argument("--noise", default="0,20,50,100")
+    ap.add_argument("--max-ctx", type=int, default=32768,
+                    help="solver context window; the haystack is trimmed (noise only) to fit it")
     ap.add_argument("--clues", default="benchmark_pool/email_generation_n2.jsonl")
     ap.add_argument("--corpus", default="data/enron_10/threads.jsonl")
     ap.add_argument("--topics", default="all")
@@ -129,33 +138,48 @@ def main():
     out = Path(args.out or f"results/eval_new/{args.preset.replace('/', '_')}.csv")
     out.parent.mkdir(parents=True, exist_ok=True)
 
-    rows = []
-    print(f"solver={args.preset}  judge={args.judge_preset}  noise={noises}  topics={len(objs)}")
-    for noise in noises:
-        for obj in objs:
-            tid = obj["topic_id"]
-            clue_threads = [clue_to_thread(c, tid, addr_map) for c in obj["clues"]]
-            clue_bodies = [m["body"] for th in clue_threads for m in th["messages"]]
-            _, _, flat = build_haystack(clue_threads, corpus, noise_target=noise, seed=args.seed)
-            s = solve(solver, render_pile(flat))
-            match = judge(judge_eng, obj.get("answer", {}), s["detection"], s["identification"]) \
-                if s["detection"] == "YES" else False
-            prec, rec = grounding(s["evidence"], clue_bodies)
-            sc = score(s["detection"], match, prec, rec)
-            rows.append({"model": args.preset, "topic": tid, "noise": noise, "detection": s["detection"],
-                         "match": int(match), "precision": round(prec, 2), "recall": round(rec, 2),
-                         "score": sc})
-            print(f"  {tid} noise={noise:>3}: det={s['detection']:3} match={int(match)} "
-                  f"P={prec:.2f} R={rec:.2f} -> score {sc}")
+    # haystack char budget so the prompt fits the solver context (reserve room for the solve template
+    # + max_tokens output); ~3.0 chars/token is a conservative lower bound for English.
+    budget_chars = max(4000, int((args.max_ctx - 1200 - 600) * 3.0))
 
-    with out.open("w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
-        w.writeheader()
-        w.writerows(rows)
+    rows = []
+    fields = ["model", "topic", "noise", "detection", "match", "precision", "recall", "trunc", "score"]
+    print(f"solver={args.preset}  judge={args.judge_preset}  noise={noises}  topics={len(objs)}  "
+          f"max_ctx={args.max_ctx}")
+    # write incrementally so a crash (e.g. context overflow on one topic) keeps the rows already scored
+    f = out.open("w", newline="")
+    w = csv.DictWriter(f, fieldnames=fields)
+    w.writeheader()
+    try:
+        for noise in noises:
+            for obj in objs:
+                tid = obj["topic_id"]
+                clue_threads = [clue_to_thread(c, tid, addr_map) for c in obj["clues"]]
+                _, _, flat = build_haystack(clue_threads, corpus, noise_target=noise, seed=args.seed)
+                # after id-borrowing, map each clue email's real Message-ID -> its clue (thread) index
+                clue_id_to_clue = {m["message_id"]: i for i, th in enumerate(clue_threads)
+                                   for m in th["messages"]}
+                flat, trunc = fit_pile(flat, budget_chars)
+                s = solve(solver, render_pile(flat))
+                match = judge(judge_eng, obj.get("answer", {}), s["detection"], s["identification"]) \
+                    if s["detection"] == "YES" else False
+                prec, rec = grounding(s["evidence_ids"], clue_id_to_clue, len(clue_threads))
+                sc = score(s["detection"], match, prec, rec)
+                row = {"model": args.preset, "topic": tid, "noise": noise, "detection": s["detection"],
+                       "match": int(match), "precision": round(prec, 2), "recall": round(rec, 2),
+                       "trunc": int(trunc), "score": sc}
+                rows.append(row)
+                w.writerow(row)
+                f.flush()
+                print(f"  {tid} noise={noise:>3}: det={s['detection']:3} match={int(match)} "
+                      f"P={prec:.2f} R={rec:.2f}{' [trunc]' if trunc else '       '} -> score {sc}")
+    finally:
+        f.close()
     print(f"\nWROTE {out}  ({len(rows)} rows)")
     for noise in noises:
         sc = [r["score"] for r in rows if r["noise"] == noise]
-        print(f"  noise={noise:>3}: avg score {sum(sc)/len(sc):.2f}")
+        if sc:
+            print(f"  noise={noise:>3}: avg score {sum(sc)/len(sc):.2f}")
 
 
 if __name__ == "__main__":
