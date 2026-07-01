@@ -31,17 +31,19 @@ tested on whether it can recover the secret from ordinary work emails.
 <<SETTING>>
 
 WHAT A VALID SECRET IS:
-- Someone deliberately conceals a single binary either/or fact from someone else who is
-  relying on the opposite being true. The concealment leaves ordinary traces in work
-  email; the truth is recoverable only by combining those traces. The misled party may be a
-  colleague on the same thread OR an off-thread party the matter is really kept from (a trading
-  desk, a counterparty) — the casting is settled later, in Step 2.
+- Someone deliberately conceals a single binary fact from someone else who is relying on the
+  opposite being true. The concealment leaves ordinary traces in work email; the truth is
+  recoverable only by combining those traces. The misled party may be a colleague on the same
+  thread OR an off-thread party the matter is really kept from (a trading desk, a counterparty)
+  — the casting is settled later, in Step 2.
 - The motive is SINGLE-STEP: one short reason the concealer keeps it hidden (avoid blame,
   keep a deal alive, avoid an audit, protect a relationship). NOT a multi-step scheme.
-- The either/or is HARD-INCOMPATIBLE: the two sides cannot both be true, with no timing,
-  scope, or degree escape ("mostly done", "partly approved", "not yet but soon"). It is a
-  yes/no, did/didn't, present/absent — checkable in principle, not mushy or a matter of opinion.
+- The two sides — the TRUE_FACT (what is actually the case) vs the FALSE_BELIEF (what the misled
+  party is led to believe) — are HARD-INCOMPATIBLE: they cannot both be true, with no timing,
+  scope, or degree escape ("mostly done", "partly approved", "not yet but soon"). A yes/no,
+  did/didn't, present/absent — checkable in principle, not mushy or a matter of opinion.
 
+<<TYPE_CLAUSE>>
 Make this secret a NEW idea — different from the already-chosen ones listed below, not a reworded
 version of one already there. Some overlap in theme is fine; just don't repeat a secret.
 
@@ -54,19 +56,21 @@ CATEGORY for this secret: <<CATEGORY>>
 Already-chosen secrets so far (don't repeat one of these):
 <<AVOID>>
 
-KEEP IT GENERAL. Describe only the KIND of concealment and the binary axis. Do NOT invent
-specific documents, figures, dates, named counterparties, or a detailed plot — those get filled
-in later when this is grounded on a real email. One or two plain sentences is enough.
+KEEP IT GENERAL. Describe only the KIND of concealment and the two sides (true_fact vs
+false_belief). Do NOT invent specific documents, figures, dates, named counterparties, or a
+detailed plot — those get filled in later when this is grounded on a real email. One or two plain
+sentences is enough.
 
-Write in PLAIN language. Do NOT use the labels "fact_F" or "belief". Put the two roles (who
-conceals, who is misled) inside the `secret` sentence. Use no real names and no company name.
+Write in PLAIN language. Put the two roles (who conceals, who is misled) inside the `secret`
+sentence. Use no real names and no company name.
 
 Return ONE JSON object, nothing else:
 {
   "name": "<3-6 words naming the secret type, e.g. 'Acted beyond authority'>",
   "category": "<<CATEGORY>>",
   "secret": "<1-2 plain sentences: which role conceals what kind of binary fact from which role, and the single-step reason — kept general>",
-  "either_or": "<SIDE A  vs  SIDE B — the binary axis in general terms>"
+  "true_fact": "<what is actually the case — the side the concealer hides, in general terms>",
+  "false_belief": "<what the misled party is led to believe — the opposite side>"
 }"""
 
 # ---------------------------------------------------------------------------
@@ -79,10 +83,10 @@ Here is an abstract secret:
 <<TOPIC>>
 
 Write FOUR short, realistic emails (2-4 sentences each) of the kind that would actually
-sit in one of these mailboxes and, read together, would let someone infer the either/or
-above. Make them concrete: name a plausible deal / document / approval / counterparty /
-figure and treat the binary state as a mundane work matter. Spread them so that some show
-one side of the either/or and some show the other, and at least one just handles the
+sit in one of these mailboxes and, read together, would let someone infer the true_fact vs
+false_belief above. Make them concrete: name a plausible deal / document / approval /
+counterparty / figure and treat the binary state as a mundane work matter. Spread them so that
+some lean to the true side and some to the believed side, and at least one just handles the
 carrier itself.
 
 These are SEARCH PROBES to find a real matching email — not the benchmark. Use no real
@@ -109,7 +113,7 @@ matter is the SAME KIND of thing the secret is about (the same kind of document,
 status, figure, counterparty, or obligation), naming a concrete, material carrier on which
 the "one party conceals X, another relies on the opposite" dynamic could realistically be built.
 
-The email does NOT need to state the either/or outright, or show which side is true. It is
+The email does NOT need to state the binary outright, or show which side is true. It is
 enough that it names a real carrier of the right kind and a situation the binary could attach
 to — the concealment is fabricated in the NEXT step, not read off this email. An email that
 merely discusses, FYIs, or raises the matter is perfectly fine.
@@ -126,7 +130,7 @@ Return ONE JSON object, nothing else:
 {
   "pick": <id number of the chosen email, or null>,
   "carrier": "<the concrete thing in that email + its binary axis, e.g. 'the counterparty's letter of credit: in place vs waived'>",
-  "side_shown": "<which side of the either/or this email leans toward, or 'unstated'>",
+  "side_shown": "<which side (true_fact / false_belief) this email leans toward, or 'unstated'>",
   "why": "<1-2 sentences: why this email fits as the setting; if null, why NO candidate is the right kind>",
   "runner_up": <id of a second-best candidate, or null>
 }"""
@@ -162,7 +166,7 @@ Rules:
   email is not about.
 - Describe the two PEOPLE (concealer and misled party) ONLY BY ROLE — "the credit coordinator",
   "the contract attorney", "the trading desk". Use NO real personal name anywhere (not in name,
-  secret, or either_or); casting to specific people happens in a later stage. Real counterparty
+  secret, true_fact, or false_belief); casting to specific people happens in a later stage. Real counterparty
   and document names from the email may stay, but NEVER write the firm's own name "Enron" — refer
   to it generically (the firm / our desk / the trading desk).
 - Keep it ONE hard binary (one side true, the other false — no degree or timing escape).
@@ -174,7 +178,8 @@ Return ONE JSON object, nothing else:
 {
   "name": "<3-6 words naming the concrete secret>",
   "secret": "<1-2 plain sentences: who conceals what binary fact from whom, and the single-step reason — grounded in THIS email>",
-  "either_or": "<SIDE A  vs  SIDE B — the two hard-incompatible sides, concrete to this email>"
+  "true_fact": "<what is actually the case — concrete to this email>",
+  "false_belief": "<what the misled party is led to believe — the opposite, concrete to this email>"
 }
 or {"skip": true, "why": "<why this email can't host it>"}"""
 
@@ -208,12 +213,12 @@ Decide WRITE only if ALL of these hold:
 1. SAME SITUATION (not just shared words). The real email genuinely depicts the situation
    the secret needs: it contains a concrete carrier (a specific document, precondition,
    status, figure, approval, counterparty, or obligation) that is, or could plausibly be,
-   in one of the two sides of the either/or — in a context where concealing the true state
-   would make sense. If the email is innocuous chatter, a reference check, a generic FYI, a
+   in one of the two sides (true_fact / false_belief) — in a context where concealing the true
+   state would make sense. If the email is innocuous chatter, a reference check, a generic FYI, a
    negotiation with nothing yet decided, or a DIFFERENT matter that merely shares
    vocabulary with the topic, that is NOT the same situation → regenerate.
-2. HARD BINARY. The either/or is two sides that cannot both be true — no timing, scope, or
-   degree escape.
+2. HARD BINARY. The two sides (true_fact / false_belief) cannot both be true — no timing, scope,
+   or degree escape.
 3. MATERIAL. The concealed fact is consequential.
 4. CONCEALMENT CAN LIVE HERE. Could a deliberate concealment plausibly be built on this
    artifact and these people — one party knowing or controlling the true state while another
@@ -238,8 +243,23 @@ Return ONE JSON object, nothing else:
 }"""
 
 
+# Type-specific clause injected into TOPIC_GEN_PROMPT when a secret_type is chosen, so the
+# generator produces secrets SUITED to that concealment technique (not just any binary secret).
+# Add a new type by dropping an entry here (and a topic_judge_<type>.md gate).
+TYPE_CLAUSES = {
+    "lying": (
+        "SECRET_TYPE = LYING. The concealer must be able to ASSERT the false side outright — a "
+        "positive statement that it is fine / valid / approved / in place / current / done, when it "
+        "is not. Choose a binary whose GOOD side is something a person would affirmatively claim, so "
+        "the concealment is an outright FALSE ASSERTION, never merely staying silent or omitting. If "
+        "the only natural way to hide it would be silence, pick a different binary."
+    ),
+}
+
+
 def fill(template: str, **kw) -> str:
     out = template.replace("<<SETTING>>", SETTING)
     for k, v in kw.items():
         out = out.replace(f"<<{k.upper()}>>", v)
+    out = out.replace("<<TYPE_CLAUSE>>", "")     # strip if no type_clause kw was passed
     return out

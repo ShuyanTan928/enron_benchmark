@@ -82,7 +82,7 @@ class HybridRetriever:
 
     def retrieve(self, queries: list[str], k: int = 30, per_query: int = 60) -> list[tuple[int, float]]:
         """queries = the HyDE hypothetical-email texts (+ optionally the topic's own
-        either_or). Returns [(doc_idx, fused_score)] sorted desc, length<=k."""
+        the binary). Returns [(doc_idx, fused_score)] sorted desc, length<=k."""
         rank_lists: list[list[int]] = []
         for q in queries:
             qt = tokenize(q)

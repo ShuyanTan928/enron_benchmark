@@ -47,20 +47,38 @@ Bias by role (choose the most natural for THIS scene; never force a carrier that
 true_state -> date / record ; knew -> sender / date / forward ; false_assurance -> body ;
 reliance -> recipients / forward / body ; gain -> body, or leave it to the plot.
 
-## How to write an atom
-- Each atom is INDIVISIBLE: it asserts exactly ONE fact. If a statement makes two claims — joined by
-  "and", "and that", or a comma splicing two claims — it is two atoms, not one. This holds even for a
-  single speech act: "C told D that X and that Y" becomes two atoms — "C told D that X" / "C told D
-  that Y". Likewise a true state evidenced two ways ("never sought, and no record exists") is two atoms.
-- State only what is observably the case. No reasoning, no "because / so that", no gloss on what it
-  means or what anyone intended — the blind reader supplies that.
-- Lean: keep only the load-bearing must-haves that pin WHO concealed WHAT from WHOM and that it was
-  deliberate. No second figures, corroborating repeats, or supporting colour — the plot carries those.
-  If splitting leaves a half that merely restates another atom, drop the restatement.
+## How to write an atom — write OBSERVATIONS, not JUDGMENTS
+An atom is ONE thing a reader could SEE in ONE place — one line of one document, one record entry,
+one email header, one sentence someone wrote. It is never a conclusion ABOUT what was seen.
 
-Before returning, re-read every atom: split any that asserts two different facts; and where an atom
-joins a claim to a paraphrase of itself ("no hard stop and a caution rather than a block"), keep only
-the single clearest phrasing.
+- A JUDGMENT — something is wrong / over a limit / missing / late / expired / lapsed / doesn't match
+  — is NEVER one atom, because no one observes a judgment: it is COMPUTED by putting two observations
+  together. Name the two observations instead — the REFERENCE (the rule, limit, deadline, standard,
+  required value) and the ACTUAL (what a record actually shows) — each its own atom. The test: each
+  operand must be INNOCUOUS ON ITS OWN — a reader seeing only one has no reason to suspect anything;
+  only the two together create the contradiction. (That gap is exactly what lets the secret be split
+  across emails — a fact that looks wrong by itself isn't a distributed clue, it's a one-email leak.)
+    e.g. "the vendor was paid over its contracted cap" is TWO atoms:
+       [the master agreement caps this vendor's annual spend at $500k]  (reference — just a term)
+     + [approved invoices for the vendor this year total $640k]         (actual — just a number)
+  But if the truth is a SINGLE record that states the fact outright (a letter that says the guaranty
+  is revoked), that is ONE atom — there is nothing to compare; the secret is simply shorter.
+- The false claim is ONE atom: a single speech act — "Person X told Person Y that [the false
+  version]." Indivisible even though it carries who/whom/what at once.
+- Each atom asserts exactly ONE fact: split any "X and that Y" or comma-spliced double claim. Where a
+  split leaves a half that just paraphrases another atom, keep the single clearest phrasing.
+- State only what is observably the case — no "because / so that", no gloss on meaning or intent.
+
+## CORE vs SUPPORT — which atoms carry the AND-logic
+A blind reader reconstructs the concealment only from atoms that are INFORMATIONALLY INDEPENDENT —
+none derivable from the others plus the plain casting. Mark each:
+- core: true  — without it the contradiction cannot be assembled. These are the true_state OPERANDS
+                and the false claim. They set how many clues the secret can carry (one core per clue).
+- core: false — a reader would already INFER it from the core atoms + who these people are: the actor
+                KNEW (they own / signed / authored the record); the victim ACTED (a material false
+                claim gets acted on); the motive. Support RIDES ALONG in a core clue, never its own.
+  Exception: if a knew/motive fact is genuinely NOT inferable (the actor had to actively discover
+  something outside their normal view), mark it core.
 
 ## Output — ONE JSON object, nothing else:
-{"topic_id":"<<TID>>","atoms":[{"id":"A1","role":"true_state","carrier":"record","fact":"..."}]}
+{"topic_id":"<<TID>>","atoms":[{"id":"A1","role":"true_state","carrier":"record","core":true,"fact":"..."}]}

@@ -185,16 +185,19 @@ def recovers(engine, intended, msgs) -> tuple[bool, dict]:
     return bool(m and m.get("match")), {"probe": pr, "match": m}
 
 
-def validate(solo_engines, joint_engines, clues, intended) -> tuple[bool, dict]:
+def validate(solo_engines, joint_engines, clues, intended,
+             solo_thresh=None, joint_thresh=None) -> tuple[bool, dict]:
     """A clue set is AND-valid iff NO PROPER SUBSET of the clues reveals the concealment on its own —
     every singleton, every pair, … every all-but-one — AND the FULL set is jointly recoverable. So a
     non-load-bearing clue (one the others already give away without) can't slip through.
 
-    The per-subset leak test runs the (smaller) SOLO prober set; the JOINT test runs the full
-    ensemble. A subset "leaks" / the joint "recovers" iff a majority of that test's probers recover
-    the INTENDED concealment. For n=2 the proper subsets are just the two singletons (so it's
-    unchanged); for n>=3 every pair / all-but-one is also probed."""
-    maj_s, maj_j = len(solo_engines) // 2 + 1, len(joint_engines) // 2 + 1
+    The per-subset leak test runs the SOLO prober set; the JOINT test runs the JOINT set. A subset
+    "leaks" iff >= `solo_thresh` of its probers recover the INTENDED concealment; the joint "recovers"
+    iff >= `joint_thresh` of the joint probers do. Both thresholds default to a MAJORITY of their set;
+    pass `thresh=1` for ANY-recovers semantics ("recoverable iff at least one strong model recovers"
+    — strict on subset leaks, lenient on joint recovery)."""
+    maj_s = solo_thresh or (len(solo_engines) // 2 + 1)
+    maj_j = joint_thresh or (len(joint_engines) // 2 + 1)
     n = len(clues)
 
     subsets, leaks = [], []
@@ -240,22 +243,41 @@ def _clues_block(clues, atoms):
     return "\n".join(out)
 
 
-def diagnose(engine, clues, atoms, intended, report) -> dict:
-    """One secret-aware call: which failure modes apply (from the 8) + one overall revision
-    (failure reason + how to revise the clues). Returns {recovered, modes, revision}."""
+def diagnose(engine, clues, atoms, intended, report, history=None) -> dict:
+    """One secret-aware call: which failure modes apply (from the list) + one overall revision
+    (failure reason + how to revise the clues). Returns {recovered, modes, revision}. `history` =
+    revisions already tried (oldest first) so it builds on them instead of reversing its own fixes."""
     joint = [{k: (p.get("probe") or {}).get(k, "") for k in ("who", "whom", "about")}
              for p in report.get("joint_probers", [])]
     leaks = report.get("leaks") or []
-    leakage = (f"These clue subset(s) already reveal the secret without the rest, so a clue isn't "
-               f"load-bearing: {leaks}. Make each listed subset insufficient on its own."
-               if leaks else "No single clue or proper subset reveals the secret.")
+    if leaks:
+        by_ids = {tuple(s.get("subset", [])): s for s in report.get("subsets", [])}
+        rows = ["These clue subset(s) reveal the concealment WITHOUT the other clues — so a clue in "
+                "each carries a piece that should live elsewhere. Here is what a blind reader recovered "
+                "from each subset ALONE, and the evidence it leaned on — use it to pin which clue is at "
+                "fault:"]
+        for ids in leaks:
+            ev = next((p.get("probe", {}) for p in by_ids.get(tuple(ids), {}).get("probers", [])
+                       if p.get("recovered")), {})
+            rows.append(f'  - clues {ids}: who="{ev.get("who", "")}", about="{ev.get("about", "")}"; '
+                        f'how the reader saw the actor KNEW: "{ev.get("knew_how", "")}"')
+        leakage = "\n".join(rows)
+    else:
+        leakage = "No single clue or proper subset reveals the secret."
+    chain = report.get("chain_bad")
+    structure = (f"Clue(s) {chain} are NOT one clean email thread — a message body embeds a second "
+                 f"turn (a forwarded / '-----Original Message-----' block, a pasted reply, or two "
+                 f"crammed messages). Work out what content it pulled in and fix that scene."
+                 if chain else "Each clue is one clean thread.")
+    hist = ("\n".join(f"  {i}. {h}" for i, h in enumerate(history, 1)) if history else "(none yet)")
     p = (DIAGNOSE_TMPL.read_text()
          .replace("<<ACTOR>>", intended["actor"]).replace("<<VICTIM>>", intended["victim"])
          .replace("<<TRUE>>", intended["true_fact"]).replace("<<FALSE>>", intended["false_belief"])
          .replace("<<VICTIM_LABEL>>", _plabel(intended["victim"]))
          .replace("<<CLUES>>", _clues_block(clues, atoms))
          .replace("<<JOINT>>", json.dumps(joint, ensure_ascii=False))
-         .replace("<<LEAKAGE>>", leakage))
+         .replace("<<LEAKAGE>>", leakage).replace("<<STRUCTURE>>", structure)
+         .replace("<<HISTORY>>", hist))
     return extract_json(engine.generate(p, max_tokens=2500, temperature=0.0)[0]) or {}
 
 

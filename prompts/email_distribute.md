@@ -46,8 +46,14 @@ unreadable is the failure.
 emails on the SAME subject. Never bundle two separate emails into one clue (a new subject, or a
 message to a different recipient that is not a reply within that same thread, is a SEPARATE email —
 it cannot live in the same clue).
-- Assign the atoms across the clues. A [true_state] atom and a [false_assurance] atom NEVER share a
-  clue (so no single clue reveals the contradiction).
+- Spread the CORE atoms across the <<N>> clues so EVERY clue is necessary: read together all <<N>>
+  recover the secret, but NO single clue and NO proper subset does. In particular a true_state atom
+  and the false claim NEVER share a clue (that clue would reveal the contradiction by itself). When
+  <<N>> is smaller than the number of core atoms, put more than one core atom in a clue — fine, as
+  long as no clue and no subset is self-sufficient. Each SUPPORT atom (knew, reliance, gain) RIDES
+  ALONG inside a clue for realism; it is not what makes a clue necessary and never gets a clue to
+  itself. (If the secret has fewer independent core facts than <<N>> needs, <<N>> separate necessary
+  clues cannot be formed — that secret's honest ceiling is lower.)
 - If the victim acts on the false assurance ([reliance]): make that clue a 2-message thread on ONE
   subject — message 1 = the actor's assurance to the victim; message 2 = the victim's reply BACK TO
   THE ACTOR (To: the actor, same subject line), DESCRIBING the reliance in their own words. If the

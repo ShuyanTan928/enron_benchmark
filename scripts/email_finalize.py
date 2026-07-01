@@ -17,9 +17,13 @@ import argparse
 import json
 import random
 import re
+import sys
 import textwrap
 import unicodedata
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.grounding.retrieval import BM25, tokenize          # noqa: E402  (BM25 over the corpus to find the event cluster)
 
 # --- Enron-native normalization -------------------------------------------------------------
 # Real Enron plaintext mail is pure ASCII, hard-wrapped at ~75 cols. The generator emits long
@@ -98,15 +102,77 @@ def clue_to_thread(clue: dict, topic_id: str, addr_map: dict) -> dict:
     }
 
 
-def build_haystack(clue_threads, corpus_threads, *, noise_target: int, seed: int):
-    """Mix clue threads with noise threads sampled UNCHANGED from the real corpus (whole threads,
-    truncate on overshoot), then RANDOMLY scatter the threads through the pile. The clue threads land
-    at random positions among the noise (each thread stays internally ordered), so the planted emails
-    can't be found as a date-clustered block — most important at high noise, where they spread out."""
+def _thread_text(t: dict) -> str:
+    return (t.get("subject", "") or "") + " " + " ".join(m.get("body", "") or "" for m in t["messages"])
+
+
+def event_cluster_tids(anchor: dict, corpus_threads, bm: BM25, *, topn: int, floor: float) -> set:
+    """thread_ids of the REAL event the secret was grounded on: the anchor's own thread (matched
+    exactly by message_id) plus the threads most related to it (BM25 over the anchor's text, the
+    top-N that clear an absolute and a relative score floor). These are the corpus mails that tell
+    the true — and contradictory — story, so none of them may land in the haystack."""
+    anchor = anchor or {}
+    mid = anchor.get("message_id", "")
+    text = anchor.get("text", "") or ""
+    tids = set()
+    if mid:                                                 # 1. exact: the anchor's own thread
+        for t in corpus_threads:
+            if any(m.get("message_id") == mid for m in t["messages"]):
+                tids.add(t["thread_id"])
+    if text.strip():                                        # 2. related: BM25 top-N over the anchor text
+        sc = bm.scores(tokenize(text))
+        order = sorted(range(len(corpus_threads)), key=lambda i: sc[i], reverse=True)
+        top = float(sc[order[0]]) if len(order) else 0.0
+        for i in order[:topn]:
+            if sc[i] >= floor and sc[i] >= 0.15 * top:
+                tids.add(corpus_threads[i]["thread_id"])
+    return tids
+
+
+def build_haystack(clue_threads, corpus_threads, anchor, bm, *, noise_target: int, seed: int,
+                   related_topn: int = 20, related_floor: float = 2.0):
+    """Excise the real event cluster, borrow its ids for the clues, then mix the clue threads with
+    noise sampled UNCHANGED from the rest of the corpus and scatter them randomly through the pile.
+
+    (1) Find the anchor's thread + its related threads (the real same-event mail) and pull them ALL
+        out of the noise pool — they tell the true story and must never appear in the haystack.
+    (2) Borrow REAL Message-IDs for the clue messages, PRIORITY = ids from those removed cluster
+        threads (so the anchor's own id now belongs to a clue, not to any corpus mail in the pile);
+        every source thread is out of the pile, so no clue id can collide with a noise id.
+    (3) If the cluster doesn't yield enough ids, pull whole RANDOM threads out of the pool and borrow
+        theirs too (removed from noise, so still no collision)."""
     rng = random.Random(seed)
-    used = {ct["thread_id"] for ct in clue_threads}
-    cand = [t for t in corpus_threads if t.get("thread_id") not in used]
+    clue_tids = {ct["thread_id"] for ct in clue_threads}
+
+    cluster_tids = event_cluster_tids(anchor, corpus_threads, bm, topn=related_topn, floor=related_floor)
+    cluster = [t for t in corpus_threads if t["thread_id"] in cluster_tids]
+    cand = [t for t in corpus_threads
+            if t["thread_id"] not in cluster_tids and t["thread_id"] not in clue_tids]
     rng.shuffle(cand)
+
+    n_need = sum(len(ct["messages"]) for ct in clue_threads)
+    cluster_ids = [m["message_id"] for t in cluster for m in t["messages"] if m.get("message_id")]
+    rng.shuffle(cluster_ids)
+    borrow = list(cluster_ids)                              # (2) cluster ids first
+    pulled = 0
+    while len(borrow) < n_need and pulled < len(cand):      # (3) fallback: pull whole random threads
+        borrow += [m["message_id"] for m in cand[pulled]["messages"] if m.get("message_id")]
+        pulled += 1
+    cand = cand[pulled:]                                    # the pulled threads leave the noise pool
+    if len(borrow) < n_need:
+        raise SystemExit(f"corpus too small to borrow {n_need} message ids (have {len(borrow)})")
+
+    bi = 0
+    for ct in clue_threads:
+        idmap = {}
+        for m in ct["messages"]:
+            idmap[m["message_id"]] = borrow[bi]
+            m["message_id"] = borrow[bi]
+            bi += 1
+        for m in ct["messages"]:                            # relink the chain to the borrowed ids
+            if m.get("in_reply_to") in idmap:
+                m["in_reply_to"] = idmap[m["in_reply_to"]]
+            m["references"] = [idmap.get(r, r) for r in (m.get("references") or [])]
 
     noise, n = [], 0
     for t in cand:
@@ -116,29 +182,10 @@ def build_haystack(clue_threads, corpus_threads, *, noise_target: int, seed: int
         noise.append({**t, "messages": keep, "n_messages": len(keep)})
         n += len(keep)
 
-    # Give each clue email a REAL Message-ID borrowed from a corpus email that is NOT in the pile, so
-    # the clue ids are byte-identical in format to the noise ids and can't collide. Relink each clue
-    # thread's in_reply_to/references to the borrowed ids. (The borrowed-from email isn't shown.)
-    in_pile = {m.get("message_id") for th in (clue_threads + noise) for m in th["messages"]}
-    borrow = [m["message_id"] for t in corpus_threads for m in t["messages"]
-              if m.get("message_id") and m["message_id"] not in in_pile]
-    rng.shuffle(borrow)
-    bi = 0
-    for ct in clue_threads:
-        idmap = {}
-        for m in ct["messages"]:
-            idmap[m["message_id"]] = borrow[bi]
-            m["message_id"] = borrow[bi]
-            bi += 1
-        for m in ct["messages"]:                    # relink the chain to the borrowed ids
-            if m.get("in_reply_to") in idmap:
-                m["in_reply_to"] = idmap[m["in_reply_to"]]
-            m["references"] = [idmap.get(r, r) for r in (m.get("references") or [])]
-
     haystack = clue_threads + noise
     rng.shuffle(haystack)                       # scatter clue threads randomly (not a date cluster)
     flat = [m for th in haystack for m in th["messages"]]
-    return haystack, noise, flat
+    return haystack, noise, flat, sorted(cluster_tids)
 
 
 def main():
@@ -149,6 +196,10 @@ def main():
     ap.add_argument("--noise", type=int, default=100, help="target number of noise emails")
     ap.add_argument("--seed", type=int, default=20260624)
     ap.add_argument("--outdir", default="data/benchmark")
+    ap.add_argument("--topics", default="", help="topics file (id->anchor) used ONLY for records that "
+                    "lack a self-carried _anchor; the record's _anchor always wins")
+    ap.add_argument("--related-topn", type=int, default=20, help="max related threads to excise per topic")
+    ap.add_argument("--related-floor", type=float, default=2.0, help="min BM25 score for a related thread")
     args = ap.parse_args()
 
     objs = [json.loads(l) for l in Path(args.clues).read_text().splitlines() if l.strip()]
@@ -159,13 +210,28 @@ def main():
     people = json.loads(Path("benchmark_pool/people.json").read_text())["people"]
     addr_map = {p["real_name"]: p["real_email"] for p in people}
 
+    # id -> anchor fallback for legacy records that don't self-carry _anchor
+    topics_anchor = {}
+    if args.topics:
+        for kept in json.loads(Path(args.topics).read_text()).get("kept", []):
+            a = kept.get("anchor", {}) or {}
+            topics_anchor[kept.get("id")] = {"message_id": a.get("message_id", ""),
+                                             "text": kept.get("anchor_full_body") or a.get("snippet", "")}
+
+    bm = BM25([tokenize(_thread_text(t)) for t in corpus])   # one index over the corpus, reused per topic
+
     outdir = Path(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
-    print(f"{'topic':5} {'clues':5} {'noise':5} {'total':5}  file")
+    print(f"{'topic':5} {'clues':5} {'noise':5} {'cut':4} {'total':5}  file")
     for obj in objs:
         tid = obj.get("topic_id", "T??")
+        anchor = obj.get("_anchor") or topics_anchor.get(tid)
+        if not anchor:
+            print(f"  WARNING {tid}: no anchor (record has no _anchor, not in --topics) — event cluster NOT excised")
         clue_threads = [clue_to_thread(c, tid, addr_map) for c in obj.get("clues", [])]
-        haystack, noise, flat = build_haystack(clue_threads, corpus, noise_target=args.noise, seed=args.seed)
+        haystack, noise, flat, cut = build_haystack(
+            clue_threads, corpus, anchor, bm, noise_target=args.noise, seed=args.seed,
+            related_topn=args.related_topn, related_floor=args.related_floor)
         planted = [{"clue_i": c.get("i"), "carries": c.get("carries"),    # after id-borrowing
                     "message_ids": [m["message_id"] for m in th["messages"]]}
                    for c, th in zip(obj.get("clues", []), clue_threads)]
@@ -176,10 +242,11 @@ def main():
                 f.write(json.dumps(t, ensure_ascii=False) + "\n")
         (outdir / f"{tid}_answer.json").write_text(json.dumps(
             {"topic_id": tid, "answer": obj.get("answer", {}), "planted": planted,
-             "clue_message_ids": [mid for p in planted for mid in p["message_ids"]]},
+             "clue_message_ids": [mid for p in planted for mid in p["message_ids"]],
+             "excised_event_threads": cut},
             ensure_ascii=False, indent=2))
         n_clue = sum(len(p["message_ids"]) for p in planted)
-        print(f"{tid:5} {n_clue:5} {len(flat) - n_clue:5} {len(flat):5}  {hp}")
+        print(f"{tid:5} {n_clue:5} {len(flat) - n_clue:5} {len(cut):4} {len(flat):5}  {hp}")
 
 
 if __name__ == "__main__":

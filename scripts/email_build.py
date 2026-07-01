@@ -58,11 +58,12 @@ def atomize(eng, tid, sblock, plot) -> list:
          .replace("<<SECRET>>", sblock).replace("<<PLOT>>", plot["plot"])
          .replace("<<ACTOR>>", plot["actor"]).replace("<<VICTIM>>", plot["victim"])
          .replace("<<TID>>", tid))
-    return (extract_json(eng.generate(p, max_tokens=1200, temperature=0.3)[0]) or {}).get("atoms") or []
+    return (extract_json(eng.generate(p, max_tokens=1500, temperature=0.3)[0]) or {}).get("atoms") or []
 
 
 def distribute(eng, plot, atoms, team, era, n, feedback) -> list:
-    ab = "\n".join(f"  {a['id']} [{a['role']} · via {a.get('carrier', 'body')}] {a['fact']}" for a in atoms)
+    ab = "\n".join(f"  {a['id']} [{'CORE' if a.get('core') else 'support'} · {a['role']} · via "
+                   f"{a.get('carrier', 'body')}] {a['fact']}" for a in atoms)
     fb = (f"\n## REVISION NOTES — address these; keep every atom established and the emails natural:\n{feedback}\n"
           if feedback else "")
     p = (DISTRIBUTE.read_text()
@@ -232,7 +233,8 @@ def build_readable(tid, plot, mt, atoms, log, accepted) -> str:
          f"  victim      : {plot.get('victim', '')}",
          f"  era         : {mt.get('era', '')}", "",
          f"  --- ATOMS ({len(atoms)}) ---"]
-    L += [f"    {a['id']} [{a['role']} · via {a.get('carrier', 'body')}] {a['fact']}" for a in atoms]
+    L += [f"    {a['id']} [{'CORE' if a.get('core') else 'support'} · {a['role']} · via "
+          f"{a.get('carrier', 'body')}] {a['fact']}" for a in atoms]
     L += ["", "  --- ITERATIONS ---"]
     for e in log:
         rep = e.get("report", {})

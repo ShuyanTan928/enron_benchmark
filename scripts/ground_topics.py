@@ -37,7 +37,7 @@ from src.grounding.pipeline import propose_topic                        # noqa: 
 
 
 def run_category(engine, retriever, emails, category, target, accepted, discarded,
-                 max_fails, checker=None, used_anchors=None):
+                 max_fails, checker=None, used_anchors=None, secret_type=""):
     """Write `target` topics for this category. Successes do NOT count against the budget:
     we keep going until `target` are written OR `max_fails` attempts have FAILED (dup / NONE /
     CHECK-reject). So the most attempts this ever makes is target + max_fails.
@@ -54,7 +54,7 @@ def run_category(engine, retriever, emails, category, target, accepted, discarde
     fails = 0
     while len(kept) < target and fails < max_fails:
         p = propose_topic(engine, retriever, emails, category, accepted + rejected,
-                          used_anchors=used_anchors)
+                          used_anchors=used_anchors, secret_type=secret_type)
         st = p["status"]
         topic = p.get("topic")
         name = (topic or {}).get("name", "?")
@@ -106,6 +106,14 @@ def main():
                     help="final write/regenerate gate. manual=dump pending pool for human/Claude "
                          "review; sonnet=inline gate via or-claude-sonnet; none=no gate")
     ap.add_argument("--checker_preset", default="or-claude-sonnet")
+    ap.add_argument("--secret-type", default="",
+                    help="enable the TYPE-aware gate (e.g. lying): keep only secrets suited to that "
+                         "concealment type, via prompts/topic_judge_<type>.md (overrides --checker)")
+    ap.add_argument("--gate-preset", default="",
+                    help="API model for the type gate (e.g. or-gpt-5); default reuses the gen engine")
+    ap.add_argument("--kept-out", default="",
+                    help="also write kept topics in {kept:[...]} format for spec_build "
+                         "(default benchmark_pool/topics_<type>.json when --secret-type is set)")
     ap.add_argument("--out", default="benchmark_pool/step1_pending.json")
     ap.add_argument("--seed_accepted", default=None,
                     help="optional topics json to seed the AVOID/dedup list (cross-run)")
@@ -122,7 +130,13 @@ def main():
                           seed=args.seed, gpu_mem=args.gpu_mem)
 
     checker = None
-    if args.checker == "sonnet":
+    if args.secret_type:
+        from src.grounding.check import TypeChecker
+        gate_engine = (build_engine("api", args.gate_preset) if args.gate_preset else engine)
+        checker = TypeChecker(args.secret_type, gate_engine)
+        print(f"  CHECK gate: {args.secret_type} type-judge on "
+              f"{args.gate_preset or (args.engine + ':' + args.preset)}")
+    elif args.checker == "sonnet":
         from src.grounding.check import SonnetChecker
         print(f"  CHECK gate: {args.checker_preset} (inline)")
         checker = SonnetChecker(args.checker_preset)
@@ -139,12 +153,33 @@ def main():
     print(f"\n=== WORK ({args.n_work}) ===")
     used_anchors: set = set()          # shared so no anchor backs two topics, across categories
     work = run_category(engine, retriever, emails, "work", args.n_work,
-                        accepted, discarded, args.max_fails, checker, used_anchors)
+                        accepted, discarded, args.max_fails, checker, used_anchors, args.secret_type)
     print(f"\n=== CASUAL ({args.n_casual}) ===")
     casual = run_category(engine, retriever, emails, "casual", args.n_casual,
-                          accepted, discarded, args.max_fails, checker, used_anchors)
+                          accepted, discarded, args.max_fails, checker, used_anchors, args.secret_type)
 
     kept = work + casual
+
+    # spec_build-ready output: {kept:[{id, topic, anchor, anchor_full_body}]} — same shape as
+    # plot_generation.json, so `spec_build --plots <this>` runs STAGE 1 [2] + STAGE 2 on it.
+    if args.secret_type:
+        kept_entries = []
+        for i, p in enumerate(kept, 1):
+            tid = f"T{i:02d}"
+            t = p["topic"]
+            kept_entries.append({
+                "id": tid, "category": t.get("category", "work"), "secret_type": args.secret_type,
+                "topic": {"id": tid, "name": t.get("name", ""), "secret": t.get("secret", ""),
+                          "true_fact": t.get("true_fact", ""), "false_belief": t.get("false_belief", "")},
+                "anchor": p.get("anchor"), "anchor_full_body": p.get("anchor_full_body", ""),
+            })
+        kept_out = args.kept_out or f"benchmark_pool/topics_{args.secret_type}.json"
+        Path(kept_out).write_text(json.dumps(
+            {"_about": f"secret-first {args.secret_type}-typed topics (gate=topic_judge_{args.secret_type}); "
+                       f"feed to spec_build --plots {kept_out}", "kept": kept_entries},
+            indent=2, ensure_ascii=False))
+        print(f"  kept-format -> {kept_out}  ({len(kept_entries)} topics; feed to spec_build --plots)")
+
     checker_id = args.checker_preset if args.checker == "sonnet" else args.checker
     out = {
         "_about": f"Step-1 written topics. gen/HyDE/fit-judge/specialize={args.engine}:{args.preset}; "
@@ -170,9 +205,10 @@ def main():
         a = p.get("anchor") or {}
         lines += [
             f"T{i:02d}  {t.get('name', '')}   [{t.get('category', 'work')}]",
-            f"  secret   : {t.get('secret', '')}",
-            f"  either_or: {t.get('either_or', '')}",
-            f"  anchor   : {a.get('date', '')[:10]}  {a.get('from', '')}  \"{a.get('subject', '')}\"",
+            f"  secret      : {t.get('secret', '')}",
+            f"  true_fact   : {t.get('true_fact', '')}",
+            f"  false_belief: {t.get('false_belief', '')}",
+            f"  anchor      : {a.get('date', '')[:10]}  {a.get('from', '')}  \"{a.get('subject', '')}\"",
             "",
         ]
     readable.write_text("\n".join(lines))

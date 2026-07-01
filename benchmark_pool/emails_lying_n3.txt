@@ -1,0 +1,546 @@
+===== T02   n=3   KEPT =====
+CHECK: joint recover=2/2  leaked subsets=[]
+SECRET
+  concealment : opening Commercial Risk Re-insurance Company for financial products trading as of 12/7/00
+  true_fact   : Commercial Risk Re-insurance Company cannot be validly approved for financial products trading because no master agreement is in place and due diligence has not been completed.
+  false_belief: Commercial Risk Re-insurance Company is fully approved and eligible to trade financial products, with all required documentation and diligence satisfied.
+  actor       : Tana Jones — credit coordinator who controls counterparty approval
+  victim      : Sara Shackleton — legal and regulatory coordinator on the trading desk side
+
+ATOMS
+  a1 [true_state] As of 12/7/00, no master agreement with Commercial Risk Re-insurance Company is in place and due diligence on that counterparty has not been completed.
+  a2 [knew] Tana Jones knows that as of 12/7/00 no master agreement with Commercial Risk Re-insurance Company is in place and due diligence has not been completed.
+  a3 [false_statement] Tana Jones tells Sara Shackleton that Commercial Risk Re-insurance Company is approved and open to trade financial products.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Mark Taylor circulates a counterparty-readiness spreadsheet titled CPRR-CP-STATUS-1207.xls dated 12/7/00. The spreadsheet's two status columns for Commercial Risk Re-insurance Company read explicitly: 'Master Agreement: NOT IN PLACE' and 'Due Diligence: NOT COMPLETED.'
+    From: Mark Taylor   To: Kay Mann, Sara Shackleton, Tana Jones, Carol Clair, Elizabeth Sager   (2000-12-07)
+    Subject: CPRR-CP-STATUS-1207.xls — counterparty readiness as of today
+      All —
+      
+      Attached is the updated counterparty status sheet as of 12/7. pls review your open items and flag anything that needs to move.
+      
+      For reference, current status on Commercial Risk Re-insurance Company:
+      
+        Master Agreement: NOT IN PLACE
+        Due Diligence: NOT COMPLETED
+      
+      Let me know if you have questions.
+      
+      Mark
+
+  CLUE 2 - carries: a2
+    plot: Tana Jones replies to Mark Taylor's distribution of CPRR-CP-STATUS-1207.xls on 12/7/00, writing: 'Received and filed to the Commercial Risk Re-insurance Company counterparty folder — I'll handle next steps on my end.'
+    From: Tana Jones   To: Mark Taylor   (2000-12-07)
+    Subject: Re: CPRR-CP-STATUS-1207.xls — counterparty readiness as of today
+      Mark,
+      
+      Received and filed to the Commercial Risk Re-insurance Company counterparty folder — I'll handle next steps on my end.
+      
+      Tana
+
+  CLUE 3 - carries: a3
+    plot: Tana Jones sends Sara Shackleton a standalone message on 12/7/00 stating: 'Commercial Risk Re-insurance Company is approved and open to trade financial products as of today.' Sara Shackleton replies to the trading desk forwarding that confirmation and noting no further review is needed, with no mention of any outstanding master agreement or due diligence items for Commercial Risk Re-insurance Company.
+    From: Tana Jones   To: Sara Shackleton   (2000-12-07)
+    Subject: Commercial Risk Re-insurance Company — trading status
+      Sara,
+      
+      Commercial Risk Re-insurance Company is approved and open to trade financial products as of today.
+      
+      Tana
+
+    From: Sara Shackleton   To: Carol Clair   (2000-12-07)
+    Subject: Commercial Risk Re-insurance Company — trading status
+      Carol:
+      
+      FYI — credit has cleared Commercial Risk Re-insurance Company. no further review needed on our end, desk can proceed.
+      
+      Thanks.
+      Sara
+
+
+===== T03   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : SEC 13-F filing for the quarter ending 12/31/2000, due 2/14/2001
+  true_fact   : The SEC 13-F filing for the quarter ending 12/31/2000 was never submitted to the SEC and does not exist on record with the agency — the 2/14/2001 deadline was missed.
+  false_belief: The SEC 13-F filing for the quarter ending 12/31/2000 was submitted to the SEC by the 2/14/2001 deadline and is on record with the agency.
+  actor       : Sara Shackleton — regulatory-affairs coordinator who owns the 13-F filing process
+  victim      : Mark Taylor — information hub who routes legal and regulatory matters and relies on filing status to coordinate next steps
+
+ATOMS
+  a1 [true_state] The SEC 13-F filing for the quarter ending 12/31/2000 was never transmitted to the SEC and carries no submission record with the agency as of the 2/14/2001 deadline.
+  a2 [knew] Sara Shackleton knows that the SEC 13-F filing for the quarter ending 12/31/2000 was never transmitted to the SEC and carries no submission record with the agency.
+  a3 [false_statement] Sara Shackleton tells Mark Taylor that the SEC 13-F filing for the quarter ending 12/31/2000 has been submitted to the SEC by the 2/14/2001 deadline and is on record with the agency.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 2/17/2001, Jeff Dasovich pulls the SEC EDGAR accession log for the quarter ending 12/31/2000 and finds no accession number, no confirmation receipt, and no submission record for Enron's 13-F filing against the 2/14/2001 deadline. Jeff Dasovich documents this in a memo titled '13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf' and routes it to Steven Kean, noting the log shows the filing was never received by the agency as of the deadline.
+    From: Jeff Dasovich   To: Steven Kean   (2001-02-17)
+    Subject: 13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf — EDGAR log review, Q4 2000
+      Steven —
+      
+      Per your request I ran the EDGAR accession log for Enron's 13-F, quarter ending 12/31/2000, deadline 2/14/2001. Log shows no accession number assigned, no confirmation receipt on file, no submission record at the agency as of that date.
+      
+      Memo attached: 13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf. Let me know how you want to handle.
+      
+      Jeff
+
+  CLUE 2 - carries: a2
+    plot: On 2/15/2001 — the day after the filing deadline — Tana Jones sends Sara Shackleton a message with the subject 'FW: 13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf — your sign-off needed' and attaches the memo of that exact name, asking Sara Shackleton to confirm receipt and acknowledge the contents before it is filed internally. Sara Shackleton replies the same day: 'Received and acknowledged — I have reviewed 13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf. No further action needed from me on this.'
+    From: Tana Jones   To: Sara Shackleton   (2001-02-15)
+    Subject: FW: 13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf — your sign-off needed
+      Sara —
+      
+      Attached is 13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf. Can you confirm receipt and acknowledge contents before i file this internally? just need your sign-off.
+      
+      Tana
+
+    From: Sara Shackleton   To: Tana Jones   (2001-02-15)
+    Subject: RE: FW: 13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf — your sign-off needed
+      Tana:
+      
+      Received and acknowledged — I have reviewed 13F-Q4-2000_EDGAR-Status-Check_2001-02-17.pdf. No further action needed from me on this.
+      
+      Sara
+
+  CLUE 3 - carries: a3
+    plot: On 2/16/2001, Sara Shackleton emails Mark Taylor stating: 'Just confirming — the 13-F filing for the quarter ending 12/31/2000 was submitted to the SEC by the 2/14/2001 deadline and is on record with the agency. We are clear.' Mark Taylor replies the same day: 'Thanks for confirming — I have forwarded this to the assigned attorney and closed out the Q4 compliance action item. No further follow-up needed on our end.'
+    From: Sara Shackleton   To: Mark Taylor   (2001-02-16)
+    Subject: 13-F Q4 2000 — SEC filing status
+      Mark:
+      
+      Just confirming — the 13-F filing for the quarter ending 12/31/2000 was submitted to the SEC by the 2/14/2001 deadline and is on record with the agency. We are clear.
+      
+      Thanks.
+      Sara
+
+    From: Mark Taylor   To: Sara Shackleton   (2001-02-16)
+    Subject: RE: 13-F Q4 2000 — SEC filing status
+      Thanks for confirming — forwarded to the assigned attorney and closed out the Q4 compliance action item. No further follow-up needed on our end.
+      
+      Mark
+
+
+===== T04   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : Letter of credit provisions attached to the Deutsche Bank Master agreement
+  true_fact   : The L/C provisions attached to the Deutsche Bank Master agreement are not Enron's standard language.
+  false_belief: The L/C provisions attached to the Deutsche Bank Master agreement have been verified as Enron's own approved standard language and are acceptable as written.
+  actor       : Kay Mann — contract attorney, the verifier
+  victim      : Sara Shackleton — credit and legal coordinator who requested the verification
+
+ATOMS
+  a1 [true_state] The letter of credit provisions attached to the Deutsche Bank Master agreement are not Enron's standard language.
+  a2 [knew] Kay Mann knows that the letter of credit provisions attached to the Deutsche Bank Master agreement are not Enron's standard language.
+  a3 [false_statement] Kay Mann tells Sara Shackleton that the letter of credit provisions attached to the Deutsche Bank Master agreement are Enron's standard language.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Tana Jones circulates an internal markup comparison titled 'LC-DBK-2024_provisions_comparison.docx' to Carol Clair and Sara Shackleton, noting in the body that the letter of credit provisions attached to the Deutsche Bank Master agreement reproduce Deutsche Bank's own template wording verbatim and do not match Enron's standard letter of credit language on at least four material points.
+    From: Tana Jones   To: Carol Clair, Sara Shackleton   (2000-09-05)
+    Subject: LC-DBK-2024_provisions_comparison.docx — FYI
+      Carol, Sara,
+      
+      Attaching the markup comparison for the Deutsche Bank Master LC provisions. The LC language attached to that agreement is Deutsche Bank's own template wording lifted verbatim — it doesn't line up with our standard LC language on at least four material points. Let me know how you want to handle.
+
+  CLUE 2 - carries: a2
+    plot: Elizabeth Sager's issue-tracking log entry for ticket ref IQ-2024-441 — forwarded to Kay Mann with a read-receipt timestamp — lists 'LC-DBK-2024_provisions_comparison.docx' as a required review item and records Kay Mann's electronic acknowledgment that the document had been reviewed and its contents noted, with no further comments added.
+    From: Elizabeth Sager   To: Kay Mann   (2000-09-06)
+    Subject: IQ-2024-441 — read receipt logged
+      fyi
+      
+      ---------- Forwarded message ----------
+      From: Enron Issue Tracking System
+      Date: 2000-09-06 08:47:03
+      To: Elizabeth
+      Subject: IQ-2024-441 — acknowledgment recorded
+      
+      Ticket Ref:   IQ-2024-441
+      Required Item: LC-DBK-2024_provisions_comparison.docx
+      Action:        Review and note contents
+      Status:        ACKNOWLEDGED
+      Ack By:        Kay
+      Ack Timestamp: 2000-09-06 08:44:17
+      Comments:      (none)
+      
+      Elizabeth
+      713-853-6349
+
+  CLUE 3 - carries: a3
+    plot: Kay Mann emails Sara Shackleton stating that the letter of credit provisions attached to the Deutsche Bank Master agreement are Enron's standard language and require no further review; Sara Shackleton replies confirming receipt of that verification and noting that negotiation of the Deutsche Bank Master agreement will proceed on that basis without reopening the L/C provisions.
+    From: Kay Mann   To: Sara Shackleton   (2000-09-07)
+    Subject: Deutsche Bank Master — LC provisions
+      Hi Sara,
+      
+      FYI. The letter of credit provisions attached to the Deutsche Bank Master are Enron's standard language. No further review needed.
+      
+      Kay
+
+    From: Sara Shackleton   To: Kay Mann   (2000-09-07)
+    Subject: RE: Deutsche Bank Master — LC provisions
+      Kay:
+      
+      Got it, thanks. We'll move forward on the Deutsche Bank Master as-is — LC provisions are closed.
+      
+      Sara
+
+
+===== T05   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : ISDA collateral threshold amendment setting the threshold at $2,500,000
+  true_fact   : The $2,500,000 collateral threshold in the Forcenergy Inc. ISDA amendment has been formally rejected by the legal team as non-conforming under the master agreement's credit-support requirements
+  false_belief: The $2,500,000 collateral threshold is conforming and has cleared legal review, so the Forcenergy Inc. ISDA amendment is properly secured and ready to finalize
+  actor       : Tana Jones — credit coordinator who owns the amendment file
+  victim      : Carol Clair — the administrative and legal coordinator who must decide whether to proceed
+
+ATOMS
+  a1 [true_state] The legal team has formally rejected the $2,500,000 collateral threshold proposed for the Forcenergy Inc. ISDA amendment on the ground that it does not satisfy the credit-support requirements of the master agreement
+  a2 [knew] Tana Jones knows that the legal team has formally rejected the $2,500,000 collateral threshold for the Forcenergy Inc. ISDA amendment as non-conforming under the master agreement's credit-support requirements
+  a3 [false_statement] Tana Jones tells Carol Clair that the $2,500,000 collateral threshold for the Forcenergy Inc. ISDA amendment is acceptable and the document is ready to send to Fred by noon
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Elizabeth Sager sends Richard Sanders a one-line confirmation email with subject 'FRC-ISDA-THR-2025_LegalReview.pdf — status unchanged post-noon 14 Apr'. The body states that the memo dated 11 Apr, ref FRC-ISDA-THR-2025_LegalReview.pdf, remains the legal team's current position: the $2,500,000 collateral threshold proposed for the Forcenergy Inc. ISDA amendment does not satisfy the credit-support requirements of the master agreement, and no revised figure has been approved.
+    From: Elizabeth Sager   To: Richard Sanders   (2000-04-14)
+    Subject: FRC-ISDA-THR-2025_LegalReview.pdf — status unchanged post-noon 14 Apr
+      For your records — the 11 Apr memo (FRC-ISDA-THR-2025_LegalReview.pdf) stands as legal's current position: the $2,500,000 collateral threshold proposed for the Forcenergy Inc. ISDA amendment does not meet the credit-support requirements under the master agreement and no revised figure has been approved as of this writing.
+
+  CLUE 2 - carries: a2
+    plot: Sara Shackleton sends Tana Jones a brief email on 12 Apr with subject 'FRC-ISDA-THR-2025_LegalReview.pdf — your copy'. The body reads: 'Attaching for your records as amendment file owner — please confirm receipt.' Tana Jones replies the same day: 'Received, thank you.'
+    From: Sara Shackleton   To: Tana Jones   (2000-04-12)
+    Subject: FRC-ISDA-THR-2025_LegalReview.pdf — your copy
+      Attaching for your records as amendment file owner — please confirm receipt.
+
+    From: Tana Jones   To: Sara Shackleton   (2000-04-12)
+    Subject: RE: FRC-ISDA-THR-2025_LegalReview.pdf — your copy
+      Received, thank you.
+
+  CLUE 3 - carries: a3
+    plot: Tana Jones emails Carol Clair on 14 Apr before noon with subject 'Forcenergy ISDA amendment — ready to send'. The body states: 'The $2,500,000 collateral threshold is acceptable and the document is ready to go to Fred by noon — no further review needed on our end.' Carol Clair replies within the hour: 'Thanks — forwarding approval to proceed at $2,500,000; sending the file now without re-routing for additional legal review.'
+    From: Tana Jones   To: Carol Clair   (2000-04-14)
+    Subject: Forcenergy ISDA amendment — ready to send
+      Carol,
+      
+      The $2,500,000 collateral threshold is acceptable and the document is ready to go to Fred by noon — no further review needed on our end. Let me know if you want me to send directly or if you're handling it!
+
+    From: Carol Clair   To: Tana Jones   (2000-04-14)
+    Subject: RE: Forcenergy ISDA amendment — ready to send
+      Tana:
+      Thanks — forwarding approval to proceed and sending the file now.
+      Carol
+
+
+===== T06   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : governing law clause in the Sempra master agreement (the former AIG 'Master Master') ISDA replacement file
+  true_fact   : The governing law clause in the master agreement currently in force with Sempra was formally replaced with a different jurisdiction when the old AIG 'Master Master' was converted to the Sempra agreement; the original jurisdiction no longer governs.
+  false_belief: The trading desk believes the Sempra master agreement still operates under the same governing law clause that applied during the AIG era, and that all trades under it continue to be governed by that original jurisdiction.
+  actor       : Kay Mann — contract attorney handling the Sempra master agreement file
+  victim      : Tana Jones — legal and credit coordinator for the trading desk
+
+ATOMS
+  a1 [true_state] The governing law clause in the master agreement now in force with Sempra (the former AIG 'Master Master') was replaced with a different jurisdiction in the amendment executed when the agreement transferred from AIG to Sempra; the original jurisdiction clause is no longer in the operative document.
+  a2 [knew] Kay Mann knows that the governing law clause in the Sempra master agreement was replaced with a different jurisdiction in the amendment executed at the time of the AIG-to-Sempra transfer.
+  a3 [false_statement] Kay Mann tells Tana Jones that the Sempra master agreement (the former AIG 'Master Master') still carries the same governing law clause that was in place under the original AIG agreement, and that the jurisdiction applicable to trades under it has not changed.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Sara Shackleton circulates a file-transfer summary memo to the team dated at the time of the AIG-to-Sempra transition; the memo's attachment log lists the executed amendment to the former AIG 'Master Master' and notes in the subject line 'Sempra – governing law clause updated per transfer amendment.' Carol Clair replies acknowledging receipt of the updated file.
+    From: Sara Shackleton   To: Kay Mann, Tana Jones, Carol Clair, Mark Taylor, Elizabeth Sager   (2001-05-03)
+    Subject: Sempra – governing law clause updated per transfer amendment
+      All –
+      
+      Please see attached file-transfer summary for the Sempra master agreement (formerly AIG, under the old AIG Master Master). Attachment log below reflects what's been moved to the active Sempra folder:
+      
+        1. Executed Transfer Amendment (AIG-to-Sempra) – signed 04/27/01
+        2. Amended Master Master – governing law clause revised per transfer amendment
+        3. Cover memo – transition summary
+      
+      Let me know if anything is missing from your copies.
+      
+      Sara
+
+    From: Carol Clair   To: Sara Shackleton   (2001-05-03)
+    Subject: Re: Sempra – governing law clause updated per transfer amendment
+      Sara,
+      
+      Got it, file received. Thanks for circulating.
+      
+      Carol
+
+  CLUE 2 - carries: a2
+    plot: Kay Mann is listed in the distribution header of that same transfer-amendment memo as a direct addressee, and the document management system shows Kay Mann's name as the last editor on the Sempra master agreement folder containing the executed amendment.
+    From: Steven Kean   To: Richard Sanders   (2001-05-07)
+    Subject: DMS audit – Sempra master folder / last edit record
+      Richard –
+      
+      Pulled the document management system log for the Sempra master agreement folder per your request. Pasting the relevant entry:
+      
+        Folder: Sempra – Master Agreement (fka AIG Master Master)
+        Last modified: 05/04/01  11:42a
+        Last editor: Kay
+        Files in folder: Transfer Amendment (executed 04/27/01), Amended Master, Transition Cover Memo
+        Distribution on originating memo (05/03/01): Kay, Tana, Carol, Mark, Elizabeth
+      
+      Let me know if you need the full audit trail exported.
+      
+      Steven
+
+  CLUE 3 - carries: a3
+    plot: Kay Mann sends Tana Jones a short email stating that the Sempra master agreement (the former AIG 'Master Master') retains the same governing law clause it carried under AIG and that the applicable jurisdiction for trades under it is unchanged. Tana Jones replies confirming she will mark the governing law clause as resolved, will not raise it at the upcoming Legal/Credit meeting, and has passed word to the trading desk that the Sempra agreement's jurisdiction remains the same as in the AIG era.
+    From: Kay Mann   To: Tana Jones   (2001-05-09)
+    Subject: Sempra master – governing law
+      FYI. The Sempra master (former AIG Master Master) carries the same governing law clause it had under AIG. Applicable jurisdiction for trades under it is unchanged.
+      
+      Kay
+
+    From: Tana Jones   To: Kay Mann   (2001-05-09)
+    Subject: Re: Sempra master – governing law
+      ok thx -- marking it resolved, won't put it on the agenda for Thursday. already told the desk same jurisdiction as before.
+      
+      Tana
+
+
+===== T07   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : assignment of trades and master agreement from HS Resources, Inc. to HS Energy Services, Inc.
+  true_fact   : HS Resources, Inc. has formally rescinded its written consent to the assignment of its trades and master agreement to HS Energy Services, Inc., meaning the transfer documented in the attached assignment form (HSR-HSESEnron.doc) has no valid contractual basis
+  false_belief: HS Resources, Inc.'s consent to assign its trades and master agreement to HS Energy Services, Inc. remains valid and in effect, and the transfer reflected in the attached assignment form can proceed on that basis
+  actor       : Kay Mann — contract attorney on the assignment matter
+  victim      : Sara Shackleton — legal and regulatory coordinator receiving the assignment for processing
+
+ATOMS
+  a1 [true_state] HS Resources, Inc. has submitted a formal written withdrawal of its consent to the assignment of its trades and master agreement to HS Energy Services, Inc.
+  a2 [knew] Kay Mann knows that HS Resources, Inc. has submitted a formal written withdrawal of its consent to the assignment of its trades and master agreement to HS Energy Services, Inc.
+  a3 [false_statement] Kay Mann tells Sara Shackleton that HS Resources, Inc.'s consent to assign its trades and master agreement to HS Energy Services, Inc. is still valid and in place, and the assignment form can proceed on that basis.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: A contract administration inbox entry dated 2001-03-14 shows an inbound transmission logged as HSR-Withdrawal-2001-03-14.pdf, filed under the HS Resources / HS Energy Services assignment matter. The document, addressed to Enron's contract administration group, states that HS Resources, Inc. formally withdraws its previously granted consent to the assignment of its trades and master agreement to HS Energy Services, Inc., effective immediately.
+    From: Sara Shackleton   To: Tana Jones, Carol Clair   (2001-03-14)
+    Subject: Incoming: HS Resources / HS Energy Services assignment matter
+      Tana, Carol:
+      
+      FYI — contract admin received the attached this afternoon. Filed under the HS Resources / HS Energy Services assignment. Logged as HSR-Withdrawal-2001-03-14.pdf.
+      
+      Document is addressed to Enron contract administration group. HS Resources, Inc. states it withdraws its previously granted consent to the assignment of its trades and master agreement to HS Energy Services, Inc., effective immediately.
+      
+      Pls route to the responsible attorney for review.
+      
+      Thanks.
+      Sara
+
+  CLUE 2 - carries: a2
+    plot: An internal routing slip dated 2001-03-15 shows Kay Mann signing the receipt line for HSR-Withdrawal-2001-03-14.pdf and initialing the 'reviewed by attorney' field, confirming the document was delivered to and handled by Kay Mann the day after it was logged into contract administration.
+    From: Carol Clair   To: Sara Shackleton   (2001-03-15)
+    Subject: RE: Incoming: HS Resources / HS Energy Services assignment matter
+      Sara:
+      
+      Routing slip back to you — HSR-Withdrawal-2001-03-14.pdf delivered to Kay this morning. Kay signed the receipt line and initialed the reviewed-by-attorney field.
+      
+      Carol
+
+  CLUE 3 - carries: a3
+    plot: In a two-message thread dated 2001-03-16, Kay Mann writes to Sara Shackleton: 'HS Resources' consent to the assignment remains valid and in place — HSR-HSESEnron.doc can proceed on that basis.' Sara Shackleton replies the same day: 'Confirmed, forwarding approval to continue processing HSR-HSESEnron.doc,' and the thread closes without any mention of HSR-Withdrawal-2001-03-14.pdf or any pause to re-verify consent status.
+    From: Kay Mann   To: Sara Shackleton   (2001-03-16)
+    Subject: HS Resources / HS Energy Services — consent status
+      Hi Sara,
+      
+      FYI. HS Resources' consent to the assignment remains valid and in place. HSR-HSESEnron.doc can proceed on that basis.
+      
+      Kay
+
+    From: Sara Shackleton   To: Kay Mann   (2001-03-16)
+    Subject: HS Resources / HS Energy Services — consent status
+      Kay:
+      
+      Confirmed — forwarding approval to continue processing HSR-HSESEnron.doc.
+      
+      Sara
+
+
+===== T08   n=3   KEPT =====
+CHECK: joint recover=2/2  leaked subsets=[]
+SECRET
+  concealment : City of Vernon power purchase agreement
+  true_fact   : The City of Vernon's power buyer lacks valid legal authority to bind the City to a purchase agreement with Enron.
+  false_belief: The City of Vernon's power buyer is fully authorized to execute and bind the City to a purchase agreement with Enron.
+  actor       : Elizabeth Sager — contract attorney on the City of Vernon matter
+  victim      : Richard Sanders — high-level legal reviewer and executive overseeing the deal
+
+ATOMS
+  a1 [true_state] The City of Vernon's power buyer does not have valid legal authority to bind the City to a purchase agreement with Enron, as set out in the authority memorandum prepared by outside counsel McCutchen, Doyle, Brown & Enersen regarding the City of Vernon matter.
+  a2 [knew] Elizabeth Sager knows that the City of Vernon's power buyer does not have valid legal authority to bind the City to a purchase agreement with Enron.
+  a3 [false_statement] Elizabeth Sager tells Richard Sanders that the City of Vernon's power buyer is authorized to bind the City to a purchase agreement with Enron.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Susan Scott forwards to Jeff Dasovich the authority memorandum titled 'Vernon-Auth-Memo_McCutchen.pdf', prepared by outside counsel McCutchen, Doyle, Brown & Enersen, noting it is the final version for the City of Vernon matter; the memo concludes that the City of Vernon's designated power buyer does not hold valid legal authority to bind the City to a purchase agreement with Enron. Jeff Dasovich replies confirming receipt and that the memo has been filed in the City of Vernon deal folder.
+    From: Susan Scott   To: Jeff Dasovich   (2000-12-04)
+    Subject: City of Vernon — Auth Memo (final), McCutchen Doyle
+      Jeff,
+      
+      Attached is the final version of Vernon-Auth-Memo_McCutchen.pdf from McCutchen, Doyle, Brown & Enersen. This is the one we've been waiting on re: the City of Vernon matter. Their conclusion is that the City's designated power buyer does not hold valid legal authority to bind the City to a purchase agreement with Enron.
+      
+      Let me know if you have questions.
+      
+      Susan
+
+    From: Jeff Dasovich   To: Susan Scott   (2000-12-04)
+    Subject: RE: City of Vernon — Auth Memo (final), McCutchen Doyle
+      Got it — filed in the City of Vernon deal folder.
+      
+      Jeff
+
+  CLUE 2 - carries: a2
+    plot: Tana Jones emails Elizabeth Sager attaching 'Vernon-Auth-Memo_McCutchen.pdf' and states that, per Mark Taylor's instruction, the document is being routed to Elizabeth Sager for review ahead of the City of Vernon closing checklist; Elizabeth Sager replies the same day confirming receipt and that the file has been reviewed.
+    From: Tana Jones   To: Elizabeth Sager   (2000-12-06)
+    Subject: City of Vernon — routing Vernon-Auth-Memo_McCutchen.pdf per Mark
+      Per Mark's instruction, attaching Vernon-Auth-Memo_McCutchen.pdf for your review ahead of the City of Vernon closing checklist. Let me know if you need anything else on this!
+      
+      Tana
+
+    From: Elizabeth Sager   To: Tana Jones   (2000-12-06)
+    Subject: RE: City of Vernon — routing Vernon-Auth-Memo_McCutchen.pdf per Mark
+      Got it — file reviewed
+      
+      Elizabeth
+      713-853-6349
+
+  CLUE 3 - carries: a3
+    plot: Elizabeth Sager emails Richard Sanders with the subject 'City of Vernon PPA — Counterparty Authority Confirmed', stating that the City of Vernon's power buyer is authorized to bind the City to the purchase agreement with Enron and that the deal is clear to proceed to execution; Richard Sanders replies directing the trading desk to finalize the City of Vernon power purchase agreement, and no question about buyer authority or any outside-counsel memorandum appears anywhere in the thread.
+    From: Elizabeth Sager   To: Richard Sanders   (2000-12-08)
+    Subject: City of Vernon PPA — Counterparty Authority Confirmed
+      Richard —
+      
+      Just wanted to flag that we've completed our review on the City of Vernon side. The City's designated power buyer is authorized to bind the City to the purchase agreement with Enron. Deal is clear to proceed to execution.
+      
+      Let me know if you need anything before we move forward.
+      
+      Elizabeth
+      713-853-6349
+
+    From: Richard Sanders   To: Elizabeth Sager   (2000-12-08)
+    Subject: RE: City of Vernon PPA — Counterparty Authority Confirmed
+      ok thx — telling the desk to finalize the City of Vernon PPA.
+
+
+===== T09   n=3   KEPT =====
+CHECK: joint recover=2/2  leaked subsets=[]
+SECRET
+  concealment : Schedule to the Master Agreement — Footnote #6 cross-default language for affiliated financial-institution counterparties
+  true_fact   : The additional cross-default sentence under Footnote #6 Part 1(b) — linking obligations when the counterparty is a financial institution that is also a credit institution affiliated with Enron — was negotiated and is present in the executed Schedule to the Master Agreement.
+  false_belief: Footnote #6 contains no additional cross-default sentence for affiliated financial-institution counterparties, and the executed Schedule imposes no such linkage.
+  actor       : Carol Clair — contract attorney handling the Schedule to the Master Agreement
+  victim      : Tana Jones — credit coordinator responsible for exposure analysis
+
+ATOMS
+  a1 [true_state] Footnote #6 in the Schedule to the Master Agreement includes the additional cross-default sentence under Part 1(b) covering counterparties that are financial institutions and credit institutions affiliated with Enron, inserted during final form negotiations of the executed Schedule.
+  a2 [knew] Carol Clair knows that the additional cross-default sentence under Footnote #6 Part 1(b) for affiliated financial-institution counterparties was agreed and inserted into the executed Schedule to the Master Agreement during final form negotiations.
+  a3 [false_statement] Carol Clair tells Tana Jones that Footnote #6 in the Schedule to the Master Agreement does not include the additional cross-default sentence under Part 1(b) for counterparties that are financial institutions affiliated with Enron — that language was considered but not carried into the final executed Schedule.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Elizabeth Sager circulates the fully executed Schedule to the Master Agreement, saved as SCH-MA-FN6_executed_v9.pdf, to Richard Sanders and Mark Taylor, noting that Footnote #6 Part 1(b) was expanded during final-form negotiations to include an additional cross-default sentence covering counterparties that are financial institutions and credit institutions affiliated with Enron, and that the file reflects the agreed final language.
+    From: Elizabeth Sager   To: Richard Sanders, Mark Taylor   (2001-03-12)
+    Subject: Executed Schedule — SCH-MA-FN6_executed_v9.pdf
+      Richard, Mark —
+      
+      Attached is the fully executed Schedule to the Master Agreement (SCH-MA-FN6_executed_v9.pdf). During final-form negotiations the counterparty pushed to expand Footnote #6 Part 1(b), and we agreed to add a cross-default sentence covering counterparties that are financial institutions and credit institutions affiliated with Enron. The file reflects that agreed final language.
+      
+      Elizabeth
+
+  CLUE 2 - carries: a2
+    plot: Carol Clair emails Sara Shackleton attaching SCH-MA-FN6_executed_v9.pdf and asks for confirmation of the internal deadline for circulating the Schedule summary, referencing the Footnote #6 Part 1(b) language as the provision Carol Clair has been working from in preparing the summary.
+    From: Carol Clair   To: Sara Shackleton   (2001-03-14)
+    Subject: Schedule Summary Deadline — SCH-MA-FN6_executed_v9.pdf
+      Sara:
+      Attached is SCH-MA-FN6_executed_v9.pdf. I've been working from the Footnote #6 Part 1(b) language in putting together the Schedule summary. Can you confirm the internal deadline for circulating it?
+      Thanks.
+      Carol
+
+  CLUE 3 - carries: a3
+    plot: Carol Clair writes to Tana Jones stating that Footnote #6 in the Schedule to the Master Agreement does not include any additional cross-default sentence under Part 1(b) for counterparties that are financial institutions affiliated with Enron — that language was considered during negotiations but was not carried into the final executed Schedule; Tana Jones replies confirming receipt of the clarification, notes no affiliated financial-institution positions will be flagged for re-analysis, and forwards the credit exposure assessment to the broader team as complete.
+    From: Carol Clair   To: Tana Jones   (2001-03-15)
+    Subject: Footnote #6 Part 1(b) — cross-default scope
+      Tana:
+      Just to clarify before you finalize the exposure analysis — Footnote #6 Part 1(b) in the executed Schedule does not include any additional cross-default sentence for counterparties that are financial institutions affiliated with Enron. that language came up during negotiations but it didn't make it into the final executed Schedule.
+      Carol
+
+    From: Tana Jones   To: Carol Clair   Cc: Sara Shackleton, Mark Taylor, Kay Mann, Elizabeth Sager   (2001-03-15)
+    Subject: Footnote #6 Part 1(b) — cross-default scope
+      Got it, thanks. no affiliated financial-institution positions flagged for re-analysis then. sending the credit exposure assessment to the team as complete now.
+
+
+===== T10   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : confidentiality language modifications to the ISDA agreement with the banking counterparty
+  true_fact   : The banking counterparty's requested confidentiality language removes the affiliate-disclosure carve-out, meaning Enron has no contractual permission to share deal terms with its affiliates under this ISDA agreement.
+  false_belief: The standard affiliate-disclosure carve-out remains intact in the counterparty's proposed confidentiality language, preserving Enron's permission to disclose deal terms to affiliates for hedging purposes.
+  actor       : Sara Shackleton — the legal and regulatory coordinator who reviewed the counterparty's requested changes
+  victim      : Richard Sanders — the high-level legal reviewer and executive who must approve the agreement
+
+ATOMS
+  a1 [true_state] The banking counterparty's proposed confidentiality language for the ISDA agreement — as set out in the changes forwarded on 2001-02-12 — contains no affiliate-disclosure carve-out; the four enumerated exceptions ((i) public availability, (ii) legal/regulatory compulsion, (iii) non-confidential source, (iv) the truncated fourth clause) do not include any provision permitting disclosure to affiliates for hedging or any other purpose.
+  a2 [knew] Sara Shackleton knows that the banking counterparty's proposed confidentiality language contains no affiliate-disclosure carve-out.
+  a3 [false_statement] Sara Shackleton tells Richard Sanders that the standard affiliate-disclosure carve-out is still present and operative in the counterparty's proposed confidentiality language, so Enron retains permission to share deal terms with affiliates for hedging purposes under the ISDA agreement.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 2001-02-12, Tana Jones circulates ISDA_Confid_Redline_20010212.docx to Carol Clair with a summary note listing the four confidentiality exceptions as proposed by the banking counterparty: (i) publicly available information, (ii) disclosure required by law or regulation, (iii) information received from a non-confidential source, and (iv) a truncated fourth clause. Tana Jones's note flags that the enumerated exceptions are exhaustive and that no provision permitting disclosure to affiliates for hedging or any other purpose appears anywhere in the confidentiality section.
+    From: Tana Jones   To: Carol Clair   (2001-02-12)
+    Subject: ISDA confid redline — counterparty markup
+      Carol,
+      
+      Attaching ISDA_Confid_Redline_20010212.docx — counterparty's proposed confidentiality language. their exceptions are listed as exhaustive (four only):
+      
+      1. publicly available information
+      2. disclosure required by law or regulation
+      3. info received from a non-confidential source
+      4. cuts off mid-sentence — no operative language follows
+      
+      For what it's worth, i've gone through the whole confidentiality section twice. there is no carve-out anywhere — not for affiliates, not for hedging, not for any internal purpose. the four exceptions above are it.
+      
+      Tana
+
+  CLUE 2 - carries: a2
+    plot: On 2001-02-13, Carol Clair forwards ISDA_Confid_Redline_20010212.docx to Sara Shackleton with a brief routing note stating that the counterparty's proposed confidentiality language is attached for Sara Shackleton's review ahead of the approval workflow. Sara Shackleton replies the same day confirming receipt and stating that the document has been reviewed.
+    From: Carol Clair   To: Sara Shackleton   (2001-02-13)
+    Subject: FW: ISDA confid redline — counterparty markup
+      Sara,
+      
+      Attaching ISDA_Confid_Redline_20010212.docx per the approval workflow — counterparty's proposed confidentiality language for your review before this moves up.
+      
+      Carol
+
+    From: Sara Shackleton   To: Carol Clair   (2001-02-13)
+    Subject: RE: FW: ISDA confid redline — counterparty markup
+      Carol:
+      
+      Got it. Document reviewed.
+      
+      Thanks.
+      Sara
+
+  CLUE 3 - carries: a3
+    plot: On 2001-02-15, Sara Shackleton sends Richard Sanders a one-paragraph memo advising that the banking counterparty's proposed confidentiality language has been reviewed and that the standard affiliate-disclosure carve-out remains present and operative, so Enron retains the ability to share deal terms with affiliates for hedging purposes under the ISDA agreement; Sara Shackleton recommends approval of the language as submitted. Richard Sanders replies the same day approving the proposed confidentiality language as acceptable, noting no revisions are required and directing that open transactions may proceed on the current terms.
+    From: Sara Shackleton   To: Richard Sanders   (2001-02-15)
+    Subject: ISDA confid language — approval request
+      Richard:
+      
+      Reviewed the counterparty's proposed confidentiality language (ISDA_Confid_Redline_20010212.docx). The standard affiliate-disclosure carve-out is present and operative — Enron retains ability to share deal terms with affiliates for hedging purposes under the agreement. Language is consistent with our standard ISDA position. Recommend approval as submitted.
+      
+      Thanks.
+      Sara
+
+    From: Richard Sanders   To: Sara Shackleton   (2001-02-15)
+    Subject: RE: ISDA confid language — approval request
+      Acceptable. No revisions needed — open transactions can proceed on current terms.
+

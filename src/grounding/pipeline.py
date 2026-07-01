@@ -14,7 +14,7 @@ import re
 
 from .corpus import Email
 from .prompts import (TOPIC_GEN_PROMPT, HYDE_PROMPT, FIT_JUDGE_PROMPT,
-                      SPECIALIZE_PROMPT, fill)
+                      SPECIALIZE_PROMPT, TYPE_CLAUSES, fill)
 from .retrieval import HybridRetriever, tokenize
 
 # ---------------------------------------------------------------------------
@@ -74,7 +74,7 @@ def parse_arr(raw: str) -> list | None:
 # ---------------------------------------------------------------------------
 
 def _sig(topic: dict) -> set[str]:
-    text = f"{topic.get('name','')} {topic.get('secret','')} {topic.get('either_or','')}"
+    text = f"{topic.get('name','')} {topic.get('secret','')} {topic.get('true_fact','')} {topic.get('false_belief','')}"
     return set(tokenize(text))
 
 
@@ -103,19 +103,21 @@ def is_duplicate(topic: dict, accepted: list[dict], thresh: float = 0.5) -> bool
 # Stages
 # ---------------------------------------------------------------------------
 
-def gen_topic(engine, category: str, accepted: list[dict], temperature: float = 0.8) -> dict | None:
+def gen_topic(engine, category: str, accepted: list[dict], secret_type: str = "",
+              temperature: float = 0.8) -> dict | None:
     avoid = "\n".join(f"- {a['name']}: {a.get('secret','')}" for a in accepted) or "- (none yet)"
-    prompt = fill(TOPIC_GEN_PROMPT, category=category, avoid=avoid)
+    prompt = fill(TOPIC_GEN_PROMPT, category=category, avoid=avoid,
+                  type_clause=TYPE_CLAUSES.get(secret_type, ""))
     raw = engine.generate(prompt, max_tokens=600, temperature=temperature)[0]
     topic = parse_obj(raw)
-    if topic and topic.get("name") and topic.get("either_or"):
+    if topic and topic.get("name") and topic.get("true_fact") and topic.get("false_belief"):
         topic["category"] = category
         return topic
     return None
 
 
 def gen_hyde(engine, topic: dict, temperature: float = 0.8) -> list[str]:
-    tjson = json.dumps({k: topic[k] for k in ("name", "secret", "either_or")}, ensure_ascii=False, indent=2)
+    tjson = json.dumps({k: topic[k] for k in ("name", "secret", "true_fact", "false_belief")}, ensure_ascii=False, indent=2)
     prompt = fill(HYDE_PROMPT, topic=tjson)
     raw = engine.generate(prompt, max_tokens=900, temperature=temperature)[0]
     arr = parse_arr(raw)
@@ -125,7 +127,7 @@ def gen_hyde(engine, topic: dict, temperature: float = 0.8) -> list[str]:
 
 def specialize(engine, topic: dict, anchor: Email, temperature: float = 0.4) -> dict | None:
     """Rewrite the abstract secret into a concrete one grounded on the picked email, or skip."""
-    abstract = json.dumps({k: topic.get(k) for k in ("name", "secret", "either_or")},
+    abstract = json.dumps({k: topic.get(k) for k in ("name", "secret", "true_fact", "false_belief")},
                           ensure_ascii=False, indent=2)
     prompt = fill(SPECIALIZE_PROMPT, abstract=abstract,
                   **{"from": anchor.from_name, "subject": anchor.subject,
@@ -135,7 +137,7 @@ def specialize(engine, topic: dict, anchor: Email, temperature: float = 0.4) -> 
 
 
 def judge_fit(engine, topic: dict, candidates: list[Email], temperature: float = 0.1) -> dict | None:
-    tjson = json.dumps({k: topic[k] for k in ("name", "secret", "either_or")}, ensure_ascii=False, indent=2)
+    tjson = json.dumps({k: topic[k] for k in ("name", "secret", "true_fact", "false_belief")}, ensure_ascii=False, indent=2)
     lines = []
     for e in candidates:
         v = e.for_judge()
@@ -147,19 +149,20 @@ def judge_fit(engine, topic: dict, candidates: list[Email], temperature: float =
 
 def propose_topic(engine, retriever: HybridRetriever, emails: list[Email],
                   category: str, avoid: list[dict], used_anchors: set | None = None,
-                  k_retrieve: int = 40, k_judge: int = 12) -> dict:
+                  k_retrieve: int = 40, k_judge: int = 12, secret_type: str = "") -> dict:
     """One full proposal. status in {grounded, none, dup, gen_error, hyde_error}.
 
     `avoid` = topics the next generation must NOT duplicate (already-written AND
-    already-rejected, so the one-at-a-time regenerate loop keeps moving to new ideas)."""
-    topic = gen_topic(engine, category, avoid)
+    already-rejected, so the one-at-a-time regenerate loop keeps moving to new ideas).
+    `secret_type` biases generation toward secrets suited to that concealment type."""
+    topic = gen_topic(engine, category, avoid, secret_type=secret_type)
     if not topic:
         return {"status": "gen_error", "topic": None}
     if is_duplicate(topic, avoid):
         return {"status": "dup", "topic": topic}
 
     hyde = gen_hyde(engine, topic)
-    queries = list(hyde) + [topic.get("either_or", ""), topic.get("secret", "")]
+    queries = list(hyde) + [topic.get("true_fact", ""), topic.get("false_belief", ""), topic.get("secret", "")]
     if not hyde:
         # still try with the topic text alone
         if not any(tokenize(q) for q in queries):
@@ -200,7 +203,8 @@ def propose_topic(engine, retriever: HybridRetriever, emails: list[Email],
     grounded = {**topic,
                 "name": _scrub_firm(spec.get("name") or topic.get("name")),
                 "secret": _scrub_firm(spec["secret"]),
-                "either_or": _scrub_firm(spec.get("either_or") or topic.get("either_or"))}
+                "true_fact": _scrub_firm(spec.get("true_fact") or topic.get("true_fact") or ""),
+                "false_belief": _scrub_firm(spec.get("false_belief") or topic.get("false_belief") or "")}
 
     return {
         "status": "grounded",
@@ -233,7 +237,7 @@ def propose_grounding(engine, retriever: HybridRetriever, emails: list[Email],
         return {"status": "dup", "topic": topic}
 
     hyde = gen_hyde(engine, topic)
-    queries = list(hyde) + [topic.get("either_or", ""), topic.get("secret", "")]
+    queries = list(hyde) + [topic.get("true_fact", ""), topic.get("false_belief", ""), topic.get("secret", "")]
     if not hyde and not any(tokenize(q) for q in queries):
         return {"status": "hyde_error", "topic": topic}
 

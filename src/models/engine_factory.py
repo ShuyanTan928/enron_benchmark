@@ -17,13 +17,16 @@ DEFAULT_SEED = 20260620
 
 
 def build_engine(kind: str, preset: str, tp: int = 2,
-                 seed: int = DEFAULT_SEED, gpu_mem: float = 0.9):
+                 seed: int = DEFAULT_SEED, gpu_mem: float = 0.9, max_model_len: int | None = None):
     """kind='vllm' → local tensor-parallel VLLMEngine; kind='api' → APIEngine (OpenRouter/
-    Gemini preset). `tp`/`seed`/`gpu_mem` apply to vLLM only and are ignored for API."""
+    Gemini preset). `tp`/`seed`/`gpu_mem`/`max_model_len` apply to vLLM only (ignored for API);
+    `max_model_len` overrides the preset cap so a long-context model can read a big haystack."""
     if kind == "vllm":
         from src.models.vllm_engine import VLLMEngine
-        return VLLMEngine.from_preset(
-            preset, tensor_parallel_size=tp, gpu_memory_utilization=gpu_mem, rng_seed=seed)
+        kw = dict(tensor_parallel_size=tp, gpu_memory_utilization=gpu_mem, rng_seed=seed)
+        if max_model_len:
+            kw["max_model_len"] = max_model_len
+        return VLLMEngine.from_preset(preset, **kw)
     if kind == "api":
         from src.models.api_engine import APIEngine
         return APIEngine.from_preset(preset)

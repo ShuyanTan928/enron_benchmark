@@ -63,10 +63,10 @@ def main():
         ]
         atoms = k.get("atoms") or []
         if atoms:
-            lines.append(f"  --- ATOMS ({len(atoms)}): role · carrier ---")
+            lines.append(f"  --- ATOMS ({len(atoms)}): core/support · role · carrier ---")
             for a in atoms:
-                lines.append(f"    {a.get('id')} [{a.get('role')} · via {a.get('carrier', 'body')}] "
-                             f"{a.get('fact', '')}")
+                lines.append(f"    {a.get('id')} [{'CORE' if a.get('core') else 'support'} · "
+                             f"{a.get('role')} · via {a.get('carrier', 'body')}] {a.get('fact', '')}")
             lines.append("")
         lines.append("  --- THE CLUES (what the benchmark shows the model) ---")
         for c in k.get("clues", []):

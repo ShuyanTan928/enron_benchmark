@@ -53,7 +53,9 @@ def _reground_msg(msg: dict, full: dict, first: dict) -> dict:
 
 
 def reground_clues(clues: list, full: dict, first: dict) -> list:
-    return [{**c, "messages": [_reground_msg(m, full, first) for m in c.get("messages", [])]}
+    return [{**c,
+             **({"plot": reground_text(c["plot"], full)} if c.get("plot") else {}),
+             "messages": [_reground_msg(m, full, first) for m in c.get("messages", [])]}
             for c in clues]
 
 

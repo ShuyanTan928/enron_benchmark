@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+"""Independently re-verify the AND property on the FINAL (regrounded, real-name) benchmark files.
+
+Generation certified AND on the anonymized clues with GPT-5+Gemini probers (stored `check`). This
+re-runs the same subset-leak / joint-recovery test on the shipped artifacts — using the record's own
+regrounded `answer` as the intended concealment so names line up — to catch any regression from
+regrounding. Prober = local gemma4-31b (free); waits for 2x A100-80 to free up first.
+
+  uv run python scripts/recheck_and.py
+"""
+import json
+import os
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+MIN_FREE, POLL = 50000, 120
+
+
+def wait_gpus():
+    while True:
+        out = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=index,name,memory.free", "--format=csv,noheader,nounits"],
+            text=True)
+        cards = sorted(((int(i), int(f)) for i, n, f in
+                        (x.split(",") for x in out.strip().splitlines()) if "A100 80GB" in n),
+                       key=lambda c: -c[1])
+        if len(cards) >= 2 and cards[1][1] >= MIN_FREE:
+            idxs = [cards[0][0], cards[1][0]]
+            print(f"GPUs ready {cards[:2]} -> CUDA_VISIBLE_DEVICES={idxs}", flush=True)
+            return idxs, min(0.85, round((cards[1][1] - 3000) / 81920, 2))
+        print(f"waiting for 2x A100-80 >= {MIN_FREE} free; {cards}", flush=True)
+        time.sleep(POLL)
+
+
+idxs, gpu_mem = wait_gpus()
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = ",".join(map(str, idxs))
+sys.path.insert(0, "scripts")
+sys.path.insert(0, ".")
+import email_generate as EG
+from src.models.engine_factory import build_engine
+
+eng = build_engine("vllm", "gemma4-31b", tp=2, gpu_mem=gpu_mem)
+solo = joint = [eng]
+
+for tag, fn in [("n2", "benchmark_pool/emails_lying_n2.jsonl"),
+                ("n3", "benchmark_pool/emails_lying_n3.jsonl")]:
+    print(f"\n===== {tag} — re-check AND on final regrounded clues (prober=gemma4-31b) =====",
+          flush=True)
+    for line in Path(fn).read_text().splitlines():
+        if not line.strip():
+            continue
+        r = json.loads(line)
+        if r.get("status", "KEPT") != "KEPT":
+            continue
+        intended = {k: r["answer"][k] for k in ("actor", "victim", "true_fact", "false_belief")}
+        ok, rep = EG.validate(solo, joint, r["clues"], intended, solo_thresh=1, joint_thresh=1)
+        stored = r.get("check", {})
+        flag = "" if (ok and not rep["leaks"]) else "   <-- CHECK"
+        print(f"  {r['topic_id']}: AND_ok={ok}  joint={rep['joint_votes']}/{rep['n_joint']}  "
+              f"leaks={rep['leaks']}   (stored: joint={stored.get('joint')} leaks={stored.get('leaks')}){flag}",
+              flush=True)
+print("\nDONE", flush=True)
