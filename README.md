@@ -171,15 +171,19 @@ Cost to **build** the benchmark (Stage 1 + 2), at OpenRouter list prices. Separa
 generate = Sonnet 4.6 ($3/$15); blind judge / AND-probe = GPT-5.4 ($2.5/$15) + Gemini-3.1-Pro
 (≈$1.25/$10) — the generator never grades its own secret.
 
-- **Stage 1 (topics + specs).** Ground each topic on a real anchor (HyDE + BM25 + a fit-judge gate),
-  then decompose it into the `a1/a2/a3` SPEC behind a blind spec-judge. Specs are cached and reused
-  across `n`.
-- **Stage 2 (clue emails).** One render call from the SPEC + the n-template, then a blind AND-check
-  (every proper subset must stay innocent **and** the full set must recover) → diagnose → re-render
-  loop (a few iterations).
+Cost per secret, by pipeline step (OpenRouter list prices; specs are cached and reused across `n`):
 
-Roughly **$0.3–0.5 per secret** at n = 2/3, so ≈ **$3–5 for 9 secrets**. Assembly (embedding clues in
-real corpus noise) is pure CPU ($0).
+| step | model (role) | what it pays for | ~cost / secret |
+|---|---|---|---|
+| Stage 1 · topic grounding | Sonnet (gen) + GPT-5.4 (fit-judge / type-gate) | seed the lying secret → HyDE → BM25 anchor → 5-check gate | ~$0.03 |
+| Stage 1 · spec decompose | Sonnet (gen) ⇄ GPT-5.4 (spec-judge) | topic → `a1/a2/a3` SPEC behind a blind decomposition gate | ~$0.05 |
+| Stage 2 · render clue emails | Sonnet (gen) | one call: write the n clue emails from SPEC + n-template | ~$0.05 |
+| Stage 2 · AND-check ⇄ diagnose loop | GPT-5.4 + Gemini-3.1-Pro (probe) · GPT-5.4 (diagnose) | subset-leak + joint-recovery probe → diagnose → re-render, a few iterations — the dominant cost | ~$0.15–0.30 |
+| Stage 2 · assemble | — (CPU) | bind Person A–J → real identities, embed in corpus noise | $0 |
+| **total** | Sonnet gen · GPT-5.4 + Gemini judge/probe | | **$0.3–0.5 / secret · ≈ $3–5 for 9 secrets** |
+
+The iteration loop (probe → diagnose → re-render) is where most of the money goes: a stubborn secret
+takes several rounds to clear the AND-check, and each round re-pays the render + two blind probes.
 
 Notes:
 - **Gemini-3.1-Pro is a reasoning prober**: it emits chain-of-thought, so probe/match `max_tokens` must
