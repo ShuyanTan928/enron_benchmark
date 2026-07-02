@@ -26,6 +26,7 @@ MODELS = {
     "deepseek-v4-pro":  ("deepseek_deepseek-v4-pro", "#ff7f0e", "^"),
     "gpt-5.4":          ("openai_gpt-5.4", "#d62728", "D"),
     "gemini-2.5-pro":   ("google_gemini-2.5-pro", "#9467bd", "P"),
+    "gemma4-31b (local)": ("gemma4-31b", "#8c564b", "*"),
 }
 
 

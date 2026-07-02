@@ -47,7 +47,9 @@ named record in the knowledge scene and the truth scene, a claim that can't be r
   concealment on its own, so a clue in it carries a piece that belongs to ANOTHER clue. From the
   evidence the reader leaned on (in Leakage findings), name WHICH clue carries WHICH foreign piece,
   and how to move it out — e.g. the truth clue also proving the actor knew (because the actor authored
-  / received / holds that very record), or a clue restating what another clue's record SAYS, etc.
+  / received / holds that very record — INCLUDING being merely one of several recipients / cc's on the
+  truth email; the actor must not be on the truth clue at all), or a clue restating what another clue's
+  record SAYS, etc.
 - WRONG_VICTIM         — recovered, but the misled party reads as someone other than <<VICTIM_LABEL>>.
 - WRONG_ACTOR          — recovered, but the concealer reads as someone other than the intended actor.
 - MISSING_true_state   — the real state isn't fully established, so the false claim can't be shown false.

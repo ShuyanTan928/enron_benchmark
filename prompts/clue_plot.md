@@ -59,9 +59,14 @@ the state to have flipped. The truth the reader sees must still be true at the i
 Walk every subset of your clues and ask: does it let a reader establish that someone KNOWINGLY
 misrepresented a fact?
   • each clue ALONE — must NOT. Alone, each clue is ordinary, unremarkable work mail.
-  • each PAIR — must NOT. truth + false-claim leaves it unproven that the claimant knew (so don't put
-    the truth record in the actor's own hands — that pair would then prove it); knowledge + false-claim
-    never shows the held record CONTRADICTS the claim; truth + knowledge has no claim yet.
+  • each PAIR — must NOT. truth + false-claim leaves it unproven that the claimant knew — so the ACTOR
+    must NOT appear anywhere on the TRUTH clue: not as its sender, and not among its recipients — not
+    even as one of several names on a group distribution / cc list. The instant the actor is on the
+    truth email, that email ALONE shows they received the truth, so truth + false-claim already proves
+    they knew and the knowledge clue (a2) becomes redundant → the pair leaks. The truth clue shows only
+    that the truth EXISTS (circulated among OTHER people); that the ACTOR learned it is established
+    SOLELY by the a2 clue. knowledge + false-claim never shows the held record CONTRADICTS the claim;
+    truth + knowledge has no claim yet.
   • ALL together — now the knowing misrepresentation is establishable, AND it is the ONLY reasonable
     explanation. If any innocent reading still survives — a timing gap (see "truth still hold at the
     moment of the claim" above), two unrelated matters, an honest mistake, etc. — the contradiction is
