@@ -6,6 +6,12 @@ single email gives it away, and no proper subset does either — only the whole 
 *who concealed what from whom*. The benchmark measures whether an LLM can recover that hidden
 concealment from the joined evidence.
 
+**At a glance**
+
+- **120 items** — 30 secrets × 2 mechanisms × 2 clue-counts, all currently passing (`120 / 120`).
+- Every item is grounded in real Enron people and, for work secrets, a real Enron document.
+- The generator never grades itself: a different vendor's model runs every check.
+
 ---
 
 ## The grid
@@ -36,6 +42,50 @@ together do — an **AND-gate**.
 
 The conclusion ("who hid what") lives only in the answer key. Whether a2 needs its own clue, and how a1
 may split, are decided by the clue-count `n`.
+
+---
+
+## Worked example
+
+One real item — **work · commission · n = 2** (topic T01).
+
+**Answer key** (hidden from the tested model):
+
+| field | value |
+|-------|-------|
+| actor | Sara Shackleton |
+| victim | Jeff Dasovich |
+| the truth | the firm-transport contract on the pipeline segment was **terminated** for non-payment; the desk no longer holds that capacity |
+| what the victim is led to believe | the contract is still active, and the capacity being booked and sold forward is legitimately held |
+
+The model sees only these two clues, scattered among hundreds of ordinary emails:
+
+> **Clue 1** — 2001-03-14 · Mark Taylor → Sara Shackleton
+> *FW: Interstate Pipeline Firm Transport Capacity Status 2001-03-14.xls*
+> "…Flag on the interstate segment — you'll want to review the entry."
+> 📎 attachment: `Contract Status: TERMINATED – no capacity held`
+> ↳ Sara replies: *"Received. I'll handle from here."*
+
+> **Clue 2** — 2001-03-19 · Sara Shackleton → Jeff Dasovich
+> *Interstate Pipeline Segment — Capacity Contract Status*
+> "…the transportation agreement on the key interstate segment **remains active and in good standing**.
+> Desk is authorized to continue booking and selling forward capacity under it."
+> ↳ Jeff replies: *"Understood — we'll proceed with the forward capacity bookings."*
+
+**Why it's an AND-gate:**
+
+```
+Clue 1 alone  →  "a contract was terminated." Who hid it? Unknown.           no leak
+Clue 2 alone  →  "Sara says it's active." Sounds like routine desk mail.     no leak
+─────────────────────────────────────────────────────────────────────────────────────
+Clue 1 + 2    →  Sara SAW it was terminated (she acked the sheet),           ✓ recover
+                 then told Jeff it's active → she knowingly lied.
+```
+
+**Paltering** keeps a1 and a2 the same but makes a3 *literally true*. In topic T06, the actor never says
+"our licence is valid" — she forwards a genuine memo on *which counterparties are exempt* from that
+licence, and lets the victim conclude "we're fine to proceed." Every sentence checks out; the inference
+is wrong.
 
 ---
 
@@ -81,6 +131,34 @@ STAGE 3 — EVAL     run_eval.py
 
 **Separation of duties:** the generator (Sonnet) never grades its own output — the AND-check's blind
 probers and the eval judge are always a different vendor (GPT-5 / Gemini).
+
+---
+
+## Cost
+
+Prices are OpenRouter list prices, approximate. Generator = Claude Sonnet.
+
+**Build — one-time, to generate all 120 items.** Each item runs an AND-check with two blind probers
+(GPT-5 + Gemini) and up to 3 diagnose→regenerate rounds, so cost is driven by how many retries an item
+needs.
+
+| stage | ~cost |
+|-------|-------|
+| topic pool (30 topics, gen + gate) | $3 – 5 |
+| items at n = 2 (60) | ~$0.30 each |
+| items at n = 3 (60) | ~$0.50 each |
+| **full 120-item build** | **$50 – 80** |
+
+**Run — evaluate one model over the 120 items.** Cost scales with haystack size (the noise level dial) ×
+repetitions × which model is tested.
+
+| configuration | ~cost |
+|---------------|-------|
+| single pass (120 items × 1 noise × 1 rep), API tester + Sonnet judge | $4 – 6 |
+| full noise sweep (e.g. 7 noise levels × 5 reps) | $120 – 200 |
+| local tester (vLLM) — only the judge is paid | $2 single / $70 sweep |
+
+Testing a local model with vLLM makes the tested-model calls free; only the cross-vendor judge is billed.
 
 ---
 
