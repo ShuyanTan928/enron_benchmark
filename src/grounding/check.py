@@ -69,15 +69,22 @@ def SonnetChecker(preset: str = "or-claude-sonnet", **kw) -> Checker:
 # silence). decision=write iff EVERY check is PASS.
 # ---------------------------------------------------------------------------
 def build_type_check_prompt(candidate: dict, secret_type: str) -> str:
+    from .prompts import CONCEALMENT_ACTS, compose_gate_checks, resolve_type
     t = candidate["topic"]
-    a = candidate["anchor"]
-    tjson = json.dumps({k: t.get(k) for k in ("name", "secret", "true_fact", "false_belief")},
+    # Secret-first topic is mechanism-agnostic: it carries one line `secret` + `category`, no
+    # true_fact/false_belief/act (those are derived later, at atomize). So the gate judges the SECRET and
+    # its register fit — not the concealing act, which is chosen downstream. No anchor here by design:
+    # whether the carrier came from the anchor is settled in code (pipeline.carrier_drift).
+    tjson = json.dumps({k: t.get(k) for k in ("name", "secret", "category")},
                        ensure_ascii=False, indent=2)
-    anchor = (f'From: {a.get("from", "")}  ->  To: {", ".join(a.get("to", []))}   '
-              f'({(a.get("date", "") or "")[:10]})\nSubject: "{a.get("subject", "")}"\n\n'
-              f'{candidate.get("anchor_full_body", a.get("snippet", ""))}')
-    judge = Path(f"prompts/topic_judge_{secret_type}.md").read_text()
-    return judge.replace("<<ANCHOR>>", anchor).replace("<<CANDIDATE>>", tjson)
+    register, mechanism = resolve_type(t.get("category", "casual"), secret_type)
+    if mechanism in CONCEALMENT_ACTS:          # commission/omission/paltering share ONE register-aware gate
+        reg_check, _ = compose_gate_checks(register, mechanism)
+        judge = (Path("prompts/topic_judge_concealment.md").read_text()
+                 .replace("<<REGISTER_CHECK>>", reg_check))
+    else:
+        judge = Path(f"prompts/topic_judge_{secret_type}.md").read_text()   # unknown type: its own file
+    return judge.replace("<<CANDIDATE>>", tjson)
 
 
 class TypeChecker:
@@ -94,10 +101,12 @@ class TypeChecker:
                                    max_tokens=self.max_tokens, temperature=self.temperature)[0]
         v = parse_obj(raw) or {}
         checks = [(k, val) for k, val in v.items() if isinstance(val, dict) and "verdict" in val]
-        fails = [k for k, val in checks if val.get("verdict", "").upper() != "PASS"]
+        # Only a FAIL sinks a secret. WEAK = "holds, but not the strongest version" — rejecting on
+        # WEAK made a 6-check conjunctive gate perfectionist and threw away usable secrets.
+        fails = [k for k, val in checks if val.get("verdict", "").upper() == "FAIL"]
         ok = bool(checks) and not fails
         reason = v.get("fix", "") or "; ".join(
             f"{k}:{(val.get('reason', '') or '')[:60]}" for k, val in checks
-            if val.get("verdict", "").upper() != "PASS")
+            if val.get("verdict", "").upper() == "FAIL")
         return {"decision": "write" if ok else "regenerate",
                 "failed_criteria": fails, "reason": reason[:200], "raw": raw}

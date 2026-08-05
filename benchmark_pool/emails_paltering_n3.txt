@@ -1,0 +1,2013 @@
+===== T01   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : terminated firm transportation capacity contract still being sold forward
+  true_fact   : The firm transportation contract on the key interstate pipeline segment was terminated by the counterparty for non-payment thirty days ago, and the desk no longer holds that capacity.
+  false_belief: The firm transportation capacity on that pipeline segment remains under valid contract and is available for the desk to book and sell forward.
+  actor       : Sara Shackleton — the concealer
+  victim      : Richard Sanders — the misled party
+
+ATOMS
+  a1 [true_state] The firm transportation contract on the key interstate pipeline segment is terminated — the counterparty cancelled it for non-payment — and the desk holds no capacity rights on that segment.
+  a2 [knew] Sara Shackleton knows the firm transportation contract on that pipeline segment is terminated and the desk holds no capacity rights on it.
+  a3 [misleading_truth] Sara Shackleton tells Richard Sanders that the desk's forward capacity positions on that pipeline segment are fully reflected in the current trading book and that all scheduled nominations are proceeding normally, without disclosing that the underlying firm transportation contract was terminated for non-payment, leaving Richard Sanders to conclude the capacity holdings are valid and the forward sales are backed by a live contract.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 14 March 2001, the interstate pipeline counterparty's contract-administration group sends Carol Clair a formal termination notice (subject: 'Firm Transportation Contract Termination – Segment 7 Capacity') attaching 'FT_Contract_Termination_Seg7_Mar2001.pdf', stating Enron transportation agreement is cancelled effective immediately for non-payment of February invoices and that all capacity rights on that segment are extinguished. Carol Clair acknowledges receipt the same day with a one-line reply: 'Received, filing now.'
+    From: Contract Administration <contractadmin@pipeline-counterparty.com>   To: Carol Clair   (2001-03-14)
+    Subject: Firm Transportation Contract Termination – Segment 7 Capacity
+      Please be advised that pursuant to Section 12.4 of Enron Transportation Agreement between [interstate pipeline counterparty] and Enron, said agreement is hereby terminated effective immediately.
+      
+      Termination is due to non-payment of invoices for the month of February 2001. All capacity rights held by Enron on Segment 7 are extinguished as of the date of this notice. Please see the attached formal termination notice for full detail.
+      
+      Attachment: FT_Contract_Termination_Seg7_Mar2001.pdf
+      
+      Regards,
+      Contract Administration
+      [Interstate Pipeline Counterparty]
+
+    From: Carol Clair   To: Contract Administration <contractadmin@pipeline-counterparty.com>   (2001-03-14)
+    Subject: RE: Firm Transportation Contract Termination – Segment 7 Capacity
+      Received, filing now.
+
+  CLUE 2 - carries: a2
+    plot: On 16 March 2001, Carol Clair forwards a contract-file document to Sara Shackleton under the subject 'FW: Segment 7 contract file – Ref S7-FT-204' with the attachment 'S7-FT-204.pdf' and the note 'Per your standing request for Segment 7 contract-status records — latest file attached.' Sara Shackleton replies the same afternoon: 'Got it, thanks — I'll handle from here.'
+    From: Carol Clair   To: Sara Shackleton   (2001-03-16)
+    Subject: FW: Segment 7 contract file – Ref S7-FT-204
+      Sara:
+      
+      Per your standing request for Segment 7 contract-status records — latest file attached.
+      
+      Attachment: S7-FT-204.pdf
+      
+      Carol
+
+    From: Sara Shackleton   To: Carol Clair   (2001-03-16)
+    Subject: RE: Segment 7 contract file – Ref S7-FT-204
+      Got it, thanks — I'll handle from here.
+
+  CLUE 3 - carries: a3
+    plot: On 22 March 2001, Sara Shackleton emails Richard Sanders (cc: Elizabeth Sager) under the subject 'Segment 7 Capacity – Forward Book & Nominations Update' writing: 'The current trading book reflects the desk's forward capacity positions on Segment 7, and scheduled nominations are moving through operations as submitted.' Richard Sanders replies on 23 March: 'Understood — I'll note the desk has positions and nominations on file for Segment 7.' Sara Shackleton does not reply.
+    From: Sara Shackleton   To: Richard Sanders   Cc: Elizabeth Sager   (2001-03-22)
+    Subject: Segment 7 Capacity – Forward Book & Nominations Update
+      Richard:
+      
+      The current trading book reflects the desk's forward capacity positions on Segment 7, and scheduled nominations are moving through operations as submitted.
+      
+      Thanks.
+      Sara
+
+    From: Richard Sanders   To: Sara Shackleton   Cc: Elizabeth Sager   (2001-03-23)
+    Subject: RE: Segment 7 Capacity – Forward Book & Nominations Update
+      Understood — I'll note the desk has positions and nominations on file for Segment 7.
+
+
+===== T02   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : rejected FERC tariff rate schedule amendment billed as approved
+  true_fact   : The rate schedule amendment filed with FERC for the Texas intrastate interconnect was rejected four months ago for procedural deficiencies and has never been refiled, so the amended rate has no regulatory approval.
+  false_belief: Sara Shackleton believes the amended rate is in effect under a valid, approved FERC tariff filing and that counterparties are being billed lawfully at that rate.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] The FERC rate schedule amendment for the Texas intrastate interconnect is in rejected, unfiled status — no approved tariff exists for the amended rate currently being billed to counterparties.
+  a2 [knew] Tana Jones knows the FERC amendment was rejected for procedural deficiencies four months ago and has never been refiled, while the desk continues billing counterparties at the amended rate.
+  a3 [misleading_truth] When Sara Shackleton asks about the Texas intrastate interconnect billing, Tana Jones points to the amended rate schedule on file and confirms that counterparties are being billed at the amended rate per the schedule — without disclosing that FERC rejected the underlying filing and it was never refiled — leading Sara Shackleton to conclude the billing is operating under a valid approved tariff.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 14 March 2001, Susan Scott sends Jeff Dasovich a one-page status memo (TX_Intrastate_Interconnect_FERC_Sched_Status.doc) listing the Texas intrastate interconnect rate schedule amendment as 'rejected – procedural deficiency, unfiled' with a rejection date of 15 November 2000; neither Sara Shackleton nor Tana Jones is on the message.
+    From: Susan Scott   To: Jeff Dasovich   (2001-03-14)
+    Subject: TX Intrastate Interconnect — FERC Rate Sched Status
+      Jeff,
+      
+      Attached is the current status memo for the Texas intrastate interconnect FERC rate schedule filings through Q1 2001. The amendment we submitted last year shows rejected — procedural deficiency, unfiled, rejection date 15 November 2000. Wanted you to have this for your risk/regulatory records.
+      
+      Let me know if you have questions.
+      
+      Susan
+      
+      [Attachment: TX_Intrastate_Interconnect_FERC_Sched_Status.doc]
+
+  CLUE 2 - carries: a2
+    plot: On 17 March 2001, Susan Scott forwards TX_Intrastate_Interconnect_FERC_Sched_Status.doc to Tana Jones with a one-line note asking her to update the interconnect billing file; Tana Jones replies the same day: 'Got it, will file with the others — thanks.'
+    From: Susan Scott   To: Tana Jones   (2001-03-17)
+    Subject: FW: TX Intrastate Interconnect — FERC Rate Sched Status
+      Tana,
+      
+      Can you update the interconnect billing file w/ the attached?
+      
+      Susan
+      
+      [Attachment: TX_Intrastate_Interconnect_FERC_Sched_Status.doc]
+
+    From: Tana Jones   To: Susan Scott   (2001-03-17)
+    Subject: RE: FW: TX Intrastate Interconnect — FERC Rate Sched Status
+      Got it, will file with the others — thanks.
+
+  CLUE 3 - carries: a3
+    plot: On 02 April 2001, Sara Shackleton emails Tana Jones asking whether the Texas intrastate interconnect counterparties are being billed correctly given a counterparty inquiry; Tana Jones replies the same day: 'Counterparties are being billed at the amended rate per the rate schedule on file — billing is running as expected per that schedule'; Sara Shackleton replies: 'Thanks, I'll let the counterparty know the billing is on track and close out their inquiry.'
+    From: Sara Shackleton   To: Tana Jones   (2001-04-02)
+    Subject: TX Intrastate Interconnect — Billing Inquiry
+      Tana:
+      
+      Got a counterparty inquiry on the TX intrastate interconnect billing. Can you confirm we're billing at the correct rate?
+      
+      Thanks.
+      Sara
+
+    From: Tana Jones   To: Sara Shackleton   (2001-04-02)
+    Subject: RE: TX Intrastate Interconnect — Billing Inquiry
+      Counterparties are being billed at the amended rate per the rate schedule on file — billing is running as expected per that schedule.
+
+    From: Sara Shackleton   To: Tana Jones   (2001-04-02)
+    Subject: RE: TX Intrastate Interconnect — Billing Inquiry
+      Thanks, I'll let the counterparty know the billing is on track and close out their inquiry.
+      
+      Sara
+
+
+===== T03   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : lapsed ISDA Master Agreement still used as valid netting and close-out cover for live gas swaps
+  true_fact   : The ISDA Master Agreement with the California municipal utility expired without renewal ninety days ago, so no valid netting or close-out protections are currently in place.
+  false_belief: The ISDA Master Agreement with the California municipal utility is still in force and continues to provide valid netting and close-out protections for the natural-gas swaps booked against it.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] The ISDA Master Agreement with the California municipal utility is lapsed — the executed amendment schedules were never returned by the utility, so the agreement carries no enforceable netting or close-out protections.
+  a2 [knew] Tana Jones knows the ISDA Master Agreement with the California municipal utility is lapsed and unenforceable for netting and close-out purposes.
+  a3 [misleading_truth] Tana Jones tells Sara Shackleton that the California municipal utility has an ISDA Master Agreement on file and that the desk has been booking natural-gas swaps against it continuously, without disclosing that the agreement expired ninety days ago and the amendment schedules were never executed, leading Sara Shackleton to treat the netting and close-out protections as currently valid.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 14 March 2001, Carol Clair emails Elizabeth Sager attaching 'CA Muni Utility ISDA Status 03-14-01.doc', flagging that the amendment schedules sent to the California municipal utility were never countersigned and returned, and that the Master Agreement has therefore been without enforceable netting or close-out cover for ninety days; Elizabeth Sager replies the same day acknowledging receipt and asking Carol Clair to keep the file current. Tana Jones is not on the thread.
+    From: Carol Clair   To: Elizabeth Sager   (2001-03-14)
+    Subject: CA Muni Utility ISDA Status 03-14-01.doc
+      Elizabeth,
+      
+      Attached is the current status doc for the CA municipal utility ISDA file. Summary: we sent the amendment schedules to the counterparty approx. 90 days ago — they were never countersigned and returned. The Master Agreement is therefore sitting without enforceable netting or close-out cover. Live gas swaps are booking against it in the interim.
+      
+      Let me know how you want to proceed.
+      
+      Carol
+
+    From: Elizabeth Sager   To: Carol Clair   (2001-03-14)
+    Subject: RE: CA Muni Utility ISDA Status 03-14-01.doc
+      Carol,
+      
+      Got it, thanks. Please keep the file current and flag me if anything changes on the counterparty side.
+      
+      Elizabeth
+
+  CLUE 2 - carries: a2
+    plot: On 15 March 2001, Carol Clair forwards the 'CA Muni Utility ISDA Status 03-14-01.doc' thread to Tana Jones with a one-line note asking C to take over tracking the file; Tana Jones replies the same afternoon, 'Got it, I'll handle from here.' Sara Shackleton is not on the thread.
+    From: Carol Clair   To: Tana Jones   (2001-03-15)
+    Subject: FW: CA Muni Utility ISDA Status 03-14-01.doc
+      Tana,
+      
+      Can you take over tracking this file going forward?
+      
+      Carol
+      
+      -----Original Message-----
+      From: Carol
+      Sent: Wednesday, March 14, 2001
+      To: Elizabeth
+      Subject: CA Muni Utility ISDA Status 03-14-01.doc
+      
+      Elizabeth,
+      
+      Attached is the current status doc for the CA municipal utility ISDA file. Summary: we sent the amendment schedules to the counterparty approx. 90 days ago — they were never countersigned and returned. The Master Agreement is therefore sitting without enforceable netting or close-out cover. Live gas swaps are booking against it in the interim.
+      
+      Let me know how you want to proceed.
+      
+      Carol
+
+    From: Tana Jones   To: Carol Clair   (2001-03-15)
+    Subject: RE: FW: CA Muni Utility ISDA Status 03-14-01.doc
+      Got it, I'll handle from here!
+
+  CLUE 3 - carries: a3
+    plot: On 22 March 2001, Tana Jones emails Sara Shackleton stating that the California municipal utility 'has an ISDA Master Agreement on file and the desk has been booking gas swaps against it continuously,' attaching 'CA Muni Utility ISDA Master Agmt.pdf' as confirmation; Sara Shackleton replies the same day thanking Tana Jones and noting that she will proceed on the basis that standard netting and close-out protections are in place for the open swap positions.
+    From: Tana Jones   To: Sara Shackleton   (2001-03-22)
+    Subject: CA Muni Utility — ISDA Master Agmt
+      Sara,
+      
+      FYI — the CA municipal utility has an ISDA Master Agreement on file and the desk has been booking gas swaps against it continuously. See attached.
+      
+      <<CA Muni Utility ISDA Master Agmt.pdf>>
+
+    From: Sara Shackleton   To: Tana Jones   (2001-03-22)
+    Subject: RE: CA Muni Utility — ISDA Master Agmt
+      Tana:
+      
+      Thanks. I'll proceed on the basis that standard netting and close-out protections are in place for the open swap positions.
+      
+      Sara
+
+
+===== T04   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : permanently curtailed firm pipeline nomination sold as deliverable supply
+  true_fact   : The firm daily nomination for 150,000 MMBtu on the Gulf Coast intrastate segment was permanently curtailed by the pipeline operator six weeks ago due to an unresolved imbalance penalty.
+  false_belief: The 150,000 MMBtu daily capacity on that segment remains deliverable firm supply available for sale to downstream buyers.
+  actor       : Tana Jones — the concealer
+  victim      : Carol Clair — the misled party
+
+ATOMS
+  a1 [true_state] The 150,000 MMBtu/day firm nomination on the Gulf Coast intrastate segment is permanently curtailed by the operator under an unresolved imbalance penalty.
+  a2 [knew] Tana Jones knows the nomination is permanently curtailed and the imbalance penalty remains unresolved.
+  a3 [misleading_truth] Tana Jones tells Carol Clair that the desk's confirmed nomination records show 150,000 MMBtu/day scheduled on that segment and that no formal termination notice has been received from the operator, leading Carol Clair to treat the capacity as deliverable without learning of the curtailment or the imbalance penalty behind it.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 14 March 2001, the Gulf Coast intrastate pipeline operator sends a formal curtailment notice (Gulf_Coast_Segment_Curtailment_Mar2001.pdf) to Jeff Dasovich and Susan Scott, stating that the 150,000 MMBtu/day firm nomination on the segment is permanently curtailed effective immediately due to an unresolved imbalance penalty on the account. Tana Jones and Carol Clair are not on the message.
+    From: Gulf Coast Pipeline Operator   To: Jeff Dasovich, Susan Scott   (2001-03-14)
+    Subject: NOTICE OF PERMANENT CURTAILMENT — Gulf Coast Intrastate Segment / Enron Account
+      Jeff, Susan —
+      
+      Please see the attached formal curtailment notice (Gulf_Coast_Segment_Curtailment_Mar2001.pdf) regarding Enron's firm nomination on the Gulf Coast intrastate segment.
+      
+      Effective immediately, the 150,000 MMBtu/day firm nomination on this segment is permanently curtailed. The curtailment is the result of an unresolved imbalance penalty outstanding on the account. Capacity will not be restored until the penalty balance is settled and the account brought into compliance.
+      
+      Please confirm receipt and direct any questions to our nominations desk at the number below.
+      
+      Regards,
+      Nominations & Scheduling
+      Gulf Coast Pipeline Operations
+
+  CLUE 2 - carries: a2
+    plot: On 15 March 2001, Susan Scott forwards an internal pipeline-segment file to Tana Jones under the subject line 'FW: Gulf Coast intrastate segment — GCIS-314,' with attachment GCIS-314.pdf, and a one-line note asking C to update the nominations tracking file; Tana Jones replies the same day: 'Got it — I'll take care of the file update.'
+    From: Susan Scott   To: Tana Jones   (2001-03-15)
+    Subject: FW: Gulf Coast intrastate segment — GCIS-314
+      Tana,
+      
+      See attached (GCIS-314.pdf) — can you update the nominations tracking file accordingly?
+      
+      Susan
+
+    From: Tana Jones   To: Susan Scott   (2001-03-15)
+    Subject: RE: Gulf Coast intrastate segment — GCIS-314
+      Got it — I'll take care of the file update.
+
+  CLUE 3 - carries: a3
+    plot: On 22 March 2001, Tana Jones emails Carol Clair attaching Gulf_Coast_Nominations_Desk_Log_Mar2001.xls and writes: 'The desk's confirmed nomination records show 150,000 MMBtu/day scheduled on the Gulf Coast intrastate segment and we have not received any formal termination notice from the operator, so the capacity should be treated as deliverable for the downstream buyer positions.' Carol Clair replies the same day: 'Thanks — I'll go ahead and confirm the supply to the Gulf Coast buyers on that basis,' and then sends a third message later that afternoon to the downstream buyers confirming deliverable supply of 150,000 MMBtu/day on the segment.
+    From: Tana Jones   To: Carol Clair   (2001-03-22)
+    Subject: Gulf Coast intrastate segment — nomination status
+      Carol,
+      
+      See attached (Gulf_Coast_Nominations_Desk_Log_Mar2001.xls). The desk's confirmed nomination records show 150,000 MMBtu/day scheduled on the Gulf Coast intrastate segment and we have not received any formal termination notice from the operator, so the capacity should be treated as deliverable for the downstream buyer positions.
+
+    From: Carol Clair   To: Tana Jones   (2001-03-22)
+    Subject: RE: Gulf Coast intrastate segment — nomination status
+      Thanks — I'll go ahead and confirm the supply to the Gulf Coast buyers on that basis.
+      Carol
+
+    From: Carol Clair   To: Gulf Coast Downstream Buyers   (2001-03-22)
+    Subject: Gulf Coast intrastate segment — supply confirmation
+      Per our records we are confirming deliverable supply of 150,000 MMBtu/day on the Gulf Coast intrastate segment. Let me know if you have any questions.
+      Carol
+
+
+===== T05   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : firm winter-peaking supply packages backed by storage withdrawal rights
+  true_fact   : The seasonal storage withdrawal rights agreement with the mid-continent natural gas storage operator was unilaterally withdrawn by the operator eight weeks ago following a capacity allocation dispute, leaving the desk with no access to the withdrawal volumes backing its firm winter-peaking supply packages.
+  false_belief: Carol Clair believes the firm winter-peaking supply packages sold to retail counterparties remain backed by accessible storage withdrawal volumes.
+  actor       : Sara Shackleton — the concealer
+  victim      : Carol Clair — the misled party
+
+ATOMS
+  a1 [true_state] The desk's seasonal storage withdrawal rights with the mid-continent operator are terminated; the withdrawal volumes backing the firm winter-peaking supply packages are no longer accessible.
+  a2 [knew] Sara Shackleton knows the storage withdrawal rights agreement has been terminated and that the firm winter-peaking supply packages sold to retail counterparties have no accessible withdrawal volumes behind them.
+  a3 [misleading_truth] Sara Shackleton tells Carol Clair that the winter-peaking supply packages are fully booked and confirmed with retail counterparties and that delivery schedules are on track — which is true as a sales and scheduling matter — so Carol Clair assumes the physical withdrawal volumes backing those packages remain in place.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 14 November 2000, Enserco Energy sends a termination confirmation letter to the Enron gas desk — addressed to Jeff Dasovich and Steven Kean — with subject 'Enserco Ref EC-4417 (Nov cycle)' and an attached file Enserco Ref EC-4417 Nov2000.pdf, whose body states that the mid-continent seasonal storage withdrawal rights agreement is terminated effective immediately and that no further withdrawal volumes will be honored under the winter-peaking supply packages. Sara Shackleton and Carol Clair are not on the message.
+    From: Enserco Energy   To: Jeff Dasovich, Steven Kean   (2000-11-14)
+    Subject: Enserco Ref EC-4417 (Nov cycle)
+      Jeff, Steven —
+      
+      Please see the attached termination confirmation letter (Enserco Storage Withdrawal Agreement Termination Nov2000.pdf).
+      
+      Effective immediately, the mid-continent seasonal storage withdrawal rights agreement between Enserco Energy and Enron is terminated. No further withdrawal volumes will be honored under the winter-peaking supply packages covered by that agreement.
+      
+      Please confirm receipt at your earliest convenience.
+      
+      Regards,
+      Enserco Energy
+      Contract Administration
+
+  CLUE 2 - carries: a2
+    plot: On 17 November 2000, Steven Kean forwards the 'Enserco Ref EC-4417 (Nov cycle)' thread to Sara Shackleton with a one-line note: 'Please confirm receipt and flag any contract-management follow-up needed on our end.' Sara Shackleton replies the same day: 'Received — I'll handle the follow-up on this end.' The forwarded subject line reads 'FWD: Enserco Ref EC-4417 (Nov cycle)' and the attachment is referenced only as Enserco Ref EC-4417 Nov2000.pdf; no body text from the original message is quoted or visible in the reply.
+    From: Steven Kean   To: Sara Shackleton   (2000-11-17)
+    Subject: FWD: Enserco Ref EC-4417 (Nov cycle)
+      Sara:
+      
+      Please confirm receipt of the attached (Enserco Ref EC-4417 Nov2000.pdf) and flag any contract-management follow-up needed on our end.
+      
+      Steven
+
+    From: Sara Shackleton   To: Steven Kean   (2000-11-17)
+    Subject: RE: FWD: Enserco Ref EC-4417 (Nov cycle)
+      Received — I'll handle the follow-up on this end.
+      
+      Thanks.
+      Sara
+
+  CLUE 3 - carries: a3
+    plot: On 29 November 2000, Sara Shackleton emails Carol Clair attaching Enserco Winter Peaking Supply Confirmations Nov2000.xls and writes: 'All winter-peaking packages are fully booked and confirmed with retail counterparties — delivery schedules are on track for the season; no action needed on your end.' Carol Clair replies the same day: 'Thanks — I'll close out the open items on my checklist and mark the storage-backed supply positions as settled for the December reporting cycle.'
+    From: Sara Shackleton   To: Carol Clair   (2000-11-29)
+    Subject: Enserco Winter Peaking Supply Confirmations Nov2000.xls — December cycle
+      Carol:
+      
+      See attached (Enserco Winter Peaking Supply Confirmations Nov2000.xls). All winter-peaking packages are fully booked & confirmed w/ retail counterparties — delivery schedules are on track for the season. No action needed on your end.
+      
+      Thanks.
+      Sara
+
+    From: Carol Clair   To: Sara Shackleton   (2000-11-29)
+    Subject: RE: Enserco Winter Peaking Supply Confirmations Nov2000.xls — December cycle
+      Sara:
+      Thanks — I'll close out the open items on my checklist and mark the storage-backed supply positions as settled for the December reporting cycle.
+      Carol
+
+
+===== T06   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : the firm's authorization to execute wholesale electricity sales in interstate commerce
+  true_fact   : The firm's FERC power marketer authorization has been revoked, making its ongoing wholesale electricity sales in interstate commerce unauthorized.
+  false_belief: Carol Clair believes the firm's FERC power marketer authorization is current and that the desk's wholesale electricity sales remain properly licensed.
+  actor       : Sara Shackleton — the concealer
+  victim      : Carol Clair — the misled party
+
+ATOMS
+  a1 [true_state] The firm's FERC power marketer authorization is revoked and the desk's wholesale electricity sales in interstate commerce lack any regulatory authorization.
+  a2 [knew] Sara Shackleton knows the firm's FERC power marketer authorization is revoked and that the desk is executing unauthorized wholesale electricity sales.
+  a3 [misleading_truth] Sara Shackleton points Carol Clair to the firm's active FERC entity registration and docket filings on record — which are genuinely on file — without mentioning the revocation, so Carol Clair treats the firm's wholesale sales activity as properly authorized.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: A FERC docket notice (FERC_Power_Marketer_Authorization_Status_2001.pdf) arrives in early January 2001 addressed to Jeff Dasovich and Susan Scott, confirming that Enron's power marketer authorization has been revoked effective immediately and that all wholesale electricity sales in interstate commerce are without regulatory authorization. Sara Shackleton is not on the message; Carol Clair is not on the message.
+    From: FERC   To: Jeff Dasovich, Susan Scott   (2001-01-05)
+    Subject: FERC Docket Notice — Power Marketer Authorization Status
+      Jeff / Susan:
+      
+      Please find attached FERC_Power_Marketer_Authorization_Status_2001.pdf.
+      
+      This notice confirms that Enron's power marketer authorization has been revoked effective immediately. All wholesale electricity sales in interstate commerce conducted by Enron are presently without regulatory authorization under the Federal Power Act.
+      
+      Please govern yourselves accordingly and direct any questions to the Office of Market Oversight and Investigations.
+      
+      Federal Energy Regulatory Commission
+      Office of Market Oversight and Investigations
+
+  CLUE 2 - carries: a2
+    plot: On January 9, 2001, Susan Scott forwards FERC_Power_Marketer_Authorization_Status_2001.pdf to Sara Shackleton with a one-line note asking B to confirm receipt for their records; Sara Shackleton replies the same day: 'Confirmed, I have it.' Carol Clair is not on the thread.
+    From: Susan Scott   To: Sara Shackleton   (2001-01-09)
+    Subject: FW: FERC Docket Notice — Power Marketer Authorization Status
+      Sara:
+      
+      Please confirm receipt of the attached (FERC_Power_Marketer_Authorization_Status_2001.pdf) for our records.
+      
+      Susan
+
+    From: Sara Shackleton   To: Susan Scott   (2001-01-09)
+    Subject: RE: FW: FERC Docket Notice — Power Marketer Authorization Status
+      Susan:
+      
+      Confirmed, I have it.
+      
+      Thanks.
+      Sara
+
+  CLUE 3 - carries: a3
+    plot: On January 17, 2001, Carol Clair emails Sara Shackleton asking whether Enron's FERC filings are in order before the desk books a new round of wholesale electricity transactions; Sara Shackleton replies the same day pointing D to FERC_Firm_Entity_Registration_and_Docket_Filings_2001.doc — 'these are the active registration and docket filings on record with FERC, everything looks to be in order' — without any mention of a revocation or lapse in authorization; Carol Clair replies on January 18: 'Thanks, I'll proceed on that basis and get the confirmations out today.'
+    From: Carol Clair   To: Sara Shackleton   (2001-01-17)
+    Subject: FERC filings — wholesale power transactions
+      Sara:
+      Before the desk books another round of wholesale electricity transactions I want to make sure our FERC filings are in order. Can you confirm?
+      Carol
+
+    From: Sara Shackleton   To: Carol Clair   (2001-01-17)
+    Subject: RE: FERC filings — wholesale power transactions
+      Carol:
+      
+      See attached — FERC_Firm_Entity_Registration_and_Docket_Filings_2001.doc. These are the active registration and docket filings on record w/ FERC; everything looks to be in order.
+      
+      Thanks.
+      Sara
+
+    From: Carol Clair   To: Sara Shackleton   (2001-01-18)
+    Subject: RE: FERC filings — wholesale power transactions
+      Sara:
+      Thanks. I'll proceed on that basis and get the confirmations out today.
+      Carol
+
+
+===== T07   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : lapsed pipeline interconnect balancing agreement still being scheduled as active
+  true_fact   : The long-term operational balancing agreement governing physical gas exchanges at the major mid-continent pipeline interconnect lapsed unrenewed sixty days ago after the counterparty operator declined to extend terms.
+  false_belief: The interconnect balancing agreement remains in force and daily volumes scheduled across that point are contractually supported.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] The operational balancing agreement at the mid-continent pipeline interconnect is lapsed and unrenewed, with no current contractual authority covering the daily physical gas exchanges being scheduled across that point.
+  a2 [knew] Tana Jones knows the interconnect balancing agreement lapsed unrenewed sixty days ago and that the desk is scheduling daily volumes across that point without valid contractual cover.
+  a3 [misleading_truth] When Sara Shackleton asks about scheduling continuity at the interconnect, Tana Jones confirms that daily volumes are flowing across the point and that no imbalance charges have been assessed, without disclosing that the underlying balancing agreement has lapsed, leading Sara Shackleton to conclude the arrangement remains contractually in force.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 14 March 2001, Susan Scott sends Jeff Dasovich a routine contract-status memo (Mid-Continent Interconnect Agreements Status Mar2001.doc) listing the pipeline operator's balancing agreement as 'expired 13 January 2001 — renewal pending, no executed replacement on file'; Sara Shackleton and Tana Jones are not on the message.
+    From: Susan Scott   To: Jeff Dasovich   (2001-03-14)
+    Subject: Mid-Continent Interconnect Agreements Status Mar2001.doc
+      Jeff,
+      
+      Attached is the monthly status memo for the mid-continent interconnect agreements. For your records — the pipeline operator's balancing agreement at the mid-continent interconnect point shows as expired 13 January 2001; renewal is pending and no executed replacement is on file as of today.
+      
+      Let me know if you need anything further on this.
+      
+      Susan
+
+  CLUE 2 - carries: a2
+    plot: On 16 March 2001, Carol Clair emails Tana Jones with the subject 'Mid-Continent Interconnect Agreements Status Mar2001.doc — please review and keep on your radar'; no attachment is included and no content of the memo is quoted. Tana Jones replies the same day: 'Got it, thanks.'
+    From: Carol Clair   To: Tana Jones   (2001-03-16)
+    Subject: Mid-Continent Interconnect Agreements Status Mar2001.doc — please review and keep on your radar
+      Tana,
+      
+      Please pull and review the Mid-Continent Interconnect Agreements Status Mar2001.doc and keep it on your radar.
+      
+      Carol
+
+    From: Tana Jones   To: Carol Clair   (2001-03-16)
+    Subject: RE: Mid-Continent Interconnect Agreements Status Mar2001.doc — please review and keep on your radar
+      Got it, thanks!
+
+  CLUE 3 - carries: a3
+    plot: On 19 March 2001, Sara Shackleton emails Tana Jones asking whether scheduling at the mid-continent interconnect point is running normally and whether the pipeline operator has raised any contractual issues (subject: 'Interconnect scheduling — status check'). Tana Jones replies the same day: 'Volumes are flowing across the point daily and the operator has not assessed any imbalance charges — no issues on our end.' Sara Shackleton replies on 20 March 2001: 'Good to know — I'll tell the desk to keep the point in the active schedule for Q2.'
+    From: Sara Shackleton   To: Tana Jones   (2001-03-19)
+    Subject: Interconnect scheduling — status check
+      Tana:
+      
+      Quick check on the mid-continent interconnect point w/ the pipeline operator — is scheduling running normally? Has the operator raised any contractual issues we should flag to the desk before Q2 planning?
+      
+      Thanks.
+      Sara
+
+    From: Tana Jones   To: Sara Shackleton   (2001-03-19)
+    Subject: RE: Interconnect scheduling — status check
+      Volumes are flowing across the point daily and the operator has not assessed any imbalance charges — no issues on our end.
+
+    From: Sara Shackleton   To: Tana Jones   (2001-03-20)
+    Subject: RE: Interconnect scheduling — status check
+      Good to know — I'll tell the desk to keep the point in the active schedule for Q2.
+      
+      Thanks.
+      Sara
+
+
+===== T08   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : rejected surface-use easement on compressor station tie-in for Southeast lateral
+  true_fact   : The surface-use easement required to operate the compressor station tie-in on the Southeast interstate lateral was rejected by the landowner and legally terminated sixty days ago, making the physical path non-operational.
+  false_belief: The Southeast interstate lateral's physical path remains operational and firm transportation capacity sold on it can be delivered.
+  actor       : Sara Shackleton — the concealer
+  victim      : Susan Scott — the misled party
+
+ATOMS
+  a1 [true_state] The surface-use easement for the compressor station tie-in on the Southeast interstate lateral is legally terminated, and the physical path is non-operational.
+  a2 [knew] Sara Shackleton knows the easement is legally terminated and the Southeast lateral's physical path is non-operational.
+  a3 [misleading_truth] Sara Shackleton tells Susan Scott that firm transportation capacity on the Southeast lateral continues to be sold and scheduled normally through the desk, without disclosing that the underlying easement was rejected and terminated sixty days ago, leading Susan Scott to treat the lateral as physically available.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Carol Clair sends Elizabeth Sager a routine right-of-way status memo (SE_Lateral_ROW_Status_Oct2001.doc) dated October 15, 2001, noting that the Southeast interstate lateral landowner has formally rejected the surface-use easement for the compressor station tie-in and that the easement is terminated effective that date, with the physical path listed as non-operational pending resolution. Neither Sara Shackleton nor Susan Scott is on the message.
+    From: Carol Clair   To: Elizabeth Sager   (2001-10-15)
+    Subject: SE Lateral ROW Status — Oct 2001
+      Elizabeth —
+      
+      Attached is the ROW status memo for the Southeast lateral (SE_Lateral_ROW_Status_Oct2001.doc).
+      
+      Key points for your review:
+      
+      - Southeast interstate lateral landowner has formally rejected the surface-use easement for the compressor station tie-in.
+      - Easement is terminated effective today, 10/15/01.
+      - Physical path is listed as non-operational pending resolution.
+      
+      Let me know if you need anything further on this.
+      
+      Carol
+
+  CLUE 2 - carries: a2
+    plot: Carol Clair, acting on the filing instruction from the October 15 memo, forwards SE_Lateral_ROW_Status_Oct2001.doc to Sara Shackleton on October 16, 2001 with a one-line note asking whether the file should go into the Southeast lateral project folder or the general ROW binder; Sara Shackleton replies the same day: 'Southeast lateral project folder is fine.' No content of the document is quoted or summarized.
+    From: Carol Clair   To: Sara Shackleton   (2001-10-16)
+    Subject: SE_Lateral_ROW_Status_Oct2001.doc — filing question
+      Sara —
+      
+      Forwarding the attached per the filing instruction from yesterday. Should this go into the Southeast lateral project folder or the general ROW binder?
+      
+      Carol
+
+    From: Sara Shackleton   To: Carol Clair   (2001-10-16)
+    Subject: RE: SE_Lateral_ROW_Status_Oct2001.doc — filing question
+      Carol:
+      
+      Southeast lateral project folder is fine.
+      
+      Thanks.
+      Sara
+
+  CLUE 3 - carries: a3
+    plot: On October 22, 2001, Sara Shackleton emails Susan Scott explaining that firm transportation capacity on the Southeast lateral is continuing to be sold and scheduled normally through the desk and that shippers can rely on the path for Q4 nominations, attaching a capacity schedule (SE_Lateral_Q4_Capacity_Schedule.xls) showing available volumes with no notation of any easement issue; Susan Scott replies the same day thanking Sara Shackleton and confirming that Enron's Q4 nominations for the Southeast lateral will be submitted on that basis, treating the path as physically available.
+    From: Sara Shackleton   To: Susan Scott   (2001-10-22)
+    Subject: SE Lateral — Q4 Capacity & Nominations
+      Susan:
+      
+      FYI — firm transportation capacity on the Southeast lateral is continuing to be sold & scheduled normally through the desk. Shippers can rely on the path for Q4 nominations. See attached capacity schedule (SE_Lateral_Q4_Capacity_Schedule.xls) for available volumes.
+      
+      Please let me know if you have questions.
+      
+      Thanks.
+      Sara
+
+    From: Susan Scott   To: Sara Shackleton   (2001-10-22)
+    Subject: RE: SE Lateral — Q4 Capacity & Nominations
+      Thanks Sara — Enron's Q4 nominations for the Southeast lateral will go in on that basis.
+      
+      Susan
+
+
+===== T09   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : bilateral netting agreement with Houston-based power marketer counterparty
+  true_fact   : The bilateral netting agreement with the Houston-based power marketer counterparty lapsed unrenewed sixty days ago, meaning gross positions now apply and the desk's net exposure figures understate true credit risk.
+  false_belief: Mark Taylor believes the netting agreement is in force and that the net exposure figures on the books accurately reflect the desk's credit risk to the Houston-based power marketer counterparty.
+  actor       : Tana Jones — the concealer
+  victim      : Mark Taylor — the misled party
+
+ATOMS
+  a1 [true_state] The bilateral netting agreement with the Houston-based power marketer counterparty is lapsed and unrenewed, so gross positions govern and the net exposure figures carried on the books do not reflect actual credit risk.
+  a2 [knew] Tana Jones knows the bilateral netting agreement with the Houston-based power marketer counterparty is lapsed and that the desk is carrying net rather than gross exposure figures.
+  a3 [misleading_truth] Tana Jones tells Mark Taylor that the exposure figures for the Houston-based power marketer counterparty are on the books and in the committee pack — which is true — so Mark Taylor assumes the figures accurately capture current credit risk and does not investigate whether the netting agreement underpinning them remains in force.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Carol Clair sends Sara Shackleton an internal credit-file memo dated 14 March 2001 attaching 'Houston PM Netting Agreement Status 2001-03-14.doc', noting that the bilateral netting agreement with the Houston-based power marketer counterparty expired on 31 December 2000 and no renewal has been executed, so gross positions govern all exposure calculations until further notice. Tana Jones is not on the message.
+    From: Carol Clair   To: Sara Shackleton   (2001-03-14)
+    Subject: Houston PM Netting Agreement Status 2001-03-14.doc
+      Sara —
+      
+      Attached is the current status memo on the bilateral netting agreement with the Houston-based power marketer counterparty. The agreement expired 31 December 2000 and no renewal has been executed to date. Until a new agreement is in place, gross positions govern all exposure calculations — please flag for your records accordingly.
+      
+      Let me know if you need anything else on this.
+      
+      Carol
+
+  CLUE 2 - carries: a2
+    plot: Carol Clair forwards 'Houston PM Netting Agreement Status 2001-03-14.doc' to Tana Jones on 15 March 2001 with a one-line note asking C to update the counterparty credit file accordingly; Tana Jones replies the same day: 'Got it, will file.' No content of the document is quoted or summarised in either message.
+    From: Carol Clair   To: Tana Jones   (2001-03-15)
+    Subject: FW: Houston PM Netting Agreement Status 2001-03-14.doc
+      Tana,
+      
+      Can you update the counterparty credit file w/ the attached? Thanks.
+      
+      Carol
+
+    From: Tana Jones   To: Carol Clair   (2001-03-15)
+    Subject: RE: FW: Houston PM Netting Agreement Status 2001-03-14.doc
+      Got it, will file.
+
+  CLUE 3 - carries: a3
+    plot: On 22 March 2001 Tana Jones emails Mark Taylor to say that the Houston-based power marketer counterparty's exposure figures are on the books and included in the credit committee pack ('Credit Committee Pack March 2001.xls'), and that everything needed for the committee review is in order. Mark Taylor replies the same day thanking C and confirming she will present the figures to the committee as the current credit exposure, noting no further diligence is needed since the figures are already in the pack.
+    From: Tana Jones   To: Mark Taylor   (2001-03-22)
+    Subject: Credit Committee Pack March 2001.xls — Houston PM exposure
+      Mark,
+      
+      Just a reminder — the Houston-based power marketer counterparty exposure figures are on the books and included in Credit Committee Pack March 2001.xls. Everything needed for the committee review is in order. Let me know if you need anything else!
+
+    From: Mark Taylor   To: Tana Jones   (2001-03-22)
+    Subject: RE: Credit Committee Pack March 2001.xls — Houston PM exposure
+      Thanks — I'll present those figures to the committee as the current credit exposure. No further diligence needed.
+      
+      Mark
+
+
+===== T10   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : lapsed Colorado retail natural gas marketing license
+  true_fact   : The firm's Colorado retail natural gas marketing license expired eight weeks ago after the renewal application was rejected by the state PUC for incomplete bonding documentation, and the desk is still executing retail supply contracts with Colorado commercial customers under an authorization it no longer holds.
+  false_belief: The firm's Colorado retail natural gas marketing desk remains duly licensed and authorized to execute retail supply contracts with Colorado commercial customers.
+  actor       : Sara Shackleton — the concealer
+  victim      : Jeff Dasovich — the misled party
+
+ATOMS
+  a1 [true_state] The firm's Colorado retail natural gas marketing license is expired and no longer valid, the renewal having been rejected by the state PUC for incomplete bonding documentation.
+  a2 [knew] Sara Shackleton knows the Colorado retail natural gas marketing license is expired and that the PUC rejected the renewal for incomplete bonding documentation.
+  a3 [misleading_truth] When Jeff Dasovich raises Colorado regulatory exposure in the Direct Access risk taxonomy, Sara Shackleton tells Jeff Dasovich that the Colorado commercial supply desk has active contracts on file and continues to serve its existing customer book — without disclosing that the license authorizing those contracts lapsed eight weeks ago — so Jeff Dasovich records no licensing deficiency in the risk inventory.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: The Colorado PUC sends a formal rejection letter (CO_Gas_License_Renewal_Rejection_08312001.pdf) to Enron's regulatory filings inbox, addressed to Carol Clair, stating that the retail natural gas marketing license renewal application is denied due to incomplete bonding documentation and that the existing license is therefore expired and void as of the rejection date. Carol Clair forwards the attachment to Susan Scott with a brief note asking J to log it in the state licensing tracker.
+    From: Colorado PUC   To: Carol Clair   (2001-08-31)
+    Subject: RE: Retail Natural Gas Marketing License Renewal Application — Enron — DENIAL
+      Dear Ms. [Carol],
+      
+      Please be advised that the Colorado Public Utilities Commission has reviewed the above-referenced renewal application submitted on behalf of Enron for its retail natural gas marketing license.
+      
+      The application is hereby DENIED. The basis for denial is incomplete bonding documentation — specifically, the required surety bond rider evidencing coverage for Colorado commercial gas customers was not included in the submission package.
+      
+      Accordingly, Enron's existing retail natural gas marketing license is expired and void as of the date of this correspondence.
+      
+      A copy of this determination is enclosed as CO_Gas_License_Renewal_Rejection_08312001.pdf. Please direct any questions to this office.
+      
+      Sincerely,
+      Colorado Public Utilities Commission
+      Licensing & Compliance Division
+
+    From: Carol Clair   To: Susan Scott   (2001-09-04)
+    Subject: FWD: Retail Natural Gas Marketing License Renewal Application — Enron — DENIAL
+      Susan —
+      
+      Please see attached (CO_Gas_License_Renewal_Rejection_08312001.pdf). CO PUC denied our gas license renewal — bonding docs were incomplete. License is apparently expired as of 8/31.
+      
+      Can you log this in the state licensing tracker?
+      
+      Thanks
+      Carol
+
+  CLUE 2 - carries: a2
+    plot: Susan Scott emails Carol Clair and Sara Shackleton asking for the correct internal cost-center code to complete the tracker entry for CO_Gas_File_08312001.pdf; Sara Shackleton replies to J and D with a short cost-center code and nothing else, placing Sara Shackleton visibly on the same filing record as the document Carol Clair received from the PUC without restating any of its contents.
+    From: Susan Scott   To: Carol Clair, Sara Shackleton   (2001-09-05)
+    Subject: CO_Gas_File_08312001.pdf — cost-center code for tracker entry
+      Carol / Sara —
+      
+      Finishing up the tracker entry for CO_Gas_File_08312001.pdf. Need the correct internal cost-center code before I close it out.
+      
+      Sara — can you confirm?
+      
+      Thanks
+      Susan
+
+    From: Sara Shackleton   To: Susan Scott, Carol Clair   (2001-09-05)
+    Subject: RE: CO_Gas_File_08312001.pdf — cost-center code for tracker entry
+      Susan:
+      
+      GL 7742-CO.
+      
+      Sara
+
+  CLUE 3 - carries: a3
+    plot: In a two-message email thread dated roughly eight weeks after the rejection, Jeff Dasovich writes to Sara Shackleton asking whether Enron's Colorado commercial gas supply operations carry any unresolved licensing exposure that should be flagged in the Direct Access risk taxonomy update (CO_DirectAccess_Risk_Taxonomy_Draft_10192001.doc attached); Sara Shackleton replies that the Colorado commercial supply desk has active contracts on file and continues to serve its existing customer book without interruption, and that no licensing item needs to be added to the taxonomy — Jeff Dasovich replies in a follow-up message confirming the Colorado licensing row will be marked 'no deficiency identified' and closes the item.
+    From: Jeff Dasovich   To: Sara Shackleton   (2001-10-19)
+    Subject: CO commercial gas — licensing exposure? (CO_DirectAccess_Risk_Taxonomy_Draft_10192001.doc)
+      Sara —
+      
+      Working through the Direct Access risk taxonomy update — see attached draft (CO_DirectAccess_Risk_Taxonomy_Draft_10192001.doc). Colorado commercial gas supply has a placeholder row for licensing status.
+      
+      Anything unresolved there we should flag?
+      
+      Best,
+      Jeff
+
+    From: Sara Shackleton   To: Jeff Dasovich   (2001-10-22)
+    Subject: RE: CO commercial gas — licensing exposure? (CO_DirectAccess_Risk_Taxonomy_Draft_10192001.doc)
+      Jeff:
+      
+      The Colorado commercial supply desk has active contracts on file and continues to serve its existing customer book without interruption. Nothing to add to the taxonomy on the licensing side.
+      
+      Thanks.
+      Sara
+
+    From: Jeff Dasovich   To: Sara Shackleton   (2001-10-22)
+    Subject: RE: CO commercial gas — licensing exposure? (CO_DirectAccess_Risk_Taxonomy_Draft_10192001.doc)
+      Got it — marking the Colorado licensing row 'no deficiency identified' and closing the item.
+      
+      Thanks
+      Jeff
+
+
+===== T11   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : revoked nursing licence and hospital volunteer credentialing
+  true_fact   : The colleague had their nursing licence revoked in another state for patient record falsification.
+  false_belief: Tana Jones believes the colleague is fully credentialled and suitable to recommend for the hospital volunteer credentialing program.
+  actor       : Susan Scott — the concealer
+  victim      : Tana Jones — the misled party
+
+ATOMS
+  a1 [true_state] The colleague holds no valid nursing licence — it was revoked by another state's board for patient record falsification.
+  a2 [knew] Susan Scott knows the colleague's nursing licence was revoked in another state for patient record falsification.
+  a3 [misleading_truth] Susan Scott tells Tana Jones that the colleague completed all required clinical training hours and has never had a disciplinary action filed against them in this state.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: In February 2001, the State Board of Nursing sends a formal revocation notice to Enron's volunteer credentialing file, addressed to Sara Shackleton as regulatory coordinator, confirming that the outside nurse's licence was revoked by the issuing state board for patient record falsification; the notice is date-stamped 14 February 2001 and filed as 'credentialing_record_4471.pdf' in the credentialing folder. Susan Scott is not named on the notice, and Tana Jones does not appear anywhere in the thread.
+    From: State Board of Nursing   To: Sara Shackleton   (2001-02-14)
+    Subject: Notice of License Action — Credentialing Record 4471
+      RE: Registered Nurse License — Board Action
+      Date of Action: February 14, 2001
+      
+      Dear Regulatory Coordinator, Enron:
+      
+      Please be advised that the above-referenced individual's registered nurse license has been revoked by this Board effective the date of this notice. The basis for revocation is falsification of patient records in violation of [State] Nursing Practice Act § 301.452(b).
+      
+      This notice is provided to your organization's credentialing file in accordance with applicable reporting requirements. The licensee is no longer authorized to practice as a registered nurse in this state.
+      
+      A certified copy of the Board's order is enclosed. Please retain this notice in your credentialing records accordingly.
+      
+      State Board of Nursing
+      Licensure Enforcement Division
+      
+      [Attachment: credentialing_record_4471.pdf]
+
+  CLUE 2 - carries: a2
+    plot: On 19 February 2001, Sara Shackleton emails Susan Scott with the subject 'FW: volunteer credentialing file — please file for records' and attaches 'credentialing_record_4471.pdf'; Susan Scott replies the same day with 'Confirmed — filed, thanks.' The body of neither message quotes, summarises, or describes the contents of the attachment.
+    From: Sara Shackleton   To: Susan Scott   (2001-02-19)
+    Subject: FW: volunteer credentialing file — please file for records
+      Susan,
+      
+      Please file the attached in the volunteer credentialing folder for your records. Let me know if you have any questions.
+      
+      Thanks,
+      Sara
+      
+      [Attachment: credentialing_record_4471.pdf]
+
+    From: Susan Scott   To: Sara Shackleton   (2001-02-19)
+    Subject: RE: FW: volunteer credentialing file — please file for records
+      Confirmed — filed, thanks.
+      
+      Susan
+
+  CLUE 3 - carries: a3
+    plot: On 7 March 2001, Susan Scott emails Tana Jones directly with the subject 'Re: outside nurse volunteer credentialing — background check summary', stating that the colleague has completed all required clinical training hours and has no disciplinary action on file in this state, and recommending approval to proceed; Tana Jones replies on 8 March 2001 confirming she will advance the credentialing paperwork on that basis and will notify the volunteer coordinator to schedule the nurse's first shift.
+    From: Susan Scott   To: Tana Jones   (2001-03-07)
+    Subject: Re: outside nurse volunteer credentialing — background check summary
+      Checked the file... clinical training hours are complete and there's no disciplinary action on record in this state. I'd say you're clear to move forward on credentialing.
+      
+      Susan
+
+    From: Tana Jones   To: Susan Scott   (2001-03-08)
+    Subject: Re: outside nurse volunteer credentialing — background check summary
+      Got it — will push the paperwork through and loop in the volunteer coordinator to get the first shift on the schedule. Thanks!
+
+
+===== T12   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : fitness of a candidate to lead the corporate driver safety outreach program
+  true_fact   : Susan Scott is facing a pending vehicular manslaughter charge stemming from a drunk-driving accident in another county.
+  false_belief: Sara Shackleton believes Susan Scott has no disqualifying legal or ethical issues and continues sponsoring Susan Scott's application to lead the company's corporate driver safety outreach program.
+  actor       : Kay Mann — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] Susan Scott has a pending vehicular manslaughter charge from a drunk-driving accident in an adjacent county, undisclosed to the team.
+  a2 [knew] Kay Mann knows Susan Scott is facing a pending vehicular manslaughter charge from a drunk-driving accident in another county.
+  a3 [misleading_truth] Kay Mann tells Sara Shackleton that Susan Scott has a spotless driving record with their current employer and has never had so much as a parking citation flagged in the company's own HR system.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: A court docket entry dated February 14, 2001 in the Brazoria County District Clerk's records lists a pending vehicular manslaughter charge against Susan Scott, case no. 2001-CR-0447, stemming from a DUI accident on December 3, 2000; the entry is pulled and filed by Jeff Dasovich as part of a routine regional compliance sweep, with a printed copy saved as 'brazoria_county_criminal_docket_feb2001.pdf' in Enron's regulatory tracking folder — Kay Mann and Sara Shackleton appear nowhere on it.
+    From: Jeff Dasovich   To: Steven Kean   (2001-02-14)
+    Subject: regional compliance sweep — Brazoria County criminal docket pull
+      Completed the routine regional compliance sweep for Brazoria County. Pulled and logged the attached docket entry dated today from the District Clerk's records — case no. 2001-CR-0447 is flagged for the tracking folder. Saved to regulatory tracking as 'brazoria_county_criminal_docket_feb2001.pdf'. No further action needed on my end — just documenting for the record.
+      
+      Jeff
+
+  CLUE 2 - carries: a2
+    plot: On February 16, 2001, Jeff Dasovich emails Kay Mann with the subject 'RCF-2187 — please review and retain'; the body says only 'Attaching regional compliance file per standard sweep — let me know if you need anything else' and attaches a file named 'rcf2187_regional_compliance_feb2001.pdf'; Kay Mann replies the same day: 'Got it, I'll hold this on my end — no need to circulate further.' The exchange shows Kay Mann received and acknowledged the same filing event logged in clue 1, but neither the email subject, body, nor filename names Brazoria County, vehicular manslaughter, Susan Scott, or any charge.
+    From: Jeff Dasovich   To: Kay Mann   (2001-02-16)
+    Subject: RCF-2187 — please review and retain
+      Attaching regional compliance file per standard sweep — let me know if you need anything else.
+      
+      Jeff
+
+    From: Kay Mann   To: Jeff Dasovich   (2001-02-16)
+    Subject: Re: RCF-2187 — please review and retain
+      Got it. I'll hold this on my end — no need to circulate further.
+      
+      Thanks, Kay
+
+  CLUE 3 - carries: a3
+    plot: On March 6, 2001, Kay Mann emails Sara Shackleton with the subject 'Re: J candidacy — driver safety program lead'; the message states: 'I checked with HR — J has a completely clean record in our system, no citations, no flags, nothing at all; their driving record with Enron is spotless.' Sara Shackleton replies on March 7: 'Perfect, that's exactly what I needed — I'll move forward with recommending J for the program lead role and send the paperwork to Mark Taylor today.'
+    From: Kay Mann   To: Sara Shackleton   (2001-03-06)
+    Subject: Re: J candidacy — driver safety program lead
+      FYI. I checked w/ HR — J's record in our system is completely clean. No citations no flags nothing at all. Driving record with Enron is spotless.
+      
+      Kay
+
+    From: Sara Shackleton   To: Kay Mann   (2001-03-07)
+    Subject: Re: J candidacy — driver safety program lead
+      Perfect. That's exactly what I needed — moving forward w/ the recommendation for program lead and sending paperwork to Mark today.
+      
+      Thanks.
+      Sara
+
+
+===== T13   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : Jeff Dasovich's fitness as a discretionary expense account signatory
+  true_fact   : Jeff Dasovich was quietly terminated from their previous employer for embezzling client funds.
+  false_belief: Tana Jones believes Jeff Dasovich is a trustworthy signatory on the office's discretionary expense account.
+  actor       : Mark Taylor — the concealer
+  victim      : Tana Jones — the misled party
+
+ATOMS
+  a1 [true_state] Jeff Dasovich is a former employee dismissed for embezzling client funds at their previous firm, a fact never disclosed to the current office.
+  a2 [knew] Mark Taylor knows that Jeff Dasovich was terminated from their previous employer for embezzling client funds.
+  a3 [misleading_truth] Mark Taylor tells Tana Jones that Jeff Dasovich's expense submissions have all come in properly documented and within approved limits every month this quarter — which is true — leaving Tana Jones to conclude there is no integrity problem with Jeff Dasovich as a signatory.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: In January 2001, Steven Kean sends Susan Scott a one-page internal background summary file — 'Jeff Dasovich prior employment review Jan2001.doc' — covering Jeff Dasovich's termination for cause at their previous firm due to misappropriation of client funds; Mark Taylor and Tana Jones are not on the message.
+    From: Steven Kean   To: Susan Scott   (2001-01-09)
+    Subject: Jeff prior employment review Jan2001.doc
+      Susan — attached is the one-page background summary on Jeff we pulled together for the signatory vetting file. Covers the termination for cause at their prior firm — misappropriation of client funds. Let me know if you need anything else on this.
+      
+      Steven
+
+  CLUE 2 - carries: a2
+    plot: Also in January 2001, Steven Kean forwards 'Jeff Dasovich prior employment review Jan2001.doc' to Mark Taylor with a brief routing note asking Mark Taylor to retain it for the signatory vetting file; Mark Taylor replies the same day confirming receipt and says they will keep it on file.
+    From: Steven Kean   To: Mark Taylor   (2001-01-09)
+    Subject: FW: Jeff prior employment review Jan2001.doc
+      Mark — please retain the attached for the signatory vetting file. Background summary on Jeff from prior employment review.
+      
+      Steven
+
+    From: Mark Taylor   To: Steven Kean   (2001-01-09)
+    Subject: RE: FW: Jeff prior employment review Jan2001.doc
+      Got it — will keep on file.
+      
+      Mark
+
+  CLUE 3 - carries: a3
+    plot: In early March 2001, Mark Taylor emails Tana Jones to confirm Jeff Dasovich's suitability as a discretionary expense account signatory, stating that Jeff Dasovich's expense submissions have been properly documented and within approved limits every month this quarter; Tana Jones replies the same day thanking Mark Taylor and confirming they will process Jeff Dasovich's signatory authorisation paperwork immediately.
+    From: Mark Taylor   To: Tana Jones   (2001-03-02)
+    Subject: Jeff — discretionary expense account signatory
+      Tana: Jeff's expense submissions have been properly documented and within approved limits every month this quarter.
+      
+      Mark
+
+    From: Tana Jones   To: Mark Taylor   (2001-03-02)
+    Subject: RE: Jeff — discretionary expense account signatory
+      Thanks! Will process the signatory authorisation paperwork right away.
+
+
+===== T14   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : Jeff Dasovich's suitability to chair the department's new employee wellness committee
+  true_fact   : Jeff Dasovich is currently enrolled in a court-mandated substance abuse treatment program following a drug possession arrest.
+  false_belief: Sara Shackleton believes Jeff Dasovich is fully fit and unencumbered to chair the department's new employee wellness committee.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] Jeff Dasovich is currently enrolled in a court-mandated substance abuse treatment program as a condition of a drug possession arrest disposition.
+  a2 [knew] Tana Jones knows that Jeff Dasovich is currently enrolled in a court-mandated substance abuse treatment program following a drug possession arrest.
+  a3 [misleading_truth] Tana Jones tells Sara Shackleton that Jeff Dasovich's regulatory and risk analysis work is current, their committee participation record this quarter is solid, and their calendar is clear for the wellness committee's launch dates — all of which is true.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On March 6, 2001, a court-administered treatment program coordinator at Lakewood Behavioral Health Services sends a routine enrollment-confirmation fax to Enron's HR compliance office, addressed to Steven Kean, listing Jeff Dasovich by name as an active participant in a court-mandated substance abuse treatment program per a drug possession arrest disposition; the fax header shows the program start date and next check-in date. Tana Jones and Sara Shackleton are both absent from the fax.
+    From: Lakewood Behavioral Health Services   To: Steven Kean   (2001-03-06)
+    Subject: Enrollment Confirmation — Court-Mandated Treatment Program
+      FAX TRANSMISSION
+      Lakewood Behavioral Health Services
+      4210 Lakewood Blvd., Suite 110
+      Lakewood, CA 90712
+      Tel: (562) 555-0183   Fax: (562) 555-0199
+      
+      Date: March 6, 2001
+      To: HR Compliance Office — Enron / Attn: Steven
+      From: Client Services Coordinator, Lakewood Behavioral Health Services
+      Pages: 1 (including cover)
+      
+      ---
+      
+      This fax serves as routine enrollment confirmation for the following participant in a court-administered substance abuse treatment program pursuant to disposition of a drug possession matter:
+      
+        Participant:        Jeff
+        Program Start:      February 19, 2001
+        Next Check-In:      March 20, 2001
+        Program Type:       Court-Mandated Substance Abuse Treatment
+        Referring Authority: [Court records on file]
+      
+      Please retain for your compliance records. Contact our office with any questions.
+      
+      Lakewood Behavioral Health Services
+      Client Services
+
+  CLUE 2 - carries: a2
+    plot: On March 8, 2001, Steven Kean forwards the Lakewood Behavioral Health Services enrollment-confirmation fax to Tana Jones with the subject line 'FW: Jeff Dasovich — treatment program enrollment record — please file' and attaches the document saved as 'Jeff Dasovich treatment enrollment march 2001.pdf'; Tana Jones replies the same day with 'Filed — I have it' and no further comment.
+    From: Steven Kean   To: Tana Jones   (2001-03-08)
+    Subject: FW: Jeff — treatment program enrollment record — please file
+      Tana —
+      
+      Please file the attached. Hard copy came in via fax to HR compliance March 6. Needs to go in Jeff's compliance folder — do not circulate.
+      
+      Steven
+      
+      [Attachment: Jeff treatment enrollment march 2001.pdf]
+
+    From: Tana Jones   To: Steven Kean   (2001-03-08)
+    Subject: RE: FW: Jeff — treatment program enrollment record — please file
+      Filed — I have it.
+
+  CLUE 3 - carries: a3
+    plot: On March 14, 2001, Sara Shackleton emails Tana Jones asking whether Jeff Dasovich is a sound choice to chair the new employee wellness committee, citing the need to confirm workload and availability before the March 28 launch; Tana Jones replies the same day stating that Jeff Dasovich's regulatory and risk analysis work is current, their committee participation record this quarter is solid, and their calendar is clear for all of the wellness committee's launch dates. Sara Shackleton replies on March 15 writing 'That settles it — I'll put Jeff Dasovich's name forward to Richard Sanders as chair this afternoon' and attaches a draft agenda saved as 'wellness committee launch agenda march 28 2001.doc'.
+    From: Sara Shackleton   To: Tana Jones   (2001-03-14)
+    Subject: Jeff — wellness committee chair
+      Tana:
+      
+      Before I put Jeff's name forward for the wellness committee chair slot, can you do a quick check:
+      
+      1. Is their current workload manageable — anything that would conflict w/ the March 28 launch?
+      2. How's their committee participation been this quarter?
+      
+      Need to confirm before we lock in. Thanks.
+      
+      Sara
+
+    From: Tana Jones   To: Sara Shackleton   (2001-03-14)
+    Subject: RE: Jeff — wellness committee chair
+      Sara,
+      
+      Regulatory and risk analysis work is current, nothing outstanding. Committee participation this quarter has been solid. Calendar is clear for all the March 28 launch dates. Should be fine. Thanks!
+
+    From: Sara Shackleton   To: Tana Jones   (2001-03-15)
+    Subject: RE: Jeff — wellness committee chair
+      That settles it — I'll put Jeff's name forward to Richard as chair this afternoon.
+      
+      Thanks.
+      
+      Sara
+      
+      [Attachment: wellness committee launch agenda march 28 2001.doc]
+
+
+===== T15   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : the colleague's fitness to oversee the internal mentorship and professional development program
+  true_fact   : The colleague was dismissed from their previous university position for plagiarizing a graduate student's research and passing it off as their own.
+  false_belief: Sara Shackleton believes the colleague has a clean professional record and is suitable to oversee the company's new internal mentorship and professional development program.
+  actor       : Kay Mann — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] The colleague is a person dismissed from their prior university role for plagiarizing a graduate student's research and presenting it as their own work.
+  a2 [knew] Kay Mann knows the colleague was dismissed from their previous university position for plagiarizing a graduate student's research and presenting it as their own.
+  a3 [misleading_truth] Kay Mann tells Sara Shackleton that the colleague's published research output and professional development contributions from their university years are all on record and well-documented in their portfolio.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On February 14, 2001, the colleague's former university department chair sends a formal separation record to the university's own Records Office for archiving, with subject line 'Faculty Separation — Academic Misconduct Finding'; the body states the colleague was dismissed for plagiarizing a graduate student's research and presenting it as their own work, and attaches a file named 'faculty separation academic misconduct feb2001.pdf'. Kay Mann, Sara Shackleton, and Steven Kean are not on this message.
+    From: Department Chair (University)   To: Records Office (University Archive)   (2001-02-14)
+    Subject: Faculty Separation — Academic Misconduct Finding
+      Dear Records Office,
+      
+      Please find attached the formal separation record for the above-referenced former faculty member for archiving. The termination was effective January 31, 2001 and was issued on grounds of academic misconduct following a completed departmental review. Specifically, the faculty member was found to have plagiarized a graduate student's research and presented it as their own work.
+      
+      The attached file — faculty separation academic misconduct feb2001.pdf — constitutes the official record from this department. Please confirm receipt and archive accordingly.
+      
+      Regards,
+      Department Chair
+      [University Department of Law & Policy]
+
+  CLUE 2 - carries: a2
+    plot: On February 28, 2001, Steven Kean forwards the colleague's candidate intake file to Kay Mann with a brief note: 'FYI — received this on the candidate you flagged for the mentorship program role; filing per standard process,' attaching a file named 'faculty separation feb2001.pdf'; Kay Mann replies the same day: 'Received, thank you.' Sara Shackleton is not on this thread.
+    From: Steven Kean   To: Kay Mann   (2001-02-28)
+    Subject: FYI — Candidate file
+      FYI — received this on the candidate you flagged for the mentorship program role; filing per standard process.
+      
+      [fwd: faculty separation feb2001.pdf]
+      
+      Steven
+
+    From: Kay Mann   To: Steven Kean   (2001-02-28)
+    Subject: RE: FYI — Candidate file
+      Received, thank you.
+      
+      Kay
+
+  CLUE 3 - carries: a3
+    plot: On March 5, 2001, Kay Mann emails Sara Shackleton recommending the colleague to oversee the internal mentorship and professional development program, writing: 'Their published research output and professional development contributions from their university years are all on record and thoroughly documented in their portfolio — I've reviewed it and it's solid.' Sara Shackleton replies on March 6: 'Thanks — that's exactly the kind of documented track record we need; I'll move forward with the appointment.'
+    From: Kay Mann   To: Sara Shackleton   (2001-03-05)
+    Subject: Mentorship Program — Proposed Oversight Lead
+      Hi Sara,
+      
+      Wanted to flag a strong candidate for the mentorship program oversight role. Their published research output and professional development contributions from their university years are all on record and thoroughly documented in their portfolio — I've reviewed it and it's solid.
+      
+      Worth a look when you have a minute.
+      
+      Thanks, Kay
+
+    From: Sara Shackleton   To: Kay Mann   (2001-03-06)
+    Subject: RE: Mentorship Program — Proposed Oversight Lead
+      Kay:
+      
+      Thanks — that's exactly the kind of documented track record we need. I'll move forward with the appointment.
+      
+      Sara
+
+
+===== T16   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : undisclosed Chapter 7 bankruptcy filing by a colleague
+  true_fact   : Kay Mann's colleague filed for Chapter 7 bankruptcy three months ago after defaulting on a string of personal loans.
+  false_belief: Tana Jones believes the colleague is creditworthy and co-signs a new lease agreement on their behalf without knowing about the bankruptcy filing.
+  actor       : Kay Mann — the concealer
+  victim      : Tana Jones — the misled party
+
+ATOMS
+  a1 [true_state] Kay Mann's colleague is currently an active Chapter 7 bankruptcy filer with multiple defaulted personal loans on record.
+  a2 [knew] Kay Mann knows the colleague is an active Chapter 7 bankruptcy filer with multiple defaulted personal loans on record.
+  a3 [misleading_truth] Kay Mann tells Tana Jones that the colleague has been fully current on all their workplace obligations and has never missed a single payment deadline on any office-related account.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: In February 2001, a credit screening firm called CreditVerify sends a formal bankruptcy-status notice to Sara Shackleton at Enron under subject line 'Account Verification Ref 4417,' confirming that a named colleague holds an active Chapter 7 filing with three defaulted personal loans on record; the notice attaches a one-page summary file named 'account_verification_ref4417_feb2001.pdf.' Kay Mann and Tana Jones are neither addressees nor copied, and the notice contains no mention of any lease, lease review, or pending transaction.
+    From: CreditVerify Solutions   To: Sara Shackleton   (2001-02-14)
+    Subject: Account Verification Ref 4417
+      Dear Sir/Madam,
+      
+      Please find attached our formal bankruptcy-status notice prepared for Enron.
+      
+      Our records confirm that the above-referenced individual holds an active Chapter 7 bankruptcy filing as of this date, with three defaulted personal loans on record. A one-page summary is attached for your files: account_verification_ref4417_feb2001.pdf.
+      
+      Please retain this notice per your standard logging procedures. Contact our office with any questions.
+      
+      Regards,
+      CreditVerify Solutions
+      Bankruptcy & Credit Verification Services
+
+  CLUE 2 - carries: a2
+    plot: On February 28, 2001, Sara Shackleton forwards to Kay Mann a brief internal routing note — subject line 'FW: Account Verification Ref 4417 — Please Confirm Receipt' — asking Kay Mann to acknowledge receipt for the file log; Kay Mann replies the same day: 'Confirmed, received. Will keep on file.' No attachment is re-sent; only the neutral reference number and subject line travel with the forward, carrying no description of the underlying record's contents.
+    From: Sara Shackleton   To: Kay Mann   (2001-02-28)
+    Subject: FW: Account Verification Ref 4417 — Please Confirm Receipt
+      Hi Kay,
+      
+      Forwarding for your awareness — ref 4417. Can you confirm receipt for the file log?
+      
+      Sara
+
+    From: Kay Mann   To: Sara Shackleton   (2001-02-28)
+    Subject: RE: FW: Account Verification Ref 4417 — Please Confirm Receipt
+      Confirmed, received. Will keep on file.
+      
+      Kay
+
+  CLUE 3 - carries: a3
+    plot: On March 5, 2001, Kay Mann emails Tana Jones — subject 'Colleague Background — Lease Counterparty Check' — stating that the colleague 'has been fully current on all workplace obligations and has never missed a single payment deadline on any office-related account,' and that Tana Jones should feel comfortable proceeding with the new lease agreement review. Tana Jones replies on March 6: 'Thanks — that's reassuring. I'll move forward with the lease counterparty approval and flag it as cleared on our end.'
+    From: Kay Mann   To: Tana Jones   (2001-03-05)
+    Subject: Colleague Background — Lease Counterparty Check
+      Hi Tana,
+      
+      FYI. The colleague has been fully current on all workplace obligations and has never missed a single payment deadline on any office-related account. You should be fine moving ahead w/ the new lease agreement review.
+      
+      Kay
+
+    From: Tana Jones   To: Kay Mann   (2001-03-06)
+    Subject: RE: Colleague Background — Lease Counterparty Check
+      Thanks — that's reassuring. I'll move forward with the lease counterparty approval and flag it as cleared on our end.
+
+
+===== T17   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : professional engineering license validity for certifying engineer on client deliverables
+  true_fact   : The colleague's professional engineering license on file is a forgery; they hold no valid PE credential.
+  false_belief: Tana Jones believes the colleague is a legitimately licensed professional engineer and continues listing them as the certifying engineer on client deliverables already in the field.
+  actor       : Kay Mann — the concealer
+  victim      : Tana Jones — the misled party
+
+ATOMS
+  a1 [true_state] The colleague's professional engineering license on file is a forged document; they are not a licensed professional engineer.
+  a2 [knew] Kay Mann knows the colleague's professional engineering license on file is a forged document and that they hold no valid PE credential.
+  a3 [misleading_truth] Kay Mann tells Tana Jones that the colleague's certification paperwork is in the project file and all the client deliverables are stamped and on schedule for the current series.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Sara Shackleton emails Carol Clair in early March 2001 attaching a file named 'colleague PE license verification march 2001.pdf', flagging that the state licensing board's online registry shows no active PE credential for the colleague and asking D to update the project compliance folder accordingly. Kay Mann and Tana Jones are not on the message.
+    From: Sara Shackleton   To: Carol Clair   (2001-03-02)
+    Subject: colleague PE license verification march 2001.pdf — project compliance folder
+      Carol,
+      
+      Attached is the PE license verification pull for the colleague certifying our current client deliverables. I ran the state licensing board's online registry this morning — no active PE credential is showing for her.
+      
+      Can you update the project compliance folder with the attached and flag accordingly? We'll need this squared away before the next deliverable cycle.
+      
+      Sara
+
+  CLUE 2 - carries: a2
+    plot: On March 8 2001 Mark Taylor sends Kay Mann a one-line email with subject 'project compliance folder — certification record March 2001', saying 'FYI — forwarding for the project compliance record. Can you confirm receipt?' Kay Mann replies the same day: 'Confirmed. I have the certification record.' No message body from the original thread is quoted, no attachment is included, and the content of the underlying record is not described.
+    From: Mark Taylor   To: Kay Mann   (2001-03-08)
+    Subject: project compliance folder — certification record March 2001
+      Kay,
+      
+      FYI — forwarding for the project compliance record. Can you confirm receipt?
+      
+      Mark
+
+    From: Kay Mann   To: Mark Taylor   (2001-03-08)
+    Subject: RE: project compliance folder — certification record March 2001
+      Confirmed. I have the certification record.
+      
+      Kay
+
+  CLUE 3 - carries: a3
+    plot: On March 14 2001 Kay Mann emails Tana Jones saying the colleague's certification paperwork is in the project file, all client deliverables for the current series are stamped and on schedule, and no action is needed on C's end. Tana Jones replies the same day thanking A and confirming she will mark the compliance checklist complete and release the deliverables to the client as planned.
+    From: Kay Mann   To: Tana Jones   (2001-03-14)
+    Subject: current deliverables series — certification status
+      Hi Tana,
+      
+      FYI. Certification paperwork for the current series is in the project file. All deliverables are stamped and on schedule for client release. No action needed on your end.
+      
+      Thanks, Kay
+
+    From: Tana Jones   To: Kay Mann   (2001-03-14)
+    Subject: RE: current deliverables series — certification status
+      Thanks! Marking the compliance checklist complete and releasing to the client as planned.
+
+
+===== T18   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : Tana Jones's employment eligibility and identity on federally funded project compliance paperwork
+  true_fact   : Tana Jones obtained their current position by presenting a relative's Social Security number and is not authorized to work under the identity on file.
+  false_belief: Sara Shackleton believes Tana Jones's employment records are legitimate and continues filing Tana Jones's name on federally funded project compliance paperwork without scrutiny.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] Tana Jones's employment identity on file is a borrowed Social Security number belonging to a relative; Tana Jones is not the authorized holder of that number.
+  a2 [knew] Tana Jones knows their employment identity on file is a borrowed Social Security number belonging to a relative and that they are not the authorized holder of that number.
+  a3 [misleading_truth] Tana Jones tells Sara Shackleton that all of their compliance certifications and project enrollment forms for the federally funded work are current, signed, and on file — which is true, the paperwork is fully submitted and up to date.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: In February 2001, Jeff Dasovich and Susan Scott exchange a two-message thread about a routine Social Security number verification discrepancy flagged during federally funded project compliance screening; the attached file, named 'SSN_verification_discrepancy_feb2001.doc', shows that the number on file under Tana Jones's employment record belongs to a different individual — Tana Jones's relative. Neither Sara Shackleton nor Tana Jones is on the thread.
+    From: Jeff Dasovich   To: Susan Scott   (2001-02-14)
+    Subject: SSN verification discrepancy — federally funded project compliance screening
+      Susan,
+      
+      Flagging something that came up in the latest compliance screening pass for the federally funded project roster. Attached is SSN_verification_discrepancy_feb2001.doc — the SSN on file under one of the coordinator-level employees doesn't match the individual it's registered to in the federal database. Number appears to belong to a different person, looks like a relative based on the surname match in the SSN records.
+      
+      Not sure if this is a data entry error on our end or something that needs to go further. Wanted your read before we escalate or just kick it back to admin for correction.
+      
+      Jeff
+
+    From: Susan Scott   To: Jeff Dasovich   (2001-02-15)
+    Subject: RE: SSN verification discrepancy — federally funded project compliance screening
+      Jeff —
+      
+      Thanks for flagging. Reviewed SSN_verification_discrepancy_feb2001.doc. You're right that the number on file doesn't correspond to the employee of record — it traces to a different individual with the same family name. That's not a data entry issue; that's a compliance problem under the federally funded project eligibility requirements.
+      
+      For now, let's route this through the normal compliance cycle rather than escalate directly. The next verification window is in March — if the file isn't corrected by then it'll surface again and we'll have a cleaner paper trail. I'd hold the doc and let the cycle do its work.
+      
+      Susan
+
+  CLUE 2 - carries: a2
+    plot: On March 5, 2001, Carol Clair sends Tana Jones a one-line internal message referencing the February SSN verification discrepancy thread ('re: SSN_verification_discrepancy_feb2001.doc') and asking Tana Jones to confirm their file is in order before the next compliance cycle; Tana Jones replies the same day, 'Confirmed, I'll make sure everything is set.'
+    From: Carol Clair   To: Tana Jones   (2001-03-05)
+    Subject: file check — re: SSN_verification_discrepancy_feb2001.doc
+      Tana,
+      
+      Compliance cycle runs end of this week — can you confirm your file is in order before it kicks off?
+      
+      Carol
+
+    From: Tana Jones   To: Carol Clair   (2001-03-05)
+    Subject: RE: file check — re: SSN_verification_discrepancy_feb2001.doc
+      Confirmed, I'll make sure everything is set.
+
+  CLUE 3 - carries: a3
+    plot: On March 12, 2001, Tana Jones emails Sara Shackleton stating that all compliance certifications and project enrollment forms for the federally funded work are current, signed, and on file, attaching 'federal_project_compliance_certifications_march2001.pdf' as evidence; Sara Shackleton replies on March 13 thanking Tana Jones and confirming the project enrollment will proceed on the basis of those submissions.
+    From: Tana Jones   To: Sara Shackleton   (2001-03-12)
+    Subject: federally funded project — compliance certifications on file
+      Sara,
+      
+      All certifications and enrollment forms for the federally funded project are current, signed, and on file as of today. See attached federal_project_compliance_certifications_march2001.pdf.
+      
+      Let me know if you need anything else before enrollment moves forward!
+
+    From: Sara Shackleton   To: Tana Jones   (2001-03-13)
+    Subject: RE: federally funded project — compliance certifications on file
+      Tana:
+      
+      Thanks. Project enrollment will proceed on the basis of these submissions.
+      
+      Sara
+
+
+===== T19   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : undisclosed disbarment of a contract reviewer
+  true_fact   : The colleague was disbarred two years ago for misappropriating client settlement funds and is no longer a licensed attorney.
+  false_belief: Tana Jones believes the colleague is a currently practicing attorney qualified to handle contract review work.
+  actor       : Kay Mann — the concealer
+  victim      : Tana Jones — the misled party
+
+ATOMS
+  a1 [true_state] The colleague is a disbarred individual, stripped of their law license two years ago for misappropriating client settlement funds, and holds no active bar membership.
+  a2 [knew] Kay Mann knows the colleague is disbarred and has not held an active law license for two years.
+  a3 [misleading_truth] Kay Mann tells Tana Jones that the colleague has been handling contract review matters for years and has never had a single filing rejected or a client complaint lodged against them.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: In January 2001, Susan Scott — a regulatory compliance specialist — receives a state bar disciplinary bulletin listing recent disbarments; the bulletin, dated January 8 2001, names the colleague (a contract reviewer Enron has used) as disbarred effective March 1999 for misappropriation of client settlement funds, with bar membership listed as inactive. Susan Scott files the bulletin under routine regulatory intake and routes a copy to Jeff Dasovich for risk-file archiving, attaching it as 'state_bar_disciplinary_bulletin_jan2001.pdf'. Kay Mann is not on this exchange.
+    From: Susan Scott   To: Jeff Dasovich   (2001-01-08)
+    Subject: state bar disciplinary bulletin – jan 2001 intake
+      Jeff,
+      
+      Routine regulatory intake for your risk-file archive. January 8 bulletin from the state bar lists several recent disciplinary actions — one entry flagged for our files: a contract reviewer we have used appears on the inactive membership list, disbarred effective March 1999 for misappropriation of client settlement funds.
+      
+      Attaching the bulletin for archiving per standard procedure. Let me know if you need anything further from my end.
+      
+      Susan
+      
+      [Attachment: state_bar_disciplinary_bulletin_jan2001.pdf]
+
+  CLUE 2 - carries: a2
+    plot: On January 12 2001, Jeff Dasovich — while consolidating the risk archive — emails Kay Mann to confirm that the January 8 bar disciplinary bulletin has been saved to the shared regulatory file, asking Kay Mann to acknowledge receipt for the compliance log; Kay Mann replies the same day: 'Confirmed — received and noted, thanks.' The email subject is 'regulatory file update – jan2001 bar bulletin' and the attachment line references 'state_bar_disciplinary_bulletin_jan2001.pdf' by filename only.
+    From: Jeff Dasovich   To: Kay Mann   (2001-01-12)
+    Subject: regulatory file update – jan2001 bar bulletin
+      Kay,
+      
+      Just confirming the January 8 state bar disciplinary bulletin has been saved to the shared regulatory file. For the compliance log I need a quick acknowledgment from you that you've received it.
+      
+      File ref: state_bar_disciplinary_bulletin_jan2001.pdf
+      
+      Jeff
+
+    From: Kay Mann   To: Jeff Dasovich   (2001-01-12)
+    Subject: RE: regulatory file update – jan2001 bar bulletin
+      Confirmed — received and noted, thanks.
+      
+      Kay
+
+  CLUE 3 - carries: a3
+    plot: On March 5 2001, Kay Mann emails Tana Jones recommending the colleague for an upcoming contract review assignment, writing: 'He has been handling contract review work for years — not one filing rejected, not a single client complaint on record; he is exactly the right person for this.' Tana Jones replies on March 6: 'Good enough for me — I will send him the engagement documents today,' and separately forwards the colleague's contact details to Carol Clair to initiate the paperwork, attaching a draft scope as 'contract_review_engagement_draft_mar2001.doc'.
+    From: Kay Mann   To: Tana Jones   (2001-03-05)
+    Subject: contract review – outside reviewer rec
+      Hi Tana,
+      
+      For the upcoming contract review assignment — he has been handling contract review work for years, not one filing rejected, not a single client complaint on record. He is exactly the right person for this.
+      
+      Kay
+
+    From: Tana Jones   To: Kay Mann   (2001-03-06)
+    Subject: RE: contract review – outside reviewer rec
+      Good enough for me — sending him the engagement documents today.
+      
+      Thanks!
+
+    From: Tana Jones   To: Carol Clair   (2001-03-06)
+    Subject: contract review engagement – initiate paperwork
+      Carol,
+      
+      Can you get the paperwork started for the outside reviewer on the contract review assignment? Contact details attached w/ draft scope.
+      
+      [Attachment: contract_review_engagement_draft_mar2001.doc]
+
+
+===== T20   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : Kay Mann's suitability for security clearance renewal
+  true_fact   : Kay Mann was involuntarily committed to a psychiatric facility for ten days eighteen months ago following a breakdown, a fact that must be disclosed on the security clearance renewal mental health declaration.
+  false_belief: Jeff Dasovich believes Kay Mann has a clean mental health history with nothing requiring disclosure on the security clearance renewal form.
+  actor       : Susan Scott — the concealer
+  victim      : Jeff Dasovich — the misled party
+
+ATOMS
+  a1 [true_state] Kay Mann is on record as having undergone an involuntary ten-day psychiatric commitment following a breakdown, which disqualifies a clean mental health disclosure on the security clearance renewal.
+  a2 [knew] Susan Scott knows that Kay Mann was involuntarily committed to a psychiatric facility for ten days and that this must be declared on the security clearance renewal mental health form.
+  a3 [misleading_truth] Susan Scott tells Jeff Dasovich that Kay Mann's employment record is continuous, their conduct file is clear, and their last performance review came back without any concerns flagged.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Sara Shackleton, coordinating security clearance renewals for the team, emails Tana Jones on March 6, 2001 attaching a file named 'PersonA_clearance_renewal_mental_health_record_Mar2001.pdf' and asks C to log it in the renewal folder under reference A-CLR-2001-17; the body states that Kay Mann underwent an involuntary ten-day psychiatric commitment following a breakdown and that this must be declared on the mental health disclosure section of the renewal form. Susan Scott is not on this thread.
+    From: Sara Shackleton   To: Tana Jones   (2001-03-06)
+    Subject: Kay clearance renewal – mental health disclosure item (A-CLR-2001-17)
+      C –
+      
+      Please log the attached under reference A-CLR-2001-17 in the clearance renewal folder for Kay. Restricted subfolder only, not the general renewal docs.
+      
+      For the record: Kay underwent an involuntary ten-day psychiatric commitment following a breakdown earlier this year. This has to be declared on the mental health disclosure section of the renewal form.
+      
+      Confirm once logged.
+      
+      Sara
+
+  CLUE 2 - carries: a2
+    plot: On March 7, 2001, Sara Shackleton sends Susan Scott a standalone email — no forwarded body, no attachment — with the subject 'Kay Mann renewal package – please review file A-CLR-2001-17' and a single line: 'J – please review file A-CLR-2001-17 for inclusion in the renewal package.' Susan Scott replies the same day: 'Received, noted.'
+    From: Sara Shackleton   To: Susan Scott   (2001-03-07)
+    Subject: Kay renewal package – please review file A-CLR-2001-17
+      J – please review file A-CLR-2001-17 for inclusion in the renewal package.
+      
+      Sara
+
+    From: Susan Scott   To: Sara Shackleton   (2001-03-07)
+    Subject: RE: Kay renewal package – please review file A-CLR-2001-17
+      Received, noted.
+      
+      Susan
+
+  CLUE 3 - carries: a3
+    plot: On March 14, 2001, Susan Scott emails Jeff Dasovich (subject: 'Re: Kay Mann clearance renewal – background summary') stating: 'For your risk assessment, I can confirm Kay Mann's employment record is continuous, their conduct file is clear, and their most recent performance review came back with no concerns flagged.' Jeff Dasovich replies on March 15, 2001: 'Thanks — on that basis I'll mark the mental health disclosure section as presenting no impediment and advance the renewal recommendation to Richard Sanders.'
+    From: Susan Scott   To: Jeff Dasovich   (2001-03-14)
+    Subject: Re: Kay clearance renewal – background summary
+      For your risk assessment — Kay's employment record is continuous, conduct file is clear, and the most recent performance review came back w/ no concerns flagged.
+      
+      Let me know if you need anything else for the package.
+      
+      Susan
+
+    From: Jeff Dasovich   To: Susan Scott   (2001-03-15)
+    Subject: Re: Kay clearance renewal – background summary
+      Thanks — on that basis I'll mark the mental health disclosure section as presenting no impediment and advance the renewal recommendation to Richard.
+      
+      Best,
+      Jeff
+
+
+===== T21   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : basis swap hedge position covering regional price exposure
+  true_fact   : The fixed-price basis swap confirmation with the Midwestern municipal power authority was terminated by the counterparty for material breach forty-five days ago, leaving the desk fully naked to basis moves.
+  false_belief: Richard Sanders believes the offsetting basis swap position remains live and that the desk's regional price exposure is still hedged.
+  actor       : Mark Taylor — the concealer
+  victim      : Richard Sanders — the misled party
+
+ATOMS
+  a1 [true_state] The fixed-price basis swap confirmation with the Midwestern municipal power authority is terminated — the counterparty declared material breach over an unresolved settlement payment, and the desk carries no offsetting position against its regional basis exposure.
+  a2 [knew] Mark Taylor knows the basis swap confirmation with the Midwestern municipal power authority is terminated and that the desk is fully naked to basis moves.
+  a3 [misleading_truth] Mark Taylor tells Richard Sanders that the desk's regional basis swap bookings and hedge positions are on the books and reflected in the current exposure reports — which is true of the recorded entries — without disclosing that the underlying confirmation has been terminated, so Richard Sanders assumes the hedging coverage remains intact.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 14 November 2000, the Midwestern municipal power authority's outside counsel faxes a formal termination notice to Enron's trading desk, citing unresolved settlement payment as material breach; Sara Shackleton and Carol Clair receive the fax and Carol Clair logs it as 'MidWest Muni Basis Swap Confirm File 11-14-00.pdf' in the desk's confirmation file. A follow-up internal memo dated 15 November 2000 from Sara Shackleton to Carol Clair, subject 'Midwest Muni — open basis exposure review', notes the desk holds no offsetting position against the regional basis risk.
+    From: Carol Clair   To: Sara Shackleton   (2000-11-14)
+    Subject: MidWest Muni Basis Swap Confirm File 11-14-00.pdf
+      Fax came in this afternoon from outside counsel for the Midwestern municipal power authority — formal termination notice on the basis swap, citing unresolved settlement payment as material breach. I've logged it as 'MidWest Muni Basis Swap Confirm File 11-14-00.pdf' in the desk confirmation file. Let me know how you want to handle next steps.
+
+    From: Sara Shackleton   To: Carol Clair   (2000-11-15)
+    Subject: Midwest Muni — open basis exposure review
+      Per the termination notice filed yesterday — I've reviewed the desk's current book and we have no offsetting position against the regional basis risk. The exposure is open. Need to flag this up the chain and determine whether we need to put a replacement hedge in place. Can you confirm the confirmation file is complete and pull together whatever booking records we have on the original swap so I have the full picture.
+
+  CLUE 2 - carries: a2
+    plot: On 16 November 2000, Carol Clair forwards 'MidWest Muni Basis Swap Confirm File 11-14-00.pdf' to Mark Taylor per the standard confirmation-file routing, with a one-line cover: 'FYI — filing per your request on open items'; Mark Taylor replies the same day, 'Received, thanks — I have it.'
+    From: Carol Clair   To: Mark Taylor   (2000-11-16)
+    Subject: MidWest Muni Basis Swap Confirm File 11-14-00.pdf
+      FYI — filing per your request on open items.
+      
+      [attachment: MidWest Muni Basis Swap Confirm File 11-14-00.pdf]
+
+    From: Mark Taylor   To: Carol Clair   (2000-11-16)
+    Subject: RE: MidWest Muni Basis Swap Confirm File 11-14-00.pdf
+      Received, thanks — I have it.
+
+  CLUE 3 - carries: a3
+    plot: On 29 November 2000, Mark Taylor emails Richard Sanders (subject: 'Regional Basis Hedge — Current Exposure Summary'), attaching 'Midwest Muni Basis Swap Bookings 11-29-00.xls', and writes: 'The desk's regional basis swap bookings and hedge positions are on the books and fully reflected in the current exposure reports — coverage is in place as recorded.' Richard Sanders replies on 30 November 2000: 'Good — I'll rely on that for the board summary; no further action needed on basis exposure.' Mark Taylor responds the same day: 'Confirmed, nothing outstanding on our end.'
+    From: Mark Taylor   To: Richard Sanders   (2000-11-29)
+    Subject: Regional Basis Hedge — Current Exposure Summary
+      The desk's regional basis swap bookings and hedge positions are on the books and fully reflected in the current exposure reports — coverage is in place as recorded.
+      
+      [attachment: Midwest Muni Basis Swap Bookings 11-29-00.xls]
+
+    From: Richard Sanders   To: Mark Taylor   (2000-11-30)
+    Subject: RE: Regional Basis Hedge — Current Exposure Summary
+      Good. I'll rely on that for the board summary — no further action needed on basis exposure.
+
+    From: Mark Taylor   To: Richard Sanders   (2000-11-30)
+    Subject: RE: Regional Basis Hedge — Current Exposure Summary
+      Confirmed, nothing outstanding on our end.
+
+
+===== T22   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : PJM transmission interconnection queue position for the merchant power plant
+  true_fact   : The firm's PJM transmission interconnection queue position for the merchant power plant was administratively withdrawn four months ago after missing a required deposit deadline.
+  false_belief: Carol Clair believes the project holds a secured grid interconnect with a defined in-service date, as represented to investors.
+  actor       : Elizabeth Sager — the concealer
+  victim      : Carol Clair — the misled party
+
+ATOMS
+  a1 [true_state] The firm's PJM transmission interconnection queue position for the merchant power plant is administratively withdrawn and no longer active.
+  a2 [knew] Elizabeth Sager knows the PJM interconnection queue position for the merchant power plant is administratively withdrawn.
+  a3 [misleading_truth] Elizabeth Sager points Carol Clair to the project's current PJM-W delivery descriptions and scheduled transaction terms on file — which are real and in order — so Carol Clair treats the project's grid position as intact, without Elizabeth Sager mentioning that the interconnection queue position itself has been withdrawn.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: PJM sends an administrative withdrawal notice (PJM_Interconnection_Queue_Withdrawal_Nov2001.pdf) to Sara Shackleton and Susan Scott confirming that the merchant power plant's transmission interconnection queue position has been administratively withdrawn and is no longer active as of November 2001; the notice carries the internal reference Ref: QP-1147 in the header. Elizabeth Sager and Carol Clair are not on the message.
+    From: PJM Interconnection   To: Sara Shackleton, Susan Scott   (2001-11-14)
+    Subject: Administrative Withdrawal — Merchant Power Plant Interconnection Queue Position
+      Sara, Susan —
+      
+      Please see the attached notice confirming that the transmission interconnection queue position for the above-referenced merchant power plant project has been administratively withdrawn from the PJM queue effective November 14, 2001. The position is no longer active and has been removed from our interconnection study queue. Internal reference: Ref: QP-1147.
+      
+      Kindly update your project records accordingly. If you have questions regarding re-application procedures or queue re-entry, please contact your PJM account representative.
+      
+      <<PJM_Interconnection_Queue_Withdrawal_Nov2001.pdf>>
+      
+      Regards,
+      PJM Interconnection
+      Queue Management & Customer Service
+      www.pjm.com
+
+  CLUE 2 - carries: a2
+    plot: Susan Scott sends Elizabeth Sager a brief internal routing note dated 2001-11-15 with subject 'File update needed — Ref: QP-1147', body reading only 'Please log and update the project file for Ref QP-1147'; Elizabeth Sager replies the same day: 'Received, I'll handle it.' No attachment, no queue-withdrawal wording, and no outcome stated anywhere in the thread — only the shared neutral handle QP-1147 links Elizabeth Sager to the same record as clue 1.
+    From: Susan Scott   To: Elizabeth Sager   (2001-11-15)
+    Subject: File update needed — Ref: QP-1147
+      Elizabeth —
+      
+      Please log and update the project file for Ref QP-1147.
+      
+      Susan
+
+    From: Elizabeth Sager   To: Susan Scott   (2001-11-15)
+    Subject: RE: File update needed — Ref: QP-1147
+      Received, I'll handle it
+      
+      Elizabeth
+
+  CLUE 3 - carries: a3
+    plot: Elizabeth Sager emails Carol Clair attaching PJM-W_Delivery_Description_2001.doc and Scheduled_Transaction_Terms_Oct2001.xls, writing that the project's PJM-W delivery descriptions and scheduled transaction terms on file are current and in order, and that Carol Clair can proceed on that basis; Carol Clair replies confirming they will move forward with the project's grid position treated as intact, with no mention of any queue withdrawal.
+    From: Elizabeth Sager   To: Carol Clair   (2001-11-19)
+    Subject: Merchant Power Plant — PJM-W Delivery Docs
+      Hi Carol —
+      
+      Attached are the PJM-W delivery descriptions and scheduled transaction terms for the merchant plant project — both are current and in order as of this month. You're fine to proceed on that basis.
+      
+      <<PJM-W_Delivery_Description_2001.doc>>
+      <<Scheduled_Transaction_Terms_Oct2001.xls>>
+      
+      Elizabeth
+      713-853-6349
+
+    From: Carol Clair   To: Elizabeth Sager   (2001-11-19)
+    Subject: RE: Merchant Power Plant — PJM-W Delivery Docs
+      Elizabeth:
+      Got it. We'll move forward with the grid position as intact.
+      Thanks.
+      Carol
+
+
+===== T23   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : lapsed force majeure waiver on daily delivery obligations
+  true_fact   : The one-year force majeure waiver excusing the firm from daily delivery obligations expired unrenewed six weeks ago, leaving the firm exposed to full deficiency penalties on any shortfall declared against the firm supply commitments the desk is still booking.
+  false_belief: The firm still holds a valid force majeure waiver providing tolerance against daily delivery shortfalls, so the firm supply commitments being booked to downstream counterparties remain adequately covered.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] The firm's force majeure waiver from the Rocky Mountain pipeline operator — excusing daily delivery shortfalls — is expired and unrenewed, leaving the desk with no deficiency tolerance against the firm supply commitments it continues to book to downstream counterparties.
+  a2 [knew] Tana Jones knows the force majeure waiver has lapsed unrenewed and that the desk is booking firm supply commitments against a delivery tolerance it no longer holds.
+  a3 [misleading_truth] Tana Jones tells Sara Shackleton that all downstream firm supply commitments are currently booked within the delivery parameters on file with the Rocky Mountain pipeline operator — without disclosing that the waiver establishing those parameters expired six weeks ago — so Sara Shackleton continues to treat the commitments as fully covered.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Carol Clair emails Jeff Dasovich and Susan Scott on 14 November 2001, attaching 'Rocky Mtn FM Waiver Status Nov2001.doc', noting that the force majeure waiver covering daily delivery shortfalls from the Rocky Mountain pipeline operator lapsed on 30 September 2001 and no renewal has been executed, and asking them to flag any downstream exposure in their records. Tana Jones is not on the thread.
+    From: Carol Clair   To: Jeff Dasovich, Susan Scott   (2001-11-14)
+    Subject: Rocky Mtn FM Waiver Status — please review
+      Jeff, Susan —
+      
+      Attached is 'Rocky Mtn FM Waiver Status Nov2001.doc'. The force majeure waiver covering daily delivery shortfalls from the Rocky Mountain pipeline operator lapsed 30 September 2001 and no renewal has been executed to date.
+      
+      Can you each flag any downstream exposure in your records and get back to me? Want to make sure nothing is sitting unaddressed on either side.
+      
+      Thanks,
+      Carol
+
+  CLUE 2 - carries: a2
+    plot: Carol Clair forwards 'Rocky Mtn FM Waiver Status Nov2001.doc' to Tana Jones on 15 November 2001 with a one-line note: 'FYI — please keep on file.' Tana Jones replies the same day: 'Got it, filed.'
+    From: Carol Clair   To: Tana Jones   (2001-11-15)
+    Subject: FW: Rocky Mtn FM Waiver Status Nov2001.doc
+      FYI — please keep on file.
+      
+      Carol
+      
+      -------- Forwarded Message --------
+      Attachment: Rocky Mtn FM Waiver Status Nov2001.doc
+
+    From: Tana Jones   To: Carol Clair   (2001-11-15)
+    Subject: RE: FW: Rocky Mtn FM Waiver Status Nov2001.doc
+      Got it, filed.
+
+  CLUE 3 - carries: a3
+    plot: On 03 December 2001 Tana Jones emails Sara Shackleton, attaching 'Rocky Mtn Pipeline Delivery Params.xls', and writes: 'All current firm supply commitments on the desk are booked within the delivery parameters on file with the Rocky Mountain pipeline operator — nothing sits outside the tolerances in that sheet.' Sara Shackleton replies the same day: 'Good to know — I'll proceed with the Q1 commitment approvals on that basis.' Tana Jones does not reply further.
+    From: Tana Jones   To: Sara Shackleton   (2001-12-03)
+    Subject: Rocky Mtn Pipeline Delivery Params — Q1 review
+      Sara,
+      
+      Attached is 'Rocky Mtn Pipeline Delivery Params.xls'. All current firm supply commitments on the desk are booked within the delivery parameters on file with the Rocky Mountain pipeline operator — nothing sits outside the tolerances in that sheet.
+      
+      Let me know if you need anything else!
+
+    From: Sara Shackleton   To: Tana Jones   (2001-12-03)
+    Subject: RE: Rocky Mtn Pipeline Delivery Params — Q1 review
+      Tana:
+      
+      Good to know — I'll proceed with the Q1 commitment approvals on that basis.
+      
+      Thanks.
+      Sara
+
+
+===== T24   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : firm's Oklahoma natural gas supplier bonding and registration status
+  true_fact   : The performance bond posted with the Oklahoma Corporation Commission was cancelled by the surety sixty days ago after a missed premium payment, rendering the firm's natural gas supplier registration technically void and every in-state physical gas sale since cancellation unbonded.
+  false_belief: Sara Shackleton believes the firm's Oklahoma natural gas supplier registration remains in good standing with valid bonding coverage, and that in-state gas sales are proceeding on a properly bonded and registered basis.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] The firm's Oklahoma Corporation Commission performance bond is cancelled and its natural gas supplier registration is technically void, leaving all current in-state physical gas sales without required bonding coverage.
+  a2 [knew] Tana Jones knows the performance bond has been cancelled and the Oklahoma natural gas supplier registration is technically void.
+  a3 [misleading_truth] Tana Jones tells Sara Shackleton that the firm's Oklahoma natural gas supplier registration number is on file and all current in-state gas delivery schedules are confirmed and running on time — which is true as a scheduling matter — so Sara Shackleton assumes the underlying bonding and registration remain valid and compliant.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: On 14 March 2001, the Oklahoma Corporation Commission mails a formal notice to Susan Scott, Enron's regulatory compliance contact, referencing supplier file OK-SUP-2847 and stating that Enron's performance bond has been cancelled and that without a replacement bond on file the natural gas supplier registration is void and no in-state physical gas sales may lawfully continue; the notice is attached as OK-SUP-2847.pdf. Tana Jones and Sara Shackleton are not on the distribution.
+    From: Oklahoma Corporation Commission   To: Susan Scott   (2001-03-14)
+    Subject: Oklahoma Supplier File Update — OK-SUP-2847
+      Susan,
+      
+      Please find enclosed the formal notice of cancellation for the performance bond on file with this office for Enron (Bond No. OCC-NG-2847-B). Effective the date of this letter, the bond is cancelled and no replacement instrument has been received.
+      
+      Pursuant to OAC 165:20-3-11, a valid performance bond is a condition precedent to active natural gas supplier registration in the State of Oklahoma. Absent a replacement bond on file with the Commission, Enron's natural gas supplier registration is hereby void. No in-state physical natural gas sales may lawfully continue until a conforming replacement bond is received and registration is reinstated.
+      
+      A copy of the cancellation notice is attached (OK-SUP-2847.pdf). Please direct any questions to this office at (405) 521-2211.
+      
+      Sincerely,
+      Oklahoma Corporation Commission
+      Oil and Gas Division — Supplier Registration Unit
+
+  CLUE 2 - carries: a2
+    plot: On 19 March 2001, Susan Scott forwards OK-SUP-2847.pdf to Tana Jones with a one-line note asking C to update the Oklahoma regulatory file and confirm receipt; Tana Jones replies the same day: 'Received — will file accordingly.'
+    From: Susan Scott   To: Tana Jones   (2001-03-19)
+    Subject: FW: Oklahoma Supplier File Update — OK-SUP-2847
+      Tana,
+      
+      Please see the attached OCC notice (OK-SUP-2847.pdf) received from the Oklahoma Corporation Commission last week. Can you update the Oklahoma regulatory file accordingly and confirm receipt?
+      
+      Thanks,
+      Susan
+
+    From: Tana Jones   To: Susan Scott   (2001-03-19)
+    Subject: RE: FW: Oklahoma Supplier File Update — OK-SUP-2847
+      Received — will file accordingly.
+
+  CLUE 3 - carries: a3
+    plot: On 27 March 2001, Sara Shackleton emails Tana Jones asking for a status check on Enron's Oklahoma natural gas supplier standing before approving the next week's in-state delivery schedules; Tana Jones replies that Enron's Oklahoma supplier registration number (OCC-NG-2847) is on file and all current in-state gas delivery schedules are confirmed and running on time, attaching Oklahoma Gas Delivery Schedule March 2001.xls as support; Sara Shackleton replies the same day: 'Good — approving the schedules now, thanks for confirming.'
+    From: Sara Shackleton   To: Tana Jones   (2001-03-27)
+    Subject: Oklahoma supplier status — next week's delivery schedules
+      Tana:
+      
+      Before I sign off on next week's in-state delivery schedules, can you confirm Enron's Oklahoma natural gas supplier standing is current? Want to make sure we're clean on the regulatory side before approving.
+      
+      Thanks.
+      Sara
+
+    From: Tana Jones   To: Sara Shackleton   (2001-03-27)
+    Subject: RE: Oklahoma supplier status — next week's delivery schedules
+      Enron's Oklahoma supplier registration number OCC-NG-2847 is on file. All current in-state gas delivery schedules are confirmed and running on time — see attached (Oklahoma Gas Delivery Schedule March 2001.xls).
+
+    From: Sara Shackleton   To: Tana Jones   (2001-03-27)
+    Subject: RE: Oklahoma supplier status — next week's delivery schedules
+      Good — approving the schedules now, thanks for confirming.
+
+
+===== T25   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : expired hub scheduling and settlement agreement still used for round-trip power trades
+  true_fact   : The baseload electricity hub scheduling and settlement agreement with the Southeast control-area operator expired unrenewed fifty days ago, and the settlement netting rights the desk relies on for round-trip power trades through that hub no longer exist.
+  false_belief: Mark Taylor believes the desk's round-trip power trades booked through the Southeast hub remain deliverable and that settlement netting rights are still in place.
+  actor       : Tana Jones — the concealer
+  victim      : Mark Taylor — the misled party
+
+ATOMS
+  a1 [true_state] The hub scheduling and settlement agreement with the Southeast control-area operator is expired and unrenewed, leaving the desk without valid settlement netting rights for round-trip power trades booked through that hub.
+  a2 [knew] Tana Jones knows the Southeast hub agreement is expired and that the settlement netting rights supporting the desk's round-trip trades no longer exist.
+  a3 [misleading_truth] Tana Jones tells Mark Taylor that the desk is still actively booking round-trip power trades through the Southeast hub and that the trades are being processed through settlement netting — without disclosing that the underlying agreement expired fifty days ago and those netting rights are no longer valid — leading Mark Taylor to conclude the hub arrangements remain operative.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Sara Shackleton sends Carol Clair a routine contract-status memo (Southeast_Hub_Sched_Settle_Agmt_Review.doc) dated 14 March 2001, noting that the scheduling and settlement agreement with the Southeast control-area hub operator expired on 23 January 2001 and has not been renewed, and that settlement netting rights under that agreement are therefore no longer in effect. Tana Jones is not on the message; Mark Taylor is not on the message.
+    From: Sara Shackleton   To: Carol Clair   (2001-03-14)
+    Subject: Southeast Hub Agreement – contract status review
+      Carol,
+      
+      Please see attached — Southeast_Hub_Sched_Settle_Agmt_Review.doc.
+      
+      The scheduling and settlement agreement with the Southeast control-area hub operator expired 23 January 2001. No renewal has been executed. Settlement netting rights provided under that agreement are accordingly no longer in effect as of that date.
+      
+      Let me know if you need anything further on this.
+      
+      Sara
+
+  CLUE 2 - carries: a2
+    plot: Carol Clair forwards Southeast_Hub_Sched_Settle_Agmt_Review.doc to Tana Jones on 15 March 2001 with a one-line note asking C to file it with the Southeast hub contract folder; Tana Jones replies the same day: 'Filed — I have it.' The subject line reads 'FW: Southeast Hub Agreement – contract records' and the body contains no description of the document's contents.
+    From: Carol Clair   To: Tana Jones   (2001-03-15)
+    Subject: FW: Southeast Hub Agreement – contract records
+      Can you file this w/ the Southeast hub contract folder?
+      
+      -----Original Message-----
+      From: Sara
+      Sent: Thursday, March 14, 2001
+      To: Carol
+      Subject: Southeast Hub Agreement – contract status review
+      
+      <<Southeast_Hub_Sched_Settle_Agmt_Review.doc>>
+
+    From: Tana Jones   To: Carol Clair   (2001-03-15)
+    Subject: RE: FW: Southeast Hub Agreement – contract records
+      Filed — I have it.
+
+  CLUE 3 - carries: a3
+    plot: On 04 May 2001 Tana Jones emails Mark Taylor to report that the desk continues to book round-trip power trades through the Southeast hub and that those trades are being processed through settlement netting as usual, citing Southeast_Hub_RT_Trade_Log_May2001.xls as confirmation of active flow — without mentioning that the underlying scheduling and settlement agreement expired ten weeks earlier and that the netting rights it provided no longer exist; Mark Taylor replies the same day directing Elizabeth Sager to keep the Southeast hub trades on the approved counterparty list because the hub arrangements appear to be running normally.
+    From: Tana Jones   To: Mark Taylor   (2001-05-04)
+    Subject: Southeast hub – round-trip trades & settlement
+      FYI — the desk is still booking round-trip power trades through the Southeast hub and settlement netting is processing normally. See attached Southeast_Hub_RT_Trade_Log_May2001.xls — flow looks active. Let me know if you need anything else on this.
+
+    From: Mark Taylor   To: Elizabeth Sager   (2001-05-04)
+    Subject: RE: Southeast hub – round-trip trades & settlement
+      Elizabeth:
+      
+      Keep the Southeast hub on the approved counterparty list — arrangements appear to be running normally.
+      
+      Mark
+      
+      -----Original Message-----
+      From: Tana
+      Sent: Friday, May 04, 2001
+      To: Mark
+      Subject: Southeast hub – round-trip trades & settlement
+      
+      FYI — the desk is still booking round-trip power trades through the Southeast hub and settlement netting is processing normally. See attached Southeast_Hub_RT_Trade_Log_May2001.xls — flow looks active. Let me know if you need anything else on this.
+
+
+===== T26   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : falsified master's degree on promotion résumé
+  true_fact   : Kay Mann never completed the master's degree listed on their résumé.
+  false_belief: Sara Shackleton believes Kay Mann holds a valid master's degree and continues citing that credential when advocating for Kay Mann's promotion to a role that formally requires it.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] Kay Mann does not hold a master's degree; the degree listed on their résumé was never completed.
+  a2 [knew] Tana Jones knows that Kay Mann does not hold the master's degree listed on their résumé.
+  a3 [misleading_truth] When Sara Shackleton mentions the master's degree while pushing for Kay Mann's promotion, Tana Jones says, 'Kay Mann has been with us for years and has always handled the credentialing paperwork without any issues flagged by HR,' allowing Sara Shackleton to continue assuming the degree is valid without Tana Jones ever confirming or denying it.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: In January 2001, the university registrar's office sends a written verification response to Enron's HR records coordinator (Steven Kean) confirming that Kay Mann never completed the requirements for a master's degree and that no degree was conferred; the response is filed as 'Kay Mann degree verification Jan 2001.pdf' in HR records. Sara Shackleton and Tana Jones are both absent from this document — neither is a sender, recipient, nor listed reviewer.
+    From: Registrar's Office   To: Steven Kean   (2001-01-11)
+    Subject: Degree Verification — Enron Request
+      Dear Sir/Madam,
+      
+      This office has completed its review in response to your verification request dated January 4, 2001.
+      
+      Our records confirm that the individual in question was enrolled in the graduate program but did not satisfy the degree requirements. No master's degree was conferred by this institution.
+      
+      Please direct any follow-up inquiries to the Office of the Registrar.
+      
+      Regards,
+      Office of the Registrar
+
+    From: Steven Kean   To: Steven Kean   (2001-01-11)
+    Subject: FILED: Kay degree verification Jan 2001.pdf
+      Saving to HR records — promotion credentialing file.
+      
+      Attachment: Kay degree verification Jan 2001.pdf
+      
+      Steven
+
+  CLUE 2 - carries: a2
+    plot: In late January 2001, Steven Kean routes the filed degree verification document to Tana Jones with a brief cover note asking Tana Jones to confirm receipt and store it in the promotion credentialing folder; Tana Jones replies 'Received and filed' the same day, with the original attachment 'Kay Mann degree verification Jan 2001.pdf' included in the reply chain. The content of the verification finding is not quoted or paraphrased anywhere in Tana Jones's reply.
+    From: Steven Kean   To: Tana Jones   (2001-01-24)
+    Subject: Kay credentialing folder — doc for your records
+      Tana,
+      
+      Please confirm receipt and store the attached in the promotion credentialing folder. Let me know once it's in.
+      
+      Steven
+      
+      [Attachment: Kay degree verification Jan 2001.pdf]
+
+    From: Tana Jones   To: Steven Kean   (2001-01-24)
+    Subject: RE: Kay credentialing folder — doc for your records
+      Received and filed!
+      
+      [Attachment: Kay degree verification Jan 2001.pdf]
+
+  CLUE 3 - carries: a3
+    plot: In early March 2001, Sara Shackleton emails Tana Jones noting that Kay Mann's promotion packet is nearly complete and that the listed master's degree is a key qualification, asking Tana Jones to flag any credentialing concerns before the packet goes to Richard Sanders; Tana Jones replies, 'Kay Mann has been with us for years and has always handled the credentialing paperwork without any issues flagged by HR,' and Sara Shackleton responds the same day, 'Good to know — I'll move the packet forward,' treating the degree as uncontested. The degree verification document is never attached, referenced by name, or mentioned.
+    From: Sara Shackleton   To: Tana Jones   (2001-03-02)
+    Subject: Kay promotion packet — credentialing sign-off
+      Tana:
+      
+      Kay's packet is nearly complete. The listed master's degree is a key qualification for the promotion level. Can you flag any credentialing concerns before this goes up to Richard?
+      
+      Thanks.
+      Sara
+
+    From: Tana Jones   To: Sara Shackleton   (2001-03-02)
+    Subject: RE: Kay promotion packet — credentialing sign-off
+      Kay has been with us for years and has always handled the credentialing paperwork without any issues flagged by HR.
+
+    From: Sara Shackleton   To: Tana Jones   (2001-03-02)
+    Subject: RE: Kay promotion packet — credentialing sign-off
+      Good to know — I'll move the packet forward.
+      
+      Sara
+
+
+===== T27   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : colleague's fitness to serve as designated driver for client airport runs
+  true_fact   : The colleague's driver's licence is suspended for six months following a DUI conviction.
+  false_belief: Sara Shackleton believes the colleague is fully licensed and fit to continue serving as the designated driver for client airport runs.
+  actor       : Tana Jones — the concealer
+  victim      : Sara Shackleton — the misled party
+
+ATOMS
+  a1 [true_state] The colleague's driver's licence is currently suspended for six months as a result of a DUI conviction.
+  a2 [knew] Tana Jones knows the colleague's driver's licence is suspended for six months following a DUI conviction.
+  a3 [misleading_truth] Tana Jones tells Sara Shackleton that all of the client airport runs for the month are confirmed, assigned, and on the schedule without any gaps.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: In early March 2001, Carol Clair receives a routine administrative memo from Enron's fleet and compliance coordinator (a neutral outside HR contact) attaching a file named 'driver_license_status_march2001.doc'; the memo notes the colleague's license is suspended for six months following a DUI conviction and asks Carol Clair to update the transportation roster accordingly. Tana Jones is not on this message; Sara Shackleton is not on this message.
+    From: Fleet & Compliance Coordinator   To: Carol Clair   (2001-03-02)
+    Subject: Driver License Status Update — March 2001 Roster
+      Hi,
+      
+      Please see the attached file (driver_license_status_march2001.doc) from our most recent DMV records pull.
+      
+      One item requiring your attention: the colleague currently listed as designated driver for client airport runs has had their license suspended for a period of six months, effective late February, following a DUI conviction. Per fleet policy, suspended-license personnel must be removed from the active transportation roster immediately.
+      
+      Could you update the roster accordingly and confirm back to me when done? Let me know if you have any questions on the attachment.
+      
+      Thanks,
+      Fleet & Compliance Coordinator
+      Enron
+
+  CLUE 2 - carries: a2
+    plot: On March 7, 2001, Carol Clair forwards the 'driver_license_status_march2001.doc' attachment to Tana Jones with a one-line note asking C to reconcile the transportation roster before the month's client airport runs begin; Tana Jones replies the same day: 'Received. Will handle.' Sara Shackleton is not on this exchange.
+    From: Carol Clair   To: Tana Jones   (2001-03-07)
+    Subject: FW: Driver License Status Update — March 2001 Roster
+      Tana,
+      
+      See attached (driver_license_status_march2001.doc) — can you reconcile the transportation roster before the client airport runs kick off this month?
+      
+      Carol
+
+    From: Tana Jones   To: Carol Clair   (2001-03-07)
+    Subject: RE: FW: Driver License Status Update — March 2001 Roster
+      Received. Will handle.
+
+  CLUE 3 - carries: a3
+    plot: On March 9, 2001, Tana Jones emails Sara Shackleton stating that all client airport runs for the month are confirmed, assigned, and on the schedule with no gaps, and that the designated driver arrangement is fully in order; Sara Shackleton replies the same day thanking Tana Jones and confirming she will inform the client that ground transportation is arranged and ready, then forwards that confirmation to the client contact. The colleague's license status and the driver_license_status_march2001.doc are never mentioned.
+    From: Tana Jones   To: Sara Shackleton   (2001-03-09)
+    Subject: March Client Airport Runs — Status
+      All client airport runs for March are confirmed and assigned — schedule has no gaps, designated driver arrangement is in order.
+      
+      Let me know if you need anything else on this.
+
+    From: Sara Shackleton   To: Tana Jones   (2001-03-09)
+    Subject: RE: March Client Airport Runs — Status
+      Tana:
+      
+      Thanks — I'll let the client know ground transportation is set.
+      
+      Sara
+
+    From: Sara Shackleton   To: Client Contact   (2001-03-09)
+    Subject: Ground Transportation — March Visits
+      Just confirmed w/ our team — your airport runs for March are scheduled and a driver is arranged. No action needed on your end.
+      
+      Thanks.
+      Sara
+      Enron Corp.
+
+
+===== T28   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : candidate's fitness for a team lead role overseeing junior staff
+  true_fact   : The candidate was dismissed from their previous firm following a formal HR investigation into sexual harassment of a subordinate.
+  false_belief: Mark Taylor believes the candidate has a clean professional history and is suitable to be placed in a team lead role overseeing junior staff.
+  actor       : Susan Scott — the concealer
+  victim      : Mark Taylor — the misled party
+
+ATOMS
+  a1 [true_state] The candidate is a person who was formally terminated from their prior firm as the substantiated subject of an HR sexual-harassment investigation involving a subordinate.
+  a2 [knew] Susan Scott knows the candidate was terminated from their prior firm following a formal HR investigation that substantiated sexual harassment of a subordinate.
+  a3 [misleading_truth] Susan Scott tells Mark Taylor that the candidate's references from the prior firm all confirm strong performance reviews and that their employment record there is fully documented and in order.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Jeff Dasovich, conducting a routine regulatory background review for an open team-lead position, receives a formal written notice dated February 2001 from Person K's prior firm confirming that Person K's employment was terminated following a substantiated HR investigation into sexual harassment of a subordinate. Jeff Dasovich files the document — titled 'PersonK_employment_separation_Feb2001.pdf' — in the shared compliance intake folder and copies Steven Kean, with no further distribution.
+    From: Jeff Dasovich   To: Steven Kean   (2001-03-01)
+    Subject: Compliance intake — PersonK background review
+      Received formal separation notice from Person K's prior firm dated Feb 2001 — substantiated HR finding, termination for cause. Filed as PersonK_employment_separation_Feb2001.pdf in the shared compliance intake folder. No further distribution pending your direction.
+
+  CLUE 2 - carries: a2
+    plot: Steven Kean, clearing the compliance intake folder, forwards 'PersonK_employment_separation_Feb2001.pdf' to Susan Scott on March 5, 2001 with a one-line note asking Susan Scott to review and acknowledge receipt for the regulatory file; Susan Scott replies the same day: 'Received and noted — filed under candidate review.'
+    From: Steven Kean   To: Susan Scott   (2001-03-05)
+    Subject: FWD: PersonK_employment_separation_Feb2001.pdf — please review & ack for reg file
+      Susan — clearing the compliance intake folder. Please review the attached and acknowledge receipt for the regulatory file. Thanks.
+      
+      [ attachment: PersonK_employment_separation_Feb2001.pdf ]
+
+    From: Susan Scott   To: Steven Kean   (2001-03-05)
+    Subject: RE: FWD: PersonK_employment_separation_Feb2001.pdf — please review & ack for reg file
+      Received and noted — filed under candidate review.
+
+  CLUE 3 - carries: a3
+    plot: On March 12, 2001 Susan Scott emails Mark Taylor directly, stating that Susan Scott has checked Person K's references at the prior firm and that all three contacts report strong performance reviews across the board, and that the candidate packet for the panel is complete on their end; Mark Taylor replies the same day thanking Susan Scott and confirming that on the strength of that assurance she will advance Person K's candidacy to the team-lead panel for final approval.
+    From: Susan Scott   To: Mark Taylor   (2001-03-12)
+    Subject: Person K — prior employment review
+      Checked Person K's prior-firm references. All three report strong performance reviews across the board. Candidate packet for the panel is complete on our end. Let me know if you need anything else before final approval.
+
+    From: Mark Taylor   To: Susan Scott   (2001-03-12)
+    Subject: RE: Person K — prior employment review
+      Susan:
+      
+      Thanks — moving Person K's candidacy to the team-lead panel for final approval.
+      
+      Mark
+
+
+===== T29   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : fitness to lead the workplace safety and anti-harassment task force
+  true_fact   : Jeff Dasovich has a current civil restraining order filed against them by a former domestic partner for stalking and harassment.
+  false_belief: Tana Jones believes Jeff Dasovich has no disqualifying personal legal history relevant to leading the office's workplace safety and anti-harassment task force.
+  actor       : Kay Mann — the concealer
+  victim      : Tana Jones — the misled party
+
+ATOMS
+  a1 [true_state] Jeff Dasovich is subject to a current civil restraining order obtained by a former domestic partner on grounds of stalking and harassment.
+  a2 [knew] Kay Mann knows that Jeff Dasovich is subject to a current civil restraining order obtained by a former domestic partner on grounds of stalking and harassment.
+  a3 [misleading_truth] Kay Mann tells Tana Jones that Jeff Dasovich has always been punctual, collegial, and has never had any disciplinary action recorded in their personnel file here at the office.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: Sara Shackleton emails Susan Scott on March 6, 2001, attaching a one-page civil-court summary document named 'restraining_order_H_march2001.pdf' and asking J to log it in the regulatory compliance records; J replies the same day confirming it has been filed. Kay Mann and Tana Jones are not on the thread.
+    From: Sara Shackleton   To: Susan Scott   (2001-03-06)
+    Subject: Compliance Filing — civil court document re: Jeff
+      Susan,
+      
+      Please log the attached in the regulatory compliance records under Jeff's file. One-page civil court summary — received this morning. Let me know once it's filed.
+      
+      Thanks,
+      Sara
+      
+      [Attachment: restraining_order_H_march2001.pdf]
+
+    From: Susan Scott   To: Sara Shackleton   (2001-03-06)
+    Subject: RE: Compliance Filing — civil court document re: Jeff
+      Sara,
+      
+      Done — logged and filed in the regulatory compliance records under Jeff's file as of today.
+      
+      Susan
+
+  CLUE 2 - carries: a2
+    plot: On March 7, 2001, Sara Shackleton sends Kay Mann a one-line email asking A to confirm receipt of the compliance filing logged for Jeff Dasovich on March 6; Kay Mann replies the same day, 'Confirmed, thank you.' No attachment is included, no subject line describes the filing's content, and the body of neither message quotes or summarises any detail of the underlying record.
+    From: Sara Shackleton   To: Kay Mann   (2001-03-07)
+    Subject: Compliance filing RC-2001-031 — confirm receipt
+      Kay — please confirm receipt of compliance filing RC-2001-031 for Jeff, logged yesterday.
+      
+      Sara
+
+    From: Kay Mann   To: Sara Shackleton   (2001-03-07)
+    Subject: RE: Compliance filing RC-2001-031 — confirm receipt
+      Confirmed, thank you.
+      
+      Kay
+
+  CLUE 3 - carries: a3
+    plot: On March 12, 2001, Kay Mann emails Tana Jones saying that Jeff Dasovich has always been punctual and collegial and has never had any disciplinary action recorded in their personnel file at the office, framing H as a sound choice to lead the workplace safety and anti-harassment task force; Tana Jones replies on March 13 confirming they will proceed with H's appointment and will draft the formal nomination memo accordingly.
+    From: Kay Mann   To: Tana Jones   (2001-03-12)
+    Subject: Workplace Safety & Anti-Harassment Task Force — lead candidate
+      Hi,
+      
+      FYI. When you have a minute — I'd like to flag Jeff for the task force lead. Always punctual and collegial in my experience. No disciplinary action on record in their personnel file here at the office.
+      
+      Kay
+
+    From: Tana Jones   To: Kay Mann   (2001-03-13)
+    Subject: RE: Workplace Safety & Anti-Harassment Task Force — lead candidate
+      Got it — will move forward with Jeff and draft the formal nomination memo. Thanks!
+
+
+===== T30   n=3   KEPT =====
+CHECK: joint recover=1/2  leaked subsets=[]
+SECRET
+  concealment : fitness to serve on the financial controls and audit readiness committee
+  true_fact   : Kay Mann has a six-figure IRS tax lien filed against them for unpaid self-employment taxes from a failed side business.
+  false_belief: Susan Scott believes Kay Mann has no significant financial or regulatory liabilities that would disqualify them from representing the department on the company's new financial controls and audit readiness committee.
+  actor       : Kay Mann — the concealer
+  victim      : Susan Scott — the misled party
+
+ATOMS
+  a1 [true_state] Kay Mann is subject to an active six-figure IRS tax lien for unpaid self-employment taxes arising from a failed side business.
+  a2 [knew] Kay Mann knows they are subject to an active six-figure IRS tax lien for unpaid self-employment taxes from their failed side business.
+  a3 [misleading_truth] When Susan Scott mentions the committee appointment, Kay Mann tells Susan Scott that they have always kept their professional obligations and workplace responsibilities completely separate from any personal financial matters.
+
+EMAILS (3 clues)
+  CLUE 1 - carries: a1
+    plot: In February 2001, the IRS files a Notice of Federal Tax Lien against Kay Mann with the county recorder's office, listing a six-figure unpaid self-employment tax liability tied to a dissolved side business; the lien document names Kay Mann as the debtor and cites tax years 1997–1999. Sara Shackleton, handling a routine vendor background check unrelated to Kay Mann's committee role, receives a copy of the recorded lien from a third-party public-records search firm and routes it to Carol Clair to file in the compliance records folder.
+    From: Sara Shackleton   To: Carol Clair   (2001-02-21)
+    Subject: Public Records Search Results — Filing
+      Carol,
+      
+      Got the public records batch back from the search firm this morning. Most of it is routine vendor stuff. One result flagged a federal tax lien — IRS Notice of Federal Tax Lien, recorded w/ the county recorder, debtor named is Kay, covers self-employment tax years 1997–1999, six-figure amount. Looks tied to a dissolved side business.
+      
+      Needs to go in the compliance records folder. Let me know once it's filed.
+      
+      Sara
+
+  CLUE 2 - carries: a2
+    plot: On February 28, 2001, Carol Clair emails Kay Mann directly to confirm that Kay Mann's name appeared on a public-records search result that was filed into the compliance records folder, asking Kay Mann to acknowledge receipt for the file log; Kay Mann replies the same day with a one-line confirmation: 'Received and noted.' The email subject is 'Public Records Search — Acknowledgment Requested' and the thread attachment is named 'public records search results 02-2001.pdf'.
+    From: Carol Clair   To: Kay Mann   (2001-02-28)
+    Subject: Public Records Search — Acknowledgment Requested
+      Kay,
+      
+      Your name appeared on a public-records search result that came in through a routine vendor background check process. The result has been filed into the compliance records folder. Attaching the relevant document for your reference.
+      
+      Please reply to acknowledge receipt so I can note it in the file log.
+      
+      Carol
+      
+      << public records search results 02-2001.pdf >>
+
+    From: Kay Mann   To: Carol Clair   (2001-02-28)
+    Subject: RE: Public Records Search — Acknowledgment Requested
+      Received and noted.
+      
+      Kay
+
+  CLUE 3 - carries: a3
+    plot: On March 6, 2001, Susan Scott emails Kay Mann to welcome them to the financial controls and audit readiness committee, noting that the role requires members to attest that no personal financial encumbrances exist that could affect their judgment or independence, and asking Kay Mann to confirm they are clear to serve. Kay Mann replies on March 7, 2001, writing that they have always kept their professional obligations and workplace responsibilities completely separate from any personal financial matters and that they see no issue with serving. Susan Scott replies on March 8, 2001, writing 'Understood — I'll record your confirmation and proceed with the formal appointment paperwork.'
+    From: Susan Scott   To: Kay Mann   (2001-03-06)
+    Subject: Financial Controls & Audit Readiness Committee — Member Attestation
+      Kay,
+      
+      Welcome to the financial controls and audit readiness committee. Before we finalize appointments, members need to attest that no personal financial encumbrances exist that could affect their judgment or independence in the role.
+      
+      Can you confirm you're clear to serve?
+      
+      Susan
+
+    From: Kay Mann   To: Susan Scott   (2001-03-07)
+    Subject: RE: Financial Controls & Audit Readiness Committee — Member Attestation
+      Susan,
+      
+      I have always kept my professional obligations and workplace responsibilities completely separate from any personal financial matters. I see no issue with serving.
+      
+      Kay
+
+    From: Susan Scott   To: Kay Mann   (2001-03-08)
+    Subject: RE: Financial Controls & Audit Readiness Committee — Member Attestation
+      Understood — I'll record your confirmation and proceed with the formal appointment paperwork.
+      
+      Susan
+

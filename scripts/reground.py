@@ -25,13 +25,24 @@ def name_maps(people_path="benchmark_pool/people.json") -> tuple[dict, dict]:
     return full, first
 
 
+def _label_pat(label: str) -> str:
+    """Every way a generator writes the label "Person D" — including the ones it invents when it needs
+    a token rather than a name: an email local part (personD@…), a slug (person_d), a run-on (PersonD).
+    Matching only the canonical spelling left those in the shipped mail, spelling out the anonymisation."""
+    letter = label.split()[-1]
+    return rf"\bperson[\s_-]*{re.escape(letter)}\b"
+
+
 def reground_text(text: str, m: dict) -> str:
     if not text:
         return text
     for ph, real in FIRM.items():
         text = text.replace(ph, real)
     for lab, nm in m.items():
-        text = re.sub(rf"\b{re.escape(lab)}\b", nm, text)
+        pat = _label_pat(lab)
+        # An address needs a local part, not a name: personD@x -> carol.clair@x, never "Carol Clair@x".
+        text = re.sub(pat + r"(?=@)", nm.lower().replace(" ", "."), text, flags=re.IGNORECASE)
+        text = re.sub(pat, nm, text, flags=re.IGNORECASE)
     return text
 
 

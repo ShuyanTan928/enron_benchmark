@@ -70,20 +70,43 @@ def _iso(date: str, j: int) -> str:
     return date or ""
 
 
+def scrub_labels(text: str) -> str:
+    """Strip anonymized-label residue (Person A-J) that survived name-regrounding inside filenames /
+    handles — e.g. 'Portfolio_Audit_H.pdf', 'MedCert_PersonC_Oct13.pdf' — which would otherwise leak
+    the anonymization scheme. The residue is only a HANDLE, so stripping it consistently across clues
+    keeps the shared-reference link intact."""
+    if not text:
+        return text
+    text = re.sub(r"[_-]?Person[ _]?[A-J](?![A-Za-z])", "", text)   # PersonC / _PersonC (also before '_')
+    text = re.sub(r"[_-]([A-J])(?=[_.])", "", text)         # _H. , _H_
+    text = re.sub(r"\b([A-J])[_-](?=[A-Z])", "", text)      # H_Status -> Status
+    text = re.sub(r"[_-]{2,}", "_", text)                   # collapse doubled separators
+    return text
+
+
+def clamp_era(date: str) -> str:
+    """Force an out-of-corpus year into the 1999-2002 range (default 2001), preserving month/day, so a
+    generator's anachronistic date (e.g. 2024-05-10) does not stick out in a 2000-2001 haystack."""
+    mo = re.match(r"(\d{4})(-\d{2}-\d{2}.*)$", date or "")
+    if mo and not (1999 <= int(mo.group(1)) <= 2002):
+        return "2001" + mo.group(2)
+    return date or ""
+
+
 def clue_to_thread(clue: dict, topic_id: str, addr_map: dict) -> dict:
     """One clue (1 email, or a <=2-email chain) -> one real-schema threads.jsonl thread."""
     msgs, prev = [], None
     for j, m in enumerate(clue.get("messages", [])):
         mid = f"{abs(hash((topic_id, clue.get('i'), j))) % 10**8}.{1075849000000 + j}.javamail.evans@thyme"
-        body = normalize_body(m.get("body", "") or "")        # Enron-native: ASCII + hard-wrap ~75 col
+        body = normalize_body(scrub_labels(m.get("body", "") or ""))   # ASCII + hard-wrap + label scrub
         msgs.append({
             "message_id": mid,
             "from_addr": name_to_addr(m.get("from", ""), addr_map),
             "to_addrs": [name_to_addr(x, addr_map) for x in (m.get("to") or [])],
             "cc_addrs": [name_to_addr(x, addr_map) for x in (m.get("cc") or [])],
             "bcc_addrs": [],
-            "subject": to_ascii(m.get("subject", "") or ""),
-            "date": _iso(m.get("date", ""), j),
+            "subject": to_ascii(scrub_labels(m.get("subject", "") or "")),
+            "date": _iso(clamp_era(m.get("date", "")), j),                # anachronistic year -> corpus era
             "in_reply_to": prev,
             "references": [prev] if prev else [],
             "body": body,
@@ -106,21 +129,28 @@ def _thread_text(t: dict) -> str:
     return (t.get("subject", "") or "") + " " + " ".join(m.get("body", "") or "" for m in t["messages"])
 
 
-def event_cluster_tids(anchor: dict, corpus_threads, bm: BM25, *, topn: int, floor: float) -> set:
-    """thread_ids of the REAL event the secret was grounded on: the anchor's own thread (matched
-    exactly by message_id) plus the threads most related to it (BM25 over the anchor's text, the
-    top-N that clear an absolute and a relative score floor). These are the corpus mails that tell
-    the true — and contradictory — story, so none of them may land in the haystack."""
+def event_cluster_tids(anchor: dict, query: str, corpus_threads, bm: BM25, *, topn: int,
+                       floor: float) -> set:
+    """thread_ids of the real corpus mail that would CONTRADICT the planted secret, so that none of it
+    lands in the haystack. Two ways in:
+
+      1. the anchor's own thread, matched exactly by message_id;
+      2. everything the corpus says about the SECRET'S CARRIER — BM25 over `query` (the carrier and the
+         true_fact), top-N over an absolute and a relative floor.
+
+    (2) is keyed on the secret, not on the anchor's text, because the secret is what the haystack must
+    not contradict. The anchor donates the carrier and is then beside the point: retrieving on its whole
+    body pulls in whatever else it happened to be about, and misses real mail about the carrier that the
+    anchor never mentioned."""
     anchor = anchor or {}
     mid = anchor.get("message_id", "")
-    text = anchor.get("text", "") or ""
     tids = set()
     if mid:                                                 # 1. exact: the anchor's own thread
         for t in corpus_threads:
             if any(m.get("message_id") == mid for m in t["messages"]):
                 tids.add(t["thread_id"])
-    if text.strip():                                        # 2. related: BM25 top-N over the anchor text
-        sc = bm.scores(tokenize(text))
+    if (query or "").strip():                               # 2. related: BM25 top-N over the SECRET
+        sc = bm.scores(tokenize(query))
         order = sorted(range(len(corpus_threads)), key=lambda i: sc[i], reverse=True)
         top = float(sc[order[0]]) if len(order) else 0.0
         for i in order[:topn]:
@@ -129,13 +159,22 @@ def event_cluster_tids(anchor: dict, corpus_threads, bm: BM25, *, topn: int, flo
     return tids
 
 
-def build_haystack(clue_threads, corpus_threads, anchor, bm, *, noise_target: int, seed: int,
+def secret_query(obj: dict, anchor: dict | None) -> str:
+    """What the haystack must not contradict: the carrier + the truth. Falls back to the anchor's text
+    for older records that predate the carrier field."""
+    ans = obj.get("answer") or {}
+    parts = [obj.get("_carrier", ""), ans.get("true_fact", ""), ans.get("concealment", "")]
+    q = " ".join(p for p in parts if p).strip()
+    return q or ((anchor or {}).get("text", "") or "")
+
+
+def build_haystack(clue_threads, corpus_threads, anchor, query, bm, *, noise_target: int, seed: int,
                    related_topn: int = 20, related_floor: float = 2.0):
     """Excise the real event cluster, borrow its ids for the clues, then mix the clue threads with
     noise sampled UNCHANGED from the rest of the corpus and scatter them randomly through the pile.
 
-    (1) Find the anchor's thread + its related threads (the real same-event mail) and pull them ALL
-        out of the noise pool — they tell the true story and must never appear in the haystack.
+    (1) Find the anchor's thread + every thread the corpus has about the secret's carrier, and pull
+        them ALL out of the noise pool — they tell the true story and must never appear in the haystack.
     (2) Borrow REAL Message-IDs for the clue messages, PRIORITY = ids from those removed cluster
         threads (so the anchor's own id now belongs to a clue, not to any corpus mail in the pile);
         every source thread is out of the pile, so no clue id can collide with a noise id.
@@ -144,7 +183,8 @@ def build_haystack(clue_threads, corpus_threads, anchor, bm, *, noise_target: in
     rng = random.Random(seed)
     clue_tids = {ct["thread_id"] for ct in clue_threads}
 
-    cluster_tids = event_cluster_tids(anchor, corpus_threads, bm, topn=related_topn, floor=related_floor)
+    cluster_tids = event_cluster_tids(anchor, query, corpus_threads, bm, topn=related_topn,
+                                      floor=related_floor)
     cluster = [t for t in corpus_threads if t["thread_id"] in cluster_tids]
     cand = [t for t in corpus_threads
             if t["thread_id"] not in cluster_tids and t["thread_id"] not in clue_tids]
@@ -230,7 +270,8 @@ def main():
             print(f"  WARNING {tid}: no anchor (record has no _anchor, not in --topics) — event cluster NOT excised")
         clue_threads = [clue_to_thread(c, tid, addr_map) for c in obj.get("clues", [])]
         haystack, noise, flat, cut = build_haystack(
-            clue_threads, corpus, anchor, bm, noise_target=args.noise, seed=args.seed,
+            clue_threads, corpus, anchor, secret_query(obj, anchor), bm,
+            noise_target=args.noise, seed=args.seed,
             related_topn=args.related_topn, related_floor=args.related_floor)
         planted = [{"clue_i": c.get("i"), "carries": c.get("carries"),    # after id-borrowing
                     "message_ids": [m["message_id"] for m in th["messages"]]}

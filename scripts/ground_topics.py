@@ -33,40 +33,67 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.models.engine_factory import build_engine                  # noqa: E402
 from src.grounding.corpus import load_emails                            # noqa: E402
 from src.grounding.retrieval import HybridRetriever                     # noqa: E402
-from src.grounding.pipeline import propose_topic                        # noqa: E402
+from src.grounding.pipeline import propose_grounding, propose_ungrounded    # noqa: E402
 
 
 def run_category(engine, retriever, emails, category, target, accepted, discarded,
-                 max_fails, checker=None, used_anchors=None, secret_type=""):
-    """Write `target` topics for this category. Successes do NOT count against the budget:
-    we keep going until `target` are written OR `max_fails` attempts have FAILED (dup / NONE /
-    CHECK-reject). So the most attempts this ever makes is target + max_fails.
+                 max_fails, checker=None, used_anchors=None, secret_type="", grounded=True,
+                 budget=0):
+    """Write `target` topics for this category, then stop.
+
+    budget > 0 : a hard cap on TOTAL attempts — every proposal counts, kept or not. Stop as soon as
+                 `target` are written, or `budget` attempts have been made. This is what you want when
+                 you are paying per call: `--budget 5` means five calls, full stop.
+    budget = 0 : the old shape — only FAILURES count (dup / NONE / CHECK-reject), so the run makes at
+                 most target + max_fails attempts.
 
     checker=None (manual)  : keep every grounded candidate (the CHECK is applied later,
                              by a human/Sonnet, over the dumped pending pool).
     checker given (sonnet) : apply the gate inline — ONE topic at a time:
                              generate -> ground -> CHECK -> if write, keep; if regenerate,
                              record it as rejected (so it is also avoided) and loop to the
-                             next topic. This is the production (API) structure."""
+                             next topic. This is the production (API) structure.
+
+    grounded=False (casual): skip HyDE / retrieve / fit-judge / specialize — propose an ungrounded
+                             topic (no anchor) and hand it straight to the type gate. Everything else
+                             (dedup, the checker loop) is identical."""
     kept = []
-    rejected: list[dict] = []          # this-run rejects, also fed to the AVOID list
+    rejected: list[dict] = []          # this-run rejects — dedup only, never shown to the model
     used_anchors = used_anchors if used_anchors is not None else set()
-    fails = 0
-    while len(kept) < target and fails < max_fails:
-        p = propose_topic(engine, retriever, emails, category, accepted + rejected,
-                          used_anchors=used_anchors, secret_type=secret_type)
+    fails = attempts = 0
+    while len(kept) < target and (attempts < budget if budget else fails < max_fails):
+        attempts += 1
+        # The model is shown ONLY the secrets that were kept. The rejects still count for dedup, but
+        # they never enter the prompt: a rejected secret put in front of the model is still an example.
+        if grounded:
+            # Secret-first grounding: abstract one-line secret -> HyDE -> retrieve -> fit-judge.
+            # The secret stays abstract; the anchor is only a real CARRIER the downstream atomize
+            # hangs it on. No specialize, no Step-1 CHECK — the plot+judge is the real gate.
+            p = propose_grounding(engine, retriever, emails, category, accepted,
+                                  used_anchors=used_anchors, seen=accepted + rejected)
+        else:
+            p = propose_ungrounded(engine, category, accepted, secret_type=secret_type,
+                                   seen=accepted + rejected)
         st = p["status"]
         topic = p.get("topic")
         name = (topic or {}).get("name", "?")
         if st != "grounded":
             fails += 1
             discarded.append(p)
-            if topic:
+            # Only a verdict about the IDEA bans it from being proposed again. A broken response
+            # (bad JSON, truncation) says nothing about the idea — don't poison the AVOID list.
+            if topic and st not in ("gen_error", "hyde_error", "spec_error"):
                 rejected.append(p.get("abstract_topic") or topic)
-            print(f"  [{category} fail {fails}/{max_fails}] {st.upper():11} «{name}»")
+            spend = f"{attempts}/{budget}" if budget else f"fail {fails}/{max_fails}"
+            print(f"  [{category} {spend}] {st.upper():11} «{name}»")
             continue
 
-        a = p["anchor"]
+        if grounded:                       # propose_grounding returns Email objects — pick the best, serialize
+            anchors = p.get("anchors") or []
+            best = anchors[0] if anchors else None
+            p["anchor"] = best.anchor_dict() if best else None
+            p["anchor_full_body"] = best.body[:1500] if best else ""
+        a = p.get("anchor") or {}
         if checker is not None:
             v = checker.check(p)
             p["check"] = v
@@ -75,11 +102,14 @@ def run_category(engine, retriever, emails, category, target, accepted, discarde
                 p["status"] = "check_reject"
                 discarded.append(p)
                 rejected.append(p.get("abstract_topic") or topic)            # avoid re-proposing this rejected idea
-                print(f"  [{category} fail {fails}/{max_fails}] CHECK-REJECT «{name}»  ({v['reason'][:70]})")
+                spend = f"{attempts}/{budget}" if budget else f"fail {fails}/{max_fails}"
+                print(f"  [{category} {spend}] CHECK-REJECT «{name}»  ({v['reason'][:70]})")
                 continue
-            print(f"  [{category} {len(kept)+1}/{target}] CHECK-WRITE  «{name}»  -> {a['date'][:10]} \"{a['subject'][:38]}\"")
+            where = f'-> {a["date"][:10]} "{a["subject"][:38]}"' if a else "(ungrounded / casual)"
+            print(f"  [{category} {len(kept)+1}/{target}] CHECK-WRITE  «{name}»  {where}")
         else:
-            print(f"  [{category} {len(kept)+1}/{target}] GROUNDED    «{name}»  -> {a['date'][:10]} \"{a['subject'][:38]}\"")
+            where = f'-> {a["date"][:10]} "{a["subject"][:38]}"' if a else "(ungrounded / casual)"
+            print(f"  [{category} {len(kept)+1}/{target}] GROUNDED    «{name}»  {where}")
         kept.append(p)
         accepted.append(p.get("abstract_topic") or p["topic"])   # AVOID on the skeleton, not specifics
         mid = (p.get("anchor") or {}).get("message_id")
@@ -99,6 +129,13 @@ def main():
     ap.add_argument("--seed", type=int, default=1234)
     ap.add_argument("--n_work", type=int, default=12)
     ap.add_argument("--n_casual", type=int, default=3)
+    ap.add_argument("--ungrounded", action="store_true",
+                    help="CASUAL only: skip HyDE/retrieve/fit-judge/specialize — propose personal "
+                         "topics with NO anchor (specifics invented at the SPEC step). Work is always "
+                         "grounded and is unaffected by this flag.")
+    ap.add_argument("--budget", type=int, default=0,
+                    help="hard cap on TOTAL attempts per category — every proposal counts, kept or "
+                         "not. Stops early once --n_work are written. Use this when paying per call.")
     ap.add_argument("--max-fails", type=int, default=30,
                     help="stop a category after this many FAILED attempts (dup / NONE / "
                          "CHECK-reject); successes don't count. Max attempts = target + max_fails.")
@@ -112,7 +149,7 @@ def main():
     ap.add_argument("--gate-preset", default="",
                     help="API model for the type gate (e.g. or-gpt-5); default reuses the gen engine")
     ap.add_argument("--kept-out", default="",
-                    help="also write kept topics in {kept:[...]} format for spec_build "
+                    help="also write kept topics in {kept:[...]} format for atomize_build"
                          "(default benchmark_pool/topics_<type>.json when --secret-type is set)")
     ap.add_argument("--out", default="benchmark_pool/step1_pending.json")
     ap.add_argument("--seed_accepted", default=None,
@@ -153,16 +190,22 @@ def main():
     print(f"\n=== WORK ({args.n_work}) ===")
     used_anchors: set = set()          # shared so no anchor backs two topics, across categories
     work = run_category(engine, retriever, emails, "work", args.n_work,
-                        accepted, discarded, args.max_fails, checker, used_anchors, args.secret_type)
-    print(f"\n=== CASUAL ({args.n_casual}) ===")
+                        accepted, discarded, args.max_fails, checker, used_anchors, args.secret_type,
+                        grounded=True, budget=args.budget)
+    tag = " [ungrounded]" if args.ungrounded else ""
+    print(f"\n=== CASUAL ({args.n_casual}){tag} ===")
     casual = run_category(engine, retriever, emails, "casual", args.n_casual,
-                          accepted, discarded, args.max_fails, checker, used_anchors, args.secret_type)
+                          accepted, discarded, args.max_fails, checker, used_anchors, args.secret_type,
+                          grounded=not args.ungrounded, budget=args.budget)
 
     kept = work + casual
 
-    # spec_build-ready output: {kept:[{id, topic, anchor, anchor_full_body}]} — same shape as
-    # plot_generation.json, so `spec_build --plots <this>` runs STAGE 1 [2] + STAGE 2 on it.
-    if args.secret_type:
+    # atomize_build-ready output: {kept:[{id, topic, anchor, anchor_full_body}]} — same shape as
+    # plot_generation.json, so `atomize_build --plots <this>` runs STAGE 1 [2] + STAGE 2 on it.
+    if kept:
+        # atomize_build handoff. Mechanism-agnostic: the secret carries no true_fact/false_belief/act
+        # (atomize derives them) and no secret_type (the atomize RUN supplies the mechanism — one
+        # secret feeds all three). true_fact/etc. stay in the shape only for back-compat.
         kept_entries = []
         for i, p in enumerate(kept, 1):
             tid = f"T{i:02d}"
@@ -170,15 +213,17 @@ def main():
             kept_entries.append({
                 "id": tid, "category": t.get("category", "work"), "secret_type": args.secret_type,
                 "topic": {"id": tid, "name": t.get("name", ""), "secret": t.get("secret", ""),
-                          "true_fact": t.get("true_fact", ""), "false_belief": t.get("false_belief", "")},
+                          "true_fact": t.get("true_fact", ""), "false_belief": t.get("false_belief", ""),
+                          "act": t.get("act", ""), "carrier": t.get("carrier", "")},
                 "anchor": p.get("anchor"), "anchor_full_body": p.get("anchor_full_body", ""),
             })
-        kept_out = args.kept_out or f"benchmark_pool/topics_{args.secret_type}.json"
+        kept_out = args.kept_out or (f"benchmark_pool/topics_{args.secret_type}.json"
+                                     if args.secret_type else "benchmark_pool/topics_grounded.json")
         Path(kept_out).write_text(json.dumps(
-            {"_about": f"secret-first {args.secret_type}-typed topics (gate=topic_judge_{args.secret_type}); "
-                       f"feed to spec_build --plots {kept_out}", "kept": kept_entries},
-            indent=2, ensure_ascii=False))
-        print(f"  kept-format -> {kept_out}  ({len(kept_entries)} topics; feed to spec_build --plots)")
+            {"_about": f"secret-first topics (register={{work,casual}}); feed to atomize_build --plots "
+                       f"{kept_out} --secret-type <commission|omission|paltering>", "kept": kept_entries},
+            indent=2, ensure_ascii=False, default=lambda o: o.__dict__ if hasattr(o, "__dict__") else str(o)))
+        print(f"  kept-format -> {kept_out}  ({len(kept_entries)} topics; feed to atomize_build --plots)")
 
     checker_id = args.checker_preset if args.checker == "sonnet" else args.checker
     out = {
@@ -195,7 +240,10 @@ def main():
         "candidates": kept,
         "discarded": discarded,
     }
-    Path(args.out).write_text(json.dumps(out, indent=2, ensure_ascii=False))
+    # candidates/discarded carry raw Email dataclass objects (anchors, retrieved hits) — make them
+    # JSON-safe by falling back to the object's field dict (or its str) for anything json can't handle.
+    _jsonable = lambda o: o.__dict__ if hasattr(o, "__dict__") else str(o)
+    Path(args.out).write_text(json.dumps(out, indent=2, ensure_ascii=False, default=_jsonable))
 
     # readable: only the written (passed) topics — no judge process, no failures
     readable = Path(args.out).with_suffix(".txt")
