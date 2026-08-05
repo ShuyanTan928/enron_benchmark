@@ -18,7 +18,7 @@ concealment from the joined evidence.
 
 Every secret is placed on a 2 × 2 grid, then rendered at two clue-counts:
 
-|            | **commission** (a false statement)        | **paltering** (a true-but-misleading statement) |
+|            | **lying by commission** (a false statement) | **paltering** (a true-but-misleading statement) |
 |------------|-------------------------------------------|-------------------------------------------------|
 | **work**   | a trading-desk matter, grounded on a real Enron anchor | same, grounded                         |
 | **casual** | a coworker's / the actor's own private trouble, ungrounded | same, ungrounded                    |
@@ -38,7 +38,7 @@ together do — an **AND-gate**.
 |------|-----------|
 | **a1** `true_state` | the objective truth as a standing fact (a limit expired, a licence revoked). Never names the actor. |
 | **a2** `knew` | the actor was on the SAME record / thread / occasion as a1 — proving they'd have seen it — without restating its content. |
-| **a3** the concealing act | **commission**: one plain false sentence to the victim. **paltering**: one TRUE sentence on the same matter, confirming its visible side is fine, so the victim assumes the hidden problem isn't there. |
+| **a3** the concealing act | **lying by commission**: one plain false sentence to the victim. **paltering**: one TRUE sentence on the same matter, confirming its visible side is fine, so the victim assumes the hidden problem isn't there. |
 
 The conclusion ("who hid what") lives only in the answer key. Whether a2 needs its own clue, and how a1
 may split, are decided by the clue-count `n`.
@@ -47,7 +47,7 @@ may split, are decided by the clue-count `n`.
 
 ## Worked example
 
-One real item — **work · commission · n = 2** (topic T01).
+One real item — **work · lying by commission · n = 2** (topic T01).
 
 **Answer key** (hidden from the tested model):
 

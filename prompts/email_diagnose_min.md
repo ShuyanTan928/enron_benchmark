@@ -28,7 +28,7 @@ already tried — don't repeat, and don't just reverse into the opposite failure
 - a2 (knew): shows the actor was on the SAME record/thread as a1 (so they'd have seen it) — but never
   restates its content, and its handle/filename must not spell the outcome. too much = the reply or the
   filename states the fact; too little = a bare receipt on no shared handle, so it proves nothing.
-- a3 (act): the actor's move to the victim — a false line (commission), or a TRUE line on the SAME matter
+- a3 (act): the actor's move to the victim — a false line (lying by commission), or a TRUE line on the SAME matter
   that confirms its visible side is fine (paltering). too much = it names or points at the hidden record;
   too little (paltering) = it drifted to a DIFFERENT matter, so it misleads no one and the set can't
   recover — put it back on the matter the victim is deciding, pointing to something genuinely in good order.
