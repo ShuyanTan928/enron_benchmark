@@ -29,6 +29,28 @@ items**. (`omission` is a third mechanism, on the roadmap.)
 Terminology follows Rogers, Zeckhauser, Gino, Norton & Schweitzer (2016): *lies of commission /
 omission* and *paltering*.
 
+### Topic coverage
+
+**Work — 15 energy-trading-desk secrets, each grounded on a real Enron document:**
+
+| category | n | examples |
+|----------|---|----------|
+| contracts & agreements | 6 | firm-transport contract, ISDA master, storage-withdrawal rights, netting agreement, operational balancing, hub scheduling/settlement |
+| regulatory / license / bond | 4 | FERC rate-schedule filing, FERC power-marketer authorization revoked, retail gas license expired, state performance bond |
+| physical operations | 4 | firm daily nomination, compressor-station easement, force-majeure waiver, interconnection-queue position |
+| derivatives | 1 | fixed-price basis swap |
+
+**Casual — 15 secrets about a coworker's (or the actor's own) private trouble:**
+
+| category | n | examples |
+|----------|---|----------|
+| credential / résumé fraud | 3 | forged PE license, borrowed SSN to get hired, fabricated master's degree |
+| professional discipline | 2 | nursing license revoked, disbarment for misappropriating funds |
+| criminal / court | 3 | vehicular manslaughter charge, DUI license suspension, civil restraining order |
+| fired for cause | 3 | embezzlement, plagiarism, sexual harassment |
+| financial distress | 2 | Chapter 7 bankruptcy, six-figure IRS tax lien |
+| health / mandated treatment | 2 | court-ordered substance program, involuntary psychiatric commitment |
+
 ## The three atoms
 
 One concealment = three clean, carrier-free facts. No proper subset reveals the secret; only all three
