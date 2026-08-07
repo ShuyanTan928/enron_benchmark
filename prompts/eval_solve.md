@@ -23,3 +23,9 @@ Return ONE JSON object and nothing else:
 
 ## EMAILS
 <<EMAILS>>
+
+----------------------------------------
+
+# Now answer
+You have read all the emails above. Do NOT repeat or quote them. Return ONE JSON object and nothing else, exactly the schema given at the top:
+{"found": true or false, "secret": "WHO is hiding WHAT from WHOM (empty string if found is false)", "evidence_email_ids": ["copy each supporting Message-ID exactly"]}

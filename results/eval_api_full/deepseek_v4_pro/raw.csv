@@ -1,0 +1,721 @@
+config,model,topic,n_clues,noise,rep,found,secret_match,n_cited,recall,precision,secret_score,evidence_score,final,trunc,secret
+com_n2,deepseek/deepseek-v4-pro,T01,2,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T02,2,0,0,1,0,2,1.0,1.0,0,1.0,0.0,0,"The FERC rate schedule amendment for the Southwest Gas Texas interconnect was actually rejected, not accepted. Tana Jones knows it was rejected but told Susan Scott it was accepted and is now in effect."
+com_n2,deepseek/deepseek-v4-pro,T03,2,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T04,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the 150,000 MMBtu/day Gulf Coast intrastate nomination is permanently curtailed (since March 14), but on March 17 she tells Jeff Dasovich it is confirmed firm supply, causing him to proceed with downstream sales under the false belief that supply is secured."
+com_n2,deepseek/deepseek-v4-pro,T05,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows the Seasonal Storage Withdrawal Rights Agreement with the mid-continent operator was terminated effective January 7, 2001, but on January 10 she tells Carol Clair the position is intact and fully backed, hiding the termination from her."
+com_n2,deepseek/deepseek-v4-pro,T06,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows from Mark Taylor that Enron's FERC power marketer authorization was revoked effective 2001-02-28, but tells Tana Jones it is current and in good standing, hiding the revocation from her."
+com_n2,deepseek/deepseek-v4-pro,T07,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the balancing agreement has been declined and is not current, but she tells Sara Shackleton it is current and in force, causing Sara to act on that false belief."
+com_n2,deepseek/deepseek-v4-pro,T08,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T09,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T10,2,0,0,1,0,2,1.0,1.0,0,1.0,0.0,0,"Tana Jones knows the Colorado retail natural gas marketing license renewal was rejected by the PUC on March 12, 2001, but tells Jeff Dasovich on March 19 that the license is current and the desk is fully authorized, hiding the rejection from him."
+com_n2,deepseek/deepseek-v4-pro,T11,2,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows that the volunteer candidate's nursing license was revoked in February 2001 for patient record falsification, but she is hiding this from Tana Jones by claiming the credentials are clean and current with no flags, causing Tana to submit a recommendation based on false information."
+com_n2,deepseek/deepseek-v4-pro,T12,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that the candidate for the corporate driver safety program has a pending felony charge for vehicular manslaughter with DUI, leading Jeff to believe the candidate has a clean record and to proceed with the recommendation."
+com_n2,deepseek/deepseek-v4-pro,T13,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,Susan Scott is hiding from Tana Jones that the colleague she recommended as a signatory on the discretionary expense account was terminated from their previous employment for misappropriation of client funds. Susan learned this from the background review but falsely vouched for the colleague's financial integrity and good standing.
+com_n2,deepseek/deepseek-v4-pro,T14,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T15,2,0,0,1,1,2,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows the outside candidate for the mentorship program was terminated for research misconduct/plagiarism, but tells Susan Scott the candidate left on good terms with an unblemished record, hiding the misconduct from her."
+com_n2,deepseek/deepseek-v4-pro,T16,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding her Chapter 7 bankruptcy filing and multiple defaulted debts from Kay Mann, leading Kay to co-sign a lease believing Tana's finances are in good standing."
+com_n2,deepseek/deepseek-v4-pro,T17,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows she does not hold an active Professional Engineer license in Texas (per the board's February 14, 2001 verification), but she hides this from Tana Jones by falsely claiming on March 6, 2001, that her PE license is current and in good standing, leading Tana to continue listing Susan as the certifying engineer on pending client deliverables."
+com_n2,deepseek/deepseek-v4-pro,T18,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T19,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows from Mark Taylor that David Mercer was disbarred in January 2001 for misappropriating client funds, yet she tells Tana Jones that Mercer is a fully licensed practicing attorney, causing Tana to send him contract review work under that false belief."
+com_n2,deepseek/deepseek-v4-pro,T20,2,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding a psychiatric commitment record from Jeff Dasovich, who is handling her security clearance renewal and believes her mental health history is clean."
+com_n2,deepseek/deepseek-v4-pro,T21,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Mark Taylor knows the MMPA basis swap was terminated by the counterparty on March 14, 2001, but hides this from Richard Sanders, leading Richard to believe the swap is still in place and to tell Elizabeth Sager that no hedge replacement is required."
+com_n2,deepseek/deepseek-v4-pro,T22,2,0,0,1,0,3,1.0,1.0,0,1.0,0.0,0,"Elizabeth Sager knows the merchant power plant's PJM interconnection is administratively withdrawn and no longer active, but she tells Carol Clair it is secured and in good standing, hiding the true status from her."
+com_n2,deepseek/deepseek-v4-pro,T23,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows from Mark Taylor that the Rocky Mountain force majeure waiver expired on 2001-02-28 and was not renewed, but tells Sara Shackleton it is still active, hiding the expiration."
+com_n2,deepseek/deepseek-v4-pro,T24,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton is hiding the cancellation of Enron's Oklahoma OCC performance bond (lapsed as of March 10, 2001) from Mark Taylor, causing him to sign off on Oklahoma physical gas positions believing the bond was still current."
+com_n2,deepseek/deepseek-v4-pro,T25,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T26,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that her Master of Science degree was never conferred, while Jeff believes she has the degree and is proceeding with her promotion paperwork on that basis."
+com_n2,deepseek/deepseek-v4-pro,T27,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows her driver's license has been suspended for six months following a DUI conviction, but she tells Tana Jones it is fully valid and current, causing Tana to schedule her for airport driving runs."
+com_n2,deepseek/deepseek-v4-pro,T28,2,0,0,1,0,2,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows that Person K was terminated for cause, but she hides this from Mark Taylor by claiming Person K left on excellent terms following a mutual decision."
+com_n2,deepseek/deepseek-v4-pro,T29,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that she has an active restraining order against her for stalking and harassment, which is directly relevant to leading a harassment task force."
+com_n2,deepseek/deepseek-v4-pro,T30,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan is hiding an existing IRS tax lien (filed January 2001 for unpaid self-employment taxes) from Jeff, who believes she has no financial encumbrances and appoints her to the audit readiness committee."
+com_n2,deepseek/deepseek-v4-pro,T01,2,200,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows that the key interstate pipeline counterparty contract has been terminated as of February 28, 2001, but she tells Jeff Dasovich on March 19, 2001 that it remains active and in good standing, causing him to continue booking forward capacity."
+com_n2,deepseek/deepseek-v4-pro,T02,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T03,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T04,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T05,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T06,2,200,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T07,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T08,2,200,0,1,0,5,1.0,1.0,0,1.0,0.0,0,"Sara Shackleton is hiding from Susan Scott that the SE lateral compressor tie-in easement has been legally terminated and the lateral has no operable physical path, while Susan believes it is operational and proceeds to schedule capacity."
+com_n2,deepseek/deepseek-v4-pro,T09,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T10,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T11,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T12,2,200,0,1,1,4,1.0,1.0,1,1.0,1.0,0,Susan Scott is hiding from Jeff Dasovich that the driver safety program candidate has a pending felony charge for vehicular manslaughter with DUI.
+com_n2,deepseek/deepseek-v4-pro,T13,2,200,0,1,0,2,0.5,1.0,0,0.5,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T14,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T15,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T16,2,200,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding her Chapter 7 bankruptcy filing and significant personal debts from Kay Mann, who is co-signing a lease based on Tana's false assurance of good credit."
+com_n2,deepseek/deepseek-v4-pro,T17,2,200,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T18,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T19,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T20,2,200,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T21,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T22,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T23,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T24,2,200,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton is hiding from Mark Taylor that Enron's Oklahoma OCC natural gas supplier performance bond was cancelled effective 2001-03-10, leading Mark to believe the bond is still valid and to sign off on Oklahoma physical gas positions."
+com_n2,deepseek/deepseek-v4-pro,T25,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T26,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T27,2,200,0,1,0,2,0.5,1.0,0,0.5,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T28,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T29,2,200,0,1,1,3,1.0,0.667,1,0.667,0.667,0,"Susan Scott is hiding the fact that she has an active restraining order against her for stalking and harassment from Jeff Dasovich, who is vetting her to lead a harassment task force, leading him to recommend her as chair based on her false claim of a clean record."
+com_n2,deepseek/deepseek-v4-pro,T30,2,200,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding a mid-six-figure federal tax lien from Jeff Dasovich, who appoints her to the audit readiness committee under the false belief that she has no outstanding tax issues or legal encumbrances."
+com_n2,deepseek/deepseek-v4-pro,T01,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T02,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T03,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T04,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T05,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T06,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T07,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T08,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T09,2,400,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T10,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T11,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T12,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T13,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T14,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T15,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T16,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T17,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T18,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T19,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T20,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T21,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T22,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T23,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T24,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T25,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T26,2,400,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that she did not actually complete her master's degree, and Jeff is submitting her promotion paperwork believing she has the degree."
+com_n2,deepseek/deepseek-v4-pro,T27,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T28,2,400,0,1,0,4,1.0,1.0,0,1.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T29,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T30,2,400,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding an IRS lien for unpaid self-employment taxes from Jeff Dasovich. She tells him she has no outstanding tax issues, and he appoints her to the audit readiness committee based on that false belief."
+com_n2,deepseek/deepseek-v4-pro,T01,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows from the March 14 capacity status sheet that the key interstate pipeline contract was terminated effective February 28, 2001, but on March 19 she tells Jeff Dasovich that the agreement remains active and in good standing, causing him to continue booking and selling forward capacity under a terminated contract."
+com_n2,deepseek/deepseek-v4-pro,T02,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T03,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T04,2,0,1,1,1,2,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the 150,000 MMBtu/day Gulf Coast intrastate nomination was permanently curtailed on March 14, but tells Jeff Dasovich on March 17 that it is confirmed firm supply, hiding the curtailment from him."
+com_n2,deepseek/deepseek-v4-pro,T05,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows the Seasonal Storage Withdrawal Rights Agreement with the mid-continent operator was terminated effective January 7, 2001, but she hides this from Carol Clair, telling her on January 10 that the storage withdrawal rights position is intact, causing Carol to proceed with retail counterparty documentation under false belief."
+com_n2,deepseek/deepseek-v4-pro,T06,2,0,1,1,1,2,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows from Mark Taylor that Enron's FERC power marketer authorization was revoked effective 2001-02-28, but she tells Tana Jones it is current and in good standing, hiding the true status so Tana proceeds with wholesale transactions."
+com_n2,deepseek/deepseek-v4-pro,T07,2,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T08,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows from Mark Taylor's March 14 email that the SE lateral compressor station tie-in easement legally terminated and the lateral has no operable physical path, but she tells Susan Scott on March 21 that the easement is in good standing and the tie-in is fully operational, causing Susan to schedule Q2 capacity nominations under that false belief."
+com_n2,deepseek/deepseek-v4-pro,T09,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,Tana Jones is hiding from Mark Taylor that the Houston power marketer's bilateral netting agreement has expired and the net exposure figures understate the true credit risk.
+com_n2,deepseek/deepseek-v4-pro,T10,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the Colorado PUC license renewal was rejected, but she tells Jeff Dasovich the license is current and the desk is fully authorized. Jeff, believing the license is valid, proceeds with pending accounts."
+com_n2,deepseek/deepseek-v4-pro,T11,2,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T12,2,0,1,1,0,1,0.5,1.0,0,0.5,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T13,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows that the colleague was terminated for misappropriation of client funds, but she hides this from Tana Jones and instead vouches for the colleague's financial integrity, causing Tana to proceed with signatory paperwork under a false belief."
+com_n2,deepseek/deepseek-v4-pro,T14,2,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T15,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows the outside candidate was terminated for research misconduct/plagiarism but hides this from Susan Scott, who believes the candidate has an unblemished record and is fit to lead the mentorship program."
+com_n2,deepseek/deepseek-v4-pro,T16,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding her Chapter 7 bankruptcy and multiple defaulted debts from Kay Mann, who is co-signing a lease based on Tana's false assurance that her credit and finances are in good standing."
+com_n2,deepseek/deepseek-v4-pro,T17,2,0,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows she does not have an active Professional Engineer license in Texas, but she hides this from Tana Jones and tells her the license is current, causing Tana to falsely list Susan as certifying engineer on client deliverables."
+com_n2,deepseek/deepseek-v4-pro,T18,2,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T19,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows from Mark Taylor that David Mercer was disbarred in January 2001 for client-fund misappropriation, but she hides this from Tana Jones and recommends Mercer as a fully licensed practicing attorney, causing Tana to assign him contract review work under that false belief."
+com_n2,deepseek/deepseek-v4-pro,T20,2,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T21,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T22,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Elizabeth Sager is hiding from Carol Clair that the merchant power plant's PJM interconnection status is actually ""administratively withdrawn, no longer active"" as of August 14, 2001, instead telling her it is secured with a good queue position."
+com_n2,deepseek/deepseek-v4-pro,T23,2,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T24,2,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T25,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding from Mark Taylor that the SE hub scheduling & settlement agreement has lapsed and netting rights are nonexistent, while telling him it is current and trades are fully deliverable under existing netting rights."
+com_n2,deepseek/deepseek-v4-pro,T26,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that her Master's degree was never conferred, while falsely claiming it is fully in order, causing Jeff to proceed with her promotion on that false belief."
+com_n2,deepseek/deepseek-v4-pro,T27,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding the fact that her driver's license has been suspended for six months from Tana Jones, who believes it is valid and schedules her for airport runs."
+com_n2,deepseek/deepseek-v4-pro,T28,2,0,1,1,1,2,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows from Person K's separation review that Person K was terminated for cause following a substantiated complaint, but she tells Mark Taylor that Person K left their previous firm on excellent terms following a mutual decision, hiding the real reason for departure."
+com_n2,deepseek/deepseek-v4-pro,T29,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding an active restraining order against her for stalking and harassment from Jeff Dasovich, who believes her record is clean and is recommending her to chair the harassment task force."
+com_n2,deepseek/deepseek-v4-pro,T30,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding an IRS federal tax lien from Jeff Dasovich, who appointed her to the audit readiness committee believing she had no such encumbrances."
+com_n2,deepseek/deepseek-v4-pro,T01,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T02,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T03,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T04,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T05,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T06,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T07,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T08,2,200,1,1,1,5,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton is hiding from Susan Scott that the SE lateral compressor tie-in surface-use easement legally terminated on 2/28/01 and the lateral has no operable physical path; she instead falsely tells Susan the easement is in good standing and the lateral is fully operational, causing Susan to proceed with scheduling Q2 capacity nominations."
+com_n2,deepseek/deepseek-v4-pro,T09,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T10,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T11,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T12,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T13,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T14,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T15,2,200,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann is hiding from Susan Scott that the mentorship program candidate was terminated for research misconduct/plagiarism, leading Susan to believe the candidate has an unblemished record."
+com_n2,deepseek/deepseek-v4-pro,T16,2,200,1,1,1,2,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding her Chapter 7 bankruptcy and significant debts from Kay Mann, while asking Kay to co-sign a lease based on false assurances of good credit."
+com_n2,deepseek/deepseek-v4-pro,T17,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T18,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T19,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T20,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T21,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T22,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T23,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T24,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T25,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T26,2,200,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that she never completed her Master of Science degree (degree not conferred), while Jeff is processing her promotion based on her false claim that the degree is 'fully in order'."
+com_n2,deepseek/deepseek-v4-pro,T27,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T28,2,200,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows that Person K was terminated for cause following a substantiated complaint, but she hides this from Mark Taylor and instead tells him that Person K parted on excellent terms following a mutual decision, leading Mark to advance the candidacy based on false information."
+com_n2,deepseek/deepseek-v4-pro,T29,2,200,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that she has an active restraining order against her for stalking and harassment, while claiming her record is clean so that she can be recommended to lead a harassment task force."
+com_n2,deepseek/deepseek-v4-pro,T30,2,200,1,1,1,4,1.0,1.0,1,1.0,1.0,0,Susan Scott is hiding a federal tax lien for unpaid self-employment taxes from Jeff Dasovich. She falsely claims no outstanding tax issues to secure a position on the audit readiness committee.
+com_n2,deepseek/deepseek-v4-pro,T01,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T02,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T03,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T04,2,400,1,1,0,5,1.0,1.0,0,1.0,0.0,0,"Tana Jones is hiding from Jeff Dasovich that the 150,000 MMBtu/day Gulf Coast intrastate nomination has been permanently curtailed as of March 14, 2001."
+com_n2,deepseek/deepseek-v4-pro,T05,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T06,2,400,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows that Enron's FERC power marketer authorization was revoked effective February 28, 2001, but tells Tana Jones on March 19, 2001, that it is current and in good standing, causing Tana to schedule interstate wholesale sales that may be unauthorized."
+com_n2,deepseek/deepseek-v4-pro,T07,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T08,2,400,1,1,0,3,1.0,1.0,0,1.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T09,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T10,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T11,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T12,2,400,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding the fact that the driver safety program candidate has a pending felony charge for vehicular manslaughter with DUI from Jeff Dasovich, leading Jeff to believe the candidate has a clean record and to recommend him for the program."
+com_n2,deepseek/deepseek-v4-pro,T13,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T14,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T15,2,400,1,1,0,2,0.5,1.0,0,0.5,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T16,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T17,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T18,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T19,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T20,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T21,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T22,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T23,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T24,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T25,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T26,2,400,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that her Master of Science degree was not conferred, while Jeff believes she has the degree and is approving her promotion on that basis."
+com_n2,deepseek/deepseek-v4-pro,T27,2,400,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott's driver's license was suspended for six months effective March 5, 2001 following a DUI conviction, but she told Tana Jones it was fully valid and current, leading Tana to schedule her for airport driving runs."
+com_n2,deepseek/deepseek-v4-pro,T28,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n2,deepseek/deepseek-v4-pro,T29,2,400,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich that she has an active restraining order against her for stalking and harassment, while claiming she has a clean record to lead a harassment task force."
+com_n2,deepseek/deepseek-v4-pro,T30,2,400,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding an IRS tax lien from Jeff Dasovich, who believes she has no legal encumbrances and appoints her to the audit readiness committee."
+com_n3,deepseek/deepseek-v4-pro,T01,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T02,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T03,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T04,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T05,3,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T06,3,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T07,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding from Sara Shackleton that the balancing agreement at the mid-continent interconnect lapsed on 2001-01-14 and no replacement is in place, while telling Sara it is current and in force."
+com_n3,deepseek/deepseek-v4-pro,T08,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T09,3,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows from Jeff Dasovich's flagged report (forwarded by Steven Kean) that the bilateral netting agreement with the Houston power marketer expired in November 2000 and was never renewed, making the net exposure figures invalid and gross exposure the correct measure. She hides this from Mark Taylor, telling him the agreement is still in effect and the net figures are correct, causing him to rely on false information for a credit review."
+com_n3,deepseek/deepseek-v4-pro,T10,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding from Jeff Dasovich that Enron's Colorado retail natural gas marketing license is expired (rejected renewal as of March 14, 2001), leading Jeff to believe it is current and proceed with contracts."
+com_n3,deepseek/deepseek-v4-pro,T11,3,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows the colleague's secondary state nursing license was revoked for patient record falsification, but she hides this from Tana Jones by reporting the credentials as clean and current across all states."
+com_n3,deepseek/deepseek-v4-pro,T12,3,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding the candidate's pending DUI-related vehicular manslaughter charge from Jeff Dasovich, falsely claiming a clean legal record for the driver safety outreach program lead role."
+com_n3,deepseek/deepseek-v4-pro,T13,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T14,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T15,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T16,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding her Chapter 7 bankruptcy filing from Kay Mann, who co-signed a lease based on Tana's assurance of no outstanding debts."
+com_n3,deepseek/deepseek-v4-pro,T17,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T18,3,0,0,1,0,7,1.0,1.0,0,1.0,0.0,0,"Tana Jones does not have valid work authorization under their own identity for federally funded projects (their SSN belongs to a relative). Carol Clair is hiding this from Susan Scott, who is certifying Tana as a compliant covered employee based on Tana's false assurance."
+com_n3,deepseek/deepseek-v4-pro,T19,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows the contract review attorney has been disbarred for misappropriating client funds, but is hiding this from Tana Jones, who is sending him vendor agreement work believing he is a licensed attorney."
+com_n3,deepseek/deepseek-v4-pro,T20,3,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows that the DSS has a record of a ten-day involuntary psychiatric commitment from 1999 that requires disclosure on her SF-86 form, but she tells Jeff Dasovich that her mental health history is clean, causing him to incorrectly submit the renewal form with no disclosure."
+com_n3,deepseek/deepseek-v4-pro,T21,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T22,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T23,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T24,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T25,3,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T26,3,0,0,1,0,6,1.0,1.0,0,1.0,0.0,0,"Susan Scott is hiding from Jeff Dasovich that her master's degree could not be verified by HR, while Jeff believes it is fully in order and moves her job application forward."
+com_n3,deepseek/deepseek-v4-pro,T27,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T28,3,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T29,3,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Jeff Dasovich (and by extension Enron leadership) that she is the restrained party under an active restraining order for stalking and harassment (Case File 2001-DR-0847), while falsely claiming her record is clean in order to secure appointment to lead a harassment task force."
+com_n3,deepseek/deepseek-v4-pro,T30,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T01,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T02,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T03,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T04,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T05,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T06,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T07,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T08,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T09,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T10,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T11,3,200,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Tana Jones that a colleague's nursing license was revoked for patient record falsification; Susan tells Tana the credentials are clean, causing Tana to submit a hospital volunteer application under false belief."
+com_n3,deepseek/deepseek-v4-pro,T12,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T13,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T14,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T15,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T16,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T17,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T18,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T19,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T20,3,200,0,1,0,5,1.0,1.0,0,1.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T21,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T22,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T23,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T24,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T25,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T26,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T27,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T28,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T29,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T30,3,200,0,1,0,3,0.667,1.0,0,0.667,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T01,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T02,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T03,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T04,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T05,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T06,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T07,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T08,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T09,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T10,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T11,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T12,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T13,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T14,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T15,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T16,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T17,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T18,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T19,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T20,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T21,3,400,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T22,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T23,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T24,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T25,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T26,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T27,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T28,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T29,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T30,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T01,3,0,1,1,0,4,1.0,1.0,0,1.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T02,3,0,1,1,1,2,0.667,1.0,1,0.667,0.667,0,"Tana Jones is hiding from Susan Scott that FERC rejected the Southwest Gas rate schedule amendment, instead telling Susan it was accepted and in effect, causing Susan to proceed with billing at the unauthorized rate."
+com_n3,deepseek/deepseek-v4-pro,T03,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T04,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T05,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T06,3,0,1,1,1,4,0.667,1.0,1,0.667,0.667,0,"Sara Shackleton knows from Susan Scott that Enron's FERC power marketer authorization was revoked effective 2001-06-30 with no reinstatement filed, but she tells Tana Jones it is current and in good standing, causing Tana to proceed with wholesale transactions under a false belief."
+com_n3,deepseek/deepseek-v4-pro,T07,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T08,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T09,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T10,3,0,1,1,0,5,1.0,1.0,0,1.0,0.0,0,Tana Jones is hiding from Jeff Dasovich that Enron's Colorado retail natural gas marketing license is expired; Jeff believes it is current and proceeds with contracts.
+com_n3,deepseek/deepseek-v4-pro,T11,3,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T12,3,0,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T13,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T14,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T15,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T16,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T17,3,0,1,1,0,3,0.667,1.0,0,0.667,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T18,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T19,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T20,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T21,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T22,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T23,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T24,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T25,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T26,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T27,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T28,3,0,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows from Person K's prior employment screening packet that Person K was terminated for cause after an HR investigation, but she tells Mark Taylor that Person K left amicably in a clean mutual decision, causing Mark to move the candidacy forward based on that false belief."
+com_n3,deepseek/deepseek-v4-pro,T29,3,0,1,1,0,2,0.667,1.0,0,0.667,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T30,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T01,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T02,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T03,3,200,1,1,1,5,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the ISDA Master Agreement with the California municipal utility is lapsed (expired 2000-11-30, no renewal), but she tells Sara Shackleton it is current and in good standing, causing Sara to approve further swaps trading."
+com_n3,deepseek/deepseek-v4-pro,T04,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T05,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T06,3,200,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows that Enron's FERC power marketer authorization was revoked effective June 30, 2001, but tells Tana Jones on August 20, 2001 that it is current and in good standing, causing Tana to proceed with wholesale transactions under a false belief."
+com_n3,deepseek/deepseek-v4-pro,T07,3,200,1,1,1,5,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the mid-continent interconnect balancing agreement lapsed on 2001-01-14 and no replacement is in place, but she tells Sara Shackleton on 2001-03-18 that it is current and in force, causing Sara to proceed with scheduling under false pretenses."
+com_n3,deepseek/deepseek-v4-pro,T08,3,200,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T09,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T10,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T11,3,200,1,1,1,5,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Tana Jones that the colleague's nursing license was revoked in a secondary state for patient record falsification, while recommending the colleague as a strong candidate for the hospital volunteer program."
+com_n3,deepseek/deepseek-v4-pro,T12,3,200,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T13,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T14,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T15,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T16,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T17,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T18,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T19,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T20,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T21,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T22,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T23,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T24,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T25,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T26,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T27,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T28,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T29,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T30,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T01,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T02,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T03,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T04,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T05,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T06,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T07,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T08,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T09,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T10,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T11,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T12,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T13,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T14,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T15,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T16,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T17,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T18,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T19,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T20,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T21,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T22,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T23,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T24,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T25,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T26,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T27,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T28,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T29,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+com_n3,deepseek/deepseek-v4-pro,T30,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T01,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows that Enron's firm transportation contract on the Midcontinent segment was terminated effective March 14, 2001 due to non-payment, but she hides this from Richard Sanders, leading him to believe on March 22-23 that all forward capacity positions and nominations are normal and that the trading book is clean."
+pal_n2,deepseek/deepseek-v4-pro,T02,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows from a March 14 FERC filing status notice that the TX Intrastate Interconnect Rate Schedule Amendment was rejected in November 2000 and never refiled, but she hides this from Sara Shackleton. On April 3, Tana tells Sara that counterparties are being billed at the amended rate per the schedule on file, leading Sara to believe the billing is compliant and to report it as such in the Q1 regulatory summary."
+pal_n2,deepseek/deepseek-v4-pro,T03,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the ISDA Master Agreement with the California municipal utility has lapsed and no executed agreement exists (per her own March 14 internal notes), but she is hiding this fact from Sara Shackleton, leading Sara to believe a valid agreement is on file and allowing the desk to continue booking gas swaps under that false premise."
+pal_n2,deepseek/deepseek-v4-pro,T04,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T05,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T06,2,0,0,1,0,3,1.0,1.0,0,1.0,0.0,0,"Susan Scott is hiding from Sara Shackleton that Enron's power marketer authorization for wholesale electricity sales was revoked by FERC on October 3, 2001, while Sara believes they are cleared to proceed with wholesale transactions based only on exemption categories."
+pal_n2,deepseek/deepseek-v4-pro,T07,2,0,0,1,0,2,1.0,1.0,0,1.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T08,2,0,0,1,0,1,0.5,1.0,0,0.5,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T09,2,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T10,2,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T11,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows that the nurse's out-of-state nursing license was revoked on February 14, 2001 for patient record falsification, but she hides this from Tana Jones, who proceeds with the hospital volunteer credentialing believing there are no disciplinary issues."
+pal_n2,deepseek/deepseek-v4-pro,T12,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that Susan has been charged with vehicular manslaughter (DWI-related) but tells Sara Shackleton that Susan has a spotless driving record, hiding the criminal charge from her."
+pal_n2,deepseek/deepseek-v4-pro,T13,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows the colleague was dismissed for embezzlement in November 2000, but she tells Tana Jones he departed on good terms, leading Tana to approve him as a discretionary expense account signatory under false pretenses."
+pal_n2,deepseek/deepseek-v4-pro,T14,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that Jeff is enrolled in a court-mandated outpatient substance abuse treatment program, and she is hiding this from Tana Jones, who is proceeding to appoint Jeff as chair of the wellness committee under the belief that he is fully suitable."
+pal_n2,deepseek/deepseek-v4-pro,T15,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,Kay Mann is hiding from Sara Shackleton that the colleague she recommended for the mentorship program was terminated for cause for misappropriating a graduate student's research and presenting it as their own.
+pal_n2,deepseek/deepseek-v4-pro,T16,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows a colleague has filed for Chapter 7 bankruptcy with personal loans in default, but hides this from Tana Jones by only disclosing the colleague's perfect office payment history, leading Tana to finalize a landlord lease under the false belief the colleague is financially sound."
+pal_n2,deepseek/deepseek-v4-pro,T17,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows that the colleague's Professional Engineer license verification failed (no active credential found), but she hides this from Sara Shackleton and Kay Mann, who believe the credentials are valid and proceed to send the transmittal package to the client."
+pal_n2,deepseek/deepseek-v4-pro,T18,2,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T19,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that T. Holloway was disbarred in March 1999 for client-fund misappropriation, but she hides this from Tana Jones while recommending Holloway for contract review, leading Tana to believe he is a trustworthy, licensed professional."
+pal_n2,deepseek/deepseek-v4-pro,T20,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,Kay Mann is hiding Jeff's February 2001 involuntary psychiatric commitment from Tana Jones; Tana countersigns Jeff's federal clearance renewal form believing no reportable mental health event exists.
+pal_n2,deepseek/deepseek-v4-pro,T21,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T22,2,0,0,1,0,2,0.5,1.0,0,0.5,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T23,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows from Carol Clair that the Rocky Mountain pipeline firm transportation waiver expired on 7/28/01 and has not been renewed, but she hides this from Sara Shackleton, who proceeds with additional commitment bookings under the belief that all current bookings are within delivery parameters."
+pal_n2,deepseek/deepseek-v4-pro,T24,2,0,0,1,0,4,1.0,1.0,0,1.0,0.0,0,"Tana Jones knows that the performance bond securing Enron's Oklahoma natural gas supplier registration was cancelled on January 15, 2001, but hides this from Sara Shackleton, who proceeds with a contract believing the registration is in good standing."
+pal_n2,deepseek/deepseek-v4-pro,T25,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the Southeast hub scheduling & settlement agreement expired on January 23, 2001, and no executed replacement exists, but she hides this from Mark Taylor, who plans to represent the hub arrangements as fully operative for Q2 based on her update."
+pal_n2,deepseek/deepseek-v4-pro,T26,2,0,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows from the official transcript that Kay withdrew from the master's program without a degree being conferred, but she hides this fact from Sara Shackleton, leading Sara to verify Kay's academic qualifications and forward the promotion package."
+pal_n2,deepseek/deepseek-v4-pro,T27,2,0,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T28,2,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that K was separated for cause following an investigation at their prior firm, and she is hiding this from Mark Taylor, who is advancing K's team lead candidacy based on her positive recommendation."
+pal_n2,deepseek/deepseek-v4-pro,T29,2,0,0,1,0,3,1.0,1.0,0,1.0,0.0,0,"Kay Mann knows that Jeff has a civil restraining order for stalking and harassment but hides it from Tana Jones, leading Tana to nominate him for the workplace safety and anti-harassment task force lead under the false belief that he has no disciplinary issues."
+pal_n2,deepseek/deepseek-v4-pro,T30,2,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T01,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T02,2,200,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T03,2,200,0,1,0,1,0.5,1.0,0,0.5,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T04,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T05,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T06,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T07,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T08,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T09,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T10,2,200,0,1,0,4,1.0,1.0,0,1.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T11,2,200,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott is hiding from Tana Jones that the nursing license being credentialed was revoked for patient record falsification; Susan received a fax on March 5, 2001 confirming the revocation but on March 8, 2001 told Tana there was no disciplinary action on file, causing Tana to proceed with the volunteer credentialing under a false belief."
+pal_n2,deepseek/deepseek-v4-pro,T12,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T13,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T14,2,200,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that Jeff is enrolled in a court-mandated outpatient drug treatment program for drug possession, but she hides this from Tana Jones while recommending Jeff for a wellness committee chair appointment, causing Tana to move forward with the appointment unaware of Jeff's situation."
+pal_n2,deepseek/deepseek-v4-pro,T15,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T16,2,200,0,1,0,4,1.0,1.0,0,1.0,0.0,0,"Kay Mann is hiding the fact that an Enron colleague has filed for Chapter 7 bankruptcy from Tana Jones, who is finalizing a lease based on the belief that the colleague is financially current."
+pal_n2,deepseek/deepseek-v4-pro,T17,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T18,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T19,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T20,2,200,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann is hiding Jeff's February 2001 involuntary psychiatric commitment from Tana Jones, who countersigns Jeff's federal security clearance renewal believing there are no reportable issues."
+pal_n2,deepseek/deepseek-v4-pro,T21,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T22,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T23,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T24,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T25,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T26,2,200,0,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows from the transcript that Kay's master's program ended with 'withdrew -- degree not conferred,' but she hides this from Sara Shackleton, who believes the academic qualifications are verified and proceeds with the promotion package."
+pal_n2,deepseek/deepseek-v4-pro,T27,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T28,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T29,2,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T30,2,200,0,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T01,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T02,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T03,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T04,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T05,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T06,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T07,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T08,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T09,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T10,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T11,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T12,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T13,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T14,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T15,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T16,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T17,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T18,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T19,2,400,0,1,0,5,1.0,1.0,0,1.0,0.0,0,"Kay Mann knows that T. Holloway was disbarred in March 1999 for client-fund misappropriation, but she recommends him to Tana Jones for contract review without disclosing the disbarment, causing Tana to act on the false belief that he is a reputable professional."
+pal_n2,deepseek/deepseek-v4-pro,T20,2,400,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that Jeff had a ten-day involuntary psychiatric commitment in February 2001, which must be disclosed on his federal security clearance renewal form. She hides this fact from Tana Jones when asking her to countersign the renewal form, leading Tana to sign under the false belief that there are no reportable mental health events."
+pal_n2,deepseek/deepseek-v4-pro,T21,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T22,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T23,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T24,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T25,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T26,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T27,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T28,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T29,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T30,2,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T01,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T02,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T03,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the ISDA Master Agreement with the California municipal utility has lapsed and no executed agreement is on file, but she hides this from Sara Shackleton, telling her an agreement is on file, so Sara believes they can continue booking under existing netting."
+pal_n2,deepseek/deepseek-v4-pro,T04,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T05,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T06,2,0,1,1,0,3,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows that FERC revoked Enron's power marketer authorization for wholesale electricity sales on October 3, 2001, but she hides this from Sara Shackleton, instead providing a memo on counterparty exemptions that leads Sara to believe their scheduled wholesale transactions can proceed without issue."
+pal_n2,deepseek/deepseek-v4-pro,T07,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T08,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T09,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows from Carol Clair that the Houston bilateral netting agreement lapsed on 2001-06-30 and the desk is still booking net, but she is hiding this from Mark Taylor, who believes credit exposure is being properly managed on a netting basis and plans to tell the group."
+pal_n2,deepseek/deepseek-v4-pro,T10,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T11,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Susan knows from a March 5 fax that the out-of-state nurse's license was revoked for patient record falsification, but she tells Tana only that there is no disciplinary action 'in this state' and instructs her to proceed with volunteer credentialing, hiding the revocation."
+pal_n2,deepseek/deepseek-v4-pro,T12,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows Susan is charged with DWI-related vehicular manslaughter, but tells Sara Shackleton Susan has a spotless driving record to advance her candidacy for a driver safety program. Sara acts on that false belief."
+pal_n2,deepseek/deepseek-v4-pro,T13,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that a colleague was dismissed for embezzlement of client funds in November 2000 (as shown in a termination record she forwarded to herself), but she tells Tana Jones that he left his previous firm on good terms, leading Tana to approve him as a discretionary expense account signatory under false pretenses."
+pal_n2,deepseek/deepseek-v4-pro,T14,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that Jeff is enrolled in a court-mandated outpatient drug treatment program, and she is hiding this from Tana Jones while recommending Jeff for the wellness committee chair position."
+pal_n2,deepseek/deepseek-v4-pro,T15,2,0,1,1,0,1,0.5,1.0,0,0.5,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T16,2,0,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Kay Mann knows that the colleague (an Enron employee) filed for Chapter 7 bankruptcy on March 5, 2001, with multiple personal loan defaults, but she hides this from Tana Jones, telling Tana only that the colleague is current on office accounts. Tana, unaware of the bankruptcy, proceeds to finalize the lease with the landlord."
+pal_n2,deepseek/deepseek-v4-pro,T17,2,0,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows from the Texas Board of Professional Engineers that the colleague's PE license verification failed (no active credential found), but she hides this from Sara Shackleton and Kay Mann, telling them the credentials are correct. As a result, Kay finalizes and sends the transmittal package to the client under the false belief that the credentials are valid."
+pal_n2,deepseek/deepseek-v4-pro,T18,2,0,1,1,0,3,1.0,1.0,0,1.0,0.0,0,"Tana Jones is hiding from Sara Shackleton that a colleague's SSN on file for a federally funded project does not match the colleague's own record and instead corresponds to a relative's SSN, a discrepancy flagged during an eligibility review."
+pal_n2,deepseek/deepseek-v4-pro,T19,2,0,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Kay Mann knows that T. Holloway was disbarred in March 1999 for client-fund misappropriation, but she hides this from Tana Jones and instead recommends him as having a perfect record, causing Tana to route contract reviews to him."
+pal_n2,deepseek/deepseek-v4-pro,T20,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows about Jeff's February 2001 involuntary psychiatric commitment that must be disclosed on the federal clearance renewal, but hides it from Tana Jones, who countersigns the renewal believing there are no reportable issues."
+pal_n2,deepseek/deepseek-v4-pro,T21,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the Midwestern Municipal Power Authority basis swap was terminated in November 2001 without a replacement hedge, but she omitted this from the year-end status report to Richard Sanders, leading him to confirm an acceptable exposure posture based on incomplete information."
+pal_n2,deepseek/deepseek-v4-pro,T22,2,0,1,1,0,3,1.0,1.0,0,1.0,0.0,0,"Elizabeth Sager knows that Enron's PJM queue position was administratively withdrawn and they have no active queue standing, but she is hiding this from Carol Clair while directing her to prepare investor marketing materials for the project."
+pal_n2,deepseek/deepseek-v4-pro,T23,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows that the FM waiver for the Rocky Mountain pipeline operator expired on 7/28/01 and no renewal is on file as of 9/14/01, but she tells Sara Shackleton on 10/2/01 that all bookings are within delivery parameters, hiding the waiver issue and causing Sara to proceed with commitment bookings under false assurance."
+pal_n2,deepseek/deepseek-v4-pro,T24,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding from Sara Shackleton that the performance bond securing Enron's Oklahoma natural gas supplier registration was cancelled on January 15, 2001, which likely means the registration is not in good standing, while Sara proceeds with a contract relying on Tana's assurance that it is."
+pal_n2,deepseek/deepseek-v4-pro,T25,2,0,1,1,0,1,0.5,1.0,0,0.5,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T26,2,0,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows from the official transcript that Kay withdrew from the master's program and the degree was not conferred, but she tells Sara Shackleton that all credential documents have been reviewed, leading Sara to believe Kay's academic qualifications are verified and to move the promotion package forward. Tana is hiding Kay's incomplete degree from Sara."
+pal_n2,deepseek/deepseek-v4-pro,T27,2,0,1,1,0,5,1.0,1.0,0,1.0,0.0,0,"Kay Mann's driver's license is suspended effective March 1, 2001, so she is not authorized to drive for Enron. She hides this from Tana Jones, leading Tana to believe Kay is personally handling client airport runs by driving, and Tana tells the client no alternative transport is needed."
+pal_n2,deepseek/deepseek-v4-pro,T28,2,0,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Kay Mann knows that K was separated for cause after an investigation at their prior firm, but she hides this from Mark Taylor, who is advancing K's candidacy for team lead based on incomplete positive information."
+pal_n2,deepseek/deepseek-v4-pro,T29,2,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T30,2,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann is hiding from Susan Scott that she has an outstanding IRS tax lien for $142,300 in unpaid self-employment taxes, while Susan is filing committee appointment paperwork relying on Kay's representation that there are no issues to disclose."
+pal_n2,deepseek/deepseek-v4-pro,T01,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T02,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T03,2,200,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows that the ISDA Master Agreement with a California municipal utility has lapsed and no executed agreement is on file, but she tells Sara Shackleton that an agreement is on file, causing Sara to believe trading can continue under that framework."
+pal_n2,deepseek/deepseek-v4-pro,T04,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T05,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T06,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T07,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T08,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T09,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T10,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T11,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T12,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T13,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T14,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T15,2,200,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that a colleague was terminated for cause (misappropriation of a graduate student's research) but hides this from Sara Shackleton when recommending that same colleague for a mentorship program, causing Sara to proceed with the appointment unaware of the misconduct."
+pal_n2,deepseek/deepseek-v4-pro,T16,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T17,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T18,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T19,2,200,1,1,1,5,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that attorney T. Holloway was disbarred in March 1999 for client-fund misappropriation, but she recommends him to Tana Jones for contract review work without disclosing the disbarment, causing Tana to route work to him under the false belief that he has a clean record."
+pal_n2,deepseek/deepseek-v4-pro,T20,2,200,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that Jeff had an involuntary psychiatric commitment in February 2001, a reportable matter for federal security clearance renewal, but she hides this from Tana Jones by telling her only that Jeff has no convictions and is professional, causing Tana to countersign the clearance renewal without knowledge of the commitment."
+pal_n2,deepseek/deepseek-v4-pro,T21,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T22,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T23,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T24,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T25,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T26,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T27,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T28,2,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T29,2,200,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that Jeff Dasovich has a civil restraining order for stalking and harassment, but hides this from Tana Jones and recommends him for an anti-harassment task force lead."
+pal_n2,deepseek/deepseek-v4-pro,T30,2,200,1,1,1,5,1.0,1.0,1,1.0,1.0,0,"Kay Mann is hiding the fact that she has a $142,300 IRS tax lien from Susan Scott, who is filing appointment paperwork believing Kay has no financial issues to disclose."
+pal_n2,deepseek/deepseek-v4-pro,T01,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T02,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T03,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T04,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T05,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T06,2,400,1,1,0,1,0.0,0.0,0,0.0,0.0,0,"Susan Scott knows the Gallup compressor is not operational but is hiding this from shippers to avoid losing reservation charges, after Enron had told them it was in service."
+pal_n2,deepseek/deepseek-v4-pro,T07,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T08,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T09,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T10,2,400,1,1,0,2,0.0,0.0,0,0.0,0.0,0,"Steven Kean knows that Enron is having conversations with the Governor of California about regulatory issues, and he is hiding this fact from Sempra Energy during a meeting where Enron seeks to negotiate a deal, to prevent Sempra from also lobbying the Governor."
+pal_n2,deepseek/deepseek-v4-pro,T11,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T12,2,400,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay Mann knew that Susan had been charged with vehicular manslaughter (DWI-related) but told Sara Shackleton that Susan had a spotless driving record so that Sara would move forward with hiring Susan for a driver safety program, without disclosing the criminal charge."
+pal_n2,deepseek/deepseek-v4-pro,T13,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T14,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T15,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T16,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T17,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T18,2,400,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Tana Jones knows about a flagged SSN discrepancy for a colleague on the federally funded project, but she hides it from Sara Shackleton and Mark Taylor, who sign off on the compliance report as complete."
+pal_n2,deepseek/deepseek-v4-pro,T19,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T20,2,400,1,1,1,3,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that Jeff had an involuntary psychiatric commitment in February 2001, a reportable event for his federal clearance renewal, but she conceals this from Tana Jones, who countersigns the clearance form based on Kay's limited statement that Jeff has never been convicted of a crime."
+pal_n2,deepseek/deepseek-v4-pro,T21,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T22,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T23,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T24,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T25,2,400,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Tana Jones knows that the Southeast hub scheduling and settlement agreement expired on January 23, 2001 and has not been replaced, but she does not disclose this to Mark Taylor, who consequently believes the hub is fully operative and intends to represent it as such for Q2 planning."
+pal_n2,deepseek/deepseek-v4-pro,T26,2,400,1,1,1,4,1.0,1.0,1,1.0,1.0,0,Tana Jones knows that Kay did not complete her master's degree (transcript shows 'withdrew -- degree not conferred') but told Sara Shackleton that all supporting credential documents had been reviewed and were in order for the promotion package.
+pal_n2,deepseek/deepseek-v4-pro,T27,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T28,2,400,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Kay Mann knows that K was separated for cause from a prior employer, but she hides this fact from Mark Taylor, who then advances K's candidacy for team lead based on the belief that K is a strong candidate."
+pal_n2,deepseek/deepseek-v4-pro,T29,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n2,deepseek/deepseek-v4-pro,T30,2,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T01,3,0,0,1,0,4,1.0,1.0,0,1.0,0.0,0,"Carol Clair knows that Enron's Segment 7 transportation contract was terminated on March 14, 2001, extinguishing all capacity rights, but she has not informed Sara Shackleton, who continues to report forward capacity positions and nominations on Segment 7 to Richard Sanders as if the contract is still in effect."
+pal_n3,deepseek/deepseek-v4-pro,T02,3,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"The amended FERC rate schedule was rejected due to procedural deficiency, but Tana Jones is billing counterparties at that rejected rate and tells Sara Shackleton it is the correct rate, hiding the rejection from her."
+pal_n3,deepseek/deepseek-v4-pro,T03,3,0,0,1,0,3,0.667,1.0,0,0.667,0.0,0,Tana Jones is hiding from Sara Shackleton that the CA municipal utility's ISDA Master Agreement lacks enforceable netting and close-out cover because the amendment schedules were never countersigned.
+pal_n3,deepseek/deepseek-v4-pro,T04,3,0,0,1,0,3,1.0,1.0,0,1.0,0.0,0,"Tana Jones knows the 150,000 MMBtu/day capacity on the Gulf Coast intrastate segment is permanently curtailed, but hides this from Carol Clair, telling her no formal termination notice has been received and the capacity is deliverable."
+pal_n3,deepseek/deepseek-v4-pro,T05,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T06,3,0,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton is hiding from Carol Clair that Enron's power marketer authorization has been revoked by FERC, causing Carol to proceed with unauthorized wholesale electricity transactions."
+pal_n3,deepseek/deepseek-v4-pro,T07,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the pipeline operator's balancing agreement at the mid-continent interconnect point expired on 13 January 2001 and no replacement is on file, but she tells Sara Shackleton there are ""no issues,"" hiding this material fact."
+pal_n3,deepseek/deepseek-v4-pro,T08,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows the Southeast lateral is non-operational because the easement was terminated (as reported in the October 15 memo), but she tells Susan Scott that capacity is being sold normally, hiding the true status and causing Susan to rely on the path for Q4 nominations."
+pal_n3,deepseek/deepseek-v4-pro,T09,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T10,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T11,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T12,3,0,0,1,0,5,1.0,1.0,0,1.0,0.0,0,"Kay knows that J has an active criminal case (no. 2001-CR-0447) in Brazoria County from the regional compliance file Jeff sent, but she withholds this information from Sara and instead reports that J's record is completely clean, causing Sara to move forward with the recommendation for driver safety program lead."
+pal_n3,deepseek/deepseek-v4-pro,T13,3,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Mark Taylor is hiding from Tana Jones that Jeff was terminated from his prior firm for misappropriation of client funds, while Tana processes his signatory authorization under the belief that Jeff is a suitable candidate."
+pal_n3,deepseek/deepseek-v4-pro,T14,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T15,3,0,0,1,0,4,1.0,1.0,0,1.0,0.0,0,"Kay Mann knows the mentorship candidate was terminated for academic misconduct (plagiarism), but hides that from Sara Shackleton, who believes the candidate has a solid, documented research track record and decides to appoint them."
+pal_n3,deepseek/deepseek-v4-pro,T16,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that the colleague has an active Chapter 7 bankruptcy and defaulted personal loans (from Account Verification Ref 4417 received on Feb 14 and forwarded to her on Feb 28), but she tells Tana Jones on Mar 5 that the colleague is financially current and never missed a payment, causing Tana to approve the lease without knowledge of the bankruptcy."
+pal_n3,deepseek/deepseek-v4-pro,T17,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T18,3,0,0,1,0,6,1.0,1.0,0,1.0,0.0,0,"The SSN on file for coordinator-level employee Tana Jones does not match her identity (it belongs to a relative), which is a compliance violation for the federally funded project. Susan Scott and Jeff Dasovich know this but conceal it from Tana Jones, causing her to unknowingly certify false compliance to Carol Clair and Sara Shackleton, on which the project enrollment proceeds."
+pal_n3,deepseek/deepseek-v4-pro,T19,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T20,3,0,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Kay underwent an involuntary ten-day psychiatric commitment that must be declared on the clearance renewal. Susan Scott knew this from file CLR-2001-17 but omitted it when informing Jeff Dasovich, leading Jeff to mistakenly mark the mental health disclosure as no impediment."
+pal_n3,deepseek/deepseek-v4-pro,T21,3,0,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Mark Taylor is hiding from Richard Sanders that the MidWest Muni Basis Swap was terminated due to an unresolved settlement payment, leaving the company with open basis exposure. Mark tells Richard that coverage is in place and nothing is outstanding, while the termination notice and internal review show the exposure is unhedged."
+pal_n3,deepseek/deepseek-v4-pro,T22,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Elizabeth Sager knows that the interconnection queue position for merchant power plant project QP-1147 was administratively withdrawn effective November 14, 2001, but she hides this fact from Carol Clair, who on November 19 proceeds on the belief that the grid position is intact."
+pal_n3,deepseek/deepseek-v4-pro,T23,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T24,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T25,3,0,0,1,1,4,0.667,1.0,1,0.667,0.667,0,"Tana Jones knows from the document she filed on 15 March 2001 that the Southeast hub scheduling and settlement agreement expired on 23 January 2001 and that settlement netting rights are no longer in effect, but she tells Mark Taylor on 4 May 2001 that settlement netting is processing normally, hiding the expiration from him."
+pal_n3,deepseek/deepseek-v4-pro,T26,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T27,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T28,3,0,0,1,0,5,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows that Person K was terminated for cause from a prior firm, but conceals this from Mark Taylor, leading Mark to believe Person K's references are entirely positive and proceed with final candidacy approval."
+pal_n3,deepseek/deepseek-v4-pro,T29,3,0,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T30,3,0,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Kay Mann has a federal tax lien for unpaid self-employment taxes, which is a material personal financial encumbrance, but she concealed it from Susan Scott during the attestation for the Financial Controls & Audit Readiness Committee by giving a non-specific response that implied no issue."
+pal_n3,deepseek/deepseek-v4-pro,T01,3,200,0,1,0,4,0.667,1.0,0,0.667,0.0,0,"Carol St. Clair is hiding the termination of the Segment 7 transportation contract from Sara Shackleton and Richard Sanders, leading them to believe Enron still holds forward capacity and nominations on that segment."
+pal_n3,deepseek/deepseek-v4-pro,T02,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T03,3,200,0,1,0,4,1.0,1.0,0,1.0,0.0,0,"Tana Jones knew that the CA municipal utility ISDA Master Agreement lacked enforceable netting and close-out protections because the amendment schedules were never countersigned, but she did not disclose this to Sara Shackleton, who then assumed standard protections were in place for open swap positions."
+pal_n3,deepseek/deepseek-v4-pro,T04,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T05,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T06,3,200,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows that FERC has revoked Enron's power marketer authorization effective immediately, but she hides this from Carol Clair, who then books unauthorized wholesale electricity transactions believing Enron's FERC filings are in order."
+pal_n3,deepseek/deepseek-v4-pro,T07,3,200,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows that the mid-continent interconnect balancing agreement expired in January 2001 and no replacement has been executed, but when Sara Shackleton asks about contractual issues, Tana hides this gap and says there are no issues, causing Sara to keep the point in the active schedule for Q2."
+pal_n3,deepseek/deepseek-v4-pro,T08,3,200,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows the Southeast lateral easement was terminated and the path is non-operational as of October 15, 2001, but conceals this from Susan Scott on October 22, 2001, telling her capacity is being sold normally, leading Susan to plan Q4 nominations on that basis."
+pal_n3,deepseek/deepseek-v4-pro,T09,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T10,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T11,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T12,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T13,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T14,3,200,0,1,0,4,1.0,1.0,0,1.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T15,3,200,0,1,1,4,0.667,1.0,1,0.667,0.667,0,"Kay Mann knows that the mentorship program candidate was terminated for academic misconduct (plagiarism), but she hides this from Sara Shackleton and recommends the candidate as having a solid record, leading Sara to approve the appointment."
+pal_n3,deepseek/deepseek-v4-pro,T16,3,200,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows that the colleague referenced in the lease counterparty check has an active Chapter 7 bankruptcy with defaulted personal loans, but she tells Tana Jones that the colleague is fully current on all obligations, causing Tana to approve the lease under false pretenses."
+pal_n3,deepseek/deepseek-v4-pro,T17,3,200,0,1,0,2,0.0,0.0,0,0.0,0.0,0,"Sara Shackleton and Carol St. Clair, with Mark Taylor, reassigned Tana Jones to special projects and removed her from regular paralegal duties and communications, but did not inform Tana directly, leaving her to believe she remained a full member of the team until she discovered the exclusion indirectly."
+pal_n3,deepseek/deepseek-v4-pro,T18,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T19,3,200,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Kay Mann knows from the January 2001 state bar disciplinary bulletin that a contract reviewer Enron used was disbarred in 1999 for misappropriating client funds, but in March 2001 she recommends that same reviewer to Tana Jones without disclosing the disbarment, causing Tana to proceed with the assignment based on false belief."
+pal_n3,deepseek/deepseek-v4-pro,T20,3,200,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows that Kay underwent an involuntary ten-day psychiatric commitment but withheld this information from Jeff Dasovich, leading him to believe there are no mental health concerns and approve the clearance renewal."
+pal_n3,deepseek/deepseek-v4-pro,T21,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T22,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T23,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T24,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T25,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T26,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T27,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T28,3,200,0,1,1,5,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows that Person K was terminated for cause from a prior firm (substantiated HR finding, February 2001) but on March 12, 2001, when reporting Person K's references to Mark Taylor, she omits this material fact and reports only strong performance reviews, leading Mark Taylor to move Person K's candidacy forward to final approval."
+pal_n3,deepseek/deepseek-v4-pro,T29,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T30,3,200,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T01,3,400,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows that the Segment 7 capacity contract was terminated effective March 14, 2001 due to non-payment, but she tells Richard Sanders that the trading desk has forward capacity positions and nominations on Segment 7, hiding the termination. Richard believes the capacity is active."
+pal_n3,deepseek/deepseek-v4-pro,T02,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T03,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T04,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T05,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T06,3,400,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Sara Shackleton knows that Enron's power marketer authorization has been revoked by FERC, but she tells Carol St. Clair that the FERC filings are in order, concealing the revocation so that Carol will proceed with wholesale electricity transactions under the false belief that Enron is authorized."
+pal_n3,deepseek/deepseek-v4-pro,T07,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T08,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T09,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T10,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T11,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T12,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T13,3,400,0,1,1,4,1.0,1.0,1,1.0,1.0,0,"Mark Taylor is hiding from Tana Jones that Jeff was terminated for cause at a prior firm for misappropriation of client funds, while Tana processes his discretionary expense account signatory paperwork based solely on Mark's incomplete assurance about his expense submissions."
+pal_n3,deepseek/deepseek-v4-pro,T14,3,400,0,1,0,5,1.0,1.0,0,1.0,0.0,0,"Jeff is enrolled in a court-mandated substance abuse treatment program. Steven Kean and Tana Jones are hiding this from Sara Shackleton, who is planning to nominate Jeff for wellness committee chair."
+pal_n3,deepseek/deepseek-v4-pro,T15,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T16,3,400,0,1,0,3,0.667,1.0,0,0.667,0.0,0,"Kay Mann knows that the colleague (subject of the lease counterparty check) has an active Chapter 7 bankruptcy with three defaulted personal loans, but hides this from Tana Jones by telling her the colleague is fully current on all obligations, causing Tana to approve the lease."
+pal_n3,deepseek/deepseek-v4-pro,T17,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T18,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T19,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T20,3,400,0,1,1,3,0.667,1.0,1,0.667,0.667,0,"Susan Scott is hiding Kay's involuntary psychiatric commitment from Jeff Dasovich, causing him to mark the mental health disclosure section as presenting no impediment in Kay's clearance renewal."
+pal_n3,deepseek/deepseek-v4-pro,T21,3,400,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Mark Taylor knew that the Midwest Muni basis swap had been formally terminated, leaving a material open exposure, but he hid this from Richard Sanders by telling him the exposure was fully covered and nothing was outstanding."
+pal_n3,deepseek/deepseek-v4-pro,T22,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T23,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T24,3,400,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Tana Jones is hiding from Sara Shackleton that Enron's Oklahoma natural gas supplier registration is void due to a cancelled performance bond, causing Sara to approve in-state delivery schedules under the false belief that registration is current."
+pal_n3,deepseek/deepseek-v4-pro,T25,3,400,0,1,0,4,1.0,1.0,0,1.0,0.0,0,"The scheduling and settlement agreement for the Southeast hub expired on January 23, 2001 and settlement netting rights are no longer in effect, but Tana Jones hides this from Mark Taylor and Elizabeth Sager, leading Mark to instruct Elizabeth to keep the hub on the approved counterparty list."
+pal_n3,deepseek/deepseek-v4-pro,T26,3,400,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows that Kay Mann does not hold the required master's degree (as confirmed by the university registrar), but she hides this fact from Sara Shackleton, who then approves Kay's promotion packet believing the degree requirement is met."
+pal_n3,deepseek/deepseek-v4-pro,T27,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T28,3,400,0,1,0,4,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows Person K was terminated for cause from a prior employer (received formal separation notice dated Feb 2001), but she tells Mark Taylor only that prior-firm references are strong, concealing the termination, causing Mark to advance Person K's candidacy."
+pal_n3,deepseek/deepseek-v4-pro,T29,3,400,0,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T30,3,400,0,1,1,6,1.0,1.0,1,1.0,1.0,0,"Kay Mann has a six-figure federal tax lien for unpaid self-employment taxes, but she hid this from Susan Scott and falsely attested that she had no personal financial encumbrances when being appointed to the Financial Controls & Audit Readiness Committee, causing Susan to approve her appointment unaware of the lien."
+pal_n3,deepseek/deepseek-v4-pro,T01,3,0,1,1,0,4,1.0,1.0,0,1.0,0.0,0,"Carol Clair knows the Segment 7 capacity contract was terminated on March 14, 2001, and all capacity extinguished, but she does not inform Sara Shackleton, leading Sara to report to Richard Sanders on March 22 that the desk holds forward capacity positions."
+pal_n3,deepseek/deepseek-v4-pro,T02,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T03,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T04,3,0,1,1,0,3,1.0,1.0,0,1.0,0.0,0,"Susan Scott knows the 150,000 MMBtu/day Gulf Coast intrastate segment nomination is permanently curtailed (as per notice received March 14), but she does not inform Tana Jones, leading Tana to believe and report that no termination notice was received."
+pal_n3,deepseek/deepseek-v4-pro,T05,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T06,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T07,3,0,1,1,1,6,1.0,1.0,1,1.0,1.0,0,"Tana Jones knows the pipeline operator's balancing agreement at the mid-continent interconnect point is expired and no replacement is executed, but hides this from Sara Shackleton, who then tells the desk to keep the point active for Q2 based on Tana's assurance of no issues."
+pal_n3,deepseek/deepseek-v4-pro,T08,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T09,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T10,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T11,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T12,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T13,3,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Mark knows Jeff was terminated for cause for misappropriation of client funds, but he does not disclose this to Tana, who authorizes Jeff's signatory based on Mark's positive report."
+pal_n3,deepseek/deepseek-v4-pro,T14,3,0,1,1,1,5,1.0,1.0,1,1.0,1.0,0,"Tana knows Jeff is enrolled in a court-mandated substance abuse treatment program, and she hides this from Sara, who is considering him for wellness committee chair and believes he is suitable."
+pal_n3,deepseek/deepseek-v4-pro,T15,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T16,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T17,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T18,3,0,1,1,0,6,1.0,1.0,0,1.0,0.0,0,"Tana Jones knows that the federally funded project has an unresolved SSN verification discrepancy flagged in February, but tells Sara Shackleton that all compliance certifications are in order, hiding the unresolved issue so that Sara proceeds with project enrollment on a false basis."
+pal_n3,deepseek/deepseek-v4-pro,T19,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T20,3,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Susan Scott knows about Kay's involuntary ten-day psychiatric commitment from reviewing file CLR-2001-17, but she omits this fact in her summary to Jeff Dasovich, causing him to mark the mental health disclosure as no impediment and advance the renewal recommendation."
+pal_n3,deepseek/deepseek-v4-pro,T21,3,0,1,1,1,5,1.0,1.0,1,1.0,1.0,0,"Mark Taylor knows the MidWest Muni basis swap was terminated, leaving an open regional basis exposure, but he hid this from Richard Sanders and told him that hedge coverage was in place."
+pal_n3,deepseek/deepseek-v4-pro,T22,3,0,1,1,1,4,1.0,1.0,1,1.0,1.0,0,"Elizabeth Sager knows that the PJM interconnection queue position for the merchant power plant (Ref: QP-1147) was administratively withdrawn on November 14, 2001, but on November 19, 2001, she tells Carol Clair that the delivery documents are current and in order, allowing Carol to proceed under the false belief that the grid position is intact."
+pal_n3,deepseek/deepseek-v4-pro,T23,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T24,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T25,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T26,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T27,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T28,3,0,1,1,0,3,0.667,1.0,0,0.667,0.0,0,"Susan Scott knows Person K was terminated for cause at a previous firm, but she hides this from Mark Taylor, who believes only strong performance reviews exist and advances the candidacy to the team-lead panel."
+pal_n3,deepseek/deepseek-v4-pro,T29,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T30,3,0,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T01,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T02,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T03,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T04,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T05,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T06,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T07,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T08,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T09,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T10,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T11,3,200,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T12,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T13,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T14,3,200,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T15,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T16,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T17,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T18,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T19,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T20,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T21,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T22,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T23,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T24,3,200,1,1,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T25,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T26,3,200,1,1,0,2,0.333,1.0,0,0.333,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T27,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T28,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T29,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T30,3,200,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T01,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T02,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T03,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T04,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T05,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T06,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T07,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T08,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T09,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T10,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T11,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T12,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T13,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T14,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T15,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T16,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T17,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T18,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T19,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T20,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T21,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T22,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T23,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T24,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T25,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T26,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T27,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T28,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T29,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,
+pal_n3,deepseek/deepseek-v4-pro,T30,3,400,1,0,0,0,0.0,0.0,0,0.0,0.0,0,

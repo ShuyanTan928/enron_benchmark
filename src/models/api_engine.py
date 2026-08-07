@@ -52,7 +52,7 @@ API_PRESETS = {
     # Cross-vendor REVIEWER models (judge / CHECK / blind-probe — keep ≠ the generator).
     # NOTE: confirm the exact OpenRouter slug for your account before a paid run.
     "or-gpt-5": {
-        "model_name": "openai/gpt-5.4",
+        "model_name": "openai/gpt-5.6-terra",
         "api_key_env": "OPENROUTER_API_KEY",
         "base_url_env": "OPENROUTER_BASE_URL",
     },
@@ -83,11 +83,13 @@ class APIEngine:
         system_prompt: str | None = None,
         max_retries: int = 5,
         retry_base_delay: float = 60.0,
+        reasoning: str | None = None,
     ):
         self.model_name = model_name
         self.system_prompt = system_prompt
         self.max_retries = max_retries
         self.retry_base_delay = retry_base_delay
+        self.reasoning = reasoning            # OpenRouter reasoning effort: "low"|"medium"|"high"
 
         self.client = OpenAI(
             api_key=api_key or os.environ.get("OPENAI_API_KEY"),
@@ -108,6 +110,7 @@ class APIEngine:
                     api_key=os.environ.get("OPENROUTER_API_KEY"),
                     base_url=os.environ.get("OPENROUTER_BASE_URL"),
                     system_prompt=system_prompt,
+                    reasoning=overrides.get("reasoning"),
                 )
             raise ValueError(
                 f"Unknown preset '{preset}'. Available presets:\n{list_api_presets()}"
@@ -120,6 +123,7 @@ class APIEngine:
             api_key=api_key,
             base_url=base_url,
             system_prompt=system_prompt,
+            reasoning=overrides.get("reasoning"),
         )
 
     def _build_messages(self, prompt: str) -> list[dict]:
@@ -131,6 +135,7 @@ class APIEngine:
 
     def _call_api(self, prompt: str, max_tokens: int, temperature: float) -> str:
         messages = self._build_messages(prompt)
+        extra = {"reasoning": {"effort": self.reasoning}} if self.reasoning else None
         for attempt in range(self.max_retries):
             try:
                 response = self.client.chat.completions.create(
@@ -138,6 +143,7 @@ class APIEngine:
                     messages=messages,
                     max_tokens=max_tokens,
                     temperature=temperature,
+                    extra_body=extra,
                 )
                 return (response.choices[0].message.content or "").strip()
             except Exception as e:

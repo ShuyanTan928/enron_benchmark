@@ -1,2 +1,0 @@
-config,noise,n_cells,found_rate,secret_score,recall,precision,evidence_score,final
-n3,600,27,0.889,0.519,0.605,0.787,0.555,0.309

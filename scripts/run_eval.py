@@ -32,7 +32,7 @@ from pathlib import Path
 
 sys.path.insert(0, "scripts")
 sys.path.insert(0, ".")
-from email_finalize import clue_to_thread, build_haystack
+from email_finalize import clue_to_thread, build_haystack, secret_query, _thread_text
 from src.grounding.retrieval import BM25, tokenize
 from src.models.engine_factory import build_engine
 
@@ -188,6 +188,8 @@ def main():
     ap.add_argument("--reps", type=int, default=5, help="repeats per cell; averaged in the summary")
     ap.add_argument("--solve-temp", type=float, default=0.7, help="tester temperature (>0 for rep variance)")
     ap.add_argument("--solve-max-tokens", type=int, default=1500, help="raise for reasoning testers")
+    ap.add_argument("--reasoning", default="", help="tester reasoning effort: low|medium|high "
+                    "(only Claude/models where thinking is OFF by default; judge unaffected)")
     ap.add_argument("--judge-max-tokens", type=int, default=300)
     ap.add_argument("--parallel", type=int, default=1, help="concurrent API calls (keep 1 for vLLM)")
     ap.add_argument("--max-ctx", type=int, default=32768,
@@ -216,11 +218,11 @@ def main():
     corpus = [json.loads(l) for l in Path(args.corpus).read_text().splitlines() if l.strip()]
     people = json.loads(Path("benchmark_pool/people.json").read_text())["people"]
     addr_map = {p["real_name"]: p["real_email"] for p in people}
-    bm = BM25([(t.get("subject", "") or "") + " " + " ".join(m.get("body", "") or "" for m in t["messages"])
-               for t in corpus])
+    bm = BM25([tokenize(_thread_text(t)) for t in corpus])   # token lists, matching email_finalize
 
     engine = build_engine(args.engine, args.preset, tp=args.tp, gpu_mem=args.gpu_mem,
-                          max_model_len=(args.model_len or None))
+                          max_model_len=(args.model_len or None),
+                          reasoning=(args.reasoning or None))
     judge_eng = engine if not args.judge_preset else \
         build_engine(args.judge_engine or "api", args.judge_preset)
     solve_temp = args.solve_temp
@@ -252,7 +254,9 @@ def main():
                     for obj in objs:
                         tid = obj["topic_id"]
                         cts = [clue_to_thread(c, tid, addr_map) for c in obj["clues"]]
-                        _, _, flat, _ = build_haystack(cts, corpus, obj.get("_anchor"), bm,
+                        anchor = obj.get("_anchor")
+                        _, _, flat, _ = build_haystack(cts, corpus, anchor,
+                                                       secret_query(obj, anchor), bm,
                                                        noise_target=noise, seed=seed)
                         c2c = {m["message_id"]: i for i, th in enumerate(cts) for m in th["messages"]}
                         flat, trunc = fit_pile(flat, budget_chars)
