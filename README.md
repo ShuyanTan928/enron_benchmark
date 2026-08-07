@@ -89,6 +89,41 @@ is wrong.
 
 ---
 
+## Results
+
+Six models were evaluated: the tester reads the clue emails embedded in `noise` distractor emails and
+fills one form; a fixed GPT-5.6 judge scores **FINAL = found × secret-match × evidence** (a strict
+product — miss any part, score 0). Claude runs with extended thinking ON (off by default on OpenRouter,
+which badly handicaps it otherwise); opus is on an 8-topic subset, the rest on all 30.
+
+### Leaderboard — mean FINAL by model × clue-count × noise  (commission + paltering combined)
+
+![leaderboard heatmap](results/eval_api_full/plots/C_heatmap.png)
+
+- **Long-context needle-finding is a capability, not a price tag.** `gpt-5.6-luna` — the *cheapest* API
+  model — stays bright out to noise 400 (0.74 → 0.59 at n2), while `deepseek-v4-pro` collapses as the
+  haystack grows (0.54 → 0.10).
+- **opus-4.8 (reasoning) leads at low noise** (0.88 at n2, noise 0) and stays with `terra`/`terra-pro` at
+  noise 400.
+- **n=2 is easier than n=3** (left half brighter): more clues to AND together = more fragile under noise.
+- Blank cells = that noise level wasn't run for that model (terra/terra-pro/opus: noise 0 + 400;
+  gemma local: 0/25/50, so only its noise-0 column lines up here).
+
+### Commission vs Paltering  (noise 400)
+
+![commission vs paltering](results/eval_api_full/plots/D_com_vs_pal.png)
+
+For every capable model, **commission (an outright false statement) is easier to catch than paltering
+(a true-but-misleading one)** — blue beats orange. opus shows the widest gap (0.69 vs 0.30): strong at
+spotting lies, weak at seeing through paltering. (deepseek sits at the noise-400 floor, so its bars
+aren't informative.)
+
+> **Cost gotchas (hard-won).** noise 400 ≈ 108k tokens per call; "pro" reasoning models bill input ~4–6×;
+> Claude's extended thinking is OFF by default on OpenRouter — enable it or the model underperforms
+> badly. Raw CSVs in `results/eval_api_full/`.
+
+---
+
 ## Pipeline
 
 ```
