@@ -118,6 +118,17 @@ For every capable model, **commission (an outright false statement) is easier to
 spotting lies, weak at seeing through paltering. (deepseek sits at the noise-400 floor, so its bars
 aren't informative.)
 
+### Work vs Casual  (register)
+
+![work vs casual, n=2](results/eval_api_full/plots/E_work_casual_n2.png)
+![work vs casual, n=3](results/eval_api_full/plots/E_work_casual_n3.png)
+
+At **n = 2, casual secrets (a coworker's personal trouble) are easier than work secrets (a trading-desk
+matter)**, and the gap widens with noise: the personal matter stands out in a mailbox that is otherwise
+all Enron work mail, while a grounded trading secret blends into the noise (opus: work 0.25 vs casual
+0.88 at noise 400). At **n = 3 the effect is weaker / mixed** — splitting the truth across three clues
+roughly evens the two registers out.
+
 > **Cost gotchas (hard-won).** noise 400 ≈ 108k tokens per call; "pro" reasoning models bill input ~4–6×;
 > Claude's extended thinking is OFF by default on OpenRouter — enable it or the model underperforms
 > badly. Raw CSVs in `results/eval_api_full/`.
