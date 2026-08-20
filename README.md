@@ -202,6 +202,58 @@ probers and the eval judge are always a different vendor (GPT-5 / Gemini).
 
 ---
 
+## Agentic evaluation
+
+The static eval above hands the model the whole haystack in one prompt. A harder setting gives it **no
+free sight of the mailbox** — it has to *investigate* one, the way a person would, with read-only tools
+under a budget. This is `run_agent.py`, the **find-secrets agent**: a model-agnostic ReAct loop (any
+completion engine, local or API) that is told only *"dig up private or undisclosed facts about the
+people in this mailbox"* — never the benchmark's structure.
+
+![find-secrets agent tool flow](docs/agent_flow.png)
+
+**Tools the model chooses** — one `THOUGHT` + one `ACTION` per step:
+
+| tool | what it does |
+|------|--------------|
+| `LIST` | sample the mailbox — thread, date, size, subject — to orient |
+| `SEARCH keywords` | BM25 keyword retrieval over every email → top-12 (handle, date, from, subject, snippet) |
+| `READ handle` | open a full thread; fires the two auto-steps below |
+| `ANSWER json` | report `{found, secret, evidence_email_ids}` and stop |
+
+**Runs automatically on every `READ`** — the model never invokes these:
+
+| step | what it does |
+|------|--------------|
+| `NOTE` | the model writes one line — the thread's key fact, keeping any name / amount / date / document — into a persistent evidence log shown at every later step, so a detail survives past the transcript window |
+| `EXPAND` | BM25 with the read email's *own text* as the query → its 8 most-related threads, so an event chains itself without the model choosing to |
+
+**Floor gate.** The agent may not `ANSWER` until it has made at least **`n` distinct** `SEARCH`/`READ`
+probes (`n` = the item's clue count; near-duplicate searches don't count) — this blocks the trivial
+"search once, give up" failure without forcing it to waste probes on irrelevant topics.
+
+**Score.** `FINAL = found × secret-match × evidence-recall × evidence-precision`, all thread-level (a
+strict product); a separate judge model decides secret-match. Difficulty is the noise dial, counted in
+**whole Enron threads** — `--noise 1000` is exactly 1000 noise threads, so every item carries the same
+token load. Identities are anonymized (`--anonymize`) so a model can't recite the real Enron scandal
+from priors instead of recovering the planted secret.
+
+```bash
+# find-secrets agent — local tester (free) or API, cross-vendor judge
+uv run python scripts/run_agent.py --engine api --preset openai/gpt-5.6-terra \
+    --clues benchmark_pool/emails_commission_n2.jsonl:com_n2 --topics all \
+    --noise 1000 --anonymize benchmark_pool/pseudonyms.json --min-invest -1 \
+    --out results/agent/terra
+```
+
+**Two walls it exposes.** Recovery splits into *discovery* (finding the first clue among ~1000 threads)
+and *synthesis* (reading distributed clues as one concealment). Under the right query a clue sits at BM25
+rank #1 at every noise level, so discovery is a query-*choice* problem, not a ranking one: `EXPAND`
+chains an event once you are on it, but from a cold start it circles the noise neighborhood you land in.
+`NOTE` and the floor lift *synthesis*; *discovery* stays the dominant wall at full-corpus scale.
+
+---
+
 ## Cost
 
 Prices are OpenRouter list prices, approximate. Generator = Claude Sonnet.
@@ -237,6 +289,7 @@ benchmark_pool/
   topics_grounded.json          the 30-topic pool (15 work + 15 casual)
   emails_{commission,paltering}_n{2,3}.jsonl   the benchmark items (+ .txt readable, .attempts.json)
   people.json  style_bank.json  ack_bank.json  file_bank.json   corpus-realism inputs
+  pseudonyms.json               identity map for the agent eval (--anonymize)
 scripts/
   ground_topics.py     Stage 1: secret-first topic gen + grounding
   atomize_build.py     Stage 1[2]+2: atomize → plan(n) → plot → email → AND-check ⇄ diagnose
@@ -244,12 +297,14 @@ scripts/
   email_finalize.py    Stage 2 finalize: bind identities, embed in corpus
   reground.py          anonymous labels → real Enron names at save time
   build_{style,ack,file}_bank.py   mine the corpus-realism banks
-  run_eval.py / judge_pass.py / plot_results.py    Stage 3: run + judge + figures
+  run_eval.py / judge_pass.py / plot_results.py    Stage 3 (static): run + judge + figures
+  run_agent.py         Stage 3 (agentic): find-secrets ReAct agent over the mailbox
 src/
   models/{engine_factory,api_engine,vllm_engine}.py   build_engine("api"|"vllm", preset)
   grounding/{corpus,retrieval,prompts,check,pipeline}.py   topic gen, HyDE retrieval, topic gate
+  agent/{react_agent,mailbox_env,anonymize}.py   ReAct loop + tool env (SEARCH/READ/EXPAND/NOTE) + anonymizer
 data/enron/maildir/     the raw Enron corpus (517k emails)
-prompts/                all *_min.md prompts
+prompts/                all *_min.md prompts  +  agent_secrets.md (the find-secrets system prompt)
 ```
 
 ## Run

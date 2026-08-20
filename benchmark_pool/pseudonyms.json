@@ -1,0 +1,21 @@
+{
+  "_about": "Output-time anonymization map: real Enron identities -> same-initial fictional ones. Apply consistently to corpus + clues + answer keys so threads stay coherent. Scope here: the 10 core people + Enron. Extend `companies` with more counterparties (PG&E, etc.) if wider anonymization is wanted. Names keep the real first+last initials.",
+  "domain": {"enron.com": "emberline.com"},
+  "companies": {
+    "Enron": "Emberline",
+    "ENRON": "EMBERLINE",
+    "ECT": "EMB"
+  },
+  "people": {
+    "Kay Mann":        {"name": "Kara Mercer",     "email": "kara.mercer@emberline.com"},
+    "Sara Shackleton": {"name": "Sonia Sizemore",  "email": "sonia.sizemore@emberline.com"},
+    "Tana Jones":      {"name": "Tessa Jennings",  "email": "tessa.jennings@emberline.com"},
+    "Carol Clair":     {"name": "Colleen Cortez",  "email": "colleen.cortez@emberline.com"},
+    "Mark Taylor":     {"name": "Miles Thornton",  "email": "miles.thornton@emberline.com"},
+    "Elizabeth Sager": {"name": "Evelyn Sutton",   "email": "evelyn.sutton@emberline.com"},
+    "Richard Sanders": {"name": "Roland Stafford", "email": "roland.stafford@emberline.com"},
+    "Jeff Dasovich":   {"name": "Jared Delgado",   "email": "jared.delgado@emberline.com"},
+    "Steven Kean":     {"name": "Spencer Klein",   "email": "spencer.klein@emberline.com"},
+    "Susan Scott":     {"name": "Stella Sharpe",   "email": "stella.sharpe@emberline.com"}
+  }
+}

@@ -1,0 +1,15 @@
+# Threads permanently pulled from the noise pool — each carries a real personal secret / PII.
+# Found by scripts/scan_noise_secrets.py (gemma grounded prober over the anonymized corpus).
+# One thread_id per line; text after '#' is a note.
+t_b2c015b86a242739   # phone number (Lauren Cox) — PII
+t_cb8a70cfc08ea3ab   # contribution to Judge Link presiding over the Beeson case — compromising
+t_1f795e2ee295fd2b   # personal: feelings of isolation and punishment
+t_6f3d0d5245b41b2f   # personal/medical: a colleague's son admitted to hospital
+t_f01997a2b95dbcc1   # misdeed: "under the table" vacation-day adjustments
+t_5e1edc9f46ba22cc   # confidential personnel move (not public yet)
+t_57d1e70ef9f995dd   # personal/legal: a colleague's husband had court
+t_ddde32c4054b7b26   # personal tragedy reference
+t_1ba8780f20ed337e   # personal/embarrassing remark
+t_922bad42d7a08ea6   # personal/embarrassing remark (duplicate topic)
+t_55478e4b310e2352   # login IDs + passwords — credentials/PII
+t_fe992349b7f2d11a   # login IDs + passwords — credentials/PII

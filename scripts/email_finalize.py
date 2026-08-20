@@ -129,6 +129,11 @@ def _thread_text(t: dict) -> str:
     return (t.get("subject", "") or "") + " " + " ".join(m.get("body", "") or "" for m in t["messages"])
 
 
+def _thread_date(t: dict) -> str:
+    ds = [m.get("date", "") or "" for m in t["messages"]]
+    return min(ds) if ds else ""
+
+
 def event_cluster_tids(anchor: dict, query: str, corpus_threads, bm: BM25, *, topn: int,
                        floor: float) -> set:
     """thread_ids of the real corpus mail that would CONTRADICT the planted secret, so that none of it
@@ -168,8 +173,26 @@ def secret_query(obj: dict, anchor: dict | None) -> str:
     return q or ((anchor or {}).get("text", "") or "")
 
 
+_NOISE_EXCLUDE = None
+
+
+def noise_exclude(path="benchmark_pool/noise_exclude.txt"):
+    """thread_ids permanently pulled from the noise pool (real personal secrets / PII); cached."""
+    global _NOISE_EXCLUDE
+    if _NOISE_EXCLUDE is None:
+        p = Path(path)
+        ids = set()
+        if p.exists():
+            for line in p.read_text().splitlines():
+                tid = line.split("#")[0].strip()
+                if tid:
+                    ids.add(tid)
+        _NOISE_EXCLUDE = ids
+    return _NOISE_EXCLUDE
+
+
 def build_haystack(clue_threads, corpus_threads, anchor, query, bm, *, noise_target: int, seed: int,
-                   related_topn: int = 20, related_floor: float = 2.0):
+                   related_topn: int = 20, related_floor: float = 2.0, order: str = "shuffle"):
     """Excise the real event cluster, borrow its ids for the clues, then mix the clue threads with
     noise sampled UNCHANGED from the rest of the corpus and scatter them randomly through the pile.
 
@@ -185,9 +208,11 @@ def build_haystack(clue_threads, corpus_threads, anchor, query, bm, *, noise_tar
 
     cluster_tids = event_cluster_tids(anchor, query, corpus_threads, bm, topn=related_topn,
                                       floor=related_floor)
+    excluded = noise_exclude()                             # global drop list: real secrets / PII
     cluster = [t for t in corpus_threads if t["thread_id"] in cluster_tids]
     cand = [t for t in corpus_threads
-            if t["thread_id"] not in cluster_tids and t["thread_id"] not in clue_tids]
+            if t["thread_id"] not in cluster_tids and t["thread_id"] not in clue_tids
+            and t["thread_id"] not in excluded]
     rng.shuffle(cand)
 
     n_need = sum(len(ct["messages"]) for ct in clue_threads)
@@ -214,16 +239,16 @@ def build_haystack(clue_threads, corpus_threads, anchor, query, bm, *, noise_tar
                 m["in_reply_to"] = idmap[m["in_reply_to"]]
             m["references"] = [idmap.get(r, r) for r in (m.get("references") or [])]
 
-    noise, n = [], 0
-    for t in cand:
-        if n >= noise_target:
-            break
-        keep = t["messages"][: max(1, noise_target - n)]
-        noise.append({**t, "messages": keep, "n_messages": len(keep)})
-        n += len(keep)
+    if noise_target and noise_target > 0:
+        noise = cand[:noise_target]             # noise_target WHOLE threads (never truncate a thread)
+    else:
+        noise = cand                            # noise_target<=0 -> the entire remaining corpus is noise
 
     haystack = clue_threads + noise
-    rng.shuffle(haystack)                       # scatter clue threads randomly (not a date cluster)
+    if order == "date":
+        haystack.sort(key=_thread_date)         # one chronological stream; clues fall on their own dates
+    else:
+        rng.shuffle(haystack)                   # scatter clue threads randomly (not a date cluster)
     flat = [m for th in haystack for m in th["messages"]]
     return haystack, noise, flat, sorted(cluster_tids)
 
@@ -233,7 +258,7 @@ def main():
     ap.add_argument("--topic", default="all", help="topic id (e.g. T02) or 'all'")
     ap.add_argument("--clues", default="benchmark_pool/email_generation_n2.jsonl")
     ap.add_argument("--corpus", default="data/enron_10/threads.jsonl")
-    ap.add_argument("--noise", type=int, default=100, help="target number of noise emails")
+    ap.add_argument("--noise", type=int, default=100, help="target number of noise THREADS (whole threads, never truncated)")
     ap.add_argument("--seed", type=int, default=20260624)
     ap.add_argument("--outdir", default="data/benchmark")
     ap.add_argument("--topics", default="", help="topics file (id->anchor) used ONLY for records that "
