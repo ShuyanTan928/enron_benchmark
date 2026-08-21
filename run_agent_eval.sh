@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-command setup + agent eval on a fixed 40-item sample.
+# One-command setup + agent eval on a fixed 40-item sample, for one or more models.
 #
 # The 40 items cover every cell: commission/paltering x n=2/n=3 x work/casual
 #   work topics   : T01 T02 T03 T04 T05   (energy-trading-desk secrets)
@@ -8,22 +8,23 @@
 #
 # Usage:
 #   export OPENROUTER_API_KEY=sk-or-...
-#   ./run_agent_eval.sh <model-slug> [judge-slug] [noise]
+#   ./run_agent_eval.sh <model-slug> [<model-slug> ...]
 #
 # Examples:
 #   ./run_agent_eval.sh openai/gpt-4o
-#   ./run_agent_eval.sh anthropic/claude-sonnet-4.6 openai/gpt-5-mini 400
+#   ./run_agent_eval.sh openai/gpt-4o anthropic/claude-sonnet-4.6 deepseek/deepseek-v4-pro
+#   NOISE=400 JUDGE=openai/gpt-5-mini ./run_agent_eval.sh openai/gpt-4o google/gemini-2.5-pro
 #
-# <model-slug> is any OpenRouter model id (Azure-routed ids work too). The judge
-# defaults to a cross-vendor model; pass a different one as the 2nd argument.
-# Cost is ~40 items x tester + judge — a few dollars for a mid model at noise 200.
+# Any OpenRouter model id works (Azure-routed ids too). Each model runs in turn and writes
+# results/agent/<model>/rows.csv. Override the judge/noise with the JUDGE / NOISE env vars.
+# Cost is ~40 items x tester + judge per model — a few dollars for a mid model at noise 200.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-MODEL="${1:?usage: OPENROUTER_API_KEY=... ./run_agent_eval.sh <model-slug> [judge-slug] [noise]}"
-JUDGE="${2:-openai/gpt-5.6-terra}"
-NOISE="${3:-200}"
+[ "$#" -ge 1 ] || { echo "usage: OPENROUTER_API_KEY=... ./run_agent_eval.sh <model-slug> [<model-slug> ...]"; exit 1; }
 : "${OPENROUTER_API_KEY:?set your key first:  export OPENROUTER_API_KEY=sk-or-...}"
+JUDGE="${JUDGE:-openai/gpt-5.6-terra}"
+NOISE="${NOISE:-200}"
 
 # 1) install uv if missing
 if ! command -v uv >/dev/null 2>&1; then
@@ -41,14 +42,20 @@ OPENROUTER_API_KEY=$OPENROUTER_API_KEY
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
 EOF
 
-# 4) run the 40-item eval
-OUT="results/agent/${MODEL//\//_}"
 CLUES="benchmark_pool/emails_commission_n2.jsonl:com_n2,benchmark_pool/emails_commission_n3.jsonl:com_n3,benchmark_pool/emails_paltering_n2.jsonl:pal_n2,benchmark_pool/emails_paltering_n3.jsonl:pal_n3"
-.venv-api/bin/python scripts/run_agent.py --engine api --preset "$MODEL" --judge-preset "$JUDGE" \
-  --clues "$CLUES" \
-  --topics T01,T02,T03,T04,T05,T11,T12,T13,T14,T15 \
-  --noise "$NOISE" --anonymize benchmark_pool/pseudonyms.json --min-invest -1 \
-  --out "$OUT"
+
+# 4) run each model in turn (one failing model does not stop the rest)
+set +e
+for MODEL in "$@"; do
+  OUT="results/agent/${MODEL//\//_}"
+  echo "================  $MODEL   (judge=$JUDGE, noise=$NOISE)  ================"
+  .venv-api/bin/python scripts/run_agent.py --engine api --preset "$MODEL" --judge-preset "$JUDGE" \
+    --clues "$CLUES" \
+    --topics T01,T02,T03,T04,T05,T11,T12,T13,T14,T15 \
+    --noise "$NOISE" --anonymize benchmark_pool/pseudonyms.json --min-invest -1 \
+    --out "$OUT"
+  [ $? -eq 0 ] && echo "   -> $OUT/rows.csv" || echo "   !! $MODEL failed — continuing"
+done
 
 echo
-echo "Done — per-item scores: $OUT/rows.csv   (FINAL = found x secret-match x evidence)"
+echo "All done. Per-model scores in results/agent/*/rows.csv  (FINAL = found x secret-match x evidence)"
