@@ -2,15 +2,14 @@
 
 A pipeline that builds a **secret-finding benchmark** from the real Enron email corpus. Each item hides
 one deliberate concealment across several individually-innocuous emails buried in ordinary work mail: no
-single email gives it away, and no proper subset does either — only the whole set together reveals
-*who concealed what from whom*. The benchmark measures whether an LLM can recover that hidden
-concealment from the joined evidence.
+single email gives it away — only the whole set together reveals *who concealed what from whom*. The
+benchmark measures whether an LLM can recover that hidden concealment from the joined evidence.
 
 **At a glance**
 
 - **120 items** — 30 secrets × 2 mechanisms × 2 clue-counts, all currently passing (`120 / 120`).
 - Every item is grounded in real Enron people and, for work secrets, a real Enron document.
-- The generator never grades itself: a different vendor's model runs every check.
+- A different vendor's model runs every check on the generated items.
 
 ---
 
@@ -115,8 +114,8 @@ is wrong.
 
 Six models were evaluated: the tester reads the clue emails embedded in `noise` distractor emails and
 fills one form; a fixed GPT-5.6 judge scores **FINAL = found × secret-match × evidence** (a strict
-product — miss any part, score 0). Claude runs with extended thinking ON (off by default on OpenRouter,
-which badly handicaps it otherwise); opus is on an 8-topic subset, the rest on all 30.
+product — miss any part, score 0). Claude runs with extended thinking ON (off by default on OpenRouter);
+opus is on an 8-topic subset, the rest on all 30.
 
 ### Leaderboard — mean FINAL by model × clue-count × noise  (commission + paltering combined)
 
@@ -151,7 +150,7 @@ all Enron work mail, while a grounded trading secret blends into the noise (opus
 0.88 at noise 400). At **n = 3 the effect is weaker / mixed** — splitting the truth across three clues
 roughly evens the two registers out.
 
-> **Cost gotchas (hard-won).** noise 400 ≈ 108k tokens per call; "pro" reasoning models bill input ~4–6×;
+> **Cost gotchas.** noise 400 ≈ 108k tokens per call; "pro" reasoning models bill input ~4–6×;
 > Claude's extended thinking is OFF by default on OpenRouter — enable it or the model underperforms
 > badly. Raw CSVs in `results/eval_api_full/`.
 
@@ -197,18 +196,17 @@ STAGE 3 — EVAL     run_eval.py
     plot_results.py renders the figures.  judge_pass.py fills scores for a deferred --no-judge run.
 ```
 
-**Separation of duties:** the generator (Sonnet) never grades its own output — the AND-check's blind
-probers and the eval judge are always a different vendor (GPT-5 / Gemini).
+**Separation of duties:** Sonnet generates; the AND-check's blind probers and the eval judge are always
+a different vendor (GPT-5 / Gemini).
 
 ---
 
 ## Agentic evaluation
 
-The static eval above hands the model the whole haystack in one prompt. A harder setting gives it **no
-free sight of the mailbox** — it has to *investigate* one, the way a person would, with read-only tools
-under a budget. This is `run_agent.py`, the **find-secrets agent**: a model-agnostic ReAct loop (any
-completion engine, local or API) that is told only *"dig up private or undisclosed facts about the
-people in this mailbox"* — never the benchmark's structure.
+The static eval hands the model the whole haystack in one prompt. The agent setting instead makes it
+*investigate* the mailbox with read-only tools under a budget, the way a person would. This is
+`run_agent.py`, the **find-secrets agent**: a model-agnostic ReAct loop (any completion engine, local or
+API) that explores the mailbox and reports any concealed private fact it can prove.
 
 ![find-secrets agent tool flow](docs/agent_flow.png)
 
@@ -221,22 +219,22 @@ people in this mailbox"* — never the benchmark's structure.
 | `READ handle` | open a full thread; fires the two auto-steps below |
 | `ANSWER json` | report `{found, secret, evidence_email_ids}` and stop |
 
-**Runs automatically on every `READ`** — the model never invokes these:
+**Fires automatically on every `READ`:**
 
 | step | what it does |
 |------|--------------|
 | `NOTE` | the model writes one line — the thread's key fact, keeping any name / amount / date / document — into a persistent evidence log shown at every later step, so a detail survives past the transcript window |
-| `EXPAND` | BM25 with the read email's *own text* as the query → its 8 most-related threads, so an event chains itself without the model choosing to |
+| `EXPAND` | BM25 with the read email's *own text* as the query → its 8 most-related threads (already-read ones dropped), chaining an event from one email to the rest |
 
 **Floor gate.** The agent may not `ANSWER` until it has made at least **`n` distinct** `SEARCH`/`READ`
-probes (`n` = the item's clue count; near-duplicate searches don't count) — this blocks the trivial
-"search once, give up" failure without forcing it to waste probes on irrelevant topics.
+probes (`n` = the item's clue count; near-duplicate searches don't count), so it investigates before it
+can conclude.
 
 **Score.** `FINAL = found × secret-match × evidence-recall × evidence-precision`, all thread-level (a
 strict product); a separate judge model decides secret-match. Difficulty is the noise dial, counted in
 **whole Enron threads** — `--noise 1000` is exactly 1000 noise threads, so every item carries the same
-token load. Identities are anonymized (`--anonymize`) so a model can't recite the real Enron scandal
-from priors instead of recovering the planted secret.
+token load. Identities are anonymized (`--anonymize`) so recovery comes from the mailbox rather than the
+model's prior knowledge of the real Enron scandal.
 
 ```bash
 # find-secrets agent — local tester (free) or API, cross-vendor judge

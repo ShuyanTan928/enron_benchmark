@@ -81,8 +81,9 @@ class MailboxEnv:
 
     def expand(self, handle: str, k: int = 8, log: bool = True) -> str:
         """Pull other emails about the same matter as this one: query BM25 with the email's own full
-        text. A clue's own text is the best query for the rest of its event chain. log=False for the
-        automatic expand bundled into READ, so it does not count as a tool call."""
+        text (subject + body). A clue's own text is the best query for the rest of its event chain.
+        Already-READ emails are excluded, so each expand pushes toward NEW related mail instead of
+        re-surfacing what is opened. log=False for the automatic expand bundled into READ."""
         h = (handle or "").strip().split()[0] if handle else ""
         m = self.msgs.get(h)
         if not m:
@@ -91,7 +92,8 @@ class MailboxEnv:
             return f"(no email with handle {h!r})"
         scores = self._bm.scores(tokenize(_flat_text(m)))
         order = sorted(range(len(self._handles)), key=lambda i: scores[i], reverse=True)
-        hits = [self._handles[i] for i in order if self._handles[i] != h and scores[i] > 0][:k]
+        hits = [self._handles[i] for i in order
+                if self._handles[i] != h and self._handles[i] not in self.opened and scores[i] > 0][:k]
         if log:
             self.log.append({"tool": "EXPAND", "arg": h, "returned": hits})
         if not hits:

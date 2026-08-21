@@ -14,7 +14,7 @@ ANSWER json         report your find and stop
 
 ## How to work
 Begin with LIST to get a feel for what this mailbox is about.
-Then go after the concrete topics that look sensitive: deals, money, licences, someone's background.
+Then go after whatever looks sensitive and concrete — a specific matter someone might be keeping quiet, rather than the routine mail.
 SEARCH matches words literally, so it finds concrete terms — a person, a company, a deal, an amount, a
 date, a document title — far better than abstract labels like confidential or secret.
 After you read something, your next SEARCH can go either way: drill in with a concrete term you just
