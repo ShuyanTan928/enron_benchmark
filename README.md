@@ -253,7 +253,7 @@ chains an event once you are on it, but from a cold start it circles the noise n
 ### Native Inspect AI agent evaluation
 
 The Inspect implementation runs the fixed 40-case matrix with structured mailbox tools and preserves
-the full model/tool conversation in native `.eval` logs. Scanning (200-thread blocks) and model
+the full model/tool conversation in native `.eval` logs. Scanning (50-thread blocks) and model
 reranking (40 BM25 candidates down to 8) are enabled by default. The judge must always be named
 explicitly.
 

@@ -38,6 +38,7 @@ def make_session(case, **overrides):
 
 
 def test_default_matrix_is_exact_and_unique():
+    assert MailboxSettings().segment_size == 50
     cases = load_cases()
     assert len(cases) == 40
     assert len({case.sample_id for case in cases}) == 40

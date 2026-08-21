@@ -60,7 +60,7 @@ class EnronStore(StoreModel):
     seed: int = 20260624
     budget: int = 25
     scan: bool = True
-    segment_size: int = 200
+    segment_size: int = 50
     rerank_pool: int = 40
     rerank_show: int = 8
     min_investigate: int = -1
@@ -225,7 +225,7 @@ def read() -> Tool:
 @tool
 def segment() -> Tool:
     async def execute(block: int | None = None) -> str:
-        """Review the next 200-thread mailbox index segment.
+        """Review the next 50-thread mailbox index segment.
 
         Args:
             block: Optional zero-based block number. Omit it to advance the scan cursor safely.
@@ -295,7 +295,7 @@ def build_samples(
     noise: int = 200,
     budget: int = 25,
     scan: bool = True,
-    segment_size: int = 200,
+    segment_size: int = 50,
     rerank_pool: int = 40,
     rerank_show: int = 8,
     seed: int = 20260624,
@@ -403,7 +403,7 @@ def enron_agent_eval(
     noise: int = 200,
     budget: int = 25,
     scan: bool = True,
-    segment_size: int = 200,
+    segment_size: int = 50,
     rerank_pool: int = 40,
     rerank_show: int = 8,
     seed: int = 20260624,

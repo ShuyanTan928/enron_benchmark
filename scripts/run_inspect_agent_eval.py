@@ -45,7 +45,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-scan", dest="scan", action="store_false", help="allow a negative answer without full segment coverage")
     parser.add_argument("--rerank", type=int, default=40, help="BM25 rerank pool; 0 disables reranking")
     parser.add_argument("--rerank-show", type=int, default=8)
-    parser.add_argument("--segment-size", type=int, default=200)
+    parser.add_argument("--segment-size", type=int, default=50)
     parser.add_argument("--seed", type=int, default=20260624)
     parser.add_argument("--min-invest", type=int, default=-1, help="qualifying searches/reads; -1 means clue count")
     parser.add_argument("--anonymize", default="benchmark_pool/pseudonyms.json")

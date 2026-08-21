@@ -55,7 +55,7 @@ class MailboxSettings:
     seed: int = 20260624
     budget: int = 25
     scan: bool = True
-    segment_size: int = 200
+    segment_size: int = 50
     rerank_pool: int = 40
     rerank_show: int = 8
     min_investigate: int = -1
