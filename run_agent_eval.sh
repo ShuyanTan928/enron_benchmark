@@ -13,17 +13,18 @@
 # Examples:
 #   ./run_agent_eval.sh openai/gpt-4o
 #   ./run_agent_eval.sh openai/gpt-4o anthropic/claude-sonnet-4.6 deepseek/deepseek-v4-pro
-#   NOISE=400 JUDGE=openai/gpt-5-mini ./run_agent_eval.sh openai/gpt-4o google/gemini-2.5-pro
+#   NOISE=400 ./run_agent_eval.sh openai/gpt-4o google/gemini-2.5-pro
 #
 # Any OpenRouter model id works (Azure-routed ids too). Each model runs in turn and writes
-# results/agent/<model>/rows.csv. Override the judge/noise with the JUDGE / NOISE env vars.
+# results/agent/<model>_n<noise>/rows.csv. The judge defaults to the cheap openai/gpt-5.6-luna;
+# override the judge/noise with the JUDGE / NOISE env vars.
 # Cost is ~40 items x tester + judge per model — a few dollars for a mid model at noise 200.
 set -euo pipefail
 cd "$(dirname "$0")"
 
 [ "$#" -ge 1 ] || { echo "usage: OPENROUTER_API_KEY=... ./run_agent_eval.sh <model-slug> [<model-slug> ...]"; exit 1; }
 : "${OPENROUTER_API_KEY:?set your key first:  export OPENROUTER_API_KEY=sk-or-...}"
-JUDGE="${JUDGE:-openai/gpt-5.6-terra}"
+JUDGE="${JUDGE:-openai/gpt-5.6-luna}"
 NOISE="${NOISE:-200}"
 
 # 1) install uv if missing
@@ -47,7 +48,7 @@ CLUES="benchmark_pool/emails_commission_n2.jsonl:com_n2,benchmark_pool/emails_co
 # 4) run each model in turn (one failing model does not stop the rest)
 set +e
 for MODEL in "$@"; do
-  OUT="results/agent/${MODEL//\//_}"
+  OUT="results/agent/${MODEL//\//_}_n${NOISE}"
   echo "================  $MODEL   (judge=$JUDGE, noise=$NOISE)  ================"
   .venv-api/bin/python scripts/run_agent.py --engine api --preset "$MODEL" --judge-preset "$JUDGE" \
     --clues "$CLUES" \
