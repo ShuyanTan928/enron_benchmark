@@ -115,7 +115,8 @@ def test_segment_cursor_tracks_unique_full_coverage(case):
     rendered = session.segment(1)
     assert "participants:" in rendered
     assert "subjects:" in rendered
-    assert "first:" in rendered
+    assert "first:" not in rendered
+    assert "last:" not in rendered
     assert session.action_count == investigation_calls
     assert session.scan_segments_left == total - 1
     session.segment(1)

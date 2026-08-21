@@ -355,16 +355,11 @@ class MailboxSession:
             if subject not in subjects:
                 subjects.append(subject)
 
-        first = self._compact(str(messages[0].get("body") or ""), 90)
-        last = self._compact(str(messages[-1].get("body") or ""), 90)
-        snippets = f"first: {first}"
-        if len(messages) > 1 and last != first:
-            snippets += f" | last: {last}"
         marker = " [read]" if any(item in self.env.opened for item in message_handles) else ""
         return (
             f"{handle} | {date_range} | {len(messages)}msg | participants: "
             f"{self._compact(', '.join(participants), 110)} | subjects: "
-            f"{self._compact(' / '.join(subjects), 110)} | {snippets}{marker}"
+            f"{self._compact(' / '.join(subjects), 110)}{marker}"
         )
 
     @property

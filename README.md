@@ -218,7 +218,7 @@ structured tool calls and keeping the full model/tool conversation in `.eval` lo
 | `list_threads` | a date-spread sample of mailbox threads to orient; subjects are leads, not evidence |
 | `search` | lexical BM25 over subjects and bodies, then a model rerank of 40 candidates down to 8; results are snippets for triage |
 | `read` | open a full thread and expose its e-handles; fires the two auto-steps below |
-| `segment` | one chronological page of up to 50 thread cards for exhaustive coverage; drawn from a separate scan allowance |
+| `segment` | one chronological page of up to 50 metadata-only thread cards for exhaustive coverage; bodies stay hidden until `read` |
 | `answer` | submit the finding — up to N ranked candidate secrets, each with its evidence e-handles — and stop |
 
 **Fires automatically on every `read`:**

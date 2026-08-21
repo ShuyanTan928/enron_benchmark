@@ -296,9 +296,10 @@ def segment() -> Tool:
     async def execute(block: int | None = None) -> str:
         """Review one chronological index page of up to 50 thread cards for exhaustive coverage.
 
-        Each card shows participants, date range, message count, subjects, and first/last snippets. Cards
-        are triage, not evidence: read the strongest leads from a page before advancing. Each unique page
-        has a separate scan allowance and does not consume the list/search/read investigation budget.
+        Each card shows only participants, date range, message count, and subjects. Message bodies are
+        deliberately withheld so cards remain triage rather than evidence; read the strongest leads from
+        a page before advancing. Each unique page has a separate scan allowance and does not consume the
+        list/search/read investigation budget.
 
         Args:
             block: Optional zero-based page number. Omit it to advance to the next unreviewed page.
