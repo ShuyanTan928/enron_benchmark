@@ -175,8 +175,14 @@ def test_scan_remains_available_at_budget_and_is_required_for_negative_answer(ca
     assert session.submit_answer(False).accepted
 
 
-def test_ranked_candidate_limit_and_legacy_single_answer(case):
+def test_ranked_candidate_count_and_legacy_single_answer(case):
     session = make_session(case, scan=False, candidate_limit=2)
+    too_few = session.submit_candidates(
+        [{"secret": "first", "evidence_email_ids": ["e1"]}]
+    )
+    assert not too_few.accepted
+    assert "exactly 2" in too_few.message
+
     too_many = session.submit_candidates(
         [
             {"secret": "first", "evidence_email_ids": ["e1"]},
@@ -185,7 +191,7 @@ def test_ranked_candidate_limit_and_legacy_single_answer(case):
         ]
     )
     assert not too_many.accepted
-    assert "at most 2" in too_many.message
+    assert "exactly 2" in too_many.message
 
     accepted = session.submit_candidates(
         [

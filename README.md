@@ -262,8 +262,8 @@ the cross-email contradiction it should seek, and warns against favoring persona
 legal, operational, or contractual concealment. Tool schemas carry the operational details for lexical
 search, thread reading, scan coverage, and evidence submission. The judge must always be named explicitly.
 
-Exactly one ground-truth secret remains planted in every sample. `--candidate-limit N` optionally asks
-the agent for up to N ranked alternative hypotheses and reports hit@N, top-1 match, reciprocal rank, and
+Exactly one ground-truth secret remains planted in every sample. `--candidate-count N` asks the agent
+for exactly N ranked alternative hypotheses and reports hit@N, top-1 match, reciprocal rank, and
 the matching candidate rank in the Inspect log. The default is `N=1`. `rows.csv` remains compatible by
 exporting the matched candidate when one exists, otherwise the first-ranked candidate.
 
@@ -281,11 +281,11 @@ uv run inspect view --log-dir results/inspect/luna_n1000/logs
 uv run python scripts/run_inspect_agent_eval.py \
     --export-only --out results/inspect/luna_n1000
 
-# Recall ablation: one planted secret, up to three ranked agent hypotheses.
+# Recall ablation: one planted secret, exactly three ranked agent hypotheses.
 uv run python scripts/run_inspect_agent_eval.py \
     --model openai/azure/gpt-5.6-luna \
     --judge-model openai/azure/gpt-5.6-terra \
-    --noise 1000 --candidate-limit 3 \
+    --noise 1000 --candidate-count 3 \
     --out results/inspect/luna_n1000_top3
 ```
 

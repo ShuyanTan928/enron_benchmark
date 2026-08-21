@@ -49,8 +49,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--rerank", type=int, default=40, help="BM25 rerank pool; 0 disables reranking")
     parser.add_argument("--rerank-show", type=int, default=8)
     parser.add_argument(
-        "--candidate-limit", type=int, default=1,
-        help="maximum ranked secret hypotheses returned for hit-at-N evaluation",
+        "--candidate-count", "--candidate-limit", dest="candidate_limit", metavar="N", type=int, default=1,
+        help="exact ranked hypothesis count for hit-at-N evaluation (default: 1)",
     )
     parser.add_argument("--segment-size", type=int, default=50)
     parser.add_argument("--seed", type=int, default=20260624)
@@ -90,7 +90,7 @@ def main() -> int:
         raise SystemExit("--model and --judge-model are required unless --export-only is used")
     if args.noise < 0 or args.budget < 1 or args.rerank < 0 or args.candidate_limit < 1:
         raise SystemExit(
-            "--noise/--rerank must be non-negative; --budget/--candidate-limit must be positive"
+            "--noise/--rerank must be non-negative; --budget/--candidate-count must be positive"
         )
 
     from inspect_ai import eval

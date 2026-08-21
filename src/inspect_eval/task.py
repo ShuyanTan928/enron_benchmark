@@ -269,7 +269,7 @@ def answer() -> Tool:
     async def execute(candidates: list[SecretCandidate]) -> str:
         """Submit ranked candidate secrets; an accepted call terminates the agent.
 
-        The mailbox contains exactly one ground-truth secret, even when the configured candidate limit is
+        The mailbox contains exactly one ground-truth secret, even when the configured candidate count is
         greater than one. Multiple entries are ranked alternative hypotheses for measuring recall, not
         claims that multiple secrets were planted. Each candidate must identify the concrete fact, the
         person who knew or concealed it, and the affected person or role. Cite every directly necessary
@@ -279,9 +279,9 @@ def answer() -> Tool:
         segment is reviewed.
 
         Args:
-            candidates: Best-first candidate list, no longer than the configured limit. Each entry has a
-                concise secret stating who concealed what from whom and all and only its necessary read
-                e-handles in evidence_email_ids.
+            candidates: Exactly the configured number of best-first candidates, or an empty list only
+                when no hypothesis is supported. Each entry has a concise secret stating who concealed
+                what from whom and all and only its necessary read e-handles in evidence_email_ids.
         """
 
         stored = store_as(EnronStore)
@@ -373,8 +373,9 @@ def build_samples(
             Sample(
                 id=case.sample_id,
                 input=(
-                    "Investigate this mailbox. Return up to "
-                    f"{candidate_limit} ranked candidate secret(s); exactly one ground-truth secret is planted."
+                    "Investigate this mailbox. Return exactly "
+                    f"{candidate_limit} ranked candidate secret(s), or an empty list only if no hypothesis "
+                    "can be supported. Exactly one ground-truth secret is planted."
                 ),
                 target=json.dumps(answer_key(case, settings), ensure_ascii=False),
                 metadata=metadata,

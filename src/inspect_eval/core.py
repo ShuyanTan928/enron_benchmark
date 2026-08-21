@@ -396,9 +396,10 @@ class MailboxSession:
         self.answer_attempts += 1
         if not isinstance(candidates, list):
             return self._reject_answer("Candidates must be a ranked list.")
-        if len(candidates) > self.settings.candidate_limit:
+        if candidates and len(candidates) != self.settings.candidate_limit:
             return self._reject_answer(
-                f"Submit at most {self.settings.candidate_limit} candidate secret(s)."
+                f"Submit exactly {self.settings.candidate_limit} ranked candidate secret(s), "
+                "or an empty list when no hypothesis is supported."
             )
 
         normalized: list[dict[str, object]] = []
