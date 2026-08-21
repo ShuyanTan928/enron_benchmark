@@ -250,6 +250,32 @@ rank #1 at every noise level, so discovery is a query-*choice* problem, not a ra
 chains an event once you are on it, but from a cold start it circles the noise neighborhood you land in.
 `NOTE` and the floor lift *synthesis*; *discovery* stays the dominant wall at full-corpus scale.
 
+### Native Inspect AI agent evaluation
+
+The Inspect implementation runs the fixed 40-case matrix with structured mailbox tools and preserves
+the full model/tool conversation in native `.eval` logs. Scanning (200-thread blocks) and model
+reranking (40 BM25 candidates down to 8) are enabled by default. The judge must always be named
+explicitly.
+
+```bash
+uv run python scripts/run_inspect_agent_eval.py \
+    --model openai/azure/gpt-5.6-luna \
+    --judge-model openai/azure/gpt-5.6-terra \
+    --noise 1000 \
+    --out results/inspect/luna_n1000
+
+# Browse complete native trajectories.
+uv run inspect view --log-dir results/inspect/luna_n1000/logs
+
+# Rebuild rows.csv after an interruption, without calling either model.
+uv run python scripts/run_inspect_agent_eval.py \
+    --export-only --out results/inspect/luna_n1000
+```
+
+Use `--no-scan` or `--rerank 0` for the opt-outs. `rows.csv` retains the legacy score columns and
+formula; Inspect logs replace `trajectories.jsonl`. Because this path uses native structured tool calls,
+its trajectories are not directly comparable with the legacy text-protocol agent.
+
 ---
 
 ## Cost
@@ -297,10 +323,12 @@ scripts/
   build_{style,ack,file}_bank.py   mine the corpus-realism banks
   run_eval.py / judge_pass.py / plot_results.py    Stage 3 (static): run + judge + figures
   run_agent.py         Stage 3 (agentic): find-secrets ReAct agent over the mailbox
+  run_inspect_agent_eval.py   native Inspect runner + export-only CSV regeneration
 src/
   models/{engine_factory,api_engine,vllm_engine}.py   build_engine("api"|"vllm", preset)
   grounding/{corpus,retrieval,prompts,check,pipeline}.py   topic gen, HyDE retrieval, topic gate
   agent/{react_agent,mailbox_env,anonymize}.py   ReAct loop + tool env (SEARCH/READ/EXPAND/NOTE) + anonymizer
+  inspect_eval/{core,task,export}.py   Inspect tools/state machine, task/scorer, legacy CSV export
 data/enron/maildir/     the raw Enron corpus (517k emails)
 prompts/                all *_min.md prompts  +  agent_secrets.md (the find-secrets system prompt)
 ```

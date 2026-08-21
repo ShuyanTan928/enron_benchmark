@@ -3,12 +3,13 @@ name = "enron-benchmark"
 version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
-    "openai>=1.0.0",
+    "inspect-ai>=0.3.260,<0.4",
+    "openai>=3.1.0",
     "python-dotenv>=1.0.0",
     "pydantic>=2.0.0",
     "pandas>=2.0.0",
     "pyarrow>=14.0.0",
-    "vllm==0.19.1",
+    "vllm==0.19.1; sys_platform == 'linux'",
     "transformers>=4.40.0",
     "pytest>=7.0.0",
 ]
