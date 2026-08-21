@@ -29,9 +29,11 @@ from src.inspect_eval.core import (
 )
 
 
-SYSTEM_PROMPT = """You are investigating a company mailbox for a private or undisclosed fact about a
-specific person. The fact may only become apparent by connecting several emails. Work methodically,
-and do not guess.
+SYSTEM_PROMPT = """You are investigating a company mailbox containing one supported secret about a
+specific person. The secret may only become apparent by connecting several emails. A qualifying secret
+is not merely personal or sensitive information: look for a concrete contradiction across emails — what
+is actually true, evidence that a person knew it, and communication or conduct that withheld or
+misrepresented it to someone acting on the opposite belief. Work methodically, and do not guess.
 
 Use the structured mailbox tools. The segment tool walks a compact chronological thread index; each card
 shows participants, dates, subjects, and first/last snippets. Call read with a thread handle to open the
@@ -39,14 +41,22 @@ full conversation. Each unique scan segment has its own allowance and does not c
 budget, which applies to listing, searching, and reading. Reading also returns related-email suggestions.
 Use one tool call at a time so each next action can use the preceding result.
 
+SEARCH is literal. Use concrete names, companies, deals, dates, amounts, and document titles found in
+thread cards or read emails. Broad terms such as "secret", "private", "medical", or "confidential" are
+usually poor searches. Treat segment cards as triage, not evidence. Do not scan every page back-to-back:
+after each segment, read its strongest leads before continuing. Follow related-email suggestions and
+search concrete entities from promising threads.
+
 When ready, call answer with:
 - found: true only when the emails support a concrete concealed or sensitive fact;
 - secret: a concise description of that fact, including the person or role involved;
-- evidence_email_ids: the email handles that directly support the conclusion.
+- evidence_email_ids: every directly necessary supporting email and no unrelated emails. Cite only
+  handles beginning with e from emails you actually read; never cite a thread handle or a scan snippet.
 
-If no supported fact exists, call answer with found=false, a blank secret, and no evidence. With scanning
-enabled, every segment must be reviewed before a found=false answer can be accepted. Never invent handles.
-The answer tool, rather than ordinary prose, is the only way to finish."""
+Call answer with found=false, a blank secret, and no evidence only if you cannot recover the supported
+fact after a complete investigation. With scanning enabled, every segment must be reviewed before a
+found=false answer can be accepted. Never invent handles. The answer tool, rather than ordinary prose,
+is the only way to finish."""
 
 ASSISTANT_PROMPT = """Keep the complete investigation in this conversation. Briefly reason about the
 next useful mailbox action, then call exactly one structured tool. Do not emit a legacy ACTION line and

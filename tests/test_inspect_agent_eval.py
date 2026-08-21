@@ -238,3 +238,13 @@ def test_inspect_mock_model_integration(tmp_path):
     log = eval(task, model=model, limit=1, log_dir=str(tmp_path), display="none")[0]
     assert log.status == "success"
     assert log.samples and log.samples[0].scores
+
+
+@pytest.mark.skipif(importlib.util.find_spec("inspect_ai") is None, reason="Inspect AI not installed")
+def test_system_prompt_explains_recovery_strategy_without_answer_leakage():
+    from src.inspect_eval.task import SYSTEM_PROMPT
+
+    assert "containing one supported secret" in SYSTEM_PROMPT
+    assert "SEARCH is literal" in SYSTEM_PROMPT
+    assert "Do not scan every page back-to-back" in SYSTEM_PROMPT
+    assert "handles beginning with e" in SYSTEM_PROMPT

@@ -257,7 +257,9 @@ the full model/tool conversation in native `.eval` logs. Scanning uses chronolog
 with participants, date ranges, subjects, and first/last snippets; opening a card reads the complete
 thread. Scan pages have a separate finite allowance, leaving the default 100-call investigation budget
 for listing, searching, and reading. Model reranking (40 BM25 candidates down to 8) is enabled by
-default. The judge must always be named explicitly.
+default. The recovery-only 40-case task tells the agent that one supported secret is present, defines
+the cross-email contradiction it should seek, and directs it toward concrete lexical searches rather
+than generic sensitivity terms. The judge must always be named explicitly.
 
 ```bash
 uv run python scripts/run_inspect_agent_eval.py \
