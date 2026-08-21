@@ -79,6 +79,8 @@ class EnronStore(StoreModel):
     budget_hit: bool = False
     termination_reason: str = ""
     started_at: float = 0.0
+    notes: list[str] = []
+    noted_threads: list[str] = []
 
 
 _active_session: ContextVar[MailboxSession | None] = ContextVar(
@@ -176,6 +178,50 @@ async def _model_rerank(query: str, candidates: str, show: int) -> str:
     return output.completion
 
 
+_NOTE_INSTR = (
+    "Write one line of case notes for the email(s) below: the concrete fact they establish -- "
+    "who did or said what -- keeping any name, company, amount, date, or document title exactly "
+    "as written. No preamble, one line."
+)
+
+
+async def _auto_note(session: MailboxSession, stored: EnronStore) -> str:
+    """After a READ, have the tester model distil the just-read thread's key fact into one line,
+    appended to a persistent notes log. Deduped per thread; off the investigation budget."""
+    log = session.env.log
+    if not log or log[-1].get("tool") != "READ":
+        return ""
+    handles = list(log[-1].get("returned", []))
+    if not handles:
+        return ""
+    thread = session.env.thread_of.get(handles[0])
+    if thread in set(stored.noted_threads):
+        return ""
+    parts = []
+    for handle in handles:
+        message = session.env.msgs.get(handle, {})
+        sender = (message.get("from_addr", "") or "").split("@")[0]
+        parts.append(
+            f"[{handle}] {sender} {(message.get('date', '') or '')[:10]}: "
+            f"{message.get('subject', '')}\n{message.get('body', '') or ''}"
+        )
+    text = "\n\n".join(parts)[:4000]
+    try:
+        output = await get_model().generate(
+            f"{_NOTE_INSTR}\n\n{text}\n\nNote:", config=GenerateConfig(max_tokens=90)
+        )
+    except Exception:
+        return ""  # a note-generation hiccup must not crash the read
+    line = " ".join((output.completion or "").split())[:240]
+    if not line:
+        return ""
+    stored.notes = [*stored.notes, f"{' '.join(handles)} -- {line}"]
+    if thread:
+        stored.noted_threads = [*stored.noted_threads, thread]
+    stored.tester_chars += len(text) + len(line)
+    return line
+
+
 @tool
 def list_threads() -> Tool:
     async def execute() -> str:
@@ -237,6 +283,9 @@ def read() -> Tool:
         session = _restore_session(stored)
         result = session.read(handle)
         _sync_store(stored, session)
+        note = await _auto_note(session, stored)
+        if note:
+            result += "\n\nCase note (key fact recorded): " + note
         return result
 
     return execute
