@@ -35,32 +35,16 @@ is not merely personal or sensitive information: look for a concrete contradicti
 is actually true, evidence that a person knew it, and communication or conduct that withheld or
 misrepresented it to someone acting on the opposite belief. Work methodically, and do not guess.
 
-Use the structured mailbox tools. The segment tool walks a compact chronological thread index; each card
-shows participants, dates, subjects, and first/last snippets. Call read with a thread handle to open the
-full conversation. Each unique scan segment has its own allowance and does not consume the investigation
-budget, which applies to listing, searching, and reading. Reading also returns related-email suggestions.
-Use one tool call at a time so each next action can use the preceding result.
+The concealed fact may concern a business, legal, operational, or contractual matter. Do not prioritize
+HR or personal topics merely because they name an individual. Investigate the strongest leads between
+scan pages rather than scanning every page back-to-back. When a promising story emerges, follow it across
+threads and test whether the emails establish truth, knowledge, and misleading conduct together.
 
-SEARCH is literal. Use concrete names, companies, deals, dates, amounts, and document titles found in
-thread cards or read emails. Broad terms such as "secret", "private", "medical", or "confidential" are
-usually poor searches. Treat segment cards as triage, not evidence. Do not scan every page back-to-back:
-after each segment, read its strongest leads before continuing. Follow related-email suggestions and
-search concrete entities from promising threads.
+Use the complete investigation history when deciding. Finish only through the answer tool; do not report
+the conclusion as ordinary prose."""
 
-When ready, call answer with:
-- found: true only when the emails support a concrete concealed or sensitive fact;
-- secret: a concise description of that fact, including the person or role involved;
-- evidence_email_ids: every directly necessary supporting email and no unrelated emails. Cite only
-  handles beginning with e from emails you actually read; never cite a thread handle or a scan snippet.
-
-Call answer with found=false, a blank secret, and no evidence only if you cannot recover the supported
-fact after a complete investigation. With scanning enabled, every segment must be reviewed before a
-found=false answer can be accepted. Never invent handles. The answer tool, rather than ordinary prose,
-is the only way to finish."""
-
-ASSISTANT_PROMPT = """Keep the complete investigation in this conversation. Briefly reason about the
-next useful mailbox action, then call exactly one structured tool. Do not emit a legacy ACTION line and
-do not give the final answer as prose; call the answer tool."""
+ASSISTANT_PROMPT = """Briefly state the next useful action, then call exactly one structured tool.
+Do not emit a legacy ACTION line."""
 
 
 class EnronStore(StoreModel):
@@ -187,7 +171,12 @@ async def _model_rerank(query: str, candidates: str, show: int) -> str:
 @tool
 def list_threads() -> Tool:
     async def execute() -> str:
-        """List a date-spread sample of threads in the mailbox."""
+        """Orient with a date-spread sample of mailbox threads.
+
+        This is a compact sample, not exhaustive coverage, and its subjects are leads rather than
+        evidence. Use segment to review every thread or read to open a promising conversation. This
+        costs one investigation call.
+        """
 
         stored = store_as(EnronStore)
         session = _restore_session(stored)
@@ -201,10 +190,16 @@ def list_threads() -> Tool:
 @tool
 def search() -> Tool:
     async def execute(query: str) -> str:
-        """Search mailbox subjects and bodies, with model reranking when enabled.
+        """Lexically search subjects and bodies, then rerank the candidates when enabled.
+
+        Search works best with concrete words likely to appear in the mail: names, companies, deals,
+        dates, amounts, document titles, or unusual facts learned from a card or a read email. Broad
+        labels such as secret, private, medical, or confidential are usually poor queries. Results are
+        snippets for triage, not evidence; read a result before relying on or citing it. This costs one
+        investigation call.
 
         Args:
-            query: Specific names, documents, events, or unusual facts to retrieve.
+            query: Concrete mailbox terms to retrieve; avoid abstract descriptions of secrecy.
         """
 
         stored = store_as(EnronStore)
@@ -219,10 +214,15 @@ def search() -> Tool:
 @tool
 def read() -> Tool:
     async def execute(handle: str) -> str:
-        """Read an email or thread and automatically retrieve related-email suggestions.
+        """Open a complete thread and retrieve suggestions for related unread emails.
+
+        Reading either an email handle or a thread handle opens every email in that conversation and
+        exposes their e-handles. Follow promising related suggestions to connect the story across
+        threads. Only e-handles from emails actually read can be cited as final evidence. This costs one
+        investigation call.
 
         Args:
-            handle: An email handle such as e17, or a thread handle such as t9.
+            handle: An email handle such as e17, or a thread handle such as t9, selected from tool output.
         """
 
         stored = store_as(EnronStore)
@@ -237,10 +237,14 @@ def read() -> Tool:
 @tool
 def segment() -> Tool:
     async def execute(block: int | None = None) -> str:
-        """Review the next chronological 50-thread index segment without using the investigation budget.
+        """Review one chronological index page of up to 50 thread cards for exhaustive coverage.
+
+        Each card shows participants, date range, message count, subjects, and first/last snippets. Cards
+        are triage, not evidence: read the strongest leads from a page before advancing. Each unique page
+        has a separate scan allowance and does not consume the list/search/read investigation budget.
 
         Args:
-            block: Optional zero-based block number. Omit it to advance the scan cursor safely.
+            block: Optional zero-based page number. Omit it to advance to the next unreviewed page.
         """
 
         stored = store_as(EnronStore)
@@ -259,12 +263,18 @@ def answer() -> Tool:
         secret: str = "",
         evidence_email_ids: list[str] | None = None,
     ) -> str:
-        """Submit the final investigation result. An accepted call terminates the agent.
+        """Submit the final investigation result; an accepted call terminates the agent.
+
+        A positive answer must identify the concrete fact, the person who knew or concealed it, and the
+        affected person or role. Cite every directly necessary supporting email and no unrelated mail,
+        using only e-handles from emails actually opened with read. Never cite thread handles or scan or
+        search snippets. A negative answer must have a blank secret and no evidence; when scanning is
+        enabled it is rejected until every segment is reviewed.
 
         Args:
-            found: Whether a concrete concealed or sensitive fact was recovered.
-            secret: Concise supported fact and the person or role involved; blank when not found.
-            evidence_email_ids: Email handles directly supporting the conclusion.
+            found: True only when read emails support a concrete concealed or misrepresented fact.
+            secret: Concise statement of who concealed what from whom; blank when found is false.
+            evidence_email_ids: All and only necessary read e-handles; empty when found is false.
         """
 
         stored = store_as(EnronStore)

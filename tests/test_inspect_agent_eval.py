@@ -241,10 +241,13 @@ def test_inspect_mock_model_integration(tmp_path):
 
 
 @pytest.mark.skipif(importlib.util.find_spec("inspect_ai") is None, reason="Inspect AI not installed")
-def test_system_prompt_explains_recovery_strategy_without_answer_leakage():
-    from src.inspect_eval.task import SYSTEM_PROMPT
+def test_system_prompt_and_tool_descriptions_have_distinct_responsibilities():
+    from src.inspect_eval.task import SYSTEM_PROMPT, answer, read, search, segment
 
     assert "containing one supported secret" in SYSTEM_PROMPT
-    assert "SEARCH is literal" in SYSTEM_PROMPT
-    assert "Do not scan every page back-to-back" in SYSTEM_PROMPT
-    assert "handles beginning with e" in SYSTEM_PROMPT
+    assert "business, legal, operational, or contractual" in SYSTEM_PROMPT
+    assert "Lexically search" in search().__doc__
+    assert "concrete words" in search().__doc__
+    assert "complete thread" in read().__doc__
+    assert "separate scan allowance" in segment().__doc__
+    assert "only e-handles" in answer().__doc__
