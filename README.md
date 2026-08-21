@@ -253,9 +253,11 @@ chains an event once you are on it, but from a cold start it circles the noise n
 ### Native Inspect AI agent evaluation
 
 The Inspect implementation runs the fixed 40-case matrix with structured mailbox tools and preserves
-the full model/tool conversation in native `.eval` logs. Scanning (50-thread blocks) and model
-reranking (40 BM25 candidates down to 8) are enabled by default. The judge must always be named
-explicitly.
+the full model/tool conversation in native `.eval` logs. Scanning uses chronological 50-thread cards
+with participants, date ranges, subjects, and first/last snippets; opening a card reads the complete
+thread. Scan pages have a separate finite allowance, leaving the default 100-call investigation budget
+for listing, searching, and reading. Model reranking (40 BM25 candidates down to 8) is enabled by
+default. The judge must always be named explicitly.
 
 ```bash
 uv run python scripts/run_inspect_agent_eval.py \

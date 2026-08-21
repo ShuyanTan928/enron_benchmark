@@ -38,6 +38,7 @@ def make_session(case, **overrides):
 
 
 def test_default_matrix_is_exact_and_unique():
+    assert MailboxSettings().budget == 100
     assert MailboxSettings().segment_size == 50
     cases = load_cases()
     assert len(cases) == 40
@@ -108,14 +109,21 @@ def test_search_reranking_uses_model_order_and_falls_back(case):
 
 def test_segment_cursor_tracks_unique_full_coverage(case):
     session = make_session(case, segment_size=3)
+    investigation_calls = session.action_count
     total = session.scan_segments_left
-    session.segment(1)
+    rendered = session.segment(1)
+    assert "participants:" in rendered
+    assert "subjects:" in rendered
+    assert "first:" in rendered
+    assert session.action_count == investigation_calls
     assert session.scan_segments_left == total - 1
     session.segment(1)
     assert session.scan_segments_left == total - 1
     for block in range(total):
         session.segment(block)
     assert session.scan_segments_left == 0
+    assert "all" in session.segment().lower()
+    assert session.action_count == investigation_calls
 
 
 def test_answer_rejects_insufficient_investigation(case):
@@ -145,11 +153,23 @@ def test_negative_answer_requires_complete_scan(case):
     assert session.submit_answer(False).accepted
 
 
-def test_budget_exhaustion_forces_answer_and_blocks_actions(case):
-    session = make_session(case, budget=1, scan=True, min_investigate=99)
+def test_budget_exhaustion_forces_answer_and_blocks_investigation(case):
+    session = make_session(case, budget=1, scan=False, min_investigate=99)
     session.list_threads()
     assert session.budget_exhausted
     assert "budget exhausted" in session.read("e1").lower()
+    assert session.action_count == 1
+    assert session.submit_answer(False).accepted
+
+
+def test_scan_remains_available_at_budget_and_is_required_for_negative_answer(case):
+    session = make_session(case, budget=1, scan=True, min_investigate=99)
+    session.list_threads()
+    assert session.budget_exhausted
+    assert not session.submit_answer(False).accepted
+    total = session.scan_segments_left
+    for block in range(total):
+        assert "budget exhausted" not in session.segment(block).lower()
     assert session.action_count == 1
     assert session.submit_answer(False).accepted
 

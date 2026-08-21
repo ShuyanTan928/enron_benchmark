@@ -53,7 +53,7 @@ class BenchmarkCase:
 class MailboxSettings:
     noise: int = 200
     seed: int = 20260624
-    budget: int = 25
+    budget: int = 100
     scan: bool = True
     segment_size: int = 50
     rerank_pool: int = 40
@@ -69,6 +69,7 @@ class AnswerAttempt:
 
 
 Reranker = Callable[[str, str, int], Awaitable[str]]
+BUDGETED_TOOLS = frozenset({"LIST", "SEARCH", "READ"})
 
 
 def _resolve(path: str | Path, root: Path = ROOT) -> Path:
@@ -220,7 +221,9 @@ class MailboxSession:
 
     @property
     def action_count(self) -> int:
-        return len(self.env.log)
+        """Calls charged to the investigation budget; scan pages have a separate allowance."""
+
+        return sum(1 for event in self.env.log if event.get("tool") in BUDGETED_TOOLS)
 
     @property
     def budget_exhausted(self) -> bool:
@@ -276,27 +279,100 @@ class MailboxSession:
         return text
 
     def segment(self, block: int | None = None) -> str:
-        blocked = self._budget_message()
-        if blocked:
-            return blocked
-        selected = getattr(self.env, "_seg_cursor", 0) if block is None else block
-        total = (len(self.env.thread_msgs) + self.settings.segment_size - 1) // self.settings.segment_size
-        text = self.env.segment("" if block is None else str(block), size=self.settings.segment_size)
-        text = text.replace(
-            "(when this block holds nothing sensitive, ACTION: SEGMENT for the next block)",
-            "(call segment again to review the next block)",
-        ).replace(
-            "segments reviewed — base your ACTION: ANSWER on your notes now",
-            "segments reviewed — call answer using the evidence in this conversation",
+        total = self.total_scan_segments
+        if not total:
+            return "(the mailbox contains no threads)"
+
+        if block is None:
+            if not self.scan_segments_left:
+                self.env.log.append(
+                    {"tool": "SEGMENT", "arg": None, "returned": [], "status": "complete"}
+                )
+                return f"(all {total} segments reviewed — call answer using the evidence in this conversation)"
+            cursor = getattr(self.env, "_seg_cursor", 0) % total
+            order = list(range(cursor, total)) + list(range(0, cursor))
+            selected = next(candidate for candidate in order if candidate not in self.scanned_segments)
+        else:
+            selected = block
+
+        if selected < 0 or selected >= total:
+            self.env.log.append({"tool": "SEGMENT", "arg": selected, "returned": [], "status": "invalid"})
+            return f"(segment must be between 0 and {total - 1}; {self.scan_segments_left} remain)"
+        if selected in self.scanned_segments:
+            self.env.log.append(
+                {"tool": "SEGMENT", "arg": selected, "returned": [], "status": "already_reviewed"}
+            )
+            return f"(segment {selected} was already reviewed; {self.scan_segments_left} remain)"
+
+        handles = self._scan_thread_handles()
+        start = selected * self.settings.segment_size
+        block_handles = handles[start : start + self.settings.segment_size]
+        self.env._seg_cursor = selected + 1
+        self.scanned_segments.add(selected)
+        self.env.log.append({"tool": "SEGMENT", "arg": selected, "returned": block_handles})
+
+        lo = start + 1
+        hi = start + len(block_handles)
+        out = [
+            f"segment {selected + 1}/{total} — threads {lo}-{hi} of {len(handles)}; "
+            f"{self.scan_segments_left} segment(s) remain. Read a promising thread handle to open its full conversation:"
+        ]
+        out.extend(self._thread_card(handle) for handle in block_handles)
+        return "\n".join(out)
+
+    @staticmethod
+    def _compact(value: str, limit: int) -> str:
+        return " ".join((value or "").split())[:limit]
+
+    def _scan_thread_handles(self) -> list[str]:
+        def key(handle: str) -> tuple[str, int]:
+            messages = self.env.thread_msgs[handle]
+            dates = [str(self.env.msgs[item].get("date") or "")[:10] for item in messages]
+            dates = [date for date in dates if date]
+            number = int(handle[1:]) if handle[1:].isdigit() else 0
+            return (min(dates) if dates else "9999-99-99", number)
+
+        return sorted(self.env.thread_msgs, key=key)
+
+    def _thread_card(self, handle: str) -> str:
+        message_handles = self.env.thread_msgs[handle]
+        messages = [self.env.msgs[item] for item in message_handles]
+        dates = sorted({str(message.get("date") or "")[:10] for message in messages if message.get("date")})
+        date_range = dates[0] if len(dates) == 1 else f"{dates[0]}..{dates[-1]}" if dates else "undated"
+
+        participants: list[str] = []
+        for message in messages:
+            addresses = [message.get("from_addr", ""), *(message.get("to_addrs", []) or [])]
+            for address in addresses:
+                address = self._compact(str(address), 40)
+                if address and address not in participants:
+                    participants.append(address)
+
+        subjects: list[str] = []
+        for message in messages:
+            subject = self._compact(str(message.get("subject") or "(no subject)"), 70)
+            if subject not in subjects:
+                subjects.append(subject)
+
+        first = self._compact(str(messages[0].get("body") or ""), 90)
+        last = self._compact(str(messages[-1].get("body") or ""), 90)
+        snippets = f"first: {first}"
+        if len(messages) > 1 and last != first:
+            snippets += f" | last: {last}"
+        marker = " [read]" if any(item in self.env.opened for item in message_handles) else ""
+        return (
+            f"{handle} | {date_range} | {len(messages)}msg | participants: "
+            f"{self._compact(', '.join(participants), 110)} | subjects: "
+            f"{self._compact(' / '.join(subjects), 110)} | {snippets}{marker}"
         )
-        if 0 <= selected < total:
-            self.scanned_segments.add(selected)
-        return text
+
+    @property
+    def total_scan_segments(self) -> int:
+        return (len(self.env.thread_msgs) + self.settings.segment_size - 1) // self.settings.segment_size
 
     @property
     def scan_segments_left(self) -> int:
-        total = (len(self.env.thread_msgs) + self.settings.segment_size - 1) // self.settings.segment_size
-        return max(0, total - len(self.scanned_segments))
+        return max(0, self.total_scan_segments - len(self.scanned_segments))
 
     def submit_answer(
         self,
@@ -322,12 +398,12 @@ class MailboxSession:
                 self.rejections.append(reason)
                 return AnswerAttempt(False, reason)
 
-            if self.settings.scan and not found:
-                left = self.scan_segments_left
-                if left > 0:
-                    reason = f"The mailbox scan is incomplete: {left} segment(s) remain."
-                    self.rejections.append(reason)
-                    return AnswerAttempt(False, reason)
+        if self.settings.scan and not found:
+            left = self.scan_segments_left
+            if left > 0:
+                reason = f"The mailbox scan is incomplete: {left} segment(s) remain."
+                self.rejections.append(reason)
+                return AnswerAttempt(False, reason)
 
         self.answer = {
             "found": bool(found),

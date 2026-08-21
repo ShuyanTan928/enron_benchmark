@@ -40,7 +40,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model", help="evaluated Inspect model, e.g. openai/azure/gpt-5.6-luna")
     parser.add_argument("--judge-model", help="explicit recovery judge model")
     parser.add_argument("--noise", type=int, default=200, help="number of Enron noise threads")
-    parser.add_argument("--budget", type=int, default=25, help="maximum mailbox actions")
+    parser.add_argument(
+        "--budget", type=int, default=100,
+        help="maximum list/search/read calls; scan segments have a separate allowance",
+    )
     parser.add_argument("--scan", dest="scan", action="store_true", default=True)
     parser.add_argument("--no-scan", dest="scan", action="store_false", help="allow a negative answer without full segment coverage")
     parser.add_argument("--rerank", type=int, default=40, help="BM25 rerank pool; 0 disables reranking")
