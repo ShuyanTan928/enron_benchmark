@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
 from pathlib import Path
@@ -38,6 +39,11 @@ def normalize_azure_environment() -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", help="evaluated Inspect model, e.g. openai/azure/gpt-5.6-luna")
+    parser.add_argument(
+        "--model-args",
+        default="{}",
+        help='JSON object passed to Inspect when constructing the evaluated model',
+    )
     parser.add_argument("--judge-model", help="explicit recovery judge model")
     parser.add_argument("--noise", type=int, default=200, help="number of Enron noise threads")
     parser.add_argument(
@@ -58,6 +64,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--anonymize", default="benchmark_pool/pseudonyms.json")
     parser.add_argument("--epochs", type=int, default=1)
     parser.add_argument("--max-samples", type=int, default=1, help="Inspect sample concurrency")
+    parser.add_argument(
+        "--max-output-tokens",
+        type=int,
+        help="optional maximum model output tokens per agent turn",
+    )
     parser.add_argument("--limit", type=int, help="run only the first N samples")
     parser.add_argument("--sample-id", help="run a single deterministic sample id")
     parser.add_argument("--out", required=True, help="output directory containing logs/ and rows.csv")
@@ -92,6 +103,12 @@ def main() -> int:
         raise SystemExit(
             "--noise/--rerank must be non-negative; --budget/--candidate-count must be positive"
         )
+    try:
+        model_args = json.loads(args.model_args)
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"--model-args must be valid JSON: {exc}") from exc
+    if not isinstance(model_args, dict):
+        raise SystemExit("--model-args must decode to a JSON object")
 
     from inspect_ai import eval
     from src.inspect_eval.task import enron_agent_eval
@@ -111,9 +128,15 @@ def main() -> int:
         min_investigate=args.min_invest,
         anonymize=args.anonymize,
     )
+    generation_args = {}
+    if args.max_output_tokens is not None:
+        if args.max_output_tokens < 1:
+            raise SystemExit("--max-output-tokens must be positive")
+        generation_args["max_tokens"] = args.max_output_tokens
     logs = eval(
         task,
         model=args.model,
+        model_args=model_args,
         log_dir=str(log_dir),
         log_format="eval",
         epochs=args.epochs,
@@ -121,6 +144,7 @@ def main() -> int:
         limit=args.limit,
         sample_id=args.sample_id,
         display=args.display,
+        **generation_args,
     )
     rows = export_rows(log_dir, csv_path)
     failed = [log for log in logs if log.status != "success"]

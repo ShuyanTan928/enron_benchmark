@@ -263,6 +263,19 @@ uv run python scripts/run_inspect_agent_eval.py \
 `--no-scan` and `--rerank 0` turn off segment coverage and reranking. `rows.csv` keeps the legacy score
 columns and formula; the Inspect `.eval` logs hold the full trajectories, browsable with `inspect view`.
 
+Publish a completed set without adding large trajectories to Git history:
+
+```bash
+uv run python scripts/publish_inspect_results.py \
+    --tag inspect-n200-c1-2026-08-21 --expected-samples 40 \
+    results/inspect/luna_n200_c1_conc4 \
+    results/inspect/gpt-5.6-sol_n200_c1_conc4
+```
+
+The publisher validates completion and CSV row counts, then attaches one compressed run bundle plus a
+machine-readable manifest to a GitHub release. It refuses interrupted logs unless `--allow-partial` is
+explicitly supplied. Use `--dry-run` to validate and inspect the manifest without uploading.
+
 **Two walls it exposes.** Recovery splits into *discovery* (finding the first clue among ~1000 threads)
 and *synthesis* (reading distributed clues as one concealment). Under the right query a clue sits at BM25
 rank #1 at every noise level, so discovery is a query-*choice* problem rather than a ranking one:

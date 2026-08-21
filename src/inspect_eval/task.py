@@ -174,8 +174,17 @@ async def _model_rerank(query: str, candidates: str, show: int) -> str:
         f"Rank the {show} emails most worth opening to uncover a concealed or sensitive fact about a "
         f"person. Return only their handles, most promising first."
     )
-    output = await get_model().generate(prompt, config=GenerateConfig(max_tokens=80))
+    output = await _short_generation(prompt, max_tokens=80)
     return output.completion
+
+
+async def _short_generation(prompt: str, *, max_tokens: int):
+    """Generate a short helper response without sending unsupported legacy limits to MAI."""
+
+    model = get_model()
+    if "mai-thinking" in model.name.lower():
+        return await model.generate(prompt)
+    return await model.generate(prompt, config=GenerateConfig(max_tokens=max_tokens))
 
 
 _NOTE_INSTR = (
@@ -207,9 +216,7 @@ async def _auto_note(session: MailboxSession, stored: EnronStore) -> str:
         )
     text = "\n\n".join(parts)[:4000]
     try:
-        output = await get_model().generate(
-            f"{_NOTE_INSTR}\n\n{text}\n\nNote:", config=GenerateConfig(max_tokens=90)
-        )
+        output = await _short_generation(f"{_NOTE_INSTR}\n\n{text}\n\nNote:", max_tokens=90)
     except Exception:
         return ""  # a note-generation hiccup must not crash the read
     line = " ".join((output.completion or "").split())[:240]
