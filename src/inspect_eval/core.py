@@ -6,7 +6,9 @@ state machine here makes the budget and answer gates testable without a model or
 
 from __future__ import annotations
 
+import hashlib
 import json
+import random
 import re
 from copy import deepcopy
 from dataclasses import dataclass
@@ -326,14 +328,25 @@ class MailboxSession:
         return " ".join((value or "").split())[:limit]
 
     def _scan_thread_handles(self) -> list[str]:
-        def key(handle: str) -> tuple[str, int]:
-            messages = self.env.thread_msgs[handle]
-            dates = [str(self.env.msgs[item].get("date") or "")[:10] for item in messages]
-            dates = [date for date in dates if date]
-            number = int(handle[1:]) if handle[1:].isdigit() else 0
-            return (min(dates) if dates else "9999-99-99", number)
+        def handle_number(handle: str) -> tuple[int, str]:
+            return (int(handle[1:]) if handle[1:].isdigit() else 0, handle)
 
-        return sorted(self.env.thread_msgs, key=key)
+        handles = sorted(self.env.thread_msgs, key=handle_number)
+        # Salt the configured seed with stable, non-content mailbox identifiers. This keeps scan
+        # pages identical when a sample is rebuilt while giving different mailboxes independent
+        # permutations and preventing clue dates from placing related threads on the same page.
+        mailbox_ids = [
+            [str(self.env.msgs[item].get("message_id") or "") for item in self.env.thread_msgs[handle]]
+            for handle in handles
+        ]
+        material = json.dumps(
+            {"seed": self.settings.seed, "threads": mailbox_ids},
+            ensure_ascii=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+        scan_seed = int.from_bytes(hashlib.sha256(material).digest()[:8], "big")
+        random.Random(scan_seed).shuffle(handles)
+        return handles
 
     def _thread_card(self, handle: str) -> str:
         message_handles = self.env.thread_msgs[handle]

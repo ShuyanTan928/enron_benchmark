@@ -294,7 +294,9 @@ def read() -> Tool:
 @tool
 def segment() -> Tool:
     async def execute(block: int | None = None) -> str:
-        """Review one chronological index page of up to 50 thread cards for exhaustive coverage.
+        """Review one deterministically shuffled page of up to 50 thread cards.
+
+        Use these index pages for exhaustive mailbox coverage.
 
         Each card shows only participants, date range, message count, and subjects. Message bodies are
         deliberately withheld so cards remain triage rather than evidence; read the strongest leads from

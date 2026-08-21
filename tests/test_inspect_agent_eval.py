@@ -128,6 +128,28 @@ def test_segment_cursor_tracks_unique_full_coverage(case):
     assert session.action_count == investigation_calls
 
 
+def test_scan_order_is_seed_stable_complete_and_not_chronological(case):
+    first = make_session(case, noise=30)
+    rebuilt = make_session(case, noise=30)
+    different_seed = make_session(case, noise=30, seed=first.settings.seed + 1)
+    shuffled = first._scan_thread_handles()
+
+    assert shuffled == rebuilt._scan_thread_handles()
+    assert shuffled != different_seed._scan_thread_handles()
+    assert len(shuffled) == len(set(shuffled)) == len(first.env.thread_msgs)
+    assert set(shuffled) == set(first.env.thread_msgs)
+
+    def first_date(handle):
+        messages = first.env.thread_msgs[handle]
+        return min(
+            (str(first.env.msgs[item].get("date") or "")[:10] for item in messages),
+            default="9999-99-99",
+        )
+
+    chronological = sorted(first.env.thread_msgs, key=lambda handle: (first_date(handle), handle))
+    assert shuffled != chronological
+
+
 def test_answer_rejects_insufficient_investigation(case):
     session = make_session(case, min_investigate=2, scan=False)
     attempt = session.submit_answer(True, "guess", [])
