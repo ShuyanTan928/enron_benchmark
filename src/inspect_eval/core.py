@@ -58,6 +58,7 @@ class MailboxSettings:
     segment_size: int = 50
     rerank_pool: int = 40
     rerank_show: int = 8
+    candidate_limit: int = 1
     min_investigate: int = -1
     anonymize: str = "benchmark_pool/pseudonyms.json"
 
@@ -380,7 +381,47 @@ class MailboxSession:
         secret: str = "",
         evidence_email_ids: list[str] | None = None,
     ) -> AnswerAttempt:
+        """Compatibility wrapper for single-candidate callers and core unit tests."""
+
+        candidates = (
+            [{"secret": secret, "evidence_email_ids": evidence_email_ids or []}]
+            if found
+            else []
+        )
+        return self.submit_candidates(candidates)
+
+    def submit_candidates(self, candidates: list[dict] | None) -> AnswerAttempt:
+        """Validate and submit a ranked list of candidate secrets."""
+
         self.answer_attempts += 1
+        if not isinstance(candidates, list):
+            return self._reject_answer("Candidates must be a ranked list.")
+        if len(candidates) > self.settings.candidate_limit:
+            return self._reject_answer(
+                f"Submit at most {self.settings.candidate_limit} candidate secret(s)."
+            )
+
+        normalized: list[dict[str, object]] = []
+        for position, candidate in enumerate(candidates, 1):
+            if hasattr(candidate, "model_dump"):
+                candidate = candidate.model_dump()
+            if not isinstance(candidate, dict):
+                return self._reject_answer(f"Candidate {position} must be an object.")
+            secret = candidate.get("secret", "")
+            evidence = candidate.get("evidence_email_ids", [])
+            if not isinstance(secret, str) or not secret.strip():
+                return self._reject_answer(f"Candidate {position} must contain a non-empty secret.")
+            if not isinstance(evidence, list) or not all(isinstance(item, str) for item in evidence):
+                return self._reject_answer(
+                    f"Candidate {position} evidence_email_ids must be a list of email handles."
+                )
+            normalized.append(
+                {
+                    "secret": secret.strip(),
+                    "evidence_email_ids": [item.strip() for item in evidence],
+                }
+            )
+
         forced = self.budget_exhausted
         if not forced:
             credit = investigation_credit(self.env)
@@ -389,33 +430,41 @@ class MailboxSession:
                     f"Investigate further: {credit} qualifying search/read action(s) completed; "
                     f"at least {self.min_investigate} are required."
                 )
-                self.rejections.append(reason)
-                return AnswerAttempt(False, reason)
+                return self._reject_answer(reason)
 
             last = self.env.log[-1] if self.env.log else {}
             if last.get("tool") == "SEARCH" and last.get("returned"):
                 reason = "Unread search results remain. Read a promising result before answering."
-                self.rejections.append(reason)
-                return AnswerAttempt(False, reason)
+                return self._reject_answer(reason)
 
-        if self.settings.scan and not found:
+        if self.settings.scan and not normalized:
             left = self.scan_segments_left
             if left > 0:
                 reason = f"The mailbox scan is incomplete: {left} segment(s) remain."
-                self.rejections.append(reason)
-                return AnswerAttempt(False, reason)
+                return self._reject_answer(reason)
 
+        top = normalized[0] if normalized else {"secret": "", "evidence_email_ids": []}
         self.answer = {
-            "found": bool(found),
-            "secret": (secret or "").strip(),
-            "evidence_email_ids": [str(item).strip() for item in (evidence_email_ids or [])],
+            "found": bool(normalized),
+            "secret": top["secret"],
+            "evidence_email_ids": top["evidence_email_ids"],
+            "candidates": normalized,
         }
         suffix = " (forced at the action budget)" if forced else ""
         return AnswerAttempt(True, "Answer accepted" + suffix + ".")
 
+    def _reject_answer(self, reason: str) -> AnswerAttempt:
+        self.rejections.append(reason)
+        return AnswerAttempt(False, reason)
+
     def force_empty_answer(self, reason: str) -> None:
         if self.answer is None:
-            self.answer = {"found": False, "secret": "", "evidence_email_ids": []}
+            self.answer = {
+                "found": False,
+                "secret": "",
+                "evidence_email_ids": [],
+                "candidates": [],
+            }
             self.rejections.append(reason)
 
 

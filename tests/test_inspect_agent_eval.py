@@ -40,6 +40,7 @@ def make_session(case, **overrides):
 def test_default_matrix_is_exact_and_unique():
     assert MailboxSettings().budget == 100
     assert MailboxSettings().segment_size == 50
+    assert MailboxSettings().candidate_limit == 1
     cases = load_cases()
     assert len(cases) == 40
     assert len({case.sample_id for case in cases}) == 40
@@ -174,6 +175,33 @@ def test_scan_remains_available_at_budget_and_is_required_for_negative_answer(ca
     assert session.submit_answer(False).accepted
 
 
+def test_ranked_candidate_limit_and_legacy_single_answer(case):
+    session = make_session(case, scan=False, candidate_limit=2)
+    too_many = session.submit_candidates(
+        [
+            {"secret": "first", "evidence_email_ids": ["e1"]},
+            {"secret": "second", "evidence_email_ids": ["e2"]},
+            {"secret": "third", "evidence_email_ids": ["e3"]},
+        ]
+    )
+    assert not too_many.accepted
+    assert "at most 2" in too_many.message
+
+    accepted = session.submit_candidates(
+        [
+            {"secret": "first", "evidence_email_ids": ["e1"]},
+            {"secret": "second", "evidence_email_ids": ["e2"]},
+        ]
+    )
+    assert accepted.accepted
+    assert session.answer["secret"] == "first"
+    assert [item["secret"] for item in session.answer["candidates"]] == ["first", "second"]
+
+    legacy = make_session(case, scan=False)
+    assert legacy.submit_answer(True, "single", ["e1"]).accepted
+    assert legacy.answer["candidates"] == [{"secret": "single", "evidence_email_ids": ["e1"]}]
+
+
 def test_score_math_partial_evidence_and_malformed_answer(case):
     session = make_session(case, scan=False)
     clue = sorted(session.env.clue_handles)[0]
@@ -219,12 +247,28 @@ def test_legacy_csv_header_is_exact_and_csv_readable(tmp_path):
 def test_inspect_mock_model_integration(tmp_path):
     from inspect_ai import eval
     from inspect_ai.model import ModelOutput, get_model
+    from inspect_ai.tool import ToolDef
+    from src.inspect_eval.task import answer
     from src.inspect_eval.task import enron_agent_eval
+
+    schema = ToolDef(answer()).parameters.model_dump(exclude_none=True)
+    candidate = schema["properties"]["candidates"]["items"]
+    assert candidate["required"] == ["secret", "evidence_email_ids"]
 
     model = get_model(
         "mockllm/model",
         custom_outputs=[
-            ModelOutput.for_tool_call("mockllm/model", "answer", {"found": False, "secret": "", "evidence_email_ids": []})
+            ModelOutput.for_tool_call(
+                "mockllm/model",
+                "answer",
+                {
+                    "candidates": [
+                        {"secret": "first hypothesis", "evidence_email_ids": ["e1"]},
+                        {"secret": "second hypothesis", "evidence_email_ids": ["e2"]},
+                        {"secret": "third hypothesis", "evidence_email_ids": ["e3"]},
+                    ]
+                },
+            )
         ],
     )
     task = enron_agent_eval(
@@ -234,10 +278,13 @@ def test_inspect_mock_model_integration(tmp_path):
         scan=False,
         rerank_pool=0,
         min_investigate=0,
+        candidate_limit=3,
     )
     log = eval(task, model=model, limit=1, log_dir=str(tmp_path), display="none")[0]
     assert log.status == "success"
     assert log.samples and log.samples[0].scores
+    score = next(iter(log.samples[0].scores.values()))
+    assert score.value["candidate_count"] == 3
 
 
 @pytest.mark.skipif(importlib.util.find_spec("inspect_ai") is None, reason="Inspect AI not installed")
@@ -251,3 +298,4 @@ def test_system_prompt_and_tool_descriptions_have_distinct_responsibilities():
     assert "complete thread" in read().__doc__
     assert "separate scan allowance" in segment().__doc__
     assert "only e-handles" in answer().__doc__
+    assert "ranked alternative hypotheses" in answer().__doc__

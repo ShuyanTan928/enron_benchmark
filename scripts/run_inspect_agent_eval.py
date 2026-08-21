@@ -48,6 +48,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-scan", dest="scan", action="store_false", help="allow a negative answer without full segment coverage")
     parser.add_argument("--rerank", type=int, default=40, help="BM25 rerank pool; 0 disables reranking")
     parser.add_argument("--rerank-show", type=int, default=8)
+    parser.add_argument(
+        "--candidate-limit", type=int, default=1,
+        help="maximum ranked secret hypotheses returned for hit-at-N evaluation",
+    )
     parser.add_argument("--segment-size", type=int, default=50)
     parser.add_argument("--seed", type=int, default=20260624)
     parser.add_argument("--min-invest", type=int, default=-1, help="qualifying searches/reads; -1 means clue count")
@@ -84,8 +88,10 @@ def main() -> int:
 
     if not args.model or not args.judge_model:
         raise SystemExit("--model and --judge-model are required unless --export-only is used")
-    if args.noise < 0 or args.budget < 1 or args.rerank < 0:
-        raise SystemExit("--noise/--rerank must be non-negative and --budget must be positive")
+    if args.noise < 0 or args.budget < 1 or args.rerank < 0 or args.candidate_limit < 1:
+        raise SystemExit(
+            "--noise/--rerank must be non-negative; --budget/--candidate-limit must be positive"
+        )
 
     from inspect_ai import eval
     from src.inspect_eval.task import enron_agent_eval
@@ -100,6 +106,7 @@ def main() -> int:
         segment_size=args.segment_size,
         rerank_pool=args.rerank,
         rerank_show=args.rerank_show,
+        candidate_limit=args.candidate_limit,
         seed=args.seed,
         min_investigate=args.min_invest,
         anonymize=args.anonymize,

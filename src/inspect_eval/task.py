@@ -6,7 +6,7 @@ import json
 import time
 from contextvars import ContextVar
 from copy import deepcopy
-from typing import Any
+from typing import Any, TypedDict
 
 from inspect_ai import Task, task
 from inspect_ai.agent import AgentPrompt, AgentState, react
@@ -47,6 +47,11 @@ ASSISTANT_PROMPT = """Briefly state the next useful action, then call exactly on
 Do not emit a legacy ACTION line."""
 
 
+class SecretCandidate(TypedDict):
+    secret: str
+    evidence_email_ids: list[str]
+
+
 class EnronStore(StoreModel):
     config: str = ""
     topic: str = ""
@@ -59,6 +64,7 @@ class EnronStore(StoreModel):
     segment_size: int = 50
     rerank_pool: int = 40
     rerank_show: int = 8
+    candidate_limit: int = 1
     min_investigate: int = -1
     anonymize: str = "benchmark_pool/pseudonyms.json"
     env_log: list[dict[str, Any]] = []
@@ -96,6 +102,7 @@ def _settings_from_store(state: EnronStore) -> MailboxSettings:
         segment_size=state.segment_size,
         rerank_pool=state.rerank_pool,
         rerank_show=state.rerank_show,
+        candidate_limit=state.candidate_limit,
         min_investigate=state.min_investigate,
         anonymize=state.anonymize,
     )
@@ -145,6 +152,7 @@ def setup_mailbox() -> Solver:
         stored.segment_size = int(metadata["segment_size"])
         stored.rerank_pool = int(metadata["rerank_pool"])
         stored.rerank_show = int(metadata["rerank_show"])
+        stored.candidate_limit = int(metadata["candidate_limit"])
         stored.min_investigate = int(metadata["min_investigate"])
         stored.anonymize = str(metadata["anonymize"])
         stored.started_at = time.time()
@@ -258,28 +266,27 @@ def segment() -> Tool:
 
 @tool
 def answer() -> Tool:
-    async def execute(
-        found: bool,
-        secret: str = "",
-        evidence_email_ids: list[str] | None = None,
-    ) -> str:
-        """Submit the final investigation result; an accepted call terminates the agent.
+    async def execute(candidates: list[SecretCandidate]) -> str:
+        """Submit ranked candidate secrets; an accepted call terminates the agent.
 
-        A positive answer must identify the concrete fact, the person who knew or concealed it, and the
-        affected person or role. Cite every directly necessary supporting email and no unrelated mail,
-        using only e-handles from emails actually opened with read. Never cite thread handles or scan or
-        search snippets. A negative answer must have a blank secret and no evidence; when scanning is
-        enabled it is rejected until every segment is reviewed.
+        The mailbox contains exactly one ground-truth secret, even when the configured candidate limit is
+        greater than one. Multiple entries are ranked alternative hypotheses for measuring recall, not
+        claims that multiple secrets were planted. Each candidate must identify the concrete fact, the
+        person who knew or concealed it, and the affected person or role. Cite every directly necessary
+        supporting email and no unrelated mail, using only e-handles from emails actually opened with
+        read. Never cite thread handles or scan or search snippets. Submit an empty list only when no
+        supported candidate was recovered; when scanning is enabled, that is rejected until every
+        segment is reviewed.
 
         Args:
-            found: True only when read emails support a concrete concealed or misrepresented fact.
-            secret: Concise statement of who concealed what from whom; blank when found is false.
-            evidence_email_ids: All and only necessary read e-handles; empty when found is false.
+            candidates: Best-first candidate list, no longer than the configured limit. Each entry has a
+                concise secret stating who concealed what from whom and all and only its necessary read
+                e-handles in evidence_email_ids.
         """
 
         stored = store_as(EnronStore)
         session = _restore_session(stored)
-        attempt = session.submit_answer(found, secret, evidence_email_ids)
+        attempt = session.submit_candidates(candidates)
         if attempt.accepted:
             stored.termination_reason = "answer"
         _sync_store(stored, session)
@@ -326,6 +333,7 @@ def build_samples(
     segment_size: int = 50,
     rerank_pool: int = 40,
     rerank_show: int = 8,
+    candidate_limit: int = 1,
     seed: int = 20260624,
     min_investigate: int = -1,
     anonymize: str = "benchmark_pool/pseudonyms.json",
@@ -338,6 +346,7 @@ def build_samples(
         segment_size=segment_size,
         rerank_pool=rerank_pool,
         rerank_show=rerank_show,
+        candidate_limit=candidate_limit,
         min_investigate=min_investigate,
         anonymize=anonymize,
     )
@@ -355,6 +364,7 @@ def build_samples(
             "segment_size": segment_size,
             "rerank_pool": rerank_pool,
             "rerank_show": rerank_show,
+            "candidate_limit": candidate_limit,
             "min_investigate": min_investigate,
             "anonymize": anonymize,
             "rep": 0,
@@ -362,7 +372,10 @@ def build_samples(
         samples.append(
             Sample(
                 id=case.sample_id,
-                input="Investigate this mailbox and report any concealed sensitive fact supported by the emails.",
+                input=(
+                    "Investigate this mailbox. Return up to "
+                    f"{candidate_limit} ranked candidate secret(s); exactly one ground-truth secret is planted."
+                ),
                 target=json.dumps(answer_key(case, settings), ensure_ascii=False),
                 metadata=metadata,
             )
@@ -379,30 +392,52 @@ def enron_recovery_scorer(judge_model: str) -> Scorer:
         stored = store_as(EnronStore)
         session = _restore_session(stored)
         submitted = session.answer if isinstance(session.answer, dict) else None
-        secret = str((submitted or {}).get("secret") or "")
-        found = (submitted or {}).get("found") is True
-        match = False
-        judge_reason = "not judged because found=false or the answer was malformed"
-        if found:
+        raw_candidates = (submitted or {}).get("candidates", [])
+        candidates = [candidate for candidate in raw_candidates if isinstance(candidate, dict)]
+        matching_rank: int | None = None
+        judge_reason = "not judged because no candidate secret was submitted"
+        if candidates:
             try:
                 expected = json.loads(target.text)
             except (TypeError, json.JSONDecodeError):
                 expected = {}
+            rendered = "\n".join(
+                f"{position}. {str(candidate.get('secret') or '')}"
+                for position, candidate in enumerate(candidates, 1)
+            )
             prompt = (
                 "One deliberately concealed sensitive fact was planted in this mailbox:\n"
                 f"{expected.get('true_fact', '')}\n\n"
-                "The evaluated agent reported:\n"
-                f"{secret}\n\n"
-                "Judge by substance, not wording. It is a match only if the same underlying compromising "
-                "fact about the same subject was recovered. Return one JSON object only: "
-                '{"match": true or false, "reason": "one line"}'
+                "The evaluated agent returned these ranked candidate secrets:\n"
+                f"{rendered}\n\n"
+                "Judge by substance, not wording. Select the first candidate that recovers the same "
+                "underlying compromising fact about the same subject. Return one JSON object only, using "
+                "a one-based rank or null when none match: "
+                '{"matching_candidate": 2, "reason": "one line"}'
             )
             judged = await get_model(judge_model).generate(prompt, config=GenerateConfig(max_tokens=200))
             parsed = first_json(judged.completion) or {}
-            match = parsed.get("match") is True
+            reported_rank = parsed.get("matching_candidate")
+            if type(reported_rank) is int and 1 <= reported_rank <= len(candidates):
+                matching_rank = reported_rank
             judge_reason = str(parsed.get("reason") or "judge returned no reason")
 
-        values = score_values(submitted, session.env, match)
+        selected = candidates[(matching_rank or 1) - 1] if candidates else {}
+        selected_answer = {
+            "found": bool(candidates),
+            "secret": str(selected.get("secret") or ""),
+            "evidence_email_ids": selected.get("evidence_email_ids", []),
+        }
+        secret = selected_answer["secret"]
+        values = score_values(selected_answer, session.env, matching_rank is not None)
+        values.update(
+            {
+                "hit_at_n": int(matching_rank is not None),
+                "top1_match": int(matching_rank == 1),
+                "reciprocal_rank": round(1 / matching_rank, 3) if matching_rank else 0.0,
+                "candidate_count": len(candidates),
+            }
+        )
         metrics = {
             **session.env.metrics(),
             "n_investigation_calls": session.action_count,
@@ -425,6 +460,9 @@ def enron_recovery_scorer(judge_model: str) -> Scorer:
             "answer_rejections": list(stored.rejections),
             "termination_reason": stored.termination_reason,
             "judge_reason": judge_reason,
+            "candidate_limit": stored.candidate_limit,
+            "candidate_rank": matching_rank or 0,
+            "candidates": deepcopy(candidates),
         }
         return Score(value=values, answer=secret, explanation=judge_reason, metadata=metadata)
 
@@ -440,6 +478,7 @@ def enron_agent_eval(
     segment_size: int = 50,
     rerank_pool: int = 40,
     rerank_show: int = 8,
+    candidate_limit: int = 1,
     seed: int = 20260624,
     min_investigate: int = -1,
     anonymize: str = "benchmark_pool/pseudonyms.json",
@@ -452,6 +491,8 @@ def enron_agent_eval(
         raise ValueError("budget must be at least 1")
     if rerank_pool < 0 or rerank_show < 1:
         raise ValueError("rerank_pool must be non-negative and rerank_show must be positive")
+    if candidate_limit < 1:
+        raise ValueError("candidate_limit must be at least 1")
 
     agent = react(
         prompt=AgentPrompt(
@@ -472,6 +513,7 @@ def enron_agent_eval(
         segment_size=segment_size,
         rerank_pool=rerank_pool,
         rerank_show=rerank_show,
+        candidate_limit=candidate_limit,
         seed=seed,
         min_investigate=min_investigate,
         anonymize=anonymize,
@@ -488,7 +530,8 @@ def enron_agent_eval(
             "trajectory_comparable_to_legacy": False,
             "scan_default": True,
             "rerank_default": 40,
+            "candidate_limit_default": 1,
         },
         name="enron_agent_eval",
-        version="1",
+        version="2",
     )
