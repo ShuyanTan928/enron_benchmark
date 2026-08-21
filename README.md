@@ -204,68 +204,42 @@ a different vendor (GPT-5 / Gemini).
 ## Agentic evaluation
 
 The static eval hands the model the whole haystack in one prompt. The agent setting instead makes it
-*investigate* the mailbox with read-only tools under a budget, the way a person would. This is
-`run_agent.py`, the **find-secrets agent**: a model-agnostic ReAct loop (any completion engine, local or
-API) that explores the mailbox and reports any concealed private fact it can prove.
+*investigate* the mailbox with read-only tools under a budget, the way a person would — the
+**find-secrets agent**. It runs as a native [Inspect AI](https://inspect.aisi.org.uk/) task over the
+fixed 40-case matrix (commission / paltering × n = 2 / 3 × work / casual), driving the model through
+structured tool calls and keeping the full model/tool conversation in `.eval` logs.
 
 ![find-secrets agent tool flow](docs/agent_flow.png)
 
-**Tools the model chooses** — one `THOUGHT` + one `ACTION` per step:
+**Tools the model calls** — one per step:
 
 | tool | what it does |
 |------|--------------|
-| `LIST` | sample the mailbox — thread, date, size, subject — to orient |
-| `SEARCH keywords` | BM25 keyword retrieval over every email → top-12 (handle, date, from, subject, snippet) |
-| `READ handle` | open a full thread; fires the two auto-steps below |
-| `ANSWER json` | report `{found, secret, evidence_email_ids}` and stop |
+| `list_threads` | a date-spread sample of mailbox threads to orient; subjects are leads, not evidence |
+| `search` | lexical BM25 over subjects and bodies, then a model rerank of 40 candidates down to 8; results are snippets for triage |
+| `read` | open a full thread and expose its e-handles; fires the two auto-steps below |
+| `segment` | one chronological page of up to 50 thread cards for exhaustive coverage; drawn from a separate scan allowance |
+| `answer` | submit the finding — up to N ranked candidate secrets, each with its evidence e-handles — and stop |
 
-**Fires automatically on every `READ`:**
+**Fires automatically on every `read`:**
 
 | step | what it does |
 |------|--------------|
-| `NOTE` | the model writes one line — the thread's key fact, keeping any name / amount / date / document — into a persistent evidence log shown at every later step, so a detail survives past the transcript window |
-| `EXPAND` | BM25 with the read email's *own text* as the query → its 8 most-related threads (already-read ones dropped), chaining an event from one email to the rest |
+| `EXPAND` | BM25 with the read email's own text as the query → its most-related unread threads, chaining an event from one email to the rest |
+| `NOTE` | the model distils the thread's key fact into one line — keeping any name / amount / date / document — into a persistent evidence log carried through the conversation |
 
-**Floor gate.** The agent may not `ANSWER` until it has made at least **`n` distinct** `SEARCH`/`READ`
-probes (`n` = the item's clue count; near-duplicate searches don't count), so it investigates before it
-can conclude.
+**Gates.** The agent may not `answer` until it has made at least **`n` distinct** `search` / `read`
+probes (`n` = the item's clue count; near-duplicate searches don't count); it must read a result before
+citing it; and with scanning on, a found = false answer waits until every segment is reviewed. Listing,
+searching, and reading share one investigation budget (100 calls by default); scan pages have their own.
 
 **Score.** `FINAL = found × secret-match × evidence-recall × evidence-precision`, all thread-level (a
-strict product); a separate judge model decides secret-match. Difficulty is the noise dial, counted in
-**whole Enron threads** — `--noise 1000` is exactly 1000 noise threads, so every item carries the same
-token load. Identities are anonymized (`--anonymize`) so recovery comes from the mailbox rather than the
-model's prior knowledge of the real Enron scandal.
-
-```bash
-# find-secrets agent — local tester (free) or API, cross-vendor judge
-uv run python scripts/run_agent.py --engine api --preset openai/gpt-5.6-terra \
-    --clues benchmark_pool/emails_commission_n2.jsonl:com_n2 --topics all \
-    --noise 1000 --anonymize benchmark_pool/pseudonyms.json --min-invest -1 \
-    --out results/agent/terra
-```
-
-**Two walls it exposes.** Recovery splits into *discovery* (finding the first clue among ~1000 threads)
-and *synthesis* (reading distributed clues as one concealment). Under the right query a clue sits at BM25
-rank #1 at every noise level, so discovery is a query-*choice* problem, not a ranking one: `EXPAND`
-chains an event once you are on it, but from a cold start it circles the noise neighborhood you land in.
-`NOTE` and the floor lift *synthesis*; *discovery* stays the dominant wall at full-corpus scale.
-
-### Native Inspect AI agent evaluation
-
-The Inspect implementation runs the fixed 40-case matrix with structured mailbox tools and preserves
-the full model/tool conversation in native `.eval` logs. Scanning uses chronological 50-thread cards
-with participants, date ranges, subjects, and first/last snippets; opening a card reads the complete
-thread. Scan pages have a separate finite allowance, leaving the default 100-call investigation budget
-for listing, searching, and reading. Model reranking (40 BM25 candidates down to 8) is enabled by
-default. The recovery-only 40-case task tells the agent that one supported secret is present, defines
-the cross-email contradiction it should seek, and warns against favoring personal topics over business,
-legal, operational, or contractual concealment. Tool schemas carry the operational details for lexical
-search, thread reading, scan coverage, and evidence submission. The judge must always be named explicitly.
-
-Exactly one ground-truth secret remains planted in every sample. `--candidate-count N` asks the agent
-for exactly N ranked alternative hypotheses and reports hit@N, top-1 match, reciprocal rank, and
-the matching candidate rank in the Inspect log. The default is `N=1`. `rows.csv` remains compatible by
-exporting the matched candidate when one exists, otherwise the first-ranked candidate.
+strict product); an explicit, separate judge model decides secret-match. One ground-truth secret is
+planted per sample; `--candidate-count N` asks for N ranked hypotheses and reports hit@N, top-1 match,
+and reciprocal rank (default N = 1). Difficulty is the noise dial, counted in **whole Enron threads** —
+`--noise 1000` is exactly 1000 noise threads, so every item carries the same token load. Identities are
+anonymized so recovery comes from the mailbox rather than the model's prior knowledge of the real Enron
+scandal.
 
 ```bash
 uv run python scripts/run_inspect_agent_eval.py \
@@ -277,21 +251,24 @@ uv run python scripts/run_inspect_agent_eval.py \
 # Browse complete native trajectories.
 uv run inspect view --log-dir results/inspect/luna_n1000/logs
 
-# Rebuild rows.csv after an interruption, without calling either model.
-uv run python scripts/run_inspect_agent_eval.py \
-    --export-only --out results/inspect/luna_n1000
+# Rebuild rows.csv from existing logs, without calling either model.
+uv run python scripts/run_inspect_agent_eval.py --export-only --out results/inspect/luna_n1000
 
-# Recall ablation: one planted secret, exactly three ranked agent hypotheses.
+# Recall ablation: three ranked hypotheses for the one planted secret.
 uv run python scripts/run_inspect_agent_eval.py \
-    --model openai/azure/gpt-5.6-luna \
-    --judge-model openai/azure/gpt-5.6-terra \
-    --noise 1000 --candidate-count 3 \
-    --out results/inspect/luna_n1000_top3
+    --model openai/azure/gpt-5.6-luna --judge-model openai/azure/gpt-5.6-terra \
+    --noise 1000 --candidate-count 3 --out results/inspect/luna_n1000_top3
 ```
 
-Use `--no-scan` or `--rerank 0` for the opt-outs. `rows.csv` retains the legacy score columns and
-formula; Inspect logs replace `trajectories.jsonl`. Because this path uses native structured tool calls,
-its trajectories are not directly comparable with the legacy text-protocol agent.
+`--no-scan` and `--rerank 0` turn off segment coverage and reranking. `rows.csv` keeps the legacy score
+columns and formula; the Inspect `.eval` logs hold the full trajectories, browsable with `inspect view`.
+
+**Two walls it exposes.** Recovery splits into *discovery* (finding the first clue among ~1000 threads)
+and *synthesis* (reading distributed clues as one concealment). Under the right query a clue sits at BM25
+rank #1 at every noise level, so discovery is a query-*choice* problem rather than a ranking one:
+`EXPAND` chains an event once the agent is on it, while from a cold start it stays in the noise
+neighborhood it landed in. `NOTE` and the floor lift *synthesis*; *discovery* is the dominant wall at
+full-corpus scale.
 
 ---
 
