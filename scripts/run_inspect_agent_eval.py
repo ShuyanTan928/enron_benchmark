@@ -44,6 +44,10 @@ def parse_args() -> argparse.Namespace:
         default="{}",
         help='JSON object passed to Inspect when constructing the evaluated model',
     )
+    parser.add_argument(
+        "--model-family",
+        help="override Inspect capability detection without changing the wire model name",
+    )
     parser.add_argument("--judge-model", help="explicit recovery judge model")
     parser.add_argument("--noise", type=int, default=200, help="number of Enron noise threads")
     parser.add_argument(
@@ -111,7 +115,14 @@ def main() -> int:
         raise SystemExit("--model-args must decode to a JSON object")
 
     from inspect_ai import eval
+    from inspect_ai.model import ModelInfo, set_model_info
     from src.inspect_eval.task import enron_agent_eval
+
+    if args.model_family:
+        service_model = args.model.split("/", 1)[-1]
+        info = ModelInfo(family=args.model_family)
+        set_model_info(args.model, info)
+        set_model_info(service_model, info)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     log_dir.mkdir(parents=True, exist_ok=True)
