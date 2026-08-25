@@ -49,4 +49,3 @@ benchmark_pool/step3_r17.txt
 benchmark_pool/step3_r17b.jsonl
 benchmark_pool/*_n0.jsonl
 sandbox/
-data/benchmark/

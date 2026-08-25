@@ -1,0 +1,44 @@
+{
+  "topic_id": "T01",
+  "answer": {
+    "concealment": "A credit coordinator conceals from the trading desk that a counterparty has already exceeded its approved credit limit, because revealing it would force the desk to unwind a deal the coordinator had already allowed through.",
+    "actor": "Tana Jones — credit coordinator who cleared the Enserco volume and now conceals the breach",
+    "victim": "Carol Clair — trading desk liaison who relies on credit clearance to decide whether to book further deals",
+    "true_fact": "Enserco Energy has already exceeded its approved credit limit: the surge in online trading volume that Sara Shackleton flagged on April 20 pushed Enserco's aggregate exposure past the approved ceiling before any new ISDA was in place, and Tana Jones knew this when she processed the most recent batch of trades.",
+    "false_belief": "Carol Clair believes Enserco is still within its approved credit limit — that the concern raised by Sara Shackleton is about future risk and growing exposure trending toward the limit, not a limit already breached — and therefore treats the situation as a forward-looking caution rather than an immediate stop.",
+    "anchor": {
+      "date": "2000-04-20",
+      "subject": "EOL -Enserco Energy"
+    }
+  },
+  "planted": [
+    {
+      "clue_i": 1,
+      "carries": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "message_ids": [
+        "62553583.1075849000000.javamail.evans@thyme"
+      ]
+    },
+    {
+      "clue_i": 2,
+      "carries": [
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "message_ids": [
+        "2799276.1075849000000.javamail.evans@thyme",
+        "99199149.1075849000001.javamail.evans@thyme"
+      ]
+    }
+  ],
+  "clue_message_ids": [
+    "62553583.1075849000000.javamail.evans@thyme",
+    "2799276.1075849000000.javamail.evans@thyme",
+    "99199149.1075849000001.javamail.evans@thyme"
+  ]
+}

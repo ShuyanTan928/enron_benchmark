@@ -1,0 +1,44 @@
+{
+  "topic_id": "T04",
+  "answer": {
+    "concealment": "A contract attorney conceals from the trading desk that a counterparty's formal force majeure claim has already been reviewed and rejected by the company, allowing the desk to continue treating delivery obligations as suspended and the counterparty as excused, because admitting the rejection would force the desk to immediately pursue breach remedies and expose that the attorney failed to communicate the denial in time.",
+    "actor": "Elizabeth Sager — contract attorney who controls the force majeure file and conceals the denial",
+    "victim": "Richard Sanders — high-level legal reviewer and executive who relies on Elizabeth Sager's characterisation before advising the trading desk",
+    "true_fact": "The counterparty's formal force majeure claim was reviewed by Elizabeth Sager and formally rejected by the company several days earlier; the counterparty is therefore in active breach of its delivery obligations and the company has the right — and arguably the duty — to pursue breach remedies immediately",
+    "false_belief": "Richard Sanders believes the force majeure claim is still under substantive legal review, that no determination has been made, and that the counterparty's obligations remain suspended pending that review — meaning the trading desk need not yet treat the situation as a breach or pursue remedies",
+    "anchor": {
+      "date": "2000-01-24",
+      "subject": "Re: check out the contract violation at ..."
+    }
+  },
+  "planted": [
+    {
+      "clue_i": 1,
+      "carries": [
+        "A1",
+        "A2"
+      ],
+      "message_ids": [
+        "22230210.1075849000000.javamail.evans@thyme"
+      ]
+    },
+    {
+      "clue_i": 2,
+      "carries": [
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "message_ids": [
+        "65612416.1075849000000.javamail.evans@thyme",
+        "41940775.1075849000001.javamail.evans@thyme"
+      ]
+    }
+  ],
+  "clue_message_ids": [
+    "22230210.1075849000000.javamail.evans@thyme",
+    "65612416.1075849000000.javamail.evans@thyme",
+    "41940775.1075849000001.javamail.evans@thyme"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "topic_id": "T05",
+  "answer": {
+    "concealment": "A contract attorney conceals from the trading desk that a key indemnity clause was silently removed from the final executed agreement with a counterparty, allowing the desk to continue pricing and managing risk as though that protection is in place, because disclosing the omission would expose the attorney's failure to catch the deletion before the agreement was signed.",
+    "actor": "Tana Jones — contract attorney who processed the final executed agreement",
+    "victim": "Jeff Dasovich — risk analyst who prices and manages credit derivative exposure",
+    "true_fact": "The indemnity clause was silently deleted from the final executed agreement with the counterparty before signature; the governing document as signed contains no indemnity protection for the trading desk.",
+    "false_belief": "Jeff Dasovich believes the indemnity clause is present and operative in the executed agreement, and continues to price credit derivative trades and calculate risk reserves on the assumption that the desk is protected by that clause.",
+    "anchor": {
+      "date": "2000-05-03",
+      "subject": "EnronOnline Credit Derivatives"
+    }
+  },
+  "planted": [
+    {
+      "clue_i": 1,
+      "carries": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "message_ids": [
+        "63903428.1075849000000.javamail.evans@thyme"
+      ]
+    },
+    {
+      "clue_i": 2,
+      "carries": [
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "message_ids": [
+        "42194438.1075849000000.javamail.evans@thyme",
+        "30501928.1075849000001.javamail.evans@thyme"
+      ]
+    }
+  ],
+  "clue_message_ids": [
+    "63903428.1075849000000.javamail.evans@thyme",
+    "42194438.1075849000000.javamail.evans@thyme",
+    "30501928.1075849000001.javamail.evans@thyme"
+  ]
+}

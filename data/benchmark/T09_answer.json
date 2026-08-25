@@ -1,0 +1,42 @@
+{
+  "topic_id": "T09",
+  "answer": {
+    "concealment": "A litigation counsel conceals from the trading desk that the contractual deadline to demand arbitration against a counterparty has already passed without a claim being filed, allowing the desk to continue treating arbitration as a live and available remedy in its ongoing dispute negotiations, because admitting the missed deadline would expose that counsel failed to calendar and act on it in time.",
+    "actor": "Elizabeth Sager — litigation counsel who controls the arbitration file and knows the deadline has lapsed",
+    "victim": "Richard Sanders — high-level legal reviewer and executive who relies on counsel's status reports to guide dispute strategy",
+    "true_fact": "The contractual deadline to demand arbitration against the online counterparty has already passed without a claim being filed; the right to arbitrate is permanently foreclosed",
+    "false_belief": "Richard Sanders believes the right to demand arbitration remains live and available, and continues to use the threat of arbitration as leverage in ongoing dispute negotiations with the counterparty",
+    "anchor": {
+      "date": "2000-05-05",
+      "subject": "FW: ETA Comments - Arbitration Language"
+    }
+  },
+  "planted": [
+    {
+      "clue_i": 1,
+      "carries": [
+        "A1",
+        "A2"
+      ],
+      "message_ids": [
+        "41484676.1075849000000.javamail.evans@thyme"
+      ]
+    },
+    {
+      "clue_i": 2,
+      "carries": [
+        "A3",
+        "A4"
+      ],
+      "message_ids": [
+        "65633106.1075849000000.javamail.evans@thyme",
+        "36365319.1075849000001.javamail.evans@thyme"
+      ]
+    }
+  ],
+  "clue_message_ids": [
+    "41484676.1075849000000.javamail.evans@thyme",
+    "65633106.1075849000000.javamail.evans@thyme",
+    "36365319.1075849000001.javamail.evans@thyme"
+  ]
+}

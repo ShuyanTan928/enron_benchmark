@@ -1,13 +1,13 @@
-# PROMPT REVIEW — 生成链(topic → atomize → plot → email → AND-check)+ agent
-# 渲染成真实实例(work=T07 / casual=T14),静态 prompt 原样收录。
-# 注意:clue_atomize / clue_distribute / email_voice 是旧 email_generate 支路,不在当前活链,未收录。
+# PROMPT REVIEW — generation chain (topic -> atomize -> plot -> email -> AND-check) + agent
+# Rendered on real instances (work=T07 / casual=T14); static prompts included verbatim.
+# Note: clue_atomize / clue_distribute / email_voice are the old email_generate branch, not in the active chain, not included.
 
 
 ====================================================================================================
-##  [1] TOPIC 生成 — prompts/topic_generate.md(壳)+ 每 register 填充
+##  [1] TOPIC generation — prompts/topic_generate.md (shell) + per-register fills
 ====================================================================================================
 
------ WORK 渲染 -----
+----- WORK (rendered) -----
 # Invent one secret
 
 The setting is a US energy-trading company around 2000-2001.
@@ -35,7 +35,7 @@ The same hidden fact or matter is a repeat, however it's named or worded.
   "secret": "<one line: the hidden fact — naming the concrete matter (a deal, a limit, a filing, or a standing status — a filed record or a stated fact, either) so it's findable later — and why it's kept quiet>"
 }
 
------ CASUAL 渲染 -----
+----- CASUAL (rendered) -----
 # Invent one secret
 
 The setting is a US workplace around 2000-2001 — coworkers who know each other through the office, over email. The matter is personal, not company business.
@@ -65,10 +65,10 @@ The same hidden fact or matter is a repeat, however it's named or worded.
 
 
 ====================================================================================================
-##  [1b] WORK grounding 的检索辅助 prompt(casual 不用)
+##  [1b] WORK grounding retrieval-helper prompts (casual skips these)
 ====================================================================================================
 
------ HyDE (HYDE_PROMPT, SETTING 已填) -----
+----- HyDE (HYDE_PROMPT, SETTING filled) -----
 The people are the in-house staff of a large US energy-trading company around 2000-2001 — contract
 attorneys, credit and legal coordinators, litigation counsel, regulatory-affairs leads — and they
 work over email.
@@ -88,7 +88,7 @@ person names and no real company name. Do not explain; output only the emails.
 Return a JSON array of exactly four strings:
 ["<email 1 body>", "<email 2 body>", "<email 3 body>", "<email 4 body>"]
 
------ fit-judge (FIT_JUDGE_PROMPT, SETTING 已填) -----
+----- fit-judge (FIT_JUDGE_PROMPT, SETTING filled) -----
 You are grounding an abstract secret on a REAL email. Below is the secret and a numbered
 list of candidate real emails retrieved from the corpus.
 
@@ -127,10 +127,10 @@ Return ONE JSON object, nothing else:
 
 
 ====================================================================================================
-##  [2] ATOMIZE — prompts/atomize.md(新 schema)
+##  [2] ATOMIZE — prompts/atomize.md (new schema)
 ====================================================================================================
 
------ WORK 渲染 (T07, work_commission) -----
+----- WORK (rendered: T07, work_commission) -----
 # Place one worked-out secret on the atom skeleton — LYING BY COMMISSION
 
 The secret below is already decided — its true fact, the false belief, and the concealing act.
@@ -209,7 +209,7 @@ Secret: an ops lead hides from the scheduler that a transport permit lapsed, and
   "a3": { "role": "false_statement", "fact": "the concealing act toward the victim (per a3 above)" }
 }
 
------ CASUAL 渲染 (T14, casual_commission) -----
+----- CASUAL (rendered: T14, casual_commission) -----
 # Place one worked-out secret on the atom skeleton — LYING BY COMMISSION
 
 The secret below is already decided — its true fact, the false belief, and the concealing act.
@@ -284,10 +284,10 @@ Secret: a colleague hides from a coworker that a teammate was fired from a prior
 
 
 ====================================================================================================
-##  [3] PLOT — prompts/clue_plot.md(+ PLOT_EXAMPLES + SEPARATION,按 n 变)
+##  [3] PLOT — prompts/clue_plot.md (+ PLOT_EXAMPLES + SEPARATION, varies by n)
 ====================================================================================================
 
------ CASUAL n=2 渲染 -----
+----- CASUAL n=2 (rendered) -----
 # Design each clue's observable scene
 
 You're given the atoms and a fixed plan of which atom each clue carries. For each clue, write one
@@ -345,7 +345,7 @@ clue 2 (a3): Person A tells Person C Person B left that job on their own and on 
 Return ONE JSON object, nothing else:
 {"clues":[{"i":1,"carries":["a1"],"plot":"the observable scene","isolated":"the other clues' atoms this must not reveal, and why its sender/recipients/reference/whose-copy/dates show none of them"}]}
 
------ CASUAL n=3 渲染 -----
+----- CASUAL n=3 (rendered) -----
 # Design each clue's observable scene
 
 You're given the atoms and a fixed plan of which atom each clue carries. For each clue, write one
@@ -408,7 +408,7 @@ clue 3 (a3): Person A tells Person C Person B left that job on their own and on 
 Return ONE JSON object, nothing else:
 {"clues":[{"i":1,"carries":["a1"],"plot":"the observable scene","isolated":"the other clues' atoms this must not reveal, and why its sender/recipients/reference/whose-copy/dates show none of them"}]}
 
------ WORK n=2 渲染 -----
+----- WORK n=2 (rendered) -----
 # Design each clue's observable scene
 
 You're given the atoms and a fixed plan of which atom each clue carries. For each clue, write one
@@ -466,7 +466,7 @@ clue 2 (a3): Person C tells Person D the CP&L limit is current and cleared to cl
 Return ONE JSON object, nothing else:
 {"clues":[{"i":1,"carries":["a1"],"plot":"the observable scene","isolated":"the other clues' atoms this must not reveal, and why its sender/recipients/reference/whose-copy/dates show none of them"}]}
 
------ WORK n=3 渲染 -----
+----- WORK n=3 (rendered) -----
 # Design each clue's observable scene
 
 You're given the atoms and a fixed plan of which atom each clue carries. For each clue, write one
@@ -531,10 +531,10 @@ Return ONE JSON object, nothing else:
 
 
 ====================================================================================================
-##  [4] EMAIL — prompts/clue_email.md(+ voice bank,按线索里的人过滤)
+##  [4] EMAIL — prompts/clue_email.md (+ voice bank, filtered to the people in the clues)
 ====================================================================================================
 
------ CASUAL n=3 渲染(含 voice bank) -----
+----- CASUAL n=3 (rendered, with voice bank) -----
 # Write each clue's emails from its scene
 
 You're given each clue's scene (`plot`) and the atom(s) it carries. Turn each into a real work email in the
@@ -670,10 +670,10 @@ Dates fall around March 2001, ordered so chains read right. Return ONE JSON obje
 
 
 ====================================================================================================
-##  [5] AND-check — probe / match / diagnose(静态)
+##  [5] AND-check — probe / match / diagnose (static)
 ====================================================================================================
 
------ 盲探 prober — prompts/probe.md -----
+----- blind prober — prompts/probe.md -----
 # Find the hidden secret
 
 Below is a set of internal corporate emails from one mailbox. Somewhere in them, one person may be
@@ -692,7 +692,7 @@ Return ONE JSON object and nothing else. If "found" is false, "secret" MUST be t
 ## EMAILS
 <<EMAILS>>
 
------ 判官 match — prompts/match.md -----
+----- match judge — prompts/match.md -----
 # Did the reported finding recover the planted secret?
 
 ## The planted secret
@@ -778,7 +778,7 @@ When the change spans clues, list ALL of them in `clues` and describe how they l
 ##  [6] AGENT(eval)
 ====================================================================================================
 
------ 原生 agent — prompts/agent.md -----
+----- native agent — prompts/agent.md -----
 # Find the secrets in this mailbox
 
 You have read-only access to one person's mailbox. Your job is to uncover secrets about the people in
@@ -815,7 +815,7 @@ ACTION: LIST
 ## Report
 ACTION: ANSWER {"found": true or false, "secret": "the concealed fact, who concealed it, and who was misled", "evidence_email_ids": ["e12","e37"]}
 
------ Inspect 版 SYSTEM_PROMPT (task.py) -----
+----- Inspect SYSTEM_PROMPT (task.py) -----
 You are investigating a company mailbox containing one supported secret about a
 specific person. The secret may only become apparent by connecting several emails. A qualifying secret
 is not merely personal or sensitive information: look for a concrete contradiction across emails — what
@@ -830,6 +830,6 @@ threads and test whether the emails establish truth, knowledge, and misleading c
 Use the complete investigation history when deciding. Finish only through the answer tool; do not report
 the conclusion as ordinary prose.
 
------ Inspect 版 ASSISTANT_PROMPT (task.py) -----
+----- Inspect ASSISTANT_PROMPT (task.py) -----
 Briefly state the next useful action, then call exactly one structured tool.
 Do not emit a legacy ACTION line.
