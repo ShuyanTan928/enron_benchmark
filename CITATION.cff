@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite it as below."
+title: "Enron Distributed-Clue Deception Benchmark: Cross-Context Privacy Inference in LLM Agents"
+abstract: >-
+  A fully automated benchmark for conjunctive secret recovery: each case hides one
+  deliberate concealment across several individually-innocuous emails buried in real
+  Enron mail, retained only when the full clue set reveals the secret while every
+  proper subset does not. An adversarial agent must find the evidence in the archive
+  and combine it to recover who concealed what from whom.
+type: dataset
+authors:
+  # TODO: replace with real authors on de-anonymization.
+  - name: "Anonymous Authors (double-blind submission)"
+version: "1.0.0-dev"
+date-released: "2026-01-01"  # TODO: set to the frozen release date.
+license: MIT
+url: "https://github.com/OWNER/REPO"  # TODO: set repository URL.
+keywords:
+  - privacy
+  - language-model-agents
+  - benchmark
+  - inference
+  - enron
+preferred-citation:
+  type: conference-paper
+  title: "When No Email Reveals the Secret: Benchmarking Cross-Context Privacy Inference in LLM Agents"
+  authors:
+    - name: "Anonymous Authors (double-blind submission)"
+  year: 2026
+  collection-title: "PriLOM Workshop @ NeurIPS 2026"  # TODO: confirm venue on acceptance.

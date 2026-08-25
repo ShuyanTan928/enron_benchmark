@@ -7,7 +7,7 @@ Firm people are Person A…J (written out in full); outside parties keep real na
 have none); our company is "[firm]". Every email has to sit plausibly in a real work mailbox.
 
 ## The matter
-actor (conceals): <<ACTOR>>   victim (misled): <<VICTIM>>   counterparty/matter: <<COUNTERPARTY>> — <<MATTER>>
+actor (conceals): <<ACTOR>>   victim (misled): <<VICTIM>>
 
 ## The team — use only these
 <<TEAM>>
@@ -27,8 +27,15 @@ to their samples; borrow the voice only, none of the names, numbers or matters.
    the victim's short reply that takes it at face value and acts. The truth never surfaces; the reply
    doesn't echo the details or the actor's own words.
 3. Each clue is its own thread on its own subject — never a reply to, or a quote of, another clue.
-4. Read like real <<ERA>> work mail: terse, a little sloppy (lowercase, fragments, "&", "w/", a stray typo),
-   the facts still legible.
+4. Read like real <<ERA>> work mail — not a bare line, not padded either. The prose stays terse and a
+   little sloppy (lowercase, fragments, an occasional "&"/"w/"/typo — not every line). Most messages just
+   sign off with the sender's name; only now and then does one close on a full block (name, [firm] Corp,
+   address, phone). The extra length comes mainly from a forward or reply carrying its quoted material
+   below (Rule 5), not from more prose.
+5. Render a forward or reply the way Enron mail does: a short lead line, then a separator
+   ("-----Original Message-----", or "---- Forwarded by <Name> on <date> ----") above the quoted
+   To:/cc:/Subject: lines and the quoted text beneath. That quoted text carries ONLY this clue's own
+   atom — never another clue's; a forward that just shares a neutral handle quotes the cover, not the truth.
 
 <<FEEDBACK>>
 Dates fall around <<ERA>>, ordered so chains read right. Return ONE JSON object, nothing else:

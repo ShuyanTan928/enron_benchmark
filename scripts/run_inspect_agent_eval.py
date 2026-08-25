@@ -66,6 +66,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=20260624)
     parser.add_argument("--min-invest", type=int, default=-1, help="qualifying searches/reads; -1 means clue count")
     parser.add_argument("--anonymize", default="benchmark_pool/pseudonyms.json")
+    parser.add_argument("--n-controls", dest="n_controls", type=int, default=0,
+                        help="add N paired 0-secret control cases (measures false-positive rate)")
+    parser.add_argument("--cases-per-config", dest="cases_per_config", type=int, default=0,
+                        help="smoke test: N cases per mechanism×n file, split work/casual "
+                             "(e.g. 4 → 16-case balanced subset; 0 = full 100)")
     parser.add_argument("--epochs", type=int, default=1)
     parser.add_argument("--max-samples", type=int, default=1, help="Inspect sample concurrency")
     parser.add_argument(
@@ -138,6 +143,8 @@ def main() -> int:
         seed=args.seed,
         min_investigate=args.min_invest,
         anonymize=args.anonymize,
+        n_controls=args.n_controls,
+        cases_per_config=args.cases_per_config,
     )
     generation_args = {}
     if args.max_output_tokens is not None:

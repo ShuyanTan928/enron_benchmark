@@ -8,7 +8,7 @@ who receives it, the handles, the dates.
 
 ## The secret (answer key)
 actor: <<ACTOR>>   victim: <<VICTIM>>
-true_fact: <<TRUE>>   false_belief: <<FALSE>>
+secret: <<SECRET>>
 
 ## The clue set
 <<CLUES>>

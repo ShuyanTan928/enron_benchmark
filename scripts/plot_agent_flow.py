@@ -30,12 +30,12 @@ def arrow(x1, y1, x2, y2, color=MUT, rad=0.0, lw=1.7):
                                  color=color, lw=lw, connectionstyle=f"arc3,rad={rad}"))
 
 
-# ---- tool boxes: LIST / SEGMENT (left) -> SEARCH <-> READ -> ANSWER --------------------------------
-box(4, 44, 22, 10, "LIST", "orient")
-box(4, 29, 22, 10, "SEGMENT", "scan coverage")
-box(33, 37, 26, 10, "SEARCH", "BM25 - rerank 40 to 8")
-box(66, 37, 18, 10, "READ", "full thread")
-box(98, 37, 22, 10, "ANSWER", "up to N ranked + evidence")
+# ---- Inspect tools: list_threads / segment (left) -> search <-> read -> answer ---------------------
+box(4, 44, 22, 10, "list_threads", "orient", fs=12)
+box(4, 29, 22, 10, "segment", "scan coverage", fs=12)
+box(33, 37, 26, 10, "search", "BM25 · rerank 40 to 8", fs=13)
+box(66, 37, 18, 10, "read", "full thread", fs=13)
+box(98, 37, 22, 10, "answer", "candidates + evidence,\nor empty (abstain)", fs=12)
 
 arrow(1, 42, 4, 42)                                  # enter
 arrow(26, 49, 33, 45)                                # LIST -> SEARCH
@@ -62,7 +62,7 @@ ax.text(49, 13.2, "EXPAND", ha="left", fontsize=10.5, fontweight="bold", color=A
 ax.text(63, 13.2, "BM25( the read email's own text )  ->  related unread threads",
         ha="left", fontsize=8.7, color=INK)
 ax.text(49, 8.2, "NOTE", ha="left", fontsize=10.5, fontweight="bold", color=AUTO, family="DejaVu Sans")
-ax.text(63, 8.2, "the thread's key fact  ->  evidence log",
+ax.text(63, 8.2, "tester model distils the thread's key fact  ->  notes log (off budget)",
         ha="left", fontsize=8.7, color=INK)
 
 arrow(72, 37, 72, 22, color=AUTO)                    # READ -> auto (down)
@@ -71,8 +71,10 @@ arrow(79, 22, 79, 37, color=MUT)                     # auto -> READ (up: read on
 ax.text(81.5, 29, "read one", ha="left", fontsize=8.4, color=MUT)
 
 # ---- title + legend -------------------------------------------------------------------------------
-ax.text(4, 59, "Find-secrets mailbox agent", fontsize=15.5, fontweight="bold", color=INK,
-        family="DejaVu Sans")
+ax.text(4, 59.4, "Find-secrets mailbox agent (native Inspect)", fontsize=15, fontweight="bold",
+        color=INK, family="DejaVu Sans")
+ax.text(4, 55.6, "list_threads · search · read share a 100-call budget;  segment has a separate scan allowance",
+        fontsize=8.6, color=MUT, family="DejaVu Sans")
 leg = [Line2D([0], [0], color=ACC, lw=6, label="tools the model calls"),
        Line2D([0], [0], color=AUTO, lw=6, label="run automatically on every read")]
 ax.legend(handles=leg, loc="lower center", bbox_to_anchor=(0.5, -0.04), ncol=2,

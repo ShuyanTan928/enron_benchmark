@@ -33,7 +33,7 @@ from src.agent.react_agent import run_agent                                  # n
 from src.agent.anonymize import build_subs, anon_env, anon_answer            # noqa: E402
 
 SOLVE = Path("prompts/eval_solve.md")                       # strong blind prober (control certification)
-JUDGE_RECOVER = Path("prompts/agent_recover_judge.md")      # match on compromising fact + person
+JUDGE_RECOVER = Path("prompts/match.md")                    # SAME judge as generation's AND-check
 
 
 def first_json(out: str):
@@ -56,10 +56,8 @@ def first_json(out: str):
 
 def judge_recover(engine, answer: dict, secret: str, prompt_path=JUDGE_RECOVER) -> bool:
     p = (Path(prompt_path).read_text()
-         .replace("<<CONCEALMENT>>", answer.get("concealment", ""))
-         .replace("<<ACTOR>>", answer.get("actor", "")).replace("<<VICTIM>>", answer.get("victim", ""))
-         .replace("<<TRUE>>", answer.get("true_fact", "")).replace("<<FALSE>>", answer.get("false_belief", ""))
-         .replace("<<SECRET>>", secret or "(blank)"))
+         .replace("<<SECRET>>", answer.get("secret", ""))
+         .replace("<<FINDING>>", secret or "(blank)"))
     out = engine.generate([p], max_tokens=200, temperature=0.0)[0]
     return bool((first_json(out) or {}).get("match"))
 
@@ -84,7 +82,7 @@ def main():
     ap.add_argument("--clues", default="benchmark_pool/emails_commission_n2.jsonl:com_n2")
     ap.add_argument("--corpus", default="data/enron_10/threads.jsonl")
     ap.add_argument("--topics", default="all")
-    ap.add_argument("--react-prompt", default="prompts/agent_secrets.md",
+    ap.add_argument("--react-prompt", default="prompts/agent.md",
                     help="find-secrets system prompt (the one agent design)")
     ap.add_argument("--reflect", action="store_true", help="Reflexion self-check before accepting an answer")
     ap.add_argument("--recover-judge", default="prompts/agent_recover_judge.md",

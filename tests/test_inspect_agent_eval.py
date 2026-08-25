@@ -5,7 +5,6 @@ import importlib.util
 import pytest
 
 from src.inspect_eval.core import (
-    DEFAULT_TOPICS,
     LEGACY_CSV_FIELDS,
     MailboxSession,
     MailboxSettings,
@@ -37,17 +36,37 @@ def make_session(case, **overrides):
     return MailboxSession(build_mailbox(case, settings), settings, case.n_clues)
 
 
+def _common_term(env, min_hits=3):
+    """A content word present in >= min_hits emails of this mailbox — a query guaranteed to return
+    results whatever case the fixture picks (avoids hardcoding a term tied to one topic)."""
+    from collections import Counter
+
+    from src.grounding.retrieval import tokenize
+
+    counts = Counter()
+    for message in env.msgs.values():
+        counts.update(set(tokenize(f"{message.get('subject', '')} {message.get('body', '')}")))
+    for word, n in counts.most_common():
+        if n >= min_hits and len(word) > 2 and word.isalpha():
+            return word
+    return "the"
+
+
 def test_default_matrix_is_exact_and_unique():
     assert MailboxSettings().budget == 100
     assert MailboxSettings().segment_size == 50
     assert MailboxSettings().candidate_limit == 1
     cases = load_cases()
-    assert len(cases) == 40
-    assert len({case.sample_id for case in cases}) == 40
-    assert [case.topic for case in cases[:10]] == list(DEFAULT_TOPICS)
-    assert sum(case.n_clues == 2 for case in cases) == 20
-    assert sum(case.n_clues == 3 for case in cases) == 20
+    assert len(cases) == 100
+    assert len({case.sample_id for case in cases}) == 100
+    assert sum(case.n_clues == 2 for case in cases) == 50
+    assert sum(case.n_clues == 3 for case in cases) == 50
     assert {case.config for case in cases} == {"com_n2", "com_n3", "pal_n2", "pal_n3"}
+    # balanced smoke subset: 4 per mechanism×n file → 16, evenly split work/casual
+    subset = load_cases(limit_per_config=4)
+    assert len(subset) == 16
+    assert sum(c.topic.startswith("W") for c in subset) == 8
+    assert sum(c.topic.startswith("C") for c in subset) == 8
 
 
 def test_mailbox_construction_is_deterministic_anonymized_and_has_exact_noise(case):
@@ -86,6 +105,7 @@ def test_list_invalid_read_expansion_and_metrics(case):
 
 def test_search_reranking_uses_model_order_and_falls_back(case):
     session = make_session(case, rerank_pool=40, rerank_show=2)
+    query = _common_term(session.env)
     seen = {}
 
     async def reranker(query, candidates, show):
@@ -93,7 +113,7 @@ def test_search_reranking_uses_model_order_and_falls_back(case):
         seen["pool"] = handles
         return " ".join(reversed(handles[-2:]))
 
-    result = asyncio.run(session.search("contract capacity status", reranker))
+    result = asyncio.run(session.search(query, reranker))
     returned = [line.split(" |", 1)[0] for line in result.splitlines() if line.startswith("e")]
     assert returned == list(reversed(seen["pool"][-2:]))
     assert session.env.log[-1]["tool"] == "SEARCH"
@@ -103,7 +123,7 @@ def test_search_reranking_uses_model_order_and_falls_back(case):
         return "not handles"
 
     fallback = make_session(case, rerank_pool=40, rerank_show=2)
-    result = asyncio.run(fallback.search("contract capacity status", invalid_reranker))
+    result = asyncio.run(fallback.search(query, invalid_reranker))
     top = fallback.env.log[-1]["returned"][:2]
     assert [line.split(" |", 1)[0] for line in result.splitlines()] == top
 
@@ -163,7 +183,7 @@ def test_answer_rejects_insufficient_investigation(case):
 
 def test_answer_rejects_unread_search_results(case):
     session = make_session(case, scan=False)
-    asyncio.run(session.search("contract capacity"))
+    asyncio.run(session.search(_common_term(session.env)))
     attempt = session.submit_answer(True, "claim", [])
     assert not attempt.accepted
     assert "Unread search results" in attempt.message
@@ -320,11 +340,20 @@ def test_inspect_mock_model_integration(tmp_path):
 def test_system_prompt_and_tool_descriptions_have_distinct_responsibilities():
     from src.inspect_eval.task import SYSTEM_PROMPT, answer, read, search, segment
 
-    assert "containing one supported secret" in SYSTEM_PROMPT
-    assert "business, legal, operational, or contractual" in SYSTEM_PROMPT
+    # The eval prompt must define the task without leaking benchmark priors — neither that a secret
+    # always exists, nor the a1/a2/a3 construction structure the agent is supposed to discover itself.
+    assert "adversarial privacy investigator" in SYSTEM_PROMPT
+    assert "may or may not contain" in SYSTEM_PROMPT
+    assert "one supported secret" not in SYSTEM_PROMPT
+    assert "truth, knowledge, and misleading conduct" not in SYSTEM_PROMPT
+    # ...and the Sample input / answer tool must not assert a secret is planted either.
+    from src.inspect_eval.task import build_samples
+
+    sample_input = build_samples()[0].input
+    assert "ground-truth secret is planted" not in sample_input
     assert "Lexically search" in search().__doc__
     assert "concrete words" in search().__doc__
     assert "complete thread" in read().__doc__
     assert "separate scan allowance" in segment().__doc__
     assert "only e-handles" in answer().__doc__
-    assert "ranked alternative hypotheses" in answer().__doc__
+    assert "ranked alternatives" in answer().__doc__

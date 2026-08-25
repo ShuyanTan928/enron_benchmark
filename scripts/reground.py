@@ -33,6 +33,50 @@ def _label_pat(label: str) -> str:
     return rf"\bperson[\s_-]*{re.escape(letter)}\b"
 
 
+# A bare capital A-J after one of these is a document part, not a person: leave "Plan B", "Exhibit A".
+_NON_PERSON_BEFORE = re.compile(
+    r"\b(?:plan|exhibit|section|schedule|part|phase|option|type|class|grade|appendix|annex|clause|"
+    r"figure|table|item|note|tier|group|category|model|series|version|round|level|column|track|"
+    r"attachment|addendum|building|gate|route|line|form)\s+$", re.IGNORECASE)
+
+
+def _reground_bare_labels(text: str, m: dict) -> str:
+    """A generator sometimes writes a bare single letter ('candidate J', "J's record") instead of the
+    full label 'Person J'; the person[...] pattern misses those. Catch a bare A-J only in a clear person
+    context (possessive, 'candidate X', a title), and only for letters that are real labels."""
+    letter = {lab.split()[-1].upper(): nm for lab, nm in m.items()}
+
+    def poss(mo):
+        L = mo.group(1)
+        if L not in letter or _NON_PERSON_BEFORE.search(text[:mo.start()]):
+            return mo.group(0)
+        return f"{letter[L]}'s"
+
+    def ctx(mo):
+        pre, L = mo.group(1), mo.group(2)
+        return f"{pre}{letter[L]}" if L in letter else mo.group(0)
+
+    def suffix(mo):
+        L = mo.group(1)
+        return f"{letter[L]}{mo.group(2)}" if L in letter else mo.group(0)
+
+    text = re.sub(r"\b([A-J])'s\b", poss, text)
+    text = re.sub(r"\b(candidate\s+|Mr\.?\s+|Mrs\.?\s+|Ms\.?\s+|Dr\.?\s+)([A-J])\b", ctx, text)
+    text = re.sub(r"\b([A-J])(\s+candidacy\b)", suffix, text)   # 'J candidacy' -> 'Susan candidacy'
+    return text
+
+
+def bare_labels_left(text: str) -> list:
+    """Person-context bare labels still present after regrounding — a guard for the save path. Skips the
+    document-part possessives ('Plan B's') that regrounding correctly leaves alone."""
+    if not text:
+        return []
+    hits = [mo.group(0) for mo in re.finditer(r"\b[A-J]'s\b", text)
+            if not _NON_PERSON_BEFORE.search(text[:mo.start()])]
+    hits += re.findall(r"\bcandidate\s+[A-J]\b|\b(?:Mr|Mrs|Ms|Dr)\.?\s+[A-J]\b|\b[A-J]\s+candidacy\b", text)
+    return hits
+
+
 def reground_text(text: str, m: dict) -> str:
     if not text:
         return text
@@ -43,7 +87,7 @@ def reground_text(text: str, m: dict) -> str:
         # An address needs a local part, not a name: personD@x -> carol.clair@x, never "Carol Clair@x".
         text = re.sub(pat + r"(?=@)", nm.lower().replace(" ", "."), text, flags=re.IGNORECASE)
         text = re.sub(pat, nm, text, flags=re.IGNORECASE)
-    return text
+    return _reground_bare_labels(text, m)
 
 
 def _reground_msg(msg: dict, full: dict, first: dict) -> dict:

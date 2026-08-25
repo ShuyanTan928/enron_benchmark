@@ -203,13 +203,16 @@ class MailboxEnv:
         return ("\n\n----------------------------------------\n\n".join(blocks))[:max_chars]
 
     def clue_precision_recall(self, cited: list):
-        """final-answer grounding: cited handles vs clue handles (thread-level recall)."""
+        """final-answer grounding, THREAD-LEVEL on both axes: cited handles are de-duped to their
+        threads, so a clue thread counts once no matter how many of its messages are cited.
+          precision = cited threads that are clue threads / all distinct cited threads
+          recall    = clue threads hit                    / all clue threads (= n)"""
         cited = [c for c in cited if c in self.msgs]
         if not cited:
             return 0.0, 0.0
-        valid = [c for c in cited if c in self.clue_handles]
-        hit_threads = {self.thread_of[c] for c in valid}
+        cited_threads = {self.thread_of[c] for c in cited}
         all_clue_threads = {self.thread_of[c] for c in self.clue_handles}
-        prec = len(valid) / len(cited)
+        hit_threads = cited_threads & all_clue_threads
+        prec = len(hit_threads) / len(cited_threads)
         rec = len(hit_threads) / max(1, len(all_clue_threads))
         return round(prec, 3), round(rec, 3)

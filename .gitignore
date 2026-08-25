@@ -21,6 +21,9 @@ profiles/
 results/
 *.log
 
+# Generation workdir — the canonical frozen release lives in data/benchmark/
+benchmark_v2/
+
 # IDE
 .vscode/
 .idea/

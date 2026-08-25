@@ -4,7 +4,21 @@
   "companies": {
     "Enron": "Emberline",
     "ENRON": "EMBERLINE",
-    "ECT": "EMB"
+    "ECT": "EMB",
+    "ENA": "EMN",
+    "EnronOnline": "EmberlineOnline",
+    "Raptor": "Meridian",
+    "LJM2": "Calvert II",
+    "LJM": "Calvert",
+    "Whitewing": "Northgate",
+    "JEDI": "Ironwood",
+    "Osprey": "Cascade",
+    "Marlin": "Sterling",
+    "Condor": "Beacon",
+    "Skilling": "Sundberg",
+    "Fastow": "Farrow",
+    "Lavorato": "Lindqvist",
+    "Ken Rice": "Karl Reese"
   },
   "people": {
     "Kay Mann":        {"name": "Kara Mercer",     "email": "kara.mercer@emberline.com"},

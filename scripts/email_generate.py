@@ -47,9 +47,13 @@ from src.models.engine_factory import build_engine
 ATOMIZE_TMPL = Path("prompts/clue_atomize.md")
 DISTRIB_TMPL = Path("prompts/clue_distribute.md")
 VOICE_TMPL = Path("prompts/email_voice.md")
-PROBE_TMPL = Path("prompts/email_probe_min.md")
-MATCH_TMPL = Path("prompts/email_match_min.md")
-DIAGNOSE_TMPL = Path("prompts/email_diagnose_min.md")
+PROBE_TMPL = Path("prompts/probe.md")
+MATCH_TMPL = Path("prompts/match.md")
+DIAGNOSE_TMPL = Path("prompts/diagnose.md")
+# The diagnose "model of the set" block (how the AND-gate works for this n) lives in the shared
+# prompts/fills/separation.json, auditable alongside the templates.
+SET_MODEL = {int(k): v for k, v in
+             json.loads(Path("prompts/fills/separation.json").read_text())["set_model"].items()}
 
 
 # ----------------------------------------------------------------------------- helpers
@@ -171,23 +175,27 @@ def probe(engine, emails_text):
 
 
 def match(engine, intended, probe_json):
+    # Same judge (prompt + model + FINDING SHAPE) used at eval: the prober now emits a one-line `secret`
+    # exactly like the eval agent, and the judge sees THAT — not the prober's structured dump — so the
+    # gate judges what eval judges. Fall back to the dump only if an older prober emits no `secret`.
+    finding = (probe_json or {}).get("secret") or json.dumps(probe_json, ensure_ascii=False)
     p = (MATCH_TMPL.read_text()
-         .replace("<<ACTOR>>", intended["actor"]).replace("<<VICTIM>>", intended["victim"])
-         .replace("<<TRUE>>", intended["true_fact"]).replace("<<FALSE>>", intended["false_belief"])
-         .replace("<<KNEW>>", intended.get("knew", "") or "(the actor holds/receives the record carrying the true fact)")
-         .replace("<<PROBE>>", json.dumps(probe_json, ensure_ascii=False)))
+         .replace("<<SECRET>>", intended.get("secret", ""))
+         .replace("<<FINDING>>", finding))
     return extract_json(engine.generate(p, max_tokens=1500, temperature=0.0)[0])
 
 
-def recovers(engine, intended, msgs) -> tuple[bool, dict]:
-    """Does this prober, blind, recover the intended concealment from these emails?"""
+def recovers(engine, intended, msgs, judge=None) -> tuple[bool, dict]:
+    """Does this prober, blind, recover the intended concealment from these emails? `judge` (when given)
+    scores the match — keeping the AND-check judge the SAME model as eval; otherwise the prober scores
+    its own recovery."""
     pr = probe(engine, render(msgs))
-    m = match(engine, intended, pr) if (pr and pr.get("found")) else None
+    m = match(judge or engine, intended, pr) if (pr and pr.get("found")) else None
     return bool(m and m.get("match")), {"probe": pr, "match": m}
 
 
 def validate(solo_engines, joint_engines, clues, intended,
-             solo_thresh=None, joint_thresh=None) -> tuple[bool, dict]:
+             solo_thresh=None, joint_thresh=None, judge=None) -> tuple[bool, dict]:
     """A clue set is AND-valid iff NO PROPER SUBSET of the clues reveals the concealment on its own —
     every singleton, every pair, … every all-but-one — AND the FULL set is jointly recoverable. So a
     non-load-bearing clue (one the others already give away without) can't slip through.
@@ -208,7 +216,7 @@ def validate(solo_engines, joint_engines, clues, intended,
                           key=lambda m: m.get("date", ""))
             votes, det = 0, []
             for e in solo_engines:
-                ok, info = recovers(e, intended, msgs)
+                ok, info = recovers(e, intended, msgs, judge=judge)
                 det.append({**info, "recovered": ok}); votes += int(ok)
             ids = [clues[i].get("i") for i in combo]
             leaked = votes >= maj_s
@@ -221,7 +229,7 @@ def validate(solo_engines, joint_engines, clues, intended,
                       key=lambda m: m.get("date", ""))
     jvotes, jdet = 0, []
     for e in joint_engines:                                # GPT first, then Gemini (probe-preset order)
-        ok, info = recovers(e, intended, all_msgs)
+        ok, info = recovers(e, intended, all_msgs, judge=judge)
         jdet.append({**info, "recovered": ok}); jvotes += int(ok)
         if jvotes >= maj_j:                                # any-recovers: once met, skip the rest (saves the Gemini call)
             break
@@ -247,56 +255,9 @@ def _clues_block(clues, atoms):
 
 
 def _probe_line(pr: dict) -> str:
-    """One readable line from the blind reader's structured output — for the diagnose prompt."""
+    """One readable line from the blind reader's output — for the diagnose prompt."""
     pr = pr or {}
-    if not pr.get("found"):
-        return "found nothing"
-    return (f'actor="{pr.get("actor","")}" victim="{pr.get("victim","")}" '
-            f'true="{pr.get("true_fact","")}" believed="{pr.get("false_belief","")}" '
-            f'knew="{pr.get("knew","")}"')
-
-
-# The model-of-the-set block injected into <<SET_MODEL>>. Swapped per plan (mirrors SEPARATION_N2/3/4):
-# N3 covers n=2 and n=3 (whole truth = a1); N4 covers the split truth (a1.1 + a1.2).
-SET_MODEL_N3 = """\
-## How the set works
-Each clue carries only its own piece: a1 the truth, a2 that the actor knew (they hold or are party to the
-SAME record/thread by its handle, never its content), a3 the concealing act. Only a2 shows the actor knew — so {a1, a3} without
-a2 must stay innocent, since the actor could just be mistaken.
-
-It fails one of two ways — name which, and how to fix the scenes:
-
-A SUBSET LEAKS — a clue shows more than its own piece:
-- the actor is on the truth clue (a recipient, or their side served) — move them off it.
-- a handle or record name spells the outcome ("Rejection Order") — use a bare ref; the outcome stays only in the truth clue's body.
-- a3 names or "omits" the hidden record — a3 stays within its own act, nothing about the hidden record.
-
-THE FULL SET DOESN'T RECOVER — the pieces don't add up:
-- a piece is missing — no scene shows the truth, the knowing, or the act.
-- the actor holds the record or is on the thread but nothing shows they took in what it says.
-- the clues don't share the handle that links them — name the SAME ref in both.
-- an innocent reading survives (a timing gap) — date the truth at or after the act, or make it a standing fact."""
-
-SET_MODEL_N4 = """\
-## How the set works
-The truth is SPLIT — a1.1 and a1.2 are each innocuous alone, recovering it only together. a2 shows the
-actor knew (they hold or are party to the SAME record/thread by its handle, never its content); a3 is the concealing act. Only a2
-shows the actor knew — so any subset without a2 stays innocent, and neither half may reveal the truth alone.
-
-It fails one of two ways — name which, and how to fix the scenes:
-
-A SUBSET LEAKS — a clue shows more than its own piece:
-- one half (a1.1 or a1.2) gives the truth on its own — move the telling detail to the other half so neither is enough alone.
-- the actor is on a truth clue (a recipient, or their side served) — move them off both halves.
-- a handle or record name spells the outcome ("Rejection Order") — use a bare ref; the outcome stays only where the truth is carried.
-- a3 names or "omits" the hidden record — a3 stays within its own act, nothing about the hidden record.
-
-THE FULL SET DOESN'T RECOVER — the pieces don't add up:
-- the two halves don't combine — a1.1 and a1.2 must be the SAME truth split, joined by a shared handle or subject, so together they read as one fact.
-- a2 doesn't share the halves' handle — the receipt never connects to the truth; name the SAME ref across them.
-- a piece is missing — no scene shows a truth half, the knowing, or the act.
-- the actor holds the record or is on the thread but nothing shows they took in what it says.
-- an innocent reading survives (a timing gap) — date the truth at or after the act, or make it a standing fact."""
+    return (pr.get("secret") or "(found, no detail)") if pr.get("found") else "found nothing"
 
 
 def diagnose(engine, clues, atoms, intended, report, history=None) -> dict:
@@ -325,15 +286,15 @@ def diagnose(engine, clues, atoms, intended, report, history=None) -> dict:
                  if chain else "Each clue is one clean thread.")
     hist = ("\n".join(f"  {i}. {h}" for i, h in enumerate(history, 1)) if history else "(none yet)")
     # n=4 splits the truth across a1.1/a1.2. Show the halves a role (else they read as "?") and swap in
-    # the split model-of-the-set. n=2/3 (no split) keep SET_MODEL_N3 and the atoms untouched.
+    # the split model-of-the-set. n=2/3 (no split) keep SET_MODEL[3] and the atoms untouched.
     split = any(cid in ("a1.1", "a1.2") for c in clues for cid in (c.get("carries") or []))
     disp_atoms = atoms + ([{"id": "a1.1", "role": "truth half", "fact": "first half of a1"},
                            {"id": "a1.2", "role": "truth half", "fact": "second half of a1"}]
                           if split else [])
     p = (DIAGNOSE_TMPL.read_text()
          .replace("<<ACTOR>>", intended["actor"]).replace("<<VICTIM>>", intended["victim"])
-         .replace("<<TRUE>>", intended["true_fact"]).replace("<<FALSE>>", intended["false_belief"])
-         .replace("<<SET_MODEL>>", SET_MODEL_N4 if split else SET_MODEL_N3)
+         .replace("<<SECRET>>", intended.get("secret", ""))
+         .replace("<<SET_MODEL>>", SET_MODEL[4] if split else SET_MODEL[3])
          .replace("<<CLUES>>", _clues_block(clues, disp_atoms))
          .replace("<<JOINT>>", "\n".join(f"  - {j}" for j in joint) or "  (no prober output)")
          .replace("<<LEAKAGE>>", leakage).replace("<<STRUCTURE>>", structure)

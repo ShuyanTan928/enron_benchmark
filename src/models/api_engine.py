@@ -13,6 +13,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Per-model API usage accumulated across a run (exact token counts; `cost` is OpenRouter's own $ if it
+# reports one). Read with usage_report() at the end of a run.
+_USAGE: dict = {}
+
+
+def usage_report() -> dict:
+    return _USAGE
+
 
 # Pre-defined API provider configurations.
 # Set the matching env vars, then pass the preset name to from_preset().
@@ -145,6 +153,13 @@ class APIEngine:
                     temperature=temperature,
                     extra_body=extra,
                 )
+                u = getattr(response, "usage", None)
+                if u:
+                    rec = _USAGE.setdefault(self.model_name, {"calls": 0, "in": 0, "out": 0, "cost": 0.0})
+                    rec["calls"] += 1
+                    rec["in"] += getattr(u, "prompt_tokens", 0) or 0
+                    rec["out"] += getattr(u, "completion_tokens", 0) or 0
+                    rec["cost"] += float(getattr(u, "cost", 0) or 0)   # OpenRouter reports $ here
                 return (response.choices[0].message.content or "").strip()
             except Exception as e:
                 err = str(e)
