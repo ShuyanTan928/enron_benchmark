@@ -1,0 +1,18 @@
+{
+  "emails_commission_n2.jsonl": {
+    "cases": 25,
+    "sha256": "477572265dc2b16f"
+  },
+  "emails_commission_n3.jsonl": {
+    "cases": 25,
+    "sha256": "831051e3cf61c7bb"
+  },
+  "emails_paltering_n2.jsonl": {
+    "cases": 25,
+    "sha256": "a5714f43760bcb71"
+  },
+  "emails_paltering_n3.jsonl": {
+    "cases": 25,
+    "sha256": "9dcd05e1e194054b"
+  }
+}

@@ -12,24 +12,7 @@ one deliberate concealment across several individually-innocuous emails buried i
 single email gives it away — only the whole set together reveals *who concealed what from whom*. The
 benchmark measures whether an LLM can recover that hidden concealment from the joined evidence.
 
-```mermaid
-flowchart LR
-    C1["<b>Clue 1</b><br/>a1 · the true state"]
-    C2["<b>Clue 2</b><br/>a2 · the actor knew it"]
-    C3["<b>Clue 3</b><br/>a3 · the concealing act"]
-
-    C1 -. read alone .-> X1["nothing recoverable"]:::leak
-    C2 -. read alone .-> X2["nothing recoverable"]:::leak
-    C3 -. read alone .-> X3["nothing recoverable"]:::leak
-
-    C1 --> AND{{AND}}
-    C2 --> AND
-    C3 --> AND
-    AND ==> S["<b>Secret recovered</b><br/>who concealed what from whom"]:::win
-
-    classDef leak fill:#fdecea,stroke:#d64545,color:#7a1f1f;
-    classDef win  fill:#e7f6ec,stroke:#2f9e55,color:#14532d;
-```
+![AND-gate: no proper subset recovers the secret; only the full clue set does](docs/and_gate.png)
 
 <sub>Each clue is one email thread, buried among ~1000 unrelated Enron threads (the archive size is a
 difficulty dial). No proper subset recovers the secret; only the full set does — an AND-gate.
@@ -172,29 +155,7 @@ the 0-secret controls.
 and pooling topics for reuse across clue counts. (`scripts/atomize_build.py` builds a single
 mechanism × n cell; `scripts/ground_topics.py` is a standalone topic generator.)
 
-```mermaid
-flowchart TD
-    T["<b>Topic</b><br/>one abstract secret · Claude Sonnet"]
-    G["<b>Grounding</b> (work only)<br/>HyDE → retrieve → fit-judge<br/>pick a real Enron anchor"]
-    A["<b>Atomize</b><br/>a1 true state · a2 knew it · a3 act<br/>cast actor / victim + answer key"]
-    P["<b>Plan(n)</b><br/>n=2 {a1,a2}{a3} · n=3 {a1}{a2}{a3}"]
-    PL["<b>Plot</b> · one observable scene per clue"]
-    E["<b>Email</b> · render as Enron mail in sender voice"]
-    V{"<b>AND-check</b><br/>full set recovers?<br/>every proper subset fails?<br/>Sol prober · Terra judge"}
-    D["<b>Diagnose</b> → regenerate<br/>(≤ 3 iterations)"]
-    F["<b>Finalize</b><br/>embed in noise · excise anchor · pseudonymize"]
-    KEEP(["✅ KEEP"]):::win
-    DROP(["❌ DROP"]):::leak
-
-    T --> G --> A --> P --> PL --> E --> V
-    T -. casual: no anchor .-> A
-    V -->|pass| KEEP --> F
-    V -->|fail| D --> PL
-    D -. budget exhausted .-> DROP
-
-    classDef win  fill:#e7f6ec,stroke:#2f9e55,color:#14532d;
-    classDef leak fill:#fdecea,stroke:#d64545,color:#7a1f1f;
-```
+![Generation pipeline: topic → grounding (work) → atomize → plan → plot → email → AND-check → keep/finalize or diagnose/regenerate](docs/pipeline.png)
 
 ```
 [1] TOPIC          src/grounding/pipeline.py  (gen = Claude Sonnet)
@@ -439,17 +400,4 @@ an issue. Full details in [`DATA_CARD.md`](DATA_CARD.md).
 - **Software** (code + prompts): MIT — see [`LICENSE`](LICENSE).
 - **Generated benchmark data:** CC BY 4.0.
 - **Enron-derived background:** original public-domain status (FERC/CMU); processed derivative only.
-
-## Citation
-
-```bibtex
-@inproceedings{enron_distributed_clue_2026,
-  title     = {When No Email Reveals the Secret: Benchmarking Cross-Context Privacy Inference in LLM Agents},
-  author    = {Anonymous Authors},
-  booktitle = {PriLOM Workshop @ NeurIPS},
-  year      = {2026}
-}
-```
-
-<!-- TODO: de-anonymize authors and confirm venue on acceptance; keep CITATION.cff in sync. -->
 

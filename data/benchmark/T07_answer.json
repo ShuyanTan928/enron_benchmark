@@ -1,0 +1,43 @@
+{
+  "topic_id": "T07",
+  "answer": {
+    "concealment": "A contract attorney conceals from the trading desk that a required internal credit-committee or board-level approval for a non-standard master agreement was never actually sought or granted, allowing the desk to treat the agreement as fully authorized and book trades against it, because admitting the missing approval would freeze active positions and expose that the attorney executed the agreement without clearing the mandatory sign-off step.",
+    "actor": "Kay Mann — the contract attorney who executed the non-standard master agreement without clearing mandatory sign-off",
+    "victim": "Tana Jones — the legal and credit coordinator who relies on the agreement's authorized status to direct the trading desk",
+    "true_fact": "The non-standard ISDA master agreement with TDCC was executed by Kay Mann without the required internal credit-committee or board-level approval ever being sought or granted; no approval record exists on file.",
+    "false_belief": "Tana Jones believes, and causes the trading desk to believe, that the ISDA master agreement with TDCC has been fully authorized through the firm's internal approval process and is on file, making all trades booked against it properly sanctioned.",
+    "anchor": {
+      "date": "2001-02-23",
+      "subject": "RE: ISDA TDCC(Dow)/Enron"
+    }
+  },
+  "planted": [
+    {
+      "clue_i": 1,
+      "carries": [
+        "A4",
+        "A5"
+      ],
+      "message_ids": [
+        "24240991.1075849000000.javamail.evans@thyme",
+        "77757434.1075849000001.javamail.evans@thyme"
+      ]
+    },
+    {
+      "clue_i": 2,
+      "carries": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "message_ids": [
+        "64486684.1075849000000.javamail.evans@thyme"
+      ]
+    }
+  ],
+  "clue_message_ids": [
+    "24240991.1075849000000.javamail.evans@thyme",
+    "77757434.1075849000001.javamail.evans@thyme",
+    "64486684.1075849000000.javamail.evans@thyme"
+  ]
+}

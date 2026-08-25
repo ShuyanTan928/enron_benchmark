@@ -11,7 +11,7 @@ import re
 import subprocess
 import tarfile
 import tempfile
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -169,7 +169,7 @@ def publish(
         "schema_version": 1,
         "tag": tag,
         "repository": repo,
-        "published_at": datetime.now(UTC).isoformat(),
+        "published_at": datetime.now(timezone.utc).isoformat(),
         "git_commit": _run("git", "rev-parse", "HEAD", capture=True),
         "runs": runs,
         "assets": [],

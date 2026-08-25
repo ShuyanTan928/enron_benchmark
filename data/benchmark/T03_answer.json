@@ -1,0 +1,42 @@
+{
+  "topic_id": "T03",
+  "answer": {
+    "concealment": "A contract attorney conceals from the trading desk that the version of the master agreement actually on file and governing live trades is an older, superseded draft rather than the negotiated final form the counterparty signed, because disclosing the discrepancy would cast doubt on the enforceability of current positions and expose the attorney's earlier filing error.",
+    "actor": "Kay Mann — the concealer, contract attorney who filed the wrong version",
+    "victim": "Tana Jones — the misled party, legal and credit coordinator relying on the file",
+    "true_fact": "The executed ISDA Master Agreement on file for Engage Energy US, L.P. is a superseded draft — an earlier negotiated version that was never the final agreed form — meaning the document actually governing live trades between the firm and Engage Energy is not the version both parties ultimately signed.",
+    "false_belief": "Tana Jones is led to believe that the ISDA Master Agreement on file is the final, fully negotiated and executed version that both parties agreed to, and that the hand-marked amendment in the file represents agreed changes layered on top of that valid base agreement.",
+    "anchor": {
+      "date": "2000-08-02",
+      "subject": "Re: Amendments to ISDA Master Enron/Engage Energy US, L.P."
+    }
+  },
+  "planted": [
+    {
+      "clue_i": 1,
+      "carries": [
+        "A1",
+        "A2"
+      ],
+      "message_ids": [
+        "30935227.1075849000000.javamail.evans@thyme"
+      ]
+    },
+    {
+      "clue_i": 2,
+      "carries": [
+        "A3",
+        "A4"
+      ],
+      "message_ids": [
+        "60466454.1075849000000.javamail.evans@thyme",
+        "87770088.1075849000001.javamail.evans@thyme"
+      ]
+    }
+  ],
+  "clue_message_ids": [
+    "30935227.1075849000000.javamail.evans@thyme",
+    "60466454.1075849000000.javamail.evans@thyme",
+    "87770088.1075849000001.javamail.evans@thyme"
+  ]
+}
