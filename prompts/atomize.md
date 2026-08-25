@@ -12,7 +12,7 @@ Put those onto the three fixed atoms, cast the people, carry the rest across.
 <<TOPIC>>
 
 ## Rules
-(none yet)
+The person the fact is about — if neither the actor nor the victim — is a third teammate; name that same Person in a1, a2, and a3.
 
 ## The people and how they relate
 <<RELATIONSHIPS>>
@@ -30,11 +30,9 @@ Map the topic's roles onto them: the ACTOR holds the true side and conceals; the
   "secret_type": "<<TYPE>>",
   "actor": "Person X — the concealer",
   "victim": "Person Y — the misled party",
-  "counterparty": "outside party / matter, or 'n/a'",
-  "matter": "the matter this is about — one phrase",
   "era": "<<ERA_NOTE>>",
-  "answer_key": { "true_fact": "<carry the topic's true_fact>", "false_belief": "<carry the topic's false_belief>" },
-  "a1": { "role": "true_state", "fact": "the truth as a standing status — no event, no document" },
+  "answer_key": { "secret": "ONE sentence naming all three: the concealed fact, who concealed it, and who was misled" },
+  "a1": { "role": "true_state", "fact": "the truth as a standing status about the subject — no event, no document" },
   "a2": { "role": "knew", "fact": "Person X knows <a1>" },
   "a3": { "role": "<<A3_ROLE>>", "fact": "the concealing act toward the victim (per a3 above)" }
 }

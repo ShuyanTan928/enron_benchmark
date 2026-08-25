@@ -1,0 +1,26 @@
+{
+  "commission": {
+    "label": "LYING BY COMMISSION",
+    "act_clause": "Lying by commission is the active use of false statements. In `act`, name what the actor asserts to the victim — false, given the hidden truth. An assurance that it is fine, or a denial that anything is wrong; whichever the matter invites.",
+    "topic_check": "`act` names what the actor asserts to the victim, and it is FALSE given the true_fact, with no honest reading. FAIL if it is true-but-misleading (that is paltering), if it is silence (that is omission), if it is merely hedged, or if it states the truth.",
+    "a3_role": "false_statement",
+    "a3_check": "a3 is a quotable sentence the actor asserts to the victim, FALSE given a1, with no honest reading. FAIL if it is silence, a hedge, a literally-true line, or if it states the truth.",
+    "render": "one plain sentence the actor says to the victim, false given the truth."
+  },
+  "omission": {
+    "label": "LYING BY OMISSION",
+    "act_clause": "Lying by omission is the passive omission of relevant information, rather than actively misleading. The actor writes to the victim about the matter — a status line, a handoff, an answer — and the fact simply is not in it. Nothing false is said, nothing misleading. In `act`, name the message the actor sends and what it covers, with the fact missing.\nIt reads as concealment only because the actor's own message was where the fact belonged.",
+    "topic_check": "`act` is a message the actor sends the victim about this very matter, in which the true_fact is the relevant thing left out — everything said is true and not misleading, and the fact's absence is visible because this message is where it belonged. FAIL if the actor says anything false (commission) or true-but-misleading (paltering), if the actor never communicates with the victim about the matter at all (then there is no observable act), or if the fact is not relevant to what the message covers.",
+    "a3_role": "withheld_disclosure",
+    "a3_check": "a3 is the actor's own message to the victim about the matter, with a1 the relevant fact left out — nothing false, nothing misleading said. FAIL if the actor asserts anything false (commission) or true-but-misleading (paltering), if the truth is stated, or if there is no message from the actor at all — bare silence leaves no act to observe.",
+    "render": "the actor's own message to the victim about the matter, with the fact left out — it covers other points but says nothing about the fact's own dimension, not even a status on it (any word there asserts or leans, and it stops being omission)."
+  },
+  "paltering": {
+    "label": "PALTERING",
+    "act_clause": "Paltering is the active use of truthful statements to convey a misleading impression. In `act`, say what the actor points the victim to — SOMETHING ELSE that happens to be true, never true_fact itself, which is the thing being hidden. The victim draws the false conclusion from it; the actor never states that conclusion.\nWhat the actor points to must still hold with true_fact in force, and it must actually mislead — so not something true_fact already implies (a failed exam was certainly sat, so citing the sitting misleads no one). What works is a different record, bearing on the same question, that really is in good order: a suspended licence behind a current registration.",
+    "topic_check": "`act` names what the actor points the victim to — the LEVER. It is something other than true_fact, it holds even with true_fact in force, and a reasonable person hearing it lands on the false side. FAIL only if the lever is missing, if it is actually false given true_fact (that is commission), if true_fact already implies it so it misleads no one, or if it bears on some other question entirely and reassures only by what it leaves unsaid (that is omission).",
+    "a3_role": "misleading_truth",
+    "a3_check": "a3 is ONE literally TRUE sentence the actor says to the victim: still true given a1, and it leads the victim to the false belief. FAIL only if it says something false (commission), if there is no statement at all (omission), if it states the truth, or if a1 already implies it so it misleads no one.",
+    "render": "one true sentence on the SAME matter as the hidden fact: the actor confirms that the matter's visible side is going fine — which really is true — so the victim assumes the hidden problem underneath isn't there. it stays on the matter the victim is deciding, never a different topic, and never says the hidden fact or the conclusion.\n  hidden: the storage contract is terminated -> a3: 'the winter packages are all booked and on schedule' (true; the sales really are booked).\n  hidden: their licence is suspended -> a3: points to their current firm registration (true).\n  hidden: the netting agreement lapsed -> a3: 'the exposure figures are on the books and in the committee pack' (true; the figures really are there)."
+  }
+}

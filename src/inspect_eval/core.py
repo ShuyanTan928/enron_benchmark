@@ -11,7 +11,7 @@ import json
 import random
 import re
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import lru_cache
 from pathlib import Path
 from typing import Awaitable, Callable
@@ -23,12 +23,11 @@ from src.grounding.retrieval import BM25, tokenize
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_TOPICS = ("T01", "T02", "T03", "T04", "T05", "T11", "T12", "T13", "T14", "T15")
 DEFAULT_CONFIGS = (
-    ("benchmark_pool/emails_commission_n2.jsonl", "com_n2"),
-    ("benchmark_pool/emails_commission_n3.jsonl", "com_n3"),
-    ("benchmark_pool/emails_paltering_n2.jsonl", "pal_n2"),
-    ("benchmark_pool/emails_paltering_n3.jsonl", "pal_n3"),
+    ("data/benchmark/emails_commission_n2.jsonl", "com_n2"),
+    ("data/benchmark/emails_commission_n3.jsonl", "com_n3"),
+    ("data/benchmark/emails_paltering_n2.jsonl", "pal_n2"),
+    ("data/benchmark/emails_paltering_n3.jsonl", "pal_n3"),
 )
 LEGACY_CSV_FIELDS = (
     "config", "topic", "control", "rep", "budget", "found", "secret_match",
@@ -49,6 +48,7 @@ class BenchmarkCase:
     n_clues: int
     source: str
     row: dict
+    is_control: bool = False
 
 
 @dataclass(frozen=True)
@@ -83,18 +83,24 @@ def _resolve(path: str | Path, root: Path = ROOT) -> Path:
 def load_cases(
     *,
     root: Path = ROOT,
-    topics: tuple[str, ...] = DEFAULT_TOPICS,
     configs: tuple[tuple[str, str], ...] = DEFAULT_CONFIGS,
+    limit_per_config: int = 0,
 ) -> list[BenchmarkCase]:
-    """Load the fixed four-by-ten matrix in stable config/topic order."""
+    """Load every KEPT case from each config file (100 total) in stable config/topic order.
 
-    keep = set(topics)
-    topic_order = {topic: i for i, topic in enumerate(topics)}
+    limit_per_config > 0 keeps only the first N per file, split evenly between work (`W…`) and casual
+    (`C…`) topics — a small balanced subset for smoke tests (e.g. 4 → 2 work + 2 casual per file)."""
+
     cases: list[BenchmarkCase] = []
     for source, label in configs:
         rows = [json.loads(line) for line in _resolve(source, root).read_text().splitlines() if line.strip()]
-        rows = [row for row in rows if row.get("status") == "KEPT" and row.get("topic_id") in keep]
-        rows.sort(key=lambda row: topic_order[row["topic_id"]])
+        rows = [row for row in rows if row.get("status") == "KEPT"]
+        rows.sort(key=lambda row: row["topic_id"])
+        if limit_per_config > 0:
+            work = [r for r in rows if r["topic_id"].startswith("W")]
+            casual = [r for r in rows if r["topic_id"].startswith("C")]
+            half = limit_per_config // 2
+            rows = work[:half] + casual[: limit_per_config - half]
         for row in rows:
             topic = row["topic_id"]
             cases.append(
@@ -134,8 +140,13 @@ def build_mailbox(
     """Construct a mailbox exactly as the legacy runner does, without mutating cached corpus mail."""
 
     corpus, bm, addr_map = _resources(str(root.resolve()), corpus_path)
+    row = deepcopy(case.row)
+    if case.is_control:
+        # Paired control: keep the same background + anchor excision (via _carrier/answer/_anchor),
+        # but plant no clue. Same seed/noise as its positive twin, so the two differ only in clues.
+        row["clues"] = []
     env = MailboxEnv.from_row(
-        deepcopy(case.row), corpus, bm, addr_map, settings.noise, settings.seed
+        row, corpus, bm, addr_map, settings.noise, settings.seed
     )
     if settings.anonymize:
         # Noise messages point into the cached corpus. Detach them before anonymizing so constructing
@@ -146,7 +157,20 @@ def build_mailbox(
     return env
 
 
+def make_controls(cases: list[BenchmarkCase], n_controls: int) -> list[BenchmarkCase]:
+    """Pick n_controls positive cases spread evenly across the set and return PAIRED control cases:
+    each shares its twin's mailbox background and anchor excision but plants no clue. Used to measure
+    the false-positive rate — does the agent invent a secret when none is present?"""
+    if n_controls <= 0 or not cases:
+        return []
+    step = max(1, len(cases) // n_controls)
+    picked = cases[::step][:n_controls]
+    return [replace(c, is_control=True, sample_id=f"{c.sample_id}-ctrl") for c in picked]
+
+
 def answer_key(case: BenchmarkCase, settings: MailboxSettings, *, root: Path = ROOT) -> dict:
+    if case.is_control:
+        return {"is_control": True, "secret": ""}
     answer = deepcopy(case.row.get("answer", {}))
     if settings.anonymize:
         subs = build_subs(str(_resolve(settings.anonymize, root)), str(root / "benchmark_pool/people.json"))

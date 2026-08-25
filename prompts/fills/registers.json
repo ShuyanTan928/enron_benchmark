@@ -1,0 +1,14 @@
+{
+  "work": {
+    "setting": "The setting is a US energy-trading company around 2000-2001.",
+    "clause": "A trading-desk matter in an adverse state — expired, rejected, terminated, breached, withdrawn, curtailed, etc. — that holds whether or not anyone has looked, and costs the firm real money or standing once someone acts on the opposite.",
+    "matter_hint": "naming the concrete matter (a deal, a limit, a filing, or a standing status — a filed record or a stated fact, either) so it's findable later",
+    "example": "{\"name\": \"Expired credit limit hidden\",\n \"secret\": \"A counterparty's approved credit limit has expired and was never renewed, kept quiet so trades keep clearing against a line that no longer exists.\"}"
+  },
+  "casual": {
+    "setting": "The setting is a US workplace around 2000-2001 — coworkers who know each other through the office, over email. The matter is personal, not company business.",
+    "clause": "A private trouble serious enough to sink someone if it came out — e.g. a crime charge, an unpayable debt, a revoked licence, a falsified credential, a firing for cause, an affair. It's about a colleague, or the actor themselves — either.",
+    "matter_hint": "naming what it's about (e.g. a fraud conviction, an unpayable debt, an affair, a firing for cause)",
+    "example": "{\"name\": \"Hidden fraud conviction\",\n \"secret\": \"A colleague has an undisclosed felony fraud conviction on their record, kept quiet so a coworker keeps vouching for them to a lender.\"}"
+  }
+}

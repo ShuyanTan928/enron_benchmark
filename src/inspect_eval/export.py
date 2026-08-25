@@ -8,13 +8,12 @@ from typing import Any, Iterable
 
 from inspect_ai.log import EvalLog, list_eval_logs, read_eval_log
 
-from src.inspect_eval.core import DEFAULT_TOPICS, LEGACY_CSV_FIELDS
+from src.inspect_eval.core import LEGACY_CSV_FIELDS
 
 
 CSV_FIELDS = list(LEGACY_CSV_FIELDS)
 
 CONFIG_ORDER = {name: pos for pos, name in enumerate(("com_n2", "com_n3", "pal_n2", "pal_n3"))}
-TOPIC_ORDER = {name: pos for pos, name in enumerate(DEFAULT_TOPICS)}
 
 
 def _stored(sample: Any, key: str, default: Any = "") -> Any:
@@ -76,7 +75,7 @@ def rows_from_logs(logs: Iterable[EvalLog]) -> list[dict[str, Any]]:
     rows.sort(
         key=lambda row: (
             CONFIG_ORDER.get(str(row["config"]), 999),
-            TOPIC_ORDER.get(str(row["topic"]), 999),
+            str(row["topic"]),
             int(row["rep"] or 0),
         )
     )

@@ -32,4 +32,4 @@ THOUGHT: what you are chasing now
 ACTION: LIST
 
 ## Report
-ACTION: ANSWER {"found": true or false, "secret": "the private fact you can prove and who it is about", "evidence_email_ids": ["e12","e37"]}
+ACTION: ANSWER {"found": true or false, "secret": "the concealed fact, who concealed it, and who was misled", "evidence_email_ids": ["e12","e37"]}

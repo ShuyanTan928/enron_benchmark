@@ -4,8 +4,8 @@
   [1] topic + anchor  -> ATOMS: three clean facts a1 (truth F) / a2 (actor knows F) / a3 (false line)
         -> atom judge (faithful + clean a1/a2/a3 + decomposable); iterate     (prompts/spec_*_lying.md)
   [2] plan_distribution(atoms, n): fixed n=2/3/4 template -> which atom(s) each clue carries
-  [3a] atoms + plan -> ONE observable PLOT per clue (merge/split)             (prompts/clue_plot_min.md)
-  [3b] plots + voice -> clue emails written in each sender's own hand         (prompts/clue_email_min.md)
+  [3a] atoms + plan -> ONE observable PLOT per clue (merge/split)             (prompts/clue_plot.md)
+  [3b] plots + voice -> clue emails written in each sender's own hand         (prompts/clue_email.md)
   [4] AND check (subset test) + diagnose; iterate the email step             (reused: email_generate)
   [5] reground KEPT items to real Enron identities at save                   (reused: reground)
 
@@ -46,8 +46,16 @@ from reground import name_maps, reground_clues, reground_text, FIRM             
 from src.models.engine_factory import build_engine                                   # noqa: E402
 from src.grounding.prompts import CONCEALMENT_ACTS, resolve_type                       # noqa: E402
 
-CLUE_PLOT = Path("prompts/clue_plot_min.md")  # [3a] atoms+plan -> observable scene (plot) per clue
-CLUE_EMAIL = Path("prompts/clue_email_min.md")  # [3b] plots+voice -> real emails in each sender's hand (min)
+CLUE_PLOT = Path("prompts/clue_plot.md")   # [3a] atoms+plan -> observable scene (plot) per clue
+CLUE_EMAIL = Path("prompts/clue_email.md")  # [3b] plots+voice -> real emails in each sender's hand
+
+# Structured prompt fillings live under prompts/fills/ (auditable alongside the .md templates), not
+# inline here. examples = the worked atom/plot examples per cell; separation = the AND-gate model per n.
+_FILLS = Path("prompts/fills")
+_EXAMPLES = json.loads((_FILLS / "examples.json").read_text())
+ATOMIZE_EXAMPLES = _EXAMPLES["atomize"]                                   # {cell: worked a1/a2/a3}
+PLOT_EXAMPLES = {int(k): v for k, v in _EXAMPLES["plot"].items()}        # {n: {cell: worked plot}}
+SEPARATION = {int(k): v for k, v in json.loads((_FILLS / "separation.json").read_text())["separation"].items()}
 STYLE_BANK = Path("benchmark_pool/style_bank.json")
 ACK_BANK = Path("benchmark_pool/ack_bank.json")  # real terse Enron receipt replies, mined from the corpus
 FILE_BANK = Path("benchmark_pool/file_bank.json")  # real Enron attachment filenames, mined from the corpus
@@ -106,7 +114,7 @@ def atomize_paths(register: str, mechanism: str):
     now, so the fork bought nothing and cost plenty — every fix had to be applied twice, and when one was
     missed the fork silently drifted (it went on demanding that a1 name the dated record it rests on, long
     after atoms went carrier-free)."""
-    return (Path("prompts/atomize_min.md"), None)   # min: example-driven, no judge
+    return (Path("prompts/atomize.md"), None)   # example-driven, no judge
 
 
 def _checks(v: dict) -> list:
@@ -145,44 +153,13 @@ def _feedback_checks(v, what) -> str:
 # ------------------------------------------------------------------- [1] atoms generate + judge
 # Topics come from STAGE 1 secret-first grounding (scripts/ground_topics.py --secret-type lying →
 # topics_lying.json); this runner reads them via --plots and decomposes each into a SPEC.
-# One worked atom set per cell, filled into atomize_min's <<EXAMPLE>> (omission blank until run).
-ATOMIZE_EXAMPLES = {
-"work_commission": '''Secret: an ops lead hides from the scheduler that a transport permit lapsed, and tells them it's active, so the scheduler keeps booking against it.
-  a1: "The Line 300 interruptible-transport permit is lapsed and not in force."
-  a2: "Person D knows the Line 300 transport permit is lapsed and not in force."
-  a3: "Person D tells Person G the Line 300 permit is active and cleared to schedule against."''',
-"casual_commission": '''Secret: a colleague hides from a coworker that a mutual friend was fired for stealing, and says they left on good terms, so the coworker brings them in.
-  a1: "The mutual friend was fired from their last job for stealing company money."
-  a2: "Person A knows the mutual friend was fired for stealing company money."
-  a3: "Person A tells Person C the friend left that job on their own and on good terms."''',
-"work_paltering": '''Secret: a coordinator hides from the desk that a counterparty was downgraded below the credit threshold, by pointing to its standing credit-line approval without mentioning the downgrade.
-  a1: "The counterparty's credit rating has fallen below the threshold the line requires."
-  a2: "Person C knows the counterparty's rating has fallen below the threshold."
-  a3: "Person C points Person D to the counterparty's standing credit-line approval on file, without mentioning the downgrade, so D treats the line as good."''',
-"casual_paltering": '''Secret: a colleague hides from a coworker that a mutual friend defaulted on a loan now in collections, by saying they just paid off their car loan in full.
-  a1: "The mutual friend defaulted on a $40,000 bank loan and it went to collections."
-  a2: "Person J knows the mutual friend defaulted on the loan and it went to collections."
-  a3: "Person J tells Person C the friend just paid off their car loan in full last month."''',
-"work_omission": '''Secret: an ops lead hides from the scheduler that a transport permit lapsed, by sending them the Line 300 status with the lapse left out, so the scheduler keeps booking against it.
-  a1: "The Line 300 interruptible-transport permit is lapsed and not in force."
-  a2: "Person D knows the Line 300 transport permit is lapsed and not in force."
-  a3: "Person D sends Person G the Line 300 weekly scheduling status — nominations, capacity, timing — with the permit's lapse left out."''',
-"casual_omission": '''Secret: a colleague hides from a coworker that a mutual friend was fired for stealing, by giving them a rundown on the friend that leaves the firing out, so the coworker brings them in.
-  a1: "The mutual friend was fired from their last job for stealing company money."
-  a2: "Person A knows the mutual friend was fired for stealing company money."
-  a3: "Person A sends Person C a rundown on the friend for the role — prior roles, availability — with the firing for stealing left out."''',
-}
-
-
 def build_atomize_prompt(entry: dict, relabel, team: str, gen_path: Path,
                       register: str = "casual", mechanism: str = "commission") -> str:
     t = entry["topic"]
-    # `act` is the concealing act the Step-1 gate actually vetted. Carry it across the boundary, or a3
-    # is re-invented here and the vetted act — a paltering lever above all — silently drifts.
+    # The topic is one abstract line: its `secret`. atomize places it on a1/a2/a3, casts the people,
+    # and writes the answer-key secret — so only id/name/secret cross the boundary.
     topic_json = json.dumps({"id": entry["id"], "name": t.get("name", ""),
-                             "secret": t.get("secret", ""), "true_fact": t.get("true_fact", ""),
-                             "false_belief": t.get("false_belief", ""), "act": t.get("act", "")},
-                            indent=2, ensure_ascii=False)
+                             "secret": t.get("secret", "")}, indent=2, ensure_ascii=False)
     act = _act(mechanism)
     tmpl = gen_path.read_text()
     if register == "work":
@@ -202,7 +179,7 @@ def build_atomize_prompt(entry: dict, relabel, team: str, gen_path: Path,
 
 
 def make_atoms(gen, jud, entry, relabel, team, max_iters, temp, secret_type="commission"):
-    """Generate the atoms — NO judge. The prompt is example-driven (atomize_min), so quality is built
+    """Generate the atoms — NO judge. The prompt is example-driven (atomize.md), so quality is built
     into generation rather than gated after; only re-ask on a parse miss. `jud` is unused (kept for the
     caller's signature). Returns (atoms|None, None, log)."""
     register, mechanism = resolve_type(entry.get("category", "casual"), secret_type)
@@ -304,9 +281,7 @@ def _matter(p: str, atoms: dict) -> str:
     # benchmark needs). It defines the ACT only; clue structure is the prompts' own business.
     act = _act(atoms.get("secret_type", "commission"))
     return (p.replace("<<A3_ACT>>", act["render"])
-            .replace("<<ACTOR>>", atoms["actor"]).replace("<<VICTIM>>", atoms["victim"])
-            .replace("<<COUNTERPARTY>>", atoms.get("counterparty", "the counterparty"))
-            .replace("<<MATTER>>", atoms.get("matter", "")))
+            .replace("<<ACTOR>>", atoms["actor"]).replace("<<VICTIM>>", atoms["victim"]))
 
 
 # The AND logic is stated HERE, not in the atom block — and its correct statement DIFFERS by n:
@@ -314,177 +289,14 @@ def _matter(p: str, atoms: dict) -> str:
 #   n=3  a1 / a2 / a3 one each      → the ACTOR must NOT be on the truth clue, or truth+act leaks.
 #   n=4  a1 SPLIT into a1.1/a1.2    → same, and the truth itself is halved across two clues.
 # Injecting all three, hedged with "if", is what confused the model; inject only the one that applies.
-SEPARATION_N2 = """\
-## your 2 clues are an and-gate
-neither alone gives the concealment — only both together. the a1+a2 clue reads as an ordinary record or
-thread reaching someone; the a3 clue as an ordinary message.
-casting: the actor is on the a1+a2 clue — its recipient, named on the record, or on the thread that
-carries the truth; that presence is a2. the victim is not on it — a victim who sees the truth isn't
-misled. (the person the fact is about may be named, need not receive it.)"""
-
-SEPARATION_N3 = """\
-## your 3 clues are an and-gate
-only a2 carries the actor's knowing — so no clue alone and no pair gives the secret, only all three together.
-- a1: the truth, as a standing fact, tied to something the actor can later be placed on (a record, a dated
-  thread, an occasion) without its content. actor and victim are both off this clue — only neutral parties.
-  (the person the fact is about may be named, need not receive it.)
-- a2: the actor knew — the one clue linking them to the truth: they were on the same thing as a1 (that
-  thread, meeting, record), nothing of what it says. (content here and {a1,a2} gives it away; nothing shared
-  and nothing links.)
-- a3: the concealing line — the actor's own word to the victim, false given the truth."""
-
-SEPARATION_N4 = """\
-## your 4 clues are an and-gate
-no clue alone, nothing short of all four, gives the concealment. the truth itself is split — a1.1 and a1.2
-each innocuous alone, together they recover it.
-keep what the matter is apart from what's wrong with it, joined by one shared thing:
-- a1.1: the shared thing and what's wrong, not what it is — "that item: rejected".
-- a1.2: what the item is, nothing wrong — "that item is the CP&L filing".
-only matching the shared thing reaches the truth. (if the truth is already a value and a threshold, split
-on that seam.) check each half alone: if one gives the whole truth, its identity and its fault sit
-together — move one out.
-- a2: the actor was on the same thing as both halves — held it, or on that thread — nothing of what it says.
-casting: the actor is on neither truth clue, the victim on neither either — only neutral parties. (the
-person the fact is about may be named.)"""
-
-
 def separation_block(plan: list) -> str:
-    """The AND-logic + casting rules for THIS plan's clue layout (merged / split / split-a1)."""
-    merged = any(len(c["carries"]) > 1 for c in plan)                              # n=2
-    split_a1 = any(cid in ("a1.1", "a1.2") for c in plan for cid in c["carries"])  # n=4
-    if merged:
-        return SEPARATION_N2
-    return SEPARATION_N4 if split_a1 else SEPARATION_N3
-
-
-# One worked plot per cell (register_mechanism), filled into clue_plot's <<EXAMPLE_PLOT>>. Teaches the
-# SHAPE (a1 actor-absent, a2 shares only a neutral handle, a3 the act). The atoms are ALWAYS a1/a2/a3,
-# but the plot SHAPE is n-decided, so the example is keyed by clue count too: n=3 = a1/a2/a3 one each;
-# n=4 = a1 SPLIT into a1.1/a1.2, two innocuous halves that recover the truth only together (a2/a3 same).
-# omission blank until run.
-PLOT_EXAMPLES = {
-    2: {
-        "work_commission": (
-            "clue 1 (a1+a2): credit-limit status report (EES Cpty Stats.xls) covering the CP&L master (NRG Term Sheet.doc) "
-            "sent to Person C: CP&L limit expired 2001-05-01, renewal not submitted; C replies \"received and noted\". Person D not on it.\n"
-            "clue 2 (a3): Person C tells Person D the CP&L limit is current and cleared to close; D proceeds."),
-        "casual_commission": (
-            "clue 1 (a1+a2): background-check report on the mutual friend sent to Person A: fired from the last job "
-            "for stealing company money; A replies \"received and noted\". Person C not on it.\n"
-            "clue 2 (a3): Person A tells Person C the friend left that job on their own and on good terms; C brings them in."),
-        "work_paltering": (
-            "clue 1 (a1+a2): rating notice (EES Cpty Stats.xls) sent to Person C: the counterparty's rating is one "
-            "grade below the threshold; C replies \"received and noted\". Person D not on it.\n"
-            "clue 2 (a3): Person C points Person D to the standing credit-line approval (NRG Term Sheet.doc, genuine) without "
-            "mentioning the downgrade; D treats the line as good."),
-        "casual_paltering": (
-            "clue 1 (a1+a2): collections notice on the friend sent to Person J: defaulted on a "
-            "$40,000 bank loan, now in collections; J replies \"received and noted\". Person C not on it.\n"
-            "clue 2 (a3): Person J tells Person C the friend just paid off their car loan in full last month; C reads "
-            "it as financially solid and lends."),
-        "work_omission": (
-            "clue 1 (a1+a2): credit-limit status report (ref CP&L-CRED-2001-05) sent to Person C: CP&L limit "
-            "expired 2001-05-01, renewal not submitted; C replies \"received and noted\". Person D not on it.\n"
-            "clue 2 (a3): Person C sends Person D a CP&L account summary for the close — exposure, collateral, "
-            "recent trades — with the expired limit left out; D proceeds."),
-        "casual_omission": (
-            "clue 1 (a1+a2): background-check report (ref BG-2001-0219) sent to Person A: the mutual friend was "
-            "fired for stealing company money; A replies \"received and noted\". Person C not on it.\n"
-            "clue 2 (a3): Person A sends Person C a rundown on the friend for the role — prior roles, availability "
-            "— with the firing left out; C brings them in."),
-    },
-    3: {
-        "work_commission": (
-            "clue 1 (a1): credit-limit status report (EES Cpty Stats.xls) covering the CP&L master "
-            "(NRG Term Sheet.doc), Person H -> Person I: CP&L limit expired 2001-05-01, renewal not submitted. Person C not on it.\n"
-            "clue 2 (a2): Person B forwards EES Cpty Stats.xls to Person C to log; C replies \"received and noted\".\n"
-            "clue 3 (a3): Person C tells Person D the CP&L limit is current and cleared to close; D proceeds."),
-        "casual_commission": (
-            "clue 1 (a1): background-check report on the mutual friend, from a screening service to Person G: fired "
-            "from the last job for stealing company money. Person A not on it.\n"
-            "clue 2 (a2): Person G forwards the screening report on the friend to Person A to file; A replies \"received and noted\".\n"
-            "clue 3 (a3): Person A tells Person C the friend left that job on their own and on good terms; C brings them in."),
-        "work_paltering": (
-            "clue 1 (a1): rating notice (EES Cpty Stats.xls) to the credit desk (Person H, Person I): the "
-            "counterparty's rating is one grade below the threshold. Person C not on it.\n"
-            "clue 2 (a2): Person H forwards EES Cpty Stats.xls to Person C to file; C replies \"received and noted\".\n"
-            "clue 3 (a3): Person C points Person D to the standing credit-line approval (NRG Term Sheet.doc, genuine) "
-            "without mentioning the downgrade; D treats the line as good."),
-        "casual_paltering": (
-            "clue 1 (a1): collections notice on the friend, to a screening service: they defaulted on a "
-            "$40,000 bank loan, now in collections. Person J not on it.\n"
-            "clue 2 (a2): Person G forwards the collections notice on the friend to Person J to file; J replies \"received and noted\".\n"
-            "clue 3 (a3): Person J tells Person C the friend just paid off their car loan in full last month; C reads it "
-            "as financially solid and lends."),
-        "work_omission": (
-            "clue 1 (a1): credit-limit status report (ref CP&L-CRED-2001-05), Person H -> Person I, CP&L limit "
-            "expired 2001-05-01, renewal not submitted. Person C not on it.\n"
-            "clue 2 (a2): Person B forwards ref CP&L-CRED-2001-05 to Person C to log; C replies \"received and noted\".\n"
-            "clue 3 (a3): Person C sends Person D a CP&L account summary for the close — exposure, collateral, "
-            "recent trades — with the expired limit left out; D proceeds."),
-        "casual_omission": (
-            "clue 1 (a1): background-check report (ref BG-2001-0219) from a screening service to Person G says the "
-            "mutual friend was fired for stealing company money. Person A not on it.\n"
-            "clue 2 (a2): Person G forwards ref BG-2001-0219 to Person A to file; A replies \"received and noted\".\n"
-            "clue 3 (a3): Person A sends Person C a rundown on the friend for the role — prior roles, availability "
-            "— with the firing left out; C brings them in."),
-    },
-    4: {
-        "work_commission": (
-            "clue 1 (a1.1): master credit agreement (ref CP&L-CRED-2001-05), Person H -> Person I: the CP&L line "
-            "requires annual credit-committee re-approval to stay in force. Person C not on it.\n"
-            "clue 2 (a1.2): the 2001 credit-committee approval log (ref CP&L-CRED-2001-05), Person H -> Person I: "
-            "no CP&L re-approval is recorded this year. Person C not on it.\n"
-            "clue 3 (a2): Person B forwards ref CP&L-CRED-2001-05 to Person C to log; C replies \"received and noted\".\n"
-            "clue 4 (a3): Person C tells Person D the CP&L limit is current and cleared to close; D proceeds.\n"
-            "(needs annual re-approval, and none logged for 2001, are each ordinary alone — together the line has no "
-            "current approval. Drop either half and it could be 're-approval not required' or 'approved, just unlogged'.)"),
-        "casual_commission": (
-            "clue 1 (a1.1): screening record (ref BG-2001-0219) to Person G: at their prior firm the mutual friend had "
-            "SOLE control of the branch cash account. Person A not on it.\n"
-            "clue 2 (a1.2): screening record (ref BG-2001-0219) to Person G: an audit found THAT account short and "
-            "unrecovered when the friend left in 2001-01. Person A not on it.\n"
-            "clue 3 (a2): Person G forwards ref BG-2001-0219 to Person A to file; A replies \"received and noted\".\n"
-            "clue 4 (a3): Person A tells Person C the friend left that job on their own and on good terms; C brings them in.\n"
-            "(sole control, and a shortfall found when they left, are each ordinary alone — together they pin the theft. "
-            "Drop a1.1 and the shortfall names no one; drop a1.2 and controlling an account is nothing.)"),
-        "work_paltering": (
-            "clue 1 (a1.1): rating notice (ref MIS-CP-1999-10) to Person H, Person I: the counterparty's current "
-            "rating is BBB-. Person C not on it.\n"
-            "clue 2 (a1.2): the desk's credit-policy sheet (ref MIS-CP-1999-10) sets the minimum acceptable rating "
-            "at BBB. Person C not on it.\n"
-            "clue 3 (a2): Person H forwards ref MIS-CP-1999-10 to Person C to file; C replies \"received and noted\".\n"
-            "clue 4 (a3): Person C points Person D to the standing credit-line approval (genuine) without mentioning "
-            "the downgrade; D treats the line as good.\n"
-            "(a rating of BBB-, and a BBB minimum, are each neutral alone; together = below threshold.)"),
-        "casual_paltering": (
-            "clue 1 (a1.1): loan record (ref COL-2000-1187): a $40,000 bank loan in the friend's name. Person J not on it.\n"
-            "clue 2 (a1.2): collections notice (ref COL-2000-1187) to a screening service: that account was charged "
-            "off and referred to collections. Person J not on it.\n"
-            "clue 3 (a2): Person G forwards ref COL-2000-1187 to Person J to file; J replies \"received and noted\".\n"
-            "clue 4 (a3): Person J tells Person C the friend just paid off their car loan in full last month; C reads it "
-            "as financially solid and lends.\n"
-            "(having a loan, and some account in collections, are each ordinary alone; the shared ref ties them = the friend defaulted.)"),
-        "work_omission": (
-            "clue 1 (a1.1): master credit agreement (ref CP&L-CRED-2001-05), Person H -> Person I: the CP&L line "
-            "requires annual credit-committee re-approval to stay in force. Person C not on it.\n"
-            "clue 2 (a1.2): the 2001 credit-committee approval log (ref CP&L-CRED-2001-05), Person H -> Person I: "
-            "no CP&L re-approval is recorded this year. Person C not on it.\n"
-            "clue 3 (a2): Person B forwards ref CP&L-CRED-2001-05 to Person C to log; C replies \"received and noted\".\n"
-            "clue 4 (a3): Person C sends Person D a CP&L account summary for the close — exposure, collateral, "
-            "recent trades — with the limit's approval status left out; D proceeds.\n"
-            "(needs annual re-approval, and none logged for 2001, are each ordinary alone — together the line has no current approval.)"),
-        "casual_omission": (
-            "clue 1 (a1.1): screening record (ref BG-2001-0219) to Person G: at their prior firm the mutual friend "
-            "had SOLE control of the branch cash account. Person A not on it.\n"
-            "clue 2 (a1.2): screening record (ref BG-2001-0219) to Person G: an audit found THAT account short and "
-            "unrecovered when the friend left in 2001-01. Person A not on it.\n"
-            "clue 3 (a2): Person G forwards ref BG-2001-0219 to Person A to file; A replies \"received and noted\".\n"
-            "clue 4 (a3): Person A sends Person C a rundown on the friend for the role — prior roles, availability "
-            "— with the firing left out; C brings them in.\n"
-            "(sole control, and a shortfall found when they left, are each ordinary alone — together they pin the theft.)"),
-    },
-}
+    """The AND-logic + casting rules for THIS plan's clue layout (merged / split / split-a1).
+    The blocks themselves live in prompts/fills/separation.json."""
+    if any(len(c["carries"]) > 1 for c in plan):                              # n=2: a1+a2 merged
+        return SEPARATION[2]
+    if any(cid in ("a1.1", "a1.2") for c in plan for cid in c["carries"]):    # n=4: a1 split
+        return SEPARATION[4]
+    return SEPARATION[3]
 
 
 def plot_example(atoms: dict, plan: list) -> str:
@@ -582,8 +394,7 @@ def email_clues(gen, atoms, plot_cl, plan, team, era, feedback, prev=None) -> li
 def intended_of(atoms: dict) -> dict:
     ak = atoms.get("answer_key", {})
     return {"actor": atoms["actor"], "victim": atoms["victim"],
-            "true_fact": ak.get("true_fact", ""), "false_belief": ak.get("false_belief", ""),
-            "knew": atoms.get("a2", {}).get("fact", "")}
+            "secret": ak.get("secret", "")}
 
 
 def _plot_feedback(dx, report) -> str:
@@ -625,7 +436,7 @@ def _plan_violation(clues: list, plan: list) -> str:
 
 
 
-def run_topic(gen, solo, joint, diag, atoms, plan, team, n, era, budgets, iterate=True):
+def run_topic(gen, solo, joint, diag, atoms, plan, team, n, era, budgets, iterate=True, judge=None):
     """Returns (accepted, log). When the AND-check FAILS (subset leak or non-recovery) — a SCENE-design
     problem — the diagnosis is fed back to the PLOT step and the scenes are regenerated; an email-format
     slip only re-renders the email on the SAME plot. iterate=False: ONE shot, keep regardless."""
@@ -657,7 +468,7 @@ def run_topic(gen, solo, joint, diag, atoms, plan, team, n, era, budgets, iterat
         #   plan  (CODE)  — a FACT: did every clue come back, carrying its own atoms?
         #   AND   (LLM)   — the benchmark property: the full set recovers, no proper subset leaks.
         pv = _plan_violation(clues, plan)
-        ok, report = validate(solo, joint, clues, intended_of(atoms), solo_thresh=1, joint_thresh=1)
+        ok, report = validate(solo, joint, clues, intended_of(atoms), solo_thresh=1, joint_thresh=1, judge=judge)
         if pv:
             report = {**report, "plan_bad": pv}
         # trajectory: pair last iteration's change with the outcome it just produced, so the diagnoser
@@ -718,11 +529,9 @@ def reground_atoms_record(rec, atoms, full, first) -> dict:
         "secret_type": atoms.get("secret_type", "commission"),
         "check": rec.get("check"),
         "answer": {
-            "concealment": reground_text(atoms.get("matter", ""), full),
+            "secret": reground_text(ak.get("secret", ""), full),
             "actor": reground_text(atoms["actor"], full),
             "victim": reground_text(atoms["victim"], full),
-            "true_fact": reground_text(ak.get("true_fact", ""), full),
-            "false_belief": reground_text(ak.get("false_belief", ""), full),
         },
         "atoms": [{**a, "fact": reground_text(a.get("fact", ""), full)} for a in flatten_atoms(atoms)],
         "clues": reground_clues(rec.get("clues", []), full, first),
@@ -745,20 +554,16 @@ def render_readable(records) -> str:
         a = r.get("answer")
         if not a:                                           # atoms-only / DROP: pull from the full record + topic
             ak = full.get("answer_key", {})
-            a = {"concealment": full.get("matter", "") or topic.get("secret", ""),
-                 "actor": full.get("actor", ""), "victim": full.get("victim", ""),
-                 "true_fact": ak.get("true_fact", "") or topic.get("true_fact", ""),
-                 "false_belief": ak.get("false_belief", "") or topic.get("false_belief", "")}
+            a = {"secret": ak.get("secret", "") or topic.get("secret", ""),
+                 "actor": full.get("actor", ""), "victim": full.get("victim", "")}
         out.append(f"===== {r.get('topic_id', 'T??')}   n={r.get('n', '?')}   {r.get('status', '')} =====")
         chk = r.get("check") or {}
         if chk:
             out.append(f"CHECK: joint recover={chk.get('joint')}  leaked subsets={chk.get('leaks', [])}")
         out += ["SECRET",
-                f"  concealment : {a.get('concealment', '')}",
-                f"  true_fact   : {a.get('true_fact', '')}",
-                f"  false_belief: {a.get('false_belief', '')}",
-                f"  actor       : {a.get('actor', '')}",
-                f"  victim      : {a.get('victim', '')}", ""]
+                f"  secret: {a.get('secret', '')}",
+                f"  actor : {a.get('actor', '')}",
+                f"  victim: {a.get('victim', '')}", ""]
         out.append("ATOMS")
         for at in flat:
             out.append(f"  {at.get('id', '?')} [{at.get('role', '')}] {at.get('fact', '')}")
@@ -921,7 +726,7 @@ def main():
                              "note": err, "atoms_log": atoms_log})
             continue
         accepted, log = run_topic(gen, solo, joint, diag, atoms, plan, team, n, era, budgets,
-                                  iterate=not args.no_iterate)
+                                  iterate=not args.no_iterate, judge=jud)
         last = log[-1] if log else {}
         last_rep = last.get("report", {})
         clues = accepted or last.get("clues", [])        # keep the emails even when the check failed
