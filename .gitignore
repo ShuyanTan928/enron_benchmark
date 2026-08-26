@@ -49,3 +49,9 @@ benchmark_pool/step3_r17.txt
 benchmark_pool/step3_r17b.jsonl
 benchmark_pool/*_n0.jsonl
 sandbox/
+
+# Superseded legacy case set — the canonical release lives in data/benchmark/.
+# Kept locally for the legacy static-eval scripts; not tracked (untracked with `git rm --cached`).
+benchmark_pool/emails_*.jsonl
+benchmark_pool/emails_*.txt
+benchmark_pool/atoms_*.jsonl
