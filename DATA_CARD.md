@@ -14,8 +14,10 @@ combine it to recover *who concealed what from whom*.
 
 - **Unit.** One *case* = a target secret + `n` clue email threads + an answer key, embedded in a
   sample of unrelated Enron background threads.
-- **Size (target release).** 100 cases: two clue counts (`n ∈ {2,3}`) × two registers (work,
-  casual) × 25 each. Mechanisms (commission, paltering) are balanced within each cell (~5:5).
+- **Size.** 100 cases: two clue counts (`n ∈ {2,3}`) × two mechanisms (commission, paltering),
+  25 per cell — so clue-count and mechanism are each balanced 50/50. Register (work, casual) is
+  balanced 25/25 within each clue count; inside a single cell the register split is 13/12. Built
+  from 51 pooled scenarios (26 work / 25 casual).
 - **Secret structure.** Each secret is placed on three fixed atoms — `a1` (an objective true
   state), `a2` (the actor knew `a1`), `a3` (the concealing act) — allocated to clues by a fixed
   template (`n=2`: `{a1,a2},{a3}`; `n=3`: `{a1},{a2},{a3}`).
@@ -78,7 +80,8 @@ excluded, open an issue (or contact the maintainers) and we will add it to the e
 ## Distribution & Versioning
 
 Releases are versioned and frozen (git tag + a manifest listing case count and content hashes), so
-every evaluation runs against the same snapshot. See `MIGRATION.md` for the release layout.
+every evaluation runs against the same snapshot. The frozen set lives in `data/benchmark/`
+(`emails_{commission,paltering}_n{2,3}.jsonl` + `MANIFEST.json`).
 
 ## Known Limitations
 

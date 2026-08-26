@@ -24,8 +24,9 @@ difficulty dial). No proper subset recovers the secret; only the full set does �
   **full** clue set recovers the secret and **no proper subset** does (an AND-gate).
 - Every item is grounded in real Enron people and, for work secrets, a real Enron document; a
   different vendor's model runs every validation check.
-- **Data:** the benchmark is being refreshed to a **100-case** release (`n ∈ {2,3}` × work/casual ×
-  25 each). See [`DATA_CARD.md`](DATA_CARD.md) and [`MIGRATION.md`](MIGRATION.md).
+- **Data:** the release is **100 cases** — a 2×2 over clue-count `n ∈ {2,3}` × mechanism
+  (commission / paltering), 25 per cell; work/casual balanced 25/25 within each `n`. See
+  [`DATA_CARD.md`](DATA_CARD.md).
 
 ---
 
@@ -62,9 +63,10 @@ Every secret is placed on a 2 × 2 grid, then rendered at two clue-counts:
 | **work**   | a trading-desk matter, grounded on a real Enron anchor | same, grounded                         |
 | **casual** | a coworker's / the actor's own private trouble, ungrounded | same, ungrounded                    |
 
-`n = 2` and `n = 3` clue-counts. The refreshed release has **100 cases** — 25 per
-(register × clue-count) cell, with mechanisms balanced within each cell. (`omission` is a third
-mechanism, on the roadmap.)
+Rendered at `n = 2` and `n = 3` clue-counts. The release has **100 cases** — 25 per
+(mechanism × clue-count) cell, so mechanism and clue-count are each balanced 50/50. Register
+(work / casual) is balanced 25/25 within each `n`; inside a single cell the register split is 13/12.
+(`omission` is a third mechanism, on the roadmap.)
 
 Terminology follows Rogers, Zeckhauser, Gino, Norton & Schweitzer (2016): *lies of commission /
 omission* and *paltering*.
